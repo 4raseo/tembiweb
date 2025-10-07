@@ -1,5 +1,7 @@
 // app/page.tsx
+'use client';
 import Image from 'next/image';
+import { useState, useEffect } from 'react';
 import { Mail, MapPin, Phone } from 'lucide-react'; // Anda perlu install: npm i lucide-react
 
 // Data dummy
@@ -47,24 +49,56 @@ const accommodations = [
 //   { name: 'Arca Perunggu', image: '/placeholder-400x400.svg' },
 // ];
 
+const heroImages = [
+  '/hero-background.jpg', // Gambar pertama
+  '/hero-background-2.jpg', // Ganti dengan path gambar kedua Anda
+  '/hero-background-3.jpg', // Ganti dengan path gambar ketiga Anda
+  // Tambahkan lebih banyak gambar jika diinginkan
+];
+
 export default function HomePage() {
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % heroImages.length);
+    }, 8000); // Ganti gambar setiap 8 detik (8000 milidetik)
+    return () => clearInterval(interval); // Cleanup interval saat komponen di-unmount
+  }, [heroImages.length]);
   return (
     <div className="bg-white text-gray-800">
       <main>
         {/* Cover Section */}
         <section className="relative h-screen">
           <Image
-            src="/cover.jpg"
+            src={heroImages[currentImageIndex]}
             alt="Beautiful resort view"
             layout="fill"
             objectFit="cover"
-            className="z-0"
+            className="z-0 transition-opacity duration-1000 ease-in-out"
+            key={heroImages[currentImageIndex]}
           />
           <div className="absolute inset-0 bg-black bg-opacity-40 z-10"></div>
           <div className="relative z-20 flex flex-col items-center justify-center h-full text-center text-white px-4">
             <h2 className="text-5xl md:text-7xl font-serif font-bold mb-4 leading-tight">
               Where Culture <br /> Meets Serenity
             </h2>
+            <p className="text-lg md:text-xl max-w-2xl mb-8 font-light tracking-wide">
+              Experience authentic Javanese heritage in luxurious comfort
+            </p>
+            <div className="flex space-x-4">
+              <a
+                href="/rooms"
+                className="bg-primary hover:bg-primary-dark text-white font-semibold py-3 px-8 rounded-full transition-colors duration-300 shadow-lg"
+              >
+                Explore Our Rooms
+              </a>
+              <a
+                href="/rooms"
+                className="border-2 border-white text-white font-semibold py-3 px-8 rounded-full hover:bg-white hover:text-gray-800 transition-colors duration-300 shadow-lg"
+              >
+                View Gallery
+              </a>
+            </div>
           </div>
         </section>
 
