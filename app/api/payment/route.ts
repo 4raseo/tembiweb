@@ -1,4 +1,4 @@
-// app/api/booking/route.ts
+// app/api/payment/route.ts
 import { NextResponse } from 'next/server';
 import { PrismaClient } from '@prisma/client';
 import { Xendit } from 'xendit-node';
@@ -22,17 +22,14 @@ export async function POST(request: Request) {
       checkOut,
       adults,
       children,
-      booker,
-      specialRequest,
-      serviceFee,
-      tourismTax,
-      totalAmount
+      booker, // { name, email, phone, address, city, postalCode }
+      paymentMethod,
     } = await request.json();
 
     // Validate required fields
-    if (!roomSlug || !booker || !checkIn || !checkOut || !totalAmount) {
+    if (!roomSlug || !checkIn || !checkOut || !booker) {
       return NextResponse.json(
-        { message: 'Missing required booking information' },
+        { message: 'Missing required payment information' },
         { status: 400 }
       );
     }
@@ -68,32 +65,22 @@ export async function POST(request: Request) {
 
     const duration = Math.ceil((checkOutDate.getTime() - checkInDate.getTime()) / (1000 * 3600 * 24));
     
-    // Calculate base price
+    // Calculate prices
     const basePrice = room.price * duration;
-    
-    // Verify total amount (optional - for security)
-    const calculatedServiceFee = basePrice * 0.05; // 5% service fee
-    const calculatedTourismTax = 30000 * duration; // Tax per night
-    const calculatedTotal = basePrice + calculatedServiceFee + calculatedTourismTax;
-    
-    // Allow small difference due to rounding
-    if (Math.abs(calculatedTotal - totalAmount) > 100) {
-      console.warn('Price mismatch:', { 
-        calculated: calculatedTotal, 
-        received: totalAmount,
-        difference: Math.abs(calculatedTotal - totalAmount)
-      });
-    }
+    const serviceFee = Math.round(basePrice * 0.05); // 5% service fee
+    const tourismTax = 30000 * duration; // Tax per night
+    const totalAmount = basePrice + serviceFee + tourismTax;
 
     // Create booking record in database
     const booking = await prisma.booking.create({
       data: {
+        roomId: room.id.toString(),
         roomSlug: room.slug,
         roomName: room.name,
         roomPrice: room.price,
         basePrice: basePrice,
-        serviceFee: serviceFee || calculatedServiceFee,
-        tourismTax: tourismTax || calculatedTourismTax,
+        serviceFee: serviceFee,
+        tourismTax: tourismTax,
         totalPrice: totalAmount,
         checkInDate: checkInDate,
         checkOutDate: checkOutDate,
@@ -106,7 +93,7 @@ export async function POST(request: Request) {
         customerAddress: booker.address || '',
         customerCity: booker.city || '',
         customerPostalCode: booker.postalCode || '',
-        specialRequest: specialRequest || '',
+        specialRequest: '', // Bisa ditambahkan jika ada di form
         status: 'PENDING',
       },
     });
@@ -120,11 +107,19 @@ export async function POST(request: Request) {
           externalId: booking.id,
           amount: totalAmount,
           payerEmail: booker.email,
-          description: `Booking for ${room.name} at Tembi Cultural House from ${checkInDate.toLocaleDateString()} to ${checkOutDate.toLocaleDateString()} (${duration} nights)`,
+          description: `Booking for ${room.name} at Tembi Cultural House from ${checkInDate.toLocaleDateString('id-ID')} to ${checkOutDate.toLocaleDateString('id-ID')} (${duration} nights)`,
           customer: {
             given_names: booker.name,
             email: booker.email,
             mobile_number: booker.phone,
+            addresses: booker.address ? [
+              {
+                city: booker.city || '',
+                country: 'Indonesia',
+                postal_code: booker.postalCode || '',
+                street_line1: booker.address,
+              }
+            ] : undefined,
           },
           customerNotificationPreference: {
             invoice_created: ['email'],
@@ -136,26 +131,30 @@ export async function POST(request: Request) {
               name: `${room.name} - ${duration} nights`,
               quantity: 1,
               price: basePrice,
+              category: 'Accommodation',
             },
             {
               name: 'Service Fee (5%)',
               quantity: 1,
-              price: serviceFee || calculatedServiceFee,
+              price: serviceFee,
+              category: 'Fee',
             },
             {
               name: 'Tourism Tax',
               quantity: duration,
               price: 30000,
+              category: 'Tax',
             }
           ],
           successRedirectUrl: `${process.env.NEXT_PUBLIC_URL}/booking/success?booking_id=${booking.id}`,
           failureRedirectUrl: `${process.env.NEXT_PUBLIC_URL}/booking/failed?booking_id=${booking.id}`,
           currency: 'IDR',
           invoiceDuration: 86400, // 24 hours in seconds
+          locale: 'id', // Indonesian locale
         },
       });
 
-      // Update booking with Xendit invoice ID
+      // Update booking with Xendit invoice ID and URL
       await prisma.booking.update({
         where: { id: booking.id },
         data: { 
@@ -170,7 +169,7 @@ export async function POST(request: Request) {
         bookingId: booking.id,
         invoiceUrl: xenditInvoice.invoiceUrl,
         invoiceId: xenditInvoice.id,
-        message: 'Booking created successfully. Redirecting to payment...'
+        message: 'Payment initiated successfully. Redirecting to payment page...'
       });
 
     } catch (xenditError: any) {
@@ -180,17 +179,18 @@ export async function POST(request: Request) {
       });
 
       console.error('Xendit invoice creation failed:', xenditError);
+      
       return NextResponse.json(
         { 
           message: 'Failed to create payment invoice',
-          error: xenditError.message 
+          error: xenditError.message || 'Payment gateway error'
         },
         { status: 500 }
       );
     }
 
   } catch (error: any) {
-    console.error('Booking creation failed:', error);
+    console.error('Payment processing failed:', error);
     return NextResponse.json(
       { 
         message: 'Internal Server Error',
@@ -201,7 +201,7 @@ export async function POST(request: Request) {
   }
 }
 
-// GET endpoint to check booking status
+// GET endpoint to check payment/booking status
 export async function GET(request: Request) {
   try {
     const { searchParams } = new URL(request.url);
@@ -219,15 +219,24 @@ export async function GET(request: Request) {
       select: {
         id: true,
         roomName: true,
+        roomSlug: true,
         totalPrice: true,
+        basePrice: true,
+        serviceFee: true,
+        tourismTax: true,
         checkInDate: true,
         checkOutDate: true,
+        duration: true,
+        adults: true,
+        children: true,
         status: true,
         customerName: true,
         customerEmail: true,
+        customerPhone: true,
         xenditInvoiceId: true,
         xenditInvoiceUrl: true,
         createdAt: true,
+        updatedAt: true,
       },
     });
 
@@ -238,7 +247,10 @@ export async function GET(request: Request) {
       );
     }
 
-    return NextResponse.json({ booking });
+    return NextResponse.json({ 
+      success: true,
+      booking 
+    });
 
   } catch (error: any) {
     console.error('Failed to fetch booking:', error);
