@@ -23,7 +23,7 @@ export interface Room {
     smoking: boolean;
     pets: boolean;
     quietHours: string;
-  };
+  };  
   rating?: number;
   layoutType: 'featured' | 'standard';
 }

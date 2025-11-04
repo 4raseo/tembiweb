@@ -2,17 +2,20 @@
 import { NextResponse } from 'next/server';
 import { PrismaClient } from '@prisma/client';
 import { Xendit } from 'xendit-node';
+import { roomData } from '@/data/roomData';
 
 const prisma = new PrismaClient();
 const xenditClient = new Xendit({ secretKey: process.env.XENDIT_API_KEY || '' });
 
 // Static room data matching your roomData structure
-const ROOM_DATA = [
-  { id: 1, slug: 'joglo-suite', name: 'Joglo Suite', price: 1500000 },
-  { id: 2, slug: 'limasan-room', name: 'Limasan Room', price: 1200000 },
-  { id: 3, slug: 'kampung-house', name: 'Kampung House', price: 900000 },
-  { id: 4, slug: 'gladak-room', name: 'Gladak Room', price: 750000 },
-];
+// const ROOM_DATA = [
+//   { id: 1, slug: 'joglo-suite', name: 'Joglo Suite', price: 1500000 },
+//   { id: 2, slug: 'limasan-room', name: 'Limasan Room', price: 1200000 },
+//   { id: 3, slug: 'kampung-house', name: 'Kampung House', price: 900000 },
+//   { id: 4, slug: 'gladak-room', name: 'Gladak Room', price: 750000 },
+// ];
+
+
 
 export async function POST(request: Request) {
   try {
@@ -43,7 +46,8 @@ export async function POST(request: Request) {
     }
 
     // Find room from static data
-    const room = ROOM_DATA.find(r => r.slug === roomSlug);
+    // const room = ROOM_DATA.find(r => r.slug === roomSlug);
+    const room = roomData.find(r => r.slug === roomSlug);
     
     if (!room) {
       return NextResponse.json(
