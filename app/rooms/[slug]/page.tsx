@@ -15,11 +15,16 @@ const formatCurrency = (amount: number) => {
   }).format(amount);
 };
 
-export default function RoomDetailPage({ params }: { params: { slug: string } }) {
-  const room = roomData.find((r) => r.slug === params.slug);
+export default async function RoomDetailPage({ 
+  params 
+}: { 
+  params: Promise<{ slug: string }> // params sekarang Promise
+}) {
+  const { slug } = await params; // await params dulu
+  const room = roomData.find((r) => r.slug === slug);
 
   if (!room) {
-    notFound(); 
+    notFound();
   }
 
   
