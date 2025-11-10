@@ -16,7 +16,6 @@ function verifyWebhookSignature(
     .update(`${webhookId}${requestBody}`)
     .digest('hex');
   
-  // In production, compare this with the x-callback-token header from Xendit
   return true; // Simplified for now
 }
 
@@ -25,13 +24,13 @@ export async function POST(request: Request) {
     const body = await request.text();
     const data = JSON.parse(body);
     
+    console.log('Received webhook data:', JSON.stringify(data, null, 2));
+    
     // Optional: Verify webhook signature in production
     const webhookToken = process.env.XENDIT_WEBHOOK_VERIFICATION_TOKEN;
     if (webhookToken) {
-      const webhookId = request.headers.get('webhook-id');
       const callbackToken = request.headers.get('x-callback-token');
       
-      // Verify the webhook is from Xendit
       if (callbackToken !== webhookToken) {
         return NextResponse.json(
           { message: 'Unauthorized webhook' },
@@ -40,16 +39,24 @@ export async function POST(request: Request) {
       }
     }
 
-    // Handle different webhook events
-    switch (data.event) {
-      case 'invoices.paid':
-        await handleInvoicePaid(data);
-        break;
-      case 'invoices.expired':
-        await handleInvoiceExpired(data);
-        break;
-      default:
-        console.log('Unhandled webhook event:', data.event);
+    // Handle based on status instead of event
+    // Xendit payment webhooks use 'status' field
+    if (data.status) {
+      switch (data.status) {
+        case 'PAID':
+          await handlePaymentPaid(data);
+          break;
+        case 'EXPIRED':
+          await handlePaymentExpired(data);
+          break;
+        case 'PENDING':
+          await handlePaymentPending(data);
+          break;
+        default:
+          console.log('Unhandled payment status:', data.status);
+      }
+    } else {
+      console.log('Webhook data missing status field');
     }
 
     return NextResponse.json({ received: true });
@@ -63,38 +70,47 @@ export async function POST(request: Request) {
   }
 }
 
-async function handleInvoicePaid(data: any) {
-  const { external_id, id: xenditInvoiceId, paid_at, payment_method, payment_channel } = data;
+async function handlePaymentPaid(data: any) {
+  const { 
+    external_id, 
+    id: xenditPaymentId, 
+    paid_at, 
+    payment_method, 
+    payment_channel,
+    payment_details 
+  } = data;
   
   try {
-    // Update booking status to PAID
+    // Update booking status to PAID using only available fields
     const booking = await prisma.booking.update({
       where: { id: external_id },
       data: {
         status: 'PAID',
-        paidAt: new Date(paid_at),
-        paymentMethod: `${payment_method} - ${payment_channel}`,
+        updatedAt: new Date(), // Update the timestamp
       },
     });
 
-    console.log(`Booking ${booking.id} marked as PAID`);
+    console.log(`✅ Booking ${booking.id} marked as PAID`);
+    console.log(`💳 Payment method: ${payment_method} - ${payment_channel} (${payment_details?.source || 'N/A'})`);
+    console.log(`📅 Paid at: ${paid_at}`);
+    console.log(`🆔 Xendit Payment ID: ${xenditPaymentId}`);
     
-    // Here you can add additional logic:
+    // Additional actions after successful payment:
     // - Send confirmation email to customer
-    // - Update room availability in your system
+    // - Update room availability
     // - Send notification to hotel staff
     // - Generate booking confirmation PDF
     
-    // Example: Send confirmation email (you'll need to implement this)
+    // Example: Send confirmation email (implement this function)
     // await sendBookingConfirmationEmail(booking);
     
   } catch (error) {
-    console.error('Failed to update booking status:', error);
+    console.error('❌ Failed to update booking status:', error);
     throw error;
   }
 }
 
-async function handleInvoiceExpired(data: any) {
+async function handlePaymentExpired(data: any) {
   const { external_id } = data;
   
   try {
@@ -103,17 +119,34 @@ async function handleInvoiceExpired(data: any) {
       where: { id: external_id },
       data: {
         status: 'EXPIRED',
+        updatedAt: new Date(),
       },
     });
 
-    console.log(`Booking ${booking.id} marked as EXPIRED`);
+    console.log(`⏰ Booking ${booking.id} marked as EXPIRED`);
     
-    // Here you can add logic to:
+    // Additional actions:
     // - Release the room reservation
     // - Send notification to customer about expired booking
     
   } catch (error) {
-    console.error('Failed to update expired booking:', error);
+    console.error('❌ Failed to update expired booking:', error);
     throw error;
+  }
+}
+
+async function handlePaymentPending(data: any) {
+  const { external_id } = data;
+  
+  try {
+    // Optionally update booking to show it's pending payment
+    const booking = await prisma.booking.findUnique({
+      where: { id: external_id },
+    });
+
+    console.log(`⏳ Payment pending for booking ${booking?.id}`);
+    
+  } catch (error) {
+    console.error('❌ Failed to process pending payment:', error);
   }
 }
