@@ -8,9 +8,11 @@ export default function Header() {
   const [isSidebarOpen, setSidebarOpen] = useState(false);
   const navLinks = [
     { name: 'Tembi Resort', href: '/' },
-    { name: 'Facilities', href: '/rooms' },
-    { name: 'Contact', href: '#' },
-    { name: 'Gallery', href: '#' },
+    { name: 'Rooms', href: '/rooms' },
+    { name: 'Catering', href: '/catering' },
+    { name: 'Venue', href: '/venue' },
+    { name: 'Sejarah Tembi', href: '#' },
+    { name: 'Koleksi', href: '#' },
   ];
 
   return (
@@ -22,7 +24,7 @@ export default function Header() {
             <button onClick={() => setSidebarOpen(true)} className="p-2"><Menu size={24} /></button>
           </div>
           <div className="text-center">
-            <h1 className="text-xl font-bold font-serif">Tembok Resort</h1>
+            <h1 className="text-xl font-bold font-serif">Tembi Resort</h1>
           </div>
           <div className="justify-self-end">
             <a href="" className="bg-primary hover:bg-primary-dark text-white font-semibold py-2 px-5 rounded-md transition-colors">Book Now</a>
