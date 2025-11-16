@@ -1,102 +1,242 @@
-import Image from "next/image";
+// app/page.tsx
+'use client';
+import Image from 'next/image';
+import { useState, useEffect } from 'react';
+import { Mail, MapPin, Phone } from 'lucide-react'; // Anda perlu install: npm i lucide-react
 
-export default function Home() {
+// Data dummy
+const accommodations = [
+  {
+    name: 'Javanese Villa',
+    description: '1 bedroom villa with pool',
+    image: '/placeholder-600x400.svg',
+  },
+  {
+    name: 'Gladak House',
+    description: '1 bedroom gladak with garden',
+    image: '/placeholder-600x400.svg',
+  },
+  {
+    name: 'Heritage Villa',
+    description: '2 bedroom villa with pool',
+    image: '/placeholder-600x400.svg',
+  },
+  {
+    name: 'Limasan Resort',
+    description: '1 bedroom resort with pool',
+    image: '/placeholder-600x400.svg',
+  },
+  {
+    name: 'Royal Suite',
+    description: '1 bedroom suite with balcony',
+    image: '/placeholder-600x400.svg',
+  },
+  {
+    name: 'Prambanan Hideaway',
+    description: 'Exclusive hideaway near temple',
+    image: '/placeholder-600x400.svg',
+  },
+];
+
+// const historicalCollections = [
+//   { name: 'Gamelan', image: '/placeholder-400x400.svg' },
+//   { name: 'Batik Tulis', image: '/placeholder-400x400.svg' },
+//   { name: 'Keris Pusaka', image: '/placeholder-400x400.svg' },
+//   { name: 'Wayang Kulit', image: '/placeholder-400x400.svg' },
+//   { name: 'Topeng Panji', image: '/placeholder-400x400.svg' },
+//   { name: 'Gerabah Kasongan', image: '/placeholder-400x400.svg' },
+//   { name: 'Relief Kuno', image: '/placeholder-400x400.svg' },
+//   { name: 'Arca Perunggu', image: '/placeholder-400x400.svg' },
+// ];
+
+const heroImages = [
+  '/hero-background.jpg', // Gambar pertama
+  '/hero-background-2.jpg', // Ganti dengan path gambar kedua Anda
+  '/hero-background-3.jpg', // Ganti dengan path gambar ketiga Anda
+  // Tambahkan lebih banyak gambar jika diinginkan
+];
+
+export default function HomePage() {
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % heroImages.length);
+    }, 8000); // Ganti gambar setiap 8 detik (8000 milidetik)
+    return () => clearInterval(interval); // Cleanup interval saat komponen di-unmount
+  }, [heroImages.length]);
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <div className="bg-white text-gray-800">
+      <main>
+        {/* Cover Section */}
+        <section className="relative h-screen">
+          <Image
+            src={heroImages[currentImageIndex]}
+            alt="Beautiful resort view"
+            layout="fill"
+            objectFit="cover"
+            className="z-0 transition-opacity duration-1000 ease-in-out"
+            key={heroImages[currentImageIndex]}
+          />
+          <div className="absolute inset-0 bg-black bg-opacity-40 z-10"></div>
+          <div className="relative z-20 flex flex-col items-center justify-center h-full text-center text-white px-4">
+            <h2 className="text-5xl md:text-7xl font-serif font-bold mb-4 leading-tight">
+              Where Culture <br /> Meets Serenity
+            </h2>
+            <p className="text-lg md:text-xl max-w-2xl mb-8 font-light tracking-wide">
+              Experience authentic Javanese heritage in luxurious comfort
+            </p>
+            <div className="flex space-x-4">
+              <a
+                href="/rooms"
+                className="bg-primary hover:bg-primary-dark text-white font-semibold py-3 px-8 rounded-full transition-colors duration-300 shadow-lg"
+              >
+                Explore Our Rooms
+              </a>
+              <a
+                href="/rooms"
+                className="border-2 border-white text-white font-semibold py-3 px-8 rounded-full hover:bg-white hover:text-gray-800 transition-colors duration-300 shadow-lg"
+              >
+                View Gallery
+              </a>
+            </div>
+          </div>
+        </section>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
+        {/* Content Section */}
+        <section className="py-20 bg-stone-50">
+          <div className="container mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
+            <div>
+              <h3 className="text-4xl font-serif font-bold mb-4">A Living Museum of Javanese Culture</h3>
+              <p className="text-gray-600 mb-6">
+                Explore the richness of Javanese heritage in a resort that is a masterpiece of art and culture. Each corner tells a story, an architectural philosophy that blends with stunning natural beauty.
+              </p>
+              <div className="space-y-2 text-gray-700">
+                <p><strong>Type:</strong> Heritage Resort</p>
+                <p><strong>Location:</strong> Yogyakarta, Indonesia</p>
+                <p><strong>Architect:</strong> Anies Walsh</p>
+                <p><strong>Year:</strong> 1996</p>
+              </div>
+            </div>
+            <div>
+              <Image
+                src="/content.jpg"
+                alt="Living museum architecture"
+                width={600}
+                height={450}
+                className="rounded-lg shadow-xl"
+              />
+            </div>
+          </div>
+        </section>
+
+        {/* Rooms Section */}
+        <section className="py-20">
+          <div className="container mx-auto px-6 text-center">
+            <h3 className="text-4xl font-serif font-bold mb-2">Elegant Accommodations</h3>
+            <p className="text-gray-600 max-w-2xl mx-auto mb-12">
+              Indulge in our beautifully appointed rooms, suites, and villas, each offering a unique blend of traditional Javanese elegance and modern comfort.
+            </p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+              {accommodations.map((item, index) => (
+                <div key={index} className="border border-gray-200 rounded-lg overflow-hidden group">
+                  <div className="overflow-hidden">
+                    <Image
+                      src={item.image}
+                      alt={item.name}
+                      width={600}
+                      height={400}
+                      className="w-full h-auto transform group-hover:scale-105 transition-transform duration-300"
+                    />
+                  </div>
+                  <div className="p-6 text-left">
+                    <h4 className="text-xl font-bold font-serif mb-2">{item.name}</h4>
+                    <p className="text-gray-600 mb-4">{item.description}</p>
+                    <a href="#" className="bg-primary hover:bg-primary-dark text-white font-semibold py-2 px-5 rounded-md transition-colors text-sm">
+                      View Details
+                    </a>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+        
+        {/* Sanctuary Section */}
+        <section className="py-20 bg-stone-50">
+            <div className="container mx-auto px-6 text-center max-w-4xl">
+                <h3 className="text-4xl font-serif font-bold mb-4">A Sanctuary of Heritage</h3>
+                <p className="text-gray-600 mb-8 leading-relaxed">
+                    This resort is a true sanctuary of heritage, offering a serene escape that is deeply rooted in Javanese traditions. We invite you to experience a peaceful retreat while absorbing the beauty of our cultural expressions and historical artifacts.
+                </p>
+                <div className="flex justify-center space-x-8 text-primary font-semibold mb-8">
+                    <span>Art & Culture</span>
+                    <span>Wellness</span>
+                    <span>Local Experience</span>
+                </div>
+                <a href="#" className="bg-primary hover:bg-primary-dark text-white font-semibold py-3 px-8 rounded-md transition-colors">
+                  Learn More
+                </a>
+            </div>
+        </section>
+
+        {/* Restaurant Section*/}
+        
+        
       </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
+      
+      {/* Footer */}
+      <footer className="bg-gray-900 text-gray-300 pt-16 pb-8">
+        <div className="container mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-8">
+            {/* Column 1*/}
+            <div>
+                <h4 className="text-lg font-semibold text-white mb-4">Tembok Resort</h4>
+                <p className="text-sm text-gray-400">Where culture meets serenity. A living museum of Javanese heritage.</p>
+            </div>
+            
+            {/* Column 2*/}
+            <div>
+                <h4 className="text-lg font-semibold text-white mb-4">Quick Links</h4>
+                <ul className="space-y-2 text-sm">
+                    <li><a href="#" className="hover:text-white">Home</a></li>
+                    <li><a href="#" className="hover:text-white">Accommodations</a></li>
+                    <li><a href="#" className="hover:text-white">Facilities</a></li>
+                    <li><a href="#" className="hover:text-white">Gallery</a></li>
+                </ul>
+            </div>
+
+            {/* Column 3*/}
+            <div>
+                <h4 className="text-lg font-semibold text-white mb-4">Contact Us</h4>
+                <ul className="space-y-3 text-sm">
+                    <li className="flex items-start">
+                        <MapPin size={16} className="mr-3 mt-1 flex-shrink-0" />
+                        <span>Jl. Warisan Budaya No. 123, Yogyakarta, Indonesia</span>
+                    </li>
+                    <li className="flex items-center">
+                        <Mail size={16} className="mr-3" />
+                        <span>info@tembiresort.com</span>
+                    </li>
+                    <li className="flex items-center">
+                        <Phone size={16} className="mr-3" />
+                        <span>+62 123 4567 890</span>
+                    </li>
+                </ul>
+            </div>
+
+            {/* Column 4: Social Media */}
+             <div>
+                <h4 className="text-lg font-semibold text-white mb-4">Follow Us</h4>
+                <div className="flex space-x-4">
+                    {/* Social Icons would go here */}
+                    <a href="#" className="hover:text-white">FB</a>
+                    <a href="#" className="hover:text-white">IG</a>
+                    <a href="#" className="hover:text-white">TW</a>
+                </div>
+            </div>
+        </div>
+        <div className="border-t border-gray-700 mt-12 pt-6 text-center text-sm text-gray-500">
+            <p>&copy; {new Date().getFullYear()} Tembok Resort. All Rights Reserved.</p>
+        </div>
       </footer>
     </div>
   );
