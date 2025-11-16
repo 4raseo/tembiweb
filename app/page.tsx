@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
 import { Mail, MapPin, Phone } from 'lucide-react'; // Anda perlu install: npm i lucide-react
+import Link from 'next/link';
 
 // Data dummy
 const accommodations = [
@@ -86,18 +87,18 @@ export default function HomePage() {
               Experience authentic Javanese heritage in luxurious comfort
             </p>
             <div className="flex space-x-4">
-              <a
+              <Link
                 href="/rooms"
                 className="bg-primary hover:bg-primary-dark text-white font-semibold py-3 px-8 rounded-full transition-colors duration-300 shadow-lg"
               >
                 Explore Our Rooms
-              </a>
-              <a
+              </Link>
+              <Link
                 href="/rooms"
                 className="border-2 border-white text-white font-semibold py-3 px-8 rounded-full hover:bg-white hover:text-gray-800 transition-colors duration-300 shadow-lg"
               >
                 View Gallery
-              </a>
+              </Link>
             </div>
           </div>
         </section>
@@ -151,9 +152,9 @@ export default function HomePage() {
                   <div className="p-6 text-left">
                     <h4 className="text-xl font-bold font-serif mb-2">{item.name}</h4>
                     <p className="text-gray-600 mb-4">{item.description}</p>
-                    <a href="#" className="bg-primary hover:bg-primary-dark text-white font-semibold py-2 px-5 rounded-md transition-colors text-sm">
+                    <Link href="#" className="bg-primary hover:bg-primary-dark text-white font-semibold py-2 px-5 rounded-md transition-colors text-sm">
                       View Details
-                    </a>
+                    </Link>
                   </div>
                 </div>
               ))}
@@ -173,9 +174,9 @@ export default function HomePage() {
                     <span>Wellness</span>
                     <span>Local Experience</span>
                 </div>
-                <a href="#" className="bg-primary hover:bg-primary-dark text-white font-semibold py-3 px-8 rounded-md transition-colors">
+                <Link href="#" className="bg-primary hover:bg-primary-dark text-white font-semibold py-3 px-8 rounded-md transition-colors">
                   Learn More
-                </a>
+                </Link>
             </div>
         </section>
 
