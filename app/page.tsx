@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
 import { Mail, MapPin, Phone } from 'lucide-react'; // Anda perlu install: npm i lucide-react
+import Link from 'next/link';
 
 // Data dummy
 const accommodations = [
@@ -50,54 +51,69 @@ const accommodations = [
 // ];
 
 const heroImages = [
-  '/hero-background.jpg', // Gambar pertama
-  '/hero-background-2.jpg', // Ganti dengan path gambar kedua Anda
-  '/hero-background-3.jpg', // Ganti dengan path gambar ketiga Anda
+  '/images/cover1.png', // Gambar pertama
+  '/images/cover2.png', // Ganti dengan path gambar kedua Anda
+  '/images/cover3.png', // Ganti dengan path gambar ketiga Anda
   // Tambahkan lebih banyak gambar jika diinginkan
 ];
 
 export default function HomePage() {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentImageIndex((prevIndex) => (prevIndex + 1) % heroImages.length);
-    }, 8000); // Ganti gambar setiap 8 detik (8000 milidetik)
+    }, 5000); // Ganti gambar setiap 5 detik
     return () => clearInterval(interval); // Cleanup interval saat komponen di-unmount
-  }, [heroImages.length]);
+  }, []);
   return (
     <div className="bg-white text-gray-800">
       <main>
         {/* Cover Section */}
-        <section className="relative h-screen">
-          <Image
-            src={heroImages[currentImageIndex]}
-            alt="Beautiful resort view"
-            layout="fill"
-            objectFit="cover"
-            className="z-0 transition-opacity duration-1000 ease-in-out"
-            key={heroImages[currentImageIndex]}
-          />
+        <section className="relative h-screen overflow-hidden">
+          <div className="absolute inset-0">
+            {heroImages.map((image, index) => (
+              <div
+                key={index}
+                className={`absolute inset-0 transition-all duration-1000 ease-in-out ${
+                  index === currentImageIndex
+                    ? 'opacity-100 translate-x-0'
+                    : index < currentImageIndex
+                    ? 'opacity-0 -translate-x-full'
+                    : 'opacity-0 translate-x-full'
+                }`}
+              >
+                <Image
+                  src={image}
+                  alt="Beautiful resort view"
+                  layout="fill"
+                  objectFit="cover"
+                  className="z-0"
+                />
+              </div>
+            ))}
+          </div>
           <div className="absolute inset-0 bg-black bg-opacity-40 z-10"></div>
           <div className="relative z-20 flex flex-col items-center justify-center h-full text-center text-white px-4">
-            <h2 className="text-5xl md:text-7xl font-serif font-bold mb-4 leading-tight">
+            <h2 className="text-5xl md:text-6xl font-serif font-bold mb-4 leading-tight">
               Where Culture <br /> Meets Serenity
             </h2>
-            <p className="text-lg md:text-xl max-w-2xl mb-8 font-light tracking-wide">
+            <p className="text-xl md:text-xl max-w-2xl mb-8 font-light tracking-wide">
               Experience authentic Javanese heritage in luxurious comfort
             </p>
             <div className="flex space-x-4">
-              <a
+              <Link
                 href="/rooms"
-                className="bg-primary hover:bg-primary-dark text-white font-semibold py-3 px-8 rounded-full transition-colors duration-300 shadow-lg"
+                className="bg-tembi hover:bg-primary-dark text-white font-semibold py-3 px-8 rounded-full transition-colors duration-300 shadow-lg"
               >
                 Explore Our Rooms
-              </a>
-              <a
+              </Link>
+              <Link
                 href="/rooms"
                 className="border-2 border-white text-white font-semibold py-3 px-8 rounded-full hover:bg-white hover:text-gray-800 transition-colors duration-300 shadow-lg"
               >
                 View Gallery
-              </a>
+              </Link>
             </div>
           </div>
         </section>
@@ -108,7 +124,10 @@ export default function HomePage() {
             <div>
               <h3 className="text-4xl font-serif font-bold mb-4">A Living Museum of Javanese Culture</h3>
               <p className="text-gray-600 mb-6">
-                Explore the richness of Javanese heritage in a resort that is a masterpiece of art and culture. Each corner tells a story, an architectural philosophy that blends with stunning natural beauty.
+                Tembi Rumah Budaya stands as a testament to Indonesias rich cultural tapestry, where traditional Javanese architecture harmoniously blends with contemporary luxury.
+              </p>
+              <p className="text-gray-600 mb-6">
+                Nestled amidst lush tropical gardens, our cultural resort offers an immersive journey through time, celebrating the artistry, spirituality, and wisdom of ancient Java.
               </p>
               <div className="space-y-2 text-gray-700">
                 <p><strong>Type:</strong> Heritage Resort</p>
@@ -119,11 +138,11 @@ export default function HomePage() {
             </div>
             <div>
               <Image
-                src="/content.jpg"
+                src="/images/homepage/content1.png"
                 alt="Living museum architecture"
                 width={600}
                 height={450}
-                className="rounded-lg shadow-xl"
+                className="rounded-lg"
               />
             </div>
           </div>

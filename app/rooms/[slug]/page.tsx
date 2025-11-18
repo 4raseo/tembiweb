@@ -89,7 +89,7 @@ export default function RoomDetailPage({ params }: { params: { slug: string } })
           <div className="bg-white p-6 md:p-8 rounded-lg shadow-md">
             <div className="flex justify-between items-center mb-4">
                 <h3 className="text-xl font-bold text-gray-800">Room Gallery</h3>
-                <a href="#" className="text-sm font-semibold text-green-800 hover:underline">View All Photos</a>
+                <Link href="#" className="text-sm font-semibold text-green-800 hover:underline">View All Photos</Link>
             </div>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                 {room.galleryImages.map((img, index) => (
