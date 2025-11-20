@@ -1,3 +1,4 @@
+// app/booking/page.tsx
 "use client";
 
 import { useState, useEffect, useMemo } from 'react';
@@ -40,13 +41,19 @@ export default function BookingPage() {
   const searchParams = useSearchParams();
   const initialRoomSlug = searchParams.get('room');
 
+  const STATIC_CHECK_IN = '2025-11-20';
+  const STATIC_CHECK_OUT = '2025-11-22';
+  const STATIC_ADULTS = 2;
+  const STATIC_CHILDREN = 1;
+  const STATIC_ROOM_ID = 1;
+
   // State management
-  const [checkIn, setCheckIn] = useState('');
-  const [checkOut, setCheckOut] = useState('');
-  const [adults, setAdults] = useState(1);
-  const [children, setChildren] = useState(0);
-  const [selectedRoomId, setSelectedRoomId] = useState<number | null>(null);
-  
+  const [checkIn, setCheckIn] = useState(STATIC_CHECK_IN);
+  const [checkOut, setCheckOut] = useState(STATIC_CHECK_OUT);
+  const [adults, setAdults] = useState(STATIC_ADULTS);
+  const [children, setChildren] = useState(STATIC_CHILDREN);
+  const [selectedRoomId, setSelectedRoomId] = useState<number | null>(STATIC_ROOM_ID);
+
   // Set kamar awal jika datang dari halaman detail
   useEffect(() => {
     if (initialRoomSlug) {
@@ -59,7 +66,7 @@ export default function BookingPage() {
 
   // Kalkulasi data turunan
   const selectedRoom = useMemo(() => roomData.find(room => room.id === selectedRoomId), [selectedRoomId]);
-  
+
   const numberOfNights = useMemo(() => {
     if (checkIn && checkOut) {
       const nights = differenceInCalendarDays(parseISO(checkOut), parseISO(checkIn));
@@ -74,7 +81,7 @@ export default function BookingPage() {
     }
     return 0;
   }, [selectedRoom, numberOfNights]);
-  
+
   return (
     <main className="bg-gray-50">
       {/* Hero Section */}
@@ -119,7 +126,7 @@ export default function BookingPage() {
                 </select>
               </div>
             </div>
-            
+
             <h4 className="text-lg font-semibold text-gray-800 mb-4 mt-8">Choose Your Cultural Room</h4>
             <div className="space-y-4">
               {roomData.map((room) => (
@@ -167,15 +174,16 @@ export default function BookingPage() {
               <Link
                 href={{
                   pathname: '/payment',
-                  query: { 
+                  query: {
                   room: selectedRoom?.slug,
                   checkIn: checkIn,
                   checkOut: checkOut,
                   adults: adults,
-                  children: children
+                  children: children,
+                      total: totalPrice
                 },
               }}
- 
+
               className={`block w-full text-center bg-green-800 text-white font-bold py-3 mt-6 rounded-lg hover:bg-green-900 transition-colors ${(!selectedRoom || numberOfNights <= 0) ? 'bg-gray-400 pointer-events-none' : ''}`}
               >
                 Check Availability
