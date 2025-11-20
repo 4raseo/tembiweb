@@ -8,11 +8,11 @@ export default function Header() {
   const [isSidebarOpen, setSidebarOpen] = useState(false);
   const navLinks = [
     { name: 'Tembi Resort', href: '/' },
-    { name: 'House', href: '/rooms' },
-    { name: 'Foods', href: '/catering' },
+    { name: 'Rooms', href: '/rooms' },
+    { name: 'Catering', href: '/catering' },
     { name: 'Venue', href: '/venue' },
     { name: 'Sejarah Tembi', href: '#' },
-    { name: 'Collections', href: '#' },
+    { name: 'Koleksi', href: '#' },
   ];
 
   return (

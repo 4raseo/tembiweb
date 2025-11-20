@@ -9,7 +9,6 @@ module.exports = {
     extend: {
       colors: {
         tembi: '#8B9660',
-        darktembi: '#6E7A45',
       },
     },
   },

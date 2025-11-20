@@ -1,371 +1,537 @@
+// app/catering/page.tsx (atau pages/catering.tsx)
+
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-// Kita tidak perlu import dari lucide-react lagi untuk ikon gambar
+import {
+  FaLeaf,
+  FaHeart,
+  FaCheckCircle,
+  FaTimesCircle,
+  FaTruck,
+  FaUsers,
+  FaUtensils,
+  FaBoxOpen,
+  FaTemperatureHigh,
+  FaClipboardCheck,
+  FaPhone,
+  FaWhatsapp,
+  FaEnvelope,
+  FaMapMarkerAlt,
+  FaFacebook,
+  FaInstagram,
+  FaTwitter,
+} from 'react-icons/fa';
 
-export default function FoodPage() {
-  return (
-    <main className="w-full min-h-screen bg-white">
-      
-      {/* SECTION 1: HERO SECTION (UPDATED) */}
-      <section className="relative h-screen w-full overflow-hidden">
-        {/* Background Image */}
-        <div className="absolute inset-0 z-0">
-            <Image 
-              src="/images/foods/foodcover.png" // Ganti dengan gambar background Anda
-              alt="Javanese Cuisine Spread" 
-              fill
-              className="object-cover"
-              priority
-            />
-            {/* Dark Gradient Overlay */}
-            <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-transparent" />
-        </div>
+// --- Variabel Warna Sesuai Desain ---
+// Anda bisa menyesuaikan ini atau memindahkannya ke tailwind.config.js
+const colors = {
+  primary: 'text-emerald-800', // Hijau tua untuk teks
+  primaryBg: 'bg-emerald-700', // Hijau tua untuk background
+  primaryBgLite: 'bg-emerald-50', // Hijau muda
+  secondary: 'text-amber-800', // Cokelat/Gold untuk teks
+  bgLight: 'bg-[#FAF8F5]', // Background krem
+  bgWhite: 'bg-white',
+};
 
-        {/* Hero Content Container */}
-        <div className="relative z-10 h-full flex flex-col justify-center px-6 sm:px-12 lg:px-24">
-    
-          {/* Content Wrapper (Max Width dibatasi agar tidak terlalu lebar ke kanan) */}
-          <div className="max-w-3xl flex flex-col items-start text-left">
-
-            {/* Pill Label */}
-            <div className="inline-flex items-center gap-3 border border-white/30 bg-white/10 backdrop-blur-sm px-5 py-2 rounded-full mb-8">
-              <Image 
-                src="/icons/utensils.png" 
-                alt="Utensils"
-                width={16}
-                height={16}
-                className="w-4 h-4 object-contain invert" 
-              />
-              <span className="text-sm font-medium tracking-wide text-white">Authentic Javanese Cuisine</span>
-            </div>
-
-            {/* Main Heading */}
-            <h1 className="font-serif text-6xl font-bold text-white leading-none drop-shadow-lg">
-              Food & Drink
-            </h1>
-
-            {/* Secondary Heading (Green/Gold) */}
-            <h2 className="font-serif text-6xl font-bold text-[#A3B18A] mb-6 drop-shadow-lg">
-              Packages
-            </h2>
-
-            {/* Subheading */}
-            <p className="font-serif italic text-lg text-gray-200 mb-6 tracking-wide">
-              Authentic Javanese taste for every occasion
-            </p>
-
-            {/* Description */}
-            <p className="text-base text-gray-300 leading-relaxed max-w-xl">
-              Enjoy the warmth of Javanese hospitality through our food. From classic buffet 
-              spreads to snack and meal boxes, every dish is prepared with cultural care and local 
-              flavor, bringing you the authentic taste of Central Javas culinary heritage.
-            </p>
-          </div>
-
-          {/* Scroll Indicator (Tetap di tengah bawah layar) */}
-          <div className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce">
-            <Image 
-              src="/icons/chevron-down.png" // Pastikan punya icon ini atau ganti dengan SVG
-              alt="Scroll Down"
-              width={32}
-              height={32}
-              className="w-8 h-8 opacity-80 invert"
-            />
-          </div>
-        </div>
-      </section>
-
-      {/* SECTION 2: CONTENT */}
-      <section className="py-24 px-6 sm:px-12 lg:px-24 max-w-[1400px] mx-auto bg-white">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
-    
-          {/* Left Column: Text Content */}
-          <div className="flex flex-col justify-center">
-
-            {/* Tag / Label */}
-            <div className="flex items-center gap-3 mb-6">
-              <Image 
-                src="/icons/leaf.png" // Pastikan file leaf.png ada di public/icons/
-                alt="Leaf Icon"
-                width={24}
-                height={24}
-                className="w-5 h-5 object-contain opacity-80"
-              />
-              <span className="text-sm font-semibold uppercase tracking-widest text-gray-800">
-                Cultural Heritage
-              </span>
-            </div>
-
-            {/* Heading */}
-            <h2 className="font-serif text-4xl  font-bold text-gray-900 leading-[1.15] mb-8">
-              Preserving Tradition Through <br className="hidden lg:block" />
-              <span className="text-[#8F9E75]">Authentic Flavors</span>
-            </h2>
-
-            {/* Description Paragraph */}
-            <p className="text-base text-gray-600 leading-relaxed mb-10">
-              At Tembi Historical Home, we believe that food is the heart of cultural 
-              preservation. Our catering services bring together generations of 
-              Javanese culinary wisdom, using traditional recipes passed down 
-              through families and prepared with locally-sourced ingredients.
-            </p>
-
-            {/* Feature List */}
-            <div className="space-y-8">
-              <FeatureItem 
-                title="Traditional Recipes" 
-                desc="Authentic Javanese dishes prepared using time-honored methods" 
-              />
-              <FeatureItem 
-                title="Local Ingredients" 
-                desc="Fresh, locally-sourced ingredients from Yogyakarta region" 
-              />
-              <FeatureItem 
-                title="Cultural Presentation" 
-                desc="Served on traditional banana leaves and wooden plates" 
-              />
-            </div>
-          </div>
-
-          {/* Right Column: Image */}
-          <div className="relative w-full aspect-square lg:aspect-[4/3]">
-            <div className="relative h-full w-full rounded-[2.5rem] overflow-hidden">
-              <Image 
-                src="/images/foods/foods1.png" // Ganti dengan gambar dapur/gerabah Anda
-                alt="Traditional Javanese Kitchenware" 
-                fill
-                className="object-cover"
-                sizes="(max-width: 768px) 100vw, 50vw"
-              />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* --- SECTION 3: PACKAGES --- */}
-      <section className="py-24 px-6 sm:px-12 lg:px-24 max-w-full bg-[#F8F6F1]">
-        <div className="max-w-7xl mx-auto">
-    
-          {/* 1. Section Header */}
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            {/* Label */}
-            <div className="inline-flex items-center gap-2 mb-4">
-              <Image 
-                src="/icons/package-icon.png" // Icon kotak/paket
-                alt="icon"
-                width={16} height={16}
-                className="w-4 h-4 opacity-70"
-              />
-              <span className="text-sm font-semibold text-gray-600 uppercase tracking-wider">
-                Catering Packages
-              </span>
-            </div>
-      
-            {/* Title */}
-            <h2 className="font-serif text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-              Choose Your Perfect <span className="text-[#8F9E75]">Package</span>
-            </h2>
-
-            {/* Subtitle */}
-            <p className="text-gray-600 text-lg leading-relaxed">
-              Each package is carefully curated to deliver an authentic Javanese dining experience, 
-              perfect for various occasions and group sizes.
-            </p>
-          </div>
-
-          {/* 2. Cards Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-
-            {/* Card 1: Buffet */}
-            <PackageCard 
-              image="/images/buffet.jpg"
-              badge="≥35 pax"
-              title="Buffet Package"
-              subtitle="Perfect for Large Gatherings"
-              desc="Ideal for gatherings, meetings, and cultural events. A complete spread featuring rice, soup, main dishes."
-              features={[
-                "Complete meal spread",
-                "Traditional serving style",
-                "Multiple dish options",
-                "Dessert & beverages included"
-              ]}
-              linkUrl="/menu/buffet" // Link tujuan
-              buttonText="View Buffet Menu"
-            />
-
-            {/* Card 2: Snack Box */}
-            <PackageCard 
-              image="/images/snackbox.jpg"
-              badge="≥35 pax"
-              title="Snack Box Package"
-              subtitle="Delightful Traditional Treats"
-              desc="A delightful assortment of traditional snacks and sweets perfect for light events, meetings, or afternoon tea."
-              features={[
-                "Traditional snacks variety",
-                "Individual packaging",
-                "Sweet & savory options",
-                "Traditional tea included"
-              ]}
-              linkUrl="/menu/snack-box" // Link tujuan
-              buttonText="View Snack Box Menu"
-            />
-
-            {/* Card 3: Rice Box */}
-            <PackageCard 
-              image="/images/ricebox.jpg"
-              badge="≥35 pax"
-              title="Rice Box Package"
-              subtitle="Complete Individual Meals"
-              desc="A complete individual meal packed with authentic Javanese dishes. Perfect for business meetings or seminars."
-              features={[
-                "Complete balanced meal",
-                "Individual box packaging",
-                "Traditional main dishes",
-                "Authentic sambal included"
-              ]}
-              linkUrl="/menu/rice-box" // Link tujuan
-              buttonText="View Rice Box Menu"
-            />
-          </div>
-
-          {/* 3. Info Footer Box (White Box at Bottom) */}
-          <div className="bg-white rounded-xl p-8 md:p-12 shadow-sm border border-gray-100">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center divide-y md:divide-y-0 md:divide-x divide-gray-100">
-              
-              <InfoItem 
-                icon="/icons/users.png"
-                title="Minimum 35 Guests"
-                desc="All packages available for groups of 35 people or more"
-              />
-              <InfoItem 
-                icon="/icons/clock.png"
-                title="24-Hour Notice"
-                desc="Please place orders at least 24 hours in advance"
-              />
-              <InfoItem 
-                icon="/icons/truck.png"
-                title="Delivery Available"
-                desc="Free delivery within Yogyakarta city area"
-              />
-
-            </div>
-          </div>
-
-        </div>
-      </section>
-    </main>
-  );
+// --- Komponen Kecil: Ikon Fitur (Halal, No MSG, dll) ---
+interface FeatureIconProps {
+  icon: React.ReactNode;
+  label: string;
 }
 
-// Definisi tipe data untuk props PackageCard
-interface PackageCardProps {
-  image: string;
-  badge: string;
+const FeatureIcon: React.FC<FeatureIconProps> = ({ icon, label }) => (
+  <div className="flex flex-col items-center text-center">
+    <div
+      className={`flex items-center justify-center w-16 h-16 rounded-full ${colors.primaryBgLite} ${colors.primary}`}
+    >
+      {icon}
+    </div>
+    <span className="mt-2 text-sm font-medium text-gray-700">{label}</span>
+  </div>
+);
+
+// --- Komponen Kecil: Kartu Layanan (Delivery, Waiter, dll) ---
+interface ServicePackageCardProps {
+  icon: React.ReactNode;
   title: string;
-  subtitle: string;
-  desc: string;
-  features: string[]; // Array of strings
-  linkUrl: string;
+  description: string;
+}
+
+const ServicePackageCard: React.FC<ServicePackageCardProps> = ({
+  icon,
+  title,
+  description,
+}) => (
+  <div
+    className={`${colors.bgWhite} p-6 rounded-lg shadow-md text-center items-center flex flex-col`}
+  >
+    <div className={`${colors.primary} text-4xl mb-4`}>{icon}</div>
+    <h3 className="text-xl font-semibold text-gray-800 mb-2">{title}</h3>
+    <p className="text-gray-600 text-sm">{description}</p>
+  </div>
+);
+
+// --- Komponen Kecil: Kartu Kontak (Phone, Message, dll) ---
+interface ContactCardProps {
+  icon: React.ReactNode;
+  title: string;
+  description: string;
   buttonText: string;
+  href: string;
 }
 
-// Definisi tipe data untuk props InfoItem
-interface InfoItemProps {
-  icon: string;
-  title: string;
-  desc: string;
-}
+const ContactCard: React.FC<ContactCardProps> = ({
+  icon,
+  title,
+  description,
+  buttonText,
+  href,
+}) => (
+  <div
+    className={`${colors.bgWhite} p-8 rounded-lg shadow-lg text-center items-center flex flex-col border border-gray-100`}
+  >
+    <div className={`${colors.primary} text-4xl mb-5`}>{icon}</div>
+    <h3 className="text-2xl font-semibold text-gray-800 mb-2">{title}</h3>
+    <p className="text-gray-600 mb-6">{description}</p>
+    <Link
+      href={href}
+      className={`inline-block px-6 py-3 rounded-full ${colors.primaryBg} text-white font-medium hover:bg-emerald-800 transition-colors`}
+    >
+      {buttonText}
+    </Link>
+  </div>
+);
 
-// Komponen Item List dengan ICON GAMBAR LOCAL
-function FeatureItem({ title, desc }: { title: string; desc: string }) {
+// --- Komponen Utama Halaman Catering ---
+const CateringPage = () => {
   return (
-    <div className="flex gap-4 items-start">
-      <div className="flex-shrink-0 mt-1">
-        {/* Lingkaran Background */}
-        <div className="w-6 h-6 rounded-full bg-[#829168] flex items-center justify-center overflow-hidden relative">
-           {/* Icon Centang (Gambar Local) */}
-           <Image 
-             src="/icons/check.png" // Icon Centang
-             alt="Check"
-             width={12}
-             height={12}
-             className="object-contain brightness-0 invert" // brightness-0 invert = membuatnya jadi putih
-           />
+    <div className="font-sans">
+      {/* CATATAN: Navbar tidak termasuk di sini. 
+        Asumsinya, ini adalah bagian dari file Layout.tsx utama Anda.
+      */}
+
+      {/* 1. Hero Section */}
+      <section className="relative h-[450px] w-full flex items-center justify-center">
+        {/* Gambar Latar */}
+        <Image
+          src="/images/catering-hero.jpg" // Ganti dengan path gambar Anda
+          alt="Catering buffet"
+          layout="fill"
+          objectFit="cover"
+          className="brightness-75"
+        />
+        {/* Teks Overlay */}
+        <div className="relative z-10 text-center">
+          <h1 className={`text-5xl md:text-6xl font-bold text-white`}>
+            Catering Package for 50 People
+          </h1>
         </div>
-      </div>
-      <div>
-        <h4 className="font-semibold text-gray-900 text-base">{title}</h4>
-        <p className="text-gray-500 text-sm mt-1">{desc}</p>
-      </div>
-    </div>
-  );
-}
+      </section>
 
-/* 1. Komponen Kartu Paket (Updated Type) */
-function PackageCard({ 
-  image, 
-  badge, 
-  title, 
-  subtitle, 
-  desc, 
-  features, 
-  linkUrl, 
-  buttonText 
-}: PackageCardProps) {
-  return (
-    <div className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow flex flex-col h-full">
-      {/* Image Header */}
-      <div className="relative h-56 w-full">
-        <Image src={image} alt={title} fill className="object-cover" />
-        {/* Badge Pax */}
-        <div className="absolute top-4 right-4 bg-[#8F9E75] text-white text-xs font-bold px-3 py-1 rounded-full shadow-md">
-          {badge}
-        </div>
-      </div>
-
-      {/* Content */}
-      <div className="p-8 flex flex-col flex-grow">
-        <h3 className="font-serif text-2xl font-bold text-gray-900 mb-1">{title}</h3>
-        <p className="text-sm font-medium text-gray-500 mb-4">{subtitle}</p>
-        <p className="text-gray-600 text-sm leading-relaxed mb-6">{desc}</p>
-
-        {/* Features List */}
-        <div className="space-y-3 mb-8 flex-grow">
-          {features.map((feat, i) => (
-            <div key={i} className="flex items-start gap-3">
-              <div className="w-4 h-4 rounded-full bg-black flex items-center justify-center mt-0.5 shrink-0">
-                 {/* Icon Centang Putih Kecil */}
-                 <Image src="/icons/check.png" alt="check" width={8} height={8} className="brightness-0 invert" />
+      {/* 2. Package Description Section */}
+      <section className={`${colors.bgLight} py-20`}>
+        <div className="container mx-auto max-w-6xl px-4">
+          <div className="grid md:grid-cols-3 gap-12 items-start">
+            {/* Kolom Kiri: Deskripsi & Fitur */}
+            <div className="md:col-span-2">
+              <h2
+                className={`text-3xl font-bold ${colors.secondary} mb-4`}
+              >
+                Package Description
+              </h2>
+              <p className="text-gray-700 leading-relaxed mb-8">
+                Enjoy a complete menu of traditional Javanese dishes prepared
+                with authentic flavors. Our 50-person catering package is
+                designed to bring the richness of Indonesian culinary heritage
+                to your special event. We prioritize quality and taste,
+                using only the freshest of ingredients coupled with healthy
+                cooking methods.
+              </p>
+              {/* Ikon Fitur */}
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <FeatureIcon
+                  icon={<FaCheckCircle size={28} />}
+                  label="All Halal"
+                />
+                <FeatureIcon
+                  icon={<FaTimesCircle size={28} />}
+                  label="No MSG"
+                />
+                <FeatureIcon icon={<FaLeaf size={28} />} label="Fresh" />
+                <FeatureIcon icon={<FaHeart size={28} />} label="Healthy" />
               </div>
-              {/* Tidak perlu manual type :string disini karena TS sudah tahu features adalah string[] */}
-              <span className="text-sm text-gray-700">{feat}</span>
             </div>
-          ))}
+
+            {/* Kolom Kanan: Kotak Harga */}
+            <div
+              className={`${colors.bgWhite} p-8 rounded-lg shadow-xl border border-gray-100`}
+            >
+              <p className="text-3xl font-bold text-gray-800 mb-4">
+                IDR 3,750,000
+              </p>
+              <p className="text-sm text-gray-600 mb-6">
+                All package inclusions
+              </p>
+              <ul className="space-y-3">
+                <li className="flex items-center text-gray-700">
+                  <FaCheckCircle className={`${colors.primary} mr-3`} />
+                  Main course
+                </li>
+                <li className="flex items-center text-gray-700">
+                  <FaCheckCircle className={`${colors.primary} mr-3`} />
+                  Traditional menu
+                </li>
+                <li className="flex items-center text-gray-700">
+                  <FaCheckCircle className={`${colors.primary} mr-3`} />
+                  Side dishes
+                </li>
+                <li className="flex items-center text-gray-700">
+                  <FaCheckCircle className={`${colors.primary} mr-3`} />
+                  Stall menu
+                </li>
+                <li className="flex items-center text-gray-700">
+                  <FaCheckCircle className={`${colors.primary} mr-3`} />
+                  Dessert
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
+      </section>
 
-        {/* Button Link */}
-        <Link 
-          href={linkUrl}
-          className="w-full text-center bg-[#8F9E75] hover:bg-[#7A8B60] text-white font-semibold py-3 px-4 rounded-lg transition-colors flex items-center justify-center gap-2"
-        >
-          <Image src="/icons/eye.png" alt="view" width={16} height={16} className="invert opacity-90" />
-          {buttonText}
-        </Link>
-      </div>
+      {/* 3. Menu Selection Section */}
+      <section className={`${colors.bgWhite} py-20`}>
+        <div className="container mx-auto max-w-6xl px-4">
+          <div className="text-center mb-12">
+            <h2
+              className={`text-3xl font-bold ${colors.secondary} mb-4`}
+            >
+              Complete Menu Selection
+            </h2>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              You can choose your favorite menu from our authentic traditional
+              recipes, all included as part of the package.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {/* Kolom 1: Main Dishes */}
+            <div className="bg-emerald-50 p-6 rounded-lg border border-emerald-100">
+              <h3 className="text-xl font-semibold text-emerald-800 mb-4">
+                Main Dishes
+              </h3>
+              <ul className="space-y-2 text-gray-700">
+                <li>Nasi Liwet</li>
+                <li>Nasi Putih Pandan Wangi</li>
+                <li>Nasi Goreng Seafood</li>
+                <li>Ayam Bakar</li>
+                <li>Sapi Lada Hitam</li>
+              </ul>
+            </div>
+            {/* Kolom 2: Side Dishes */}
+            <div className="bg-orange-50 p-6 rounded-lg border border-orange-100">
+              <h3 className="text-xl font-semibold text-orange-800 mb-4">
+                Side Dishes
+              </h3>
+              <ul className="space-y-2 text-gray-700">
+                <li>Spice Crusted Tempeh</li>
+                <li>Perkedel Kentang</li>
+                <li>Tahu Bakso</li>
+                <li>Orek Tempe Basah</li>
+                <li>Sambal Goreng Kentang</li>
+              </ul>
+            </div>
+            {/* Kolom 3: Traditional Drinks */}
+            <div className="bg-blue-50 p-6 rounded-lg border border-blue-100">
+              <h3 className="text-xl font-semibold text-blue-800 mb-4">
+                Traditional Drinks
+              </h3>
+              <ul className="space-y-2 text-gray-700">
+                <li>Es Cendol</li>
+                <li>Es Dawet</li>
+                <li>Wedang Jahe</li>
+                <li>Bajigur</li>
+              </ul>
+            </div>
+            {/* Kolom 4: Traditional Snacks */}
+            <div className="bg-pink-50 p-6 rounded-lg border border-pink-100">
+              <h3 className="text-xl font-semibold text-pink-800 mb-4">
+                Traditional Snacks
+              </h3>
+              <ul className="space-y-2 text-gray-700">
+                <li>Klepon</li>
+                <li>Putu Mayang</li>
+                <li>Lapis Legit</li>
+                <li>Onde-onde</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 4. Complete Service Package Section */}
+      <section className={`${colors.bgLight} py-20`}>
+        <div className="container mx-auto max-w-6xl px-4">
+          <div className="text-center mb-12">
+            <h2
+              className={`text-3xl font-bold ${colors.secondary} mb-4`}
+            >
+              Complete Service Package
+            </h2>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              An elegant presentation with professional service to support your
+              event. We focus on every detail, while you focus on enjoying your
+              time with your guests.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <ServicePackageCard
+              icon={<FaTruck />}
+              title="Delivery & Setup"
+              description="On-time delivery and professional setup of the buffet display according to the event theme."
+            />
+            <ServicePackageCard
+              icon={<FaUsers />}
+              title="Waiter & Staff"
+              description="Friendly and responsive staff on standby during the event to assist guests and ensure cleanliness."
+            />
+            <ServicePackageCard
+              icon={<FaUtensils />}
+              title="Complete Cutlery"
+              description="Includes premium plates, glasses, spoons, forks, and napkins for all 50 guests."
+            />
+            <ServicePackageCard
+              icon={<FaBoxOpen />}
+              title="Traditional Container"
+              description="Serving food in authentic traditional containers (e.g., clay pots, woven bamboo) for an elegant aesthetic."
+            />
+            <ServicePackageCard
+              icon={<FaTemperatureHigh />}
+              title="Temperature Control"
+              description="Equipped with food warmers to ensure dishes remain hot and delicious throughout the event."
+            />
+            <ServicePackageCard
+              icon={<FaClipboardCheck />}
+              title="Food Coordinator"
+              description="A dedicated person to coordinate all food and beverage needs, from setup to clean-up."
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* 5. Package Gallery Section */}
+      <section className={`${colors.bgWhite} py-20`}>
+        <div className="container mx-auto max-w-6xl px-4">
+          <div className="text-center mb-12">
+            <h2
+              className={`text-3xl font-bold ${colors.secondary} mb-4`}
+            >
+              Package Gallery
+            </h2>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              See how we beautifully present our catering packages for various
+              events and celebrations.
+            </p>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+            {/* Ganti src dengan path gambar Anda */}
+            <div className="relative w-full h-64 rounded-lg overflow-hidden shadow-md">
+              <Image
+                src="/images/gallery-1.jpg"
+                alt="Gallery 1"
+                layout="fill"
+                objectFit="cover"
+              />
+            </div>
+            <div className="relative w-full h-64 rounded-lg overflow-hidden shadow-md">
+              <Image
+                src="/images/gallery-2.jpg"
+                alt="Gallery 2"
+                layout="fill"
+                objectFit="cover"
+              />
+            </div>
+            <div className="relative w-full h-64 rounded-lg overflow-hidden shadow-md">
+              <Image
+                src="/images/gallery-3.jpg"
+                alt="Gallery 3"
+                layout="fill"
+                objectFit="cover"
+              />
+            </div>
+            <div className="relative w-full h-64 rounded-lg overflow-hidden shadow-md">
+              <Image
+                src="/images/gallery-4.jpg"
+                alt="Gallery 4"
+                layout="fill"
+                objectFit="cover"
+              />
+            </div>
+            <div className="relative w-full h-64 rounded-lg overflow-hidden shadow-md">
+              <Image
+                src="/images/gallery-5.jpg"
+                alt="Gallery 5"
+                layout="fill"
+                objectFit="cover"
+              />
+            </div>
+            <div className="relative w-full h-64 rounded-lg overflow-hidden shadow-md">
+              <Image
+                src="/images/gallery-6.jpg"
+                alt="Gallery 6"
+                layout="fill"
+                objectFit="cover"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 6. Need Help Section */}
+      <section className={`${colors.bgLight} py-20`}>
+        <div className="container mx-auto max-w-5xl px-4">
+          <div className="text-center mb-12">
+            <h2
+              className={`text-3xl font-bold ${colors.secondary} mb-4`}
+            >
+              Need Help or Have Questions?
+            </h2>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              Our team is ready to help you plan the perfect catering for
+              your special event.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <ContactCard
+              icon={<FaPhone />}
+              title="Talk to Sales"
+              description="Speak directly with our team for immediate assistance."
+              buttonText="Call Us Now"
+              href="tel:+628123456789"
+            />
+            <ContactCard
+              icon={<FaWhatsapp />}
+              title="Message Us"
+              description="Have a quick question? Chat with us directly on WhatsApp."
+              buttonText="Start Chat"
+              href="https://wa.me/628123456789"
+            />
+            <ContactCard
+              icon={<FaEnvelope />}
+              title="Email Us"
+              description="Send us an email with your event details and we'll get back to you."
+              buttonText="Send Email"
+              href="mailto:info@colonial.com"
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* 7. Special Requests Section */}
+      <section className={`${colors.bgWhite} py-20`}>
+        <div className="container mx-auto max-w-4xl px-4 text-center">
+          <h2
+            className={`text-3xl font-bold ${colors.secondary} mb-4`}
+          >
+            Special Requests or Custom Packages
+          </h2>
+          <p className="text-lg text-gray-600 max-w-2xl mx-auto mb-8">
+            Planning a different event or need a custom menu? We are happy
+            to accommodate your needs. Lets discuss and create a package
+            thats perfect for you.
+          </p>
+          <Link
+            href="/contact"
+            className={`inline-block px-10 py-4 rounded-full ${colors.primaryBg} text-white text-lg font-semibold hover:bg-emerald-800 transition-colors`}
+          >
+            Request a Quote
+          </Link>
+        </div>
+      </section>
+
+      {/* 8. Footer */}
+      <footer className="bg-gray-900 text-gray-300 py-16">
+        <div className="container mx-auto max-w-6xl px-4 grid grid-cols-1 md:grid-cols-3 gap-12">
+          {/* Kolom 1: Logo & Social */}
+          <div>
+            <h3 className="text-2xl font-bold text-white mb-4">Colonial</h3>
+            <p className="text-sm mb-6">
+              Authentic Javanese catering for your memorable events.
+            </p>
+            <div className="flex space-x-4">
+              <Link href="#" className="hover:text-white">
+                <FaFacebook size={20} />
+              </Link>
+              <Link href="#" className="hover:text-white">
+                <FaInstagram size={20} />
+              </Link>
+              <Link href="#" className="hover:text-white">
+                <FaTwitter size={20} />
+              </Link>
+            </div>
+          </div>
+
+          {/* Kolom 2: Quick Links */}
+          <div>
+            <h4 className="text-lg font-semibold text-white mb-4">
+              Quick Links
+            </h4>
+            <ul className="space-y-2">
+              <li>
+                <Link href="/" className="hover:text-white">
+                  Home
+                </Link>
+              </li>
+              <li>
+                <Link href="/about" className="hover:text-white">
+                  About Us
+                </Link>
+              </li>
+              <li>
+                <Link href="/catering" className="hover:text-white">
+                  Packages
+                </Link>
+              </li>
+              <li>
+                <Link href="/gallery" className="hover:text-white">
+                  Gallery
+                </Link>
+              </li>
+              <li>
+                <Link href="/contact" className="hover:text-white">
+                  Contact Us
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Kolom 3: Contact Info */}
+          <div>
+            <h4 className="text-lg font-semibold text-white mb-4">
+              Contact Info
+            </h4>
+            <ul className="space-y-3">
+              <li className="flex items-center">
+                <FaPhone className="mr-3" /> +62 812 3456 7890
+              </li>
+              <li className="flex items-center">
+                <FaEnvelope className="mr-3" /> info@colonial.com
+              </li>
+              <li className="flex items-start">
+                <FaMapMarkerAlt className="mr-3 mt-1" />
+                Jl. Merdeka No. 10, Jakarta, Indonesia
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div className="text-center text-gray-500 text-sm mt-12 border-t border-gray-800 pt-8">
+          © {new Date().getFullYear()} Colonial Catering. All Rights
+          Reserved.
+        </div>
+      </footer>
     </div>
   );
-}
+};
 
-/* 2. Komponen Info Bawah (Updated Type) */
-function InfoItem({ icon, title, desc }: InfoItemProps) {
-  return (
-    <div className="flex flex-col items-center px-4 pt-4 md:pt-0">
-      <div className="mb-4">
-         <Image src={icon} alt={title} width={32} height={32} className="w-8 h-8 opacity-80" />
-      </div>
-      <h4 className="font-serif text-lg font-bold text-gray-900 mb-2">{title}</h4>
-      <p className="text-sm text-gray-500 max-w-xs mx-auto">{desc}</p>
-    </div>
-  );
-}
+export default CateringPage;
