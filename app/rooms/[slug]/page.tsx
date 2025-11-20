@@ -37,15 +37,16 @@ const getAmenityIcon = (amenity: string) => {
   return <Star size={20} />; 
 };
 
-interface RoomDetailProps {
-  params: { slug: string };
-}
-
-export default function RoomDetail({ params }: RoomDetailProps) {
-  const room = roomData.find((r) => r.slug === params.slug);
+export default async function RoomDetailPage({ 
+  params 
+}: { 
+  params: Promise<{ slug: string }> // params sekarang Promise
+}) {
+  const { slug } = await params; // await params dulu
+  const room = roomData.find((r) => r.slug === slug);
 
   if (!room) {
-    return notFound();
+    notFound();
   }
 
   // Fallback gallery logic

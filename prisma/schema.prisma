@@ -1,0 +1,61 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Booking {
+  id                 String   @id @default(cuid())
+  
+  // Room Information
+  roomId             String
+  roomSlug           String   // ✅ TAMBAHAN: untuk identifikasi room
+  roomName           String
+  roomPrice          Int      // ✅ CHANGED: Float -> Int (Rupiah tidak ada decimal)
+  
+  // Price Breakdown
+  basePrice          Int      // ✅ TAMBAHAN: harga dasar (roomPrice * duration)
+  serviceFee         Int      // ✅ TAMBAHAN: biaya layanan (5%)
+  tourismTax         Int      // ✅ TAMBAHAN: pajak pariwisata
+  totalPrice         Int      // ✅ CHANGED: Float -> Int
+  
+  // Booking Dates
+  checkInDate        DateTime
+  checkOutDate       DateTime
+  duration           Int      // ✅ TAMBAHAN: jumlah malam
+  
+  // Guest Information
+  adults             Int
+  children           Int
+  customerName       String
+  customerEmail      String
+  customerPhone      String
+  customerAddress    String?  // ✅ TAMBAHAN: alamat (optional)
+  customerCity       String?  // ✅ TAMBAHAN: kota (optional)
+  customerPostalCode String?  // ✅ TAMBAHAN: kode pos (optional)
+  
+  // Booking Details
+  specialRequest     String?
+  status             String   @default("PENDING") // PENDING, CONFIRMED, CANCELLED, EXPIRED, FAILED
+  
+  // Payment Information
+  paymentMethod      String?
+  xenditInvoiceId    String?
+  xenditInvoiceUrl   String?  // ✅ TAMBAHAN: URL invoice Xendit
+  
+  // Timestamps
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+
+  // Indexes untuk query performance
+  @@index([customerEmail])
+  @@index([status])
+  @@index([checkInDate])
+  @@index([createdAt])
+}
