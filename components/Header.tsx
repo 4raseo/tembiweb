@@ -7,12 +7,12 @@ import { Menu, X } from 'lucide-react';
 export default function Header() { 
   const [isSidebarOpen, setSidebarOpen] = useState(false);
   const navLinks = [
-    { name: 'Tembi Resort', href: '/' },
+    { name: 'Tembi', href: '/' },
     { name: 'House', href: '/rooms' },
     { name: 'Foods', href: '/catering' },
     { name: 'Venue', href: '/venue' },
-    { name: 'Sejarah Tembi', href: '#' },
-    { name: 'Collections', href: '#' },
+    { name: 'History', href: '/sejarah' },
+    { name: 'Collections', href: '/collections' },
   ];
 
   return (

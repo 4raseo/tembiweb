@@ -199,7 +199,7 @@ export default function HomePage() {
         <section className="py-20 px-10 bg-stone-50">
           <div className="container mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
             <div className="text-center md:text-left">
-              <h3 className="text-6xl font-serif font-thin mb-10">A Living Museum of Javanese Heritage</h3>
+              <h3 className="text-6xl font-serif font-thin mb-10">A Living Javanese Heritage</h3>
               <p className="text-gray-600 mb-6">
                 Tembi Rumah Budaya stands as a testament to Indonesias rich cultural tapestry, where traditional Javanese architecture harmoniously blends with contemporary luxury.
               </p>
@@ -243,7 +243,7 @@ export default function HomePage() {
                   Accommodation
               </h4>
               <h2 className="text-5xl font-serif text-gray-900 mb-6">
-                  Cultural <span className="italic font-normal">House</span>
+                  Historical Home
               </h2>
               <p className="text-gray-600 leading-relaxed text-lg">
                   Each house is a sanctuary of cultural heritage, thoughtfully designed to immerse you in the timeless elegance of Javanese architecture while providing modern luxury.
@@ -353,10 +353,10 @@ export default function HomePage() {
             {/* A SANCTUARY OF HERITAGE */}
             <div className="text-center max-w-4xl mx-auto mb-32">
               <h2 className="text-4xl md:text-5xl font-serif font-bold text-gray-900 mb-8">
-                A Sanctuary of Heritage
+                Living Heritage
               </h2>
               <p className="text-gray-600 leading-relaxed mb-16 px-4 md:px-12 text-lg">
-                Nestled in the heart of Yogyakarta, Tembi Historical Home is more than a resort, 
+                Nestled in the heart of Yogyakarta, Tembi Historical Home is more than a "...", 
                 its a living collection where centuries old Javanese traditions harmoniously blend 
                 with contemporary luxury. Our carefully preserved cultural spaces and authentic architecture 
                 create an immersive experience that celebrates Indonesias rich heritage while providing 
@@ -393,7 +393,7 @@ export default function HomePage() {
               {/* Sisi Kiri: Teks & List */}
               <div className=''>
                 <h2 className="text-4xl md:text-5xl font-serif font-bold text-gray-900 mb-10 leading-tight">
-                  Food And Drink <br/> Packages
+                  Food And Drink
                 </h2>
                 <p className="text-gray-600 mb-8 leading-relaxed pr-16 text-lg">
                   Embark on a culinary journey that celebrates the rich flavors of Indonesian cuisine. 
