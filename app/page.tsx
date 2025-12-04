@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { useLanguage } from '@/app/context/LanguageContext';
 
 // Data dummy
 const houses = [
@@ -34,59 +35,59 @@ const heroImages = [
 ];
 
 const icons = [
-  { icon: "/images/icons/wifi.png", text: "Complimentary Wi-Fi" },
-  { icon: "/images/icons/cup.png", text: "Welcome Tea Ceremony" },
-  { icon: "/images/icons/flower.png", text: "Traditional Amenities" },
-  { icon: "/images/icons/bell.png", text: "Cultural Concierge" },
-  { icon: "/images/icons/bicycle.png", text: "Bicycle Access" },
-  { icon: "/images/icons/music.png", text: "Gamelan Course" },
+  { icon: "/images/icons/wifi-green.svg", text: "Complimentary Wi-Fi" },
+  { icon: "/images/icons/cup-green.svg", text: "Welcome Tea Ceremony" },
+  { icon: "/images/icons/flower-green.svg", text: "Traditional Amenities" },
+  { icon: "/images/icons/bell-green.svg", text: "Cultural Concierge" },
+  { icon: "/images/icons/bike-green.svg", text: "Bicycle Access" },
+  { icon: "/images/icons/music-green.svg", text: "Gamelan Course" },
 ];
 
 const heritageFeatures = [
   {
     title: "Cultural Heritage",
     desc: "Authentic Javanese architecture and traditions",
-    icon: "/images/icons/museum.png" // Icon bangunan/museum
+    icon: "/images/icons/museum-green.svg" // Icon bangunan/museum
   },
   {
     title: "Natural Harmony",
     desc: "Surrounded by lush tropical gardens and rice fields",
-    icon: "/images/icons/leaf.png" // Icon daun
+    icon: "/images/icons/leaf-green.svg" // Icon daun
   },
   {
-    title: "Luxury Experience",
-    desc: "Modern amenities with traditional elegance",
-    icon: "/images/icons/diamond.png" // Icon diamond/mewah
+    title: "Meaningful Moments",
+    desc: "Rest that feels valuable and memorable",
+    icon: "/images/icons/diamond-green.svg" // Icon diamond/mewah
   }
 ];
 
 const foodPoints = [
-  { text: "Fresh ingredients from local organic farms", icon: "/images/icons/leafsm.png" },
-  { text: "Traditional recipes with modern presentation", icon: "/images/icons/food.png" },
-  { text: "Curated selection of Indonesian and international wines", icon: "/images/icons/glass.png" },
+  { text: "Fresh ingredients from local organic farms", icon: "/images/icons/leaf-green.svg" },
+  { text: "Traditional recipes with modern presentation", icon: "/images/icons/food-green.svg" },
+  { text: "Friendly service that makes you feel at home", icon: "/images/icons/glass-green.svg" },
 ];
 
 const eventPackages = [
   {
     title: "Wedding Ceremonies",
-    description: "Exchange vows in our sacred pendopo pavilion, surrounded by the timeless beauty of Javanese architecture and lush tropical gardens. Our wedding specialists will ensure every detail honors your cultural traditions while creating a truly magical celebration.",
-    image: "/images/homepage/wedding.png", // Ganti dengan foto pernikahan
+    description: "Celebrate your special moment in our quiet pendopo, surrounded by fresh greenery and a peaceful atmosphere. Our team will help take care of the details so your ceremony feels personal and meaningful.",
+    image: "/images/homepage/content2.png", // Ganti dengan foto pernikahan
     buttonText: "Plan Your Wedding",
     features: [
-      { text: "Capacity: Up to 150 guests", icon: "/images/icons/group.png" }, // Icon orang banyak
-      { text: "Garden ceremony options", icon: "/images/icons/leafsm.png" }, // Icon daun
-      { text: "Traditional gamelan accompaniment", icon: "/images/icons/music.png" }, // Icon nada musik
+      { text: "Capacity: Up to 150 guests", icon: "/images/icons/group-green.svg" }, // Icon orang banyak
+      { text: "Garden ceremony options", icon: "/images/icons/leaf-green.svg" }, // Icon daun
+      { text: "Traditional gamelan accompaniment", icon: "/images/icons/music-green.svg" }, // Icon nada musik
     ]
   },
   {
     title: "Corporate Retreats",
-    description: "Inspire creativity and team building in our serene cultural environment. Our meeting spaces blend traditional architecture with modern technology, providing the perfect setting for productive sessions and meaningful connections.",
-    image: "/images/homepage/corporate.png", // Ganti dengan foto rapat
+    description: "Spark new ideas and strengthen teamwork in a calm and inspiring setting.Our meeting spaces combine traditional charm with modern facilities, creating a comfortable place for focused work and meaningful collaboration.",
+    image: "/images/homepage/content3.png", // Ganti dengan foto rapat
     buttonText: "Book Corporate Event",
     features: [
-      { text: "Multiple room configurations", icon: "/images/icons/group.png" }, // Icon denah/layout
-      { text: "High-speed internet & AV equipment", icon: "/images/icons/wifi.png" }, // Icon wifi
-      { text: "Traditional refreshment service", icon: "/images/icons/cup.png" }, // Icon kopi/cangkir
+      { text: "Multiple room configurations", icon: "/images/icons/group-green.svg" }, // Icon denah/layout
+      { text: "High-speed internet & AV equipment", icon: "/images/icons/wifi-green.svg" }, // Icon wifi
+      { text: "Traditional refreshment service", icon: "/images/icons/cup-green.svg" }, // Icon kopi/cangkir
     ]
   }
 ];
@@ -103,16 +104,6 @@ const collections = [
     image: "/images/collection/cundrik2.png"
   },
   {
-    title: "Sword Collection",
-    desc: "A small Javanese sword carried as a personal protective item.",
-    image: "/images/collection/sword1.png"
-  },
-  {
-    title: "Sword Collection",
-    desc: "A slender Javanese sword with a longer blade and visible forging patterns.",
-    image: "/images/collection/sword2.png"
-  },
-  {
     title: "Sken Collection",
     desc: "A small traditional Javanese dagger with a wooden handle and sheath.",
     image: "/images/collection/sken1.png"
@@ -122,16 +113,6 @@ const collections = [
     desc: "A long, leaf-shaped traditional blade with a wooden hilt and sheath.",
     image: "/images/collection/sken2.png"
   },
-  {
-    title: "Spear Collection",
-    desc: "A traditional Javanese dagger with a long, narrow blade and a simple wooden hilt.",
-    image: "/images/collection/spear1.png"
-  },
-  {
-    title: "Spear Collection",
-    desc: "A traditional dagger featuring a distinctive patterned (pamor) blade and dark wooden handle.",
-    image: "/images/collection/spear2.png"
-  }
 ];
 
 export default function HomePage() {
@@ -201,10 +182,10 @@ export default function HomePage() {
             <div className="text-center md:text-left">
               <h3 className="text-6xl font-serif font-thin mb-10">A Living Javanese Heritage</h3>
               <p className="text-gray-600 mb-6">
-                Tembi Rumah Budaya stands as a testament to Indonesias rich cultural tapestry, where traditional Javanese architecture harmoniously blends with contemporary luxury.
+                A place that brings calm and comfort so your mind feels lighter. The sound of nature welcomes you as soon as you step in. Fresh air helps your body relax. A well arranged space protects your rest so nothing interrupts your peace.
               </p>
               <p className="text-gray-600 mb-10">
-                Nestled amidst lush tropical gardens, our cultural resort offers an immersive journey through time, celebrating the artistry, spirituality, and wisdom of ancient Java.
+                Morning comes with a warm breakfast so the day feels kinder. Sitting on the terrace or taking a slow walk in the garden is enough to ease your heart. Energy returns slowly. A quiet peace appears on its own. Rest here is more than sleep, You have space to recover.
               </p>
               <div className="grid grid-cols-3 gap-4">
                 <div>
@@ -282,7 +263,7 @@ export default function HomePage() {
                       {/* Icon */}
                       <div className="flex items-center gap-2">
                         <div className="relative w-3 h-3">
-                          <Image src="/images/icons/bedgray.png" alt="Bed" fill className="object-contain" />
+                          <Image src="/images/icons/bed-gray.svg" alt="Bed" fill className="object-contain" />
                         </div>
                         <span>King Bed</span>
                       </div>
@@ -290,7 +271,7 @@ export default function HomePage() {
                       {/* Icon */}
                       <div className="flex items-center gap-2">
                         <div className="relative w-3 h-3">
-                          <Image src="/images/icons/field.png" alt="View" fill className="object-contain" />
+                          <Image src="/images/icons/mount-gray.svg" alt="View" fill className="object-contain" />
                         </div>
                         <span>Rice Field View</span>
                       </div>
@@ -346,7 +327,7 @@ export default function HomePage() {
           </div>
         </section>
         
-        {/* Sanctuary Section */}
+        {/* Living Heritage Section */}
         <section className="py-24 bg-white">
           <div className="container mx-auto px-6">
 
@@ -356,11 +337,7 @@ export default function HomePage() {
                 Living Heritage
               </h2>
               <p className="text-gray-600 leading-relaxed mb-16 px-4 md:px-12 text-lg">
-                Nestled in the heart of Yogyakarta, Tembi Historical Home is more than a "...", 
-                its a living collection where centuries old Javanese traditions harmoniously blend 
-                with contemporary luxury. Our carefully preserved cultural spaces and authentic architecture 
-                create an immersive experience that celebrates Indonesias rich heritage while providing 
-                the ultimate in comfort and tranquility.
+                Nestled in the heart of Yogyakarta, Tembi Historical Home is more than a resort, its a living collection where centuries old Javanese traditions harmoniously blend with contemporary luxury. Our carefully preserved cultural spaces and authentic architecture create an immersive experience that celebrates Indonesias rich heritage while providing the ultimate in comfort and tranquility.
               </p>
 
               {/* 3 Kolom Fitur */}
@@ -396,10 +373,7 @@ export default function HomePage() {
                   Food And Drink
                 </h2>
                 <p className="text-gray-600 mb-8 leading-relaxed pr-16 text-lg">
-                  Embark on a culinary journey that celebrates the rich flavors of Indonesian cuisine. 
-                  Our restaurant combines traditional recipes passed down through generations with 
-                  contemporary culinary techniques, creating an unforgettable dining experience in an 
-                  elegant setting that honors our cultural heritage.
+                  Enjoy a culinary experience that highlights the richness of Indonesian flavors. Traditional recipes are preserved and refined with modern techniques so each dish feels familiar yet exciting. The calm atmosphere adds comfort to every meal. Culture becomes part of the dining moment through flavors that feel warm and full of character.
                 </p>
 
                 {/* List Poin dengan Icon Kecil */}
@@ -543,58 +517,242 @@ export default function HomePage() {
         </section>
         
         {/* Collections Section */}
-        <section className="py-24 bg-white border-t border-gray-50">
-          <div className="container mx-auto px-6">
+        <section className="py-20 bg-white border-t border-gray-50">
+          <div className="container mx-auto px-6 md:px-12">
 
             {/* --- HEADER --- */}
             <div className="text-center max-w-3xl mx-auto mb-16">
               <h2 className="text-4xl md:text-5xl font-serif font-bold text-gray-900 mb-6">
                 Historical Collection
               </h2>
-              <p className="text-gray-600 leading-relaxed">
+              <p className="text-gray-500 leading-relaxed text-lg">
                 Discover our carefully curated collection of Javanese cultural artifacts that tell 
-                the story of Indonesias rich heritage and artistic traditions.
+                the story of Indonesias rich heritage and artistic traditions
               </p>
             </div>
 
-            {/* --- GRID COLLECTION (4 Kolom) --- */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-16 px-16">
-              {collections.map((item, index) => (
-                <div 
-                  key={index} 
-                  className="bg-white rounded-xl border border-gray-100 shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1 overflow-hidden group flex flex-col"
-                >
-                  {/* Image Container (4:3 ratio) */}
-                  <div className="relative w-full bg-gray-50 aspect-video">
-                    <Image
-                      src={item.image}
-                      alt={item.title}
-                      fill
-                      className="object-fill group-hover:scale-105 transition-transform duration-500"
-                    />
-                  </div>
+            {/* --- MAIN CONTENT: 2 Column Layout --- */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
 
-                  {/* Text Content */}
-                  <div className="p-6 flex-grow">
-                    <h3 className="text-lg font-serif font-bold text-gray-900 mb-3">
-                      {item.title}
-                    </h3>
-                    <p className="text-sm text-gray-500 leading-relaxed">
-                      {item.desc}
-                    </p>
+              {/* === LEFT COLUMN: 4 Product Cards (Grid 2x2) === */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                {collections.map((item, index) => (
+                  <div 
+                    key={index} 
+                    className="bg-white rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition-all duration-300 group overflow-hidden flex flex-col"
+                  >
+                    {/* Image Container - Background Abu-abu */}
+                    <div className="relative w-full aspect-[4/3] bg-slate-50 p-6 flex items-center justify-center">
+                      <div className="relative w-full h-full">
+                        <Image
+                          src={item.image}
+                          alt={item.title}
+                          fill
+                          className="object-contain group-hover:scale-105 transition-transform duration-500 drop-shadow-sm"
+                        />
+                      </div>
+                    </div>
+
+                    {/* Text Content */}
+                    <div className="p-5 flex-grow border-t border-gray-50">
+                      <h3 className="text-xl font-serif font-bold text-gray-900 mb-2">
+                        {item.title}
+                      </h3>
+                      {/* Warna tulisan diubah jadi hitam/abu (sesuai request) */}
+                      <p className="text-sm text-gray-600 leading-relaxed font-medium">
+                        {item.desc}
+                      </p>
+                    </div>
                   </div>
+                ))}
+              </div>
+
+              {/* === RIGHT COLUMN: Gallery Layout (1 Big Top, 2 Small Bottom) === */}
+              <div className="flex flex-col gap-6 h-full min-h-[500px]">
+
+                {/* Top Image (Large) */}
+                <div className="relative w-full h-3/5 min-h-[300px] rounded-xl overflow-hidden shadow-sm">
+                  <Image 
+                    src="/images/homepage/content4.png" // Ganti gambar Hall Besar
+                    alt="Main Hall"
+                    fill
+                    className="object-cover hover:scale-105 transition-transform duration-700"
+                  />
                 </div>
-              ))}
-            </div>
 
-            {/* --- BUTTON FOOTER --- */}
-            <div className="text-center">
-              <button className="bg-tembi hover:bg-darktembi text-white font-medium py-3 px-10 rounded-full transition-colors shadow-md hover:shadow-lg">
+                {/* Bottom Images (2 Columns) */}
+                <div className="grid grid-cols-2 gap-6 h-2/5 min-h-[200px]">
+                   <div className="relative w-full h-full rounded-xl overflow-hidden shadow-sm">
+                      <Image 
+                        src="/images/homepage/content5.png" // Ganti gambar Gamelan/Piano
+                        alt="Instruments"
+                        fill
+                        className="object-cover hover:scale-105 transition-transform duration-700"
+                      />
+                   </div>
+                   <div className="relative w-full h-full rounded-xl overflow-hidden shadow-sm">
+                      <Image 
+                        src="/images/homepage/content6.png" // Ganti gambar Etalase Kaca
+                        alt="Artifact Display"
+                        fill
+                        className="object-cover hover:scale-105 transition-transform duration-700"
+                      />
+                   </div>
+                </div>
+              </div>
+            </div>
+            {/* --- FOOTER BUTTON --- */}
+            <div className="flex justify-center mt-12">
+              <button className="bg-[#8B9D68] hover:bg-[#778a55] text-white px-8 py-3 rounded-full font-medium transition-colors duration-300 shadow-md">
                 Explore Full Collection
               </button>
             </div>
           </div>
         </section>
+
+        <section className="py-20 bg-white">
+          <div className="container mx-auto px-6">
+            
+            {/* Header */}
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-serif text-[#2C2420] mb-3">
+                Location & Access
+              </h2>
+              <p className="text-[#5C5C5C]">
+                Easy to reach from Yogyakarta city center and airport
+              </p>
+            </div>
+        
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+              
+              {/* --- LEFT COLUMN: INFO WITH LOCAL ICONS --- */}
+              <div className="space-y-6">
+                
+                {/* 1. Address Block */}
+                <div className="bg-[#F9F9F0] p-8 rounded-2xl">
+                  <div className="flex items-center gap-3 mb-4">
+                    {/* Icon Address */}
+                    <div className="relative w-6 h-6 flex-shrink-0">
+                      <Image src="/images/icons/gps-green.svg" alt="Address" fill className="object-contain" />
+                    </div>
+                    <h3 className="text-xl font-serif font-bold text-[#2C2420]">Address</h3>
+                  </div>
+                  <p className="text-[#5C5C5C] leading-relaxed pl-9"> {/* pl-9 agar rata dengan teks judul */}
+                    Jl. Parangtritis KM 8.4, Timbulharjo, Sewon, Bantul, Yogyakarta 55186, Indonesia
+                  </p>
+                </div>
+        
+                {/* Grid for Airport & City Center */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  
+                  {/* 2. From Airport */}
+                  <div className="bg-[#F9F9F0] p-8 rounded-2xl">
+                    <div className="flex items-center gap-3 mb-4">
+                      {/* Icon Airport */}
+                      <div className="relative w-6 h-6 flex-shrink-0">
+                        <Image src="/images/icons/plane-green.svg" alt="Airport" fill className="object-contain" />
+                      </div>
+                      <h3 className="text-lg font-serif font-bold text-[#2C2420]">From Airport</h3>
+                    </div>
+                    <p className="text-[#5C5C5C] text-sm leading-relaxed">
+                      25 minutes drive from Yogyakarta International Airport
+                    </p>
+                  </div>
+        
+                  {/* 3. From City Center */}
+                  <div className="bg-[#F9F9F0] p-8 rounded-2xl">
+                    <div className="flex items-center gap-3 mb-4">
+                      {/* Icon City */}
+                      <div className="relative w-6 h-6 flex-shrink-0">
+                        <Image src="/images/icons/city-green.svg" alt="City" fill className="object-contain" />
+                      </div>
+                      <h3 className="text-lg font-serif font-bold text-[#2C2420]">From City Center</h3>
+                    </div>
+                    <p className="text-[#5C5C5C] text-sm leading-relaxed">
+                      15 minutes drive from Malioboro Street and city center
+                    </p>
+                  </div>
+                </div>
+        
+                {/* 4. Transportation Options Block */}
+                <div className="bg-[#F9F9F0] p-8 rounded-2xl">
+                  <div className="flex items-center gap-3 mb-6">
+                    {/* Header Icon Car */}
+                    <div className="relative w-6 h-6 flex-shrink-0">
+                      <Image src="/images/icons/car-green.svg" alt="Transport" fill className="object-contain" />
+                    </div>
+                    <h3 className="text-xl font-serif font-bold text-[#2C2420]">Transportation Options</h3>
+                  </div>
+                  
+                  <ul className="space-y-4">
+                    {/* List Item 1: Taxi */}
+                    <li className="flex items-start gap-3">
+                      <div className="relative w-5 h-5 flex-shrink-0 mt-0.5">
+                        <Image src="/images/icons/taxi-green.svg" alt="Taxi" fill className="object-contain" />
+                      </div>
+                      <span className="text-[#5C5C5C]">Taxi and ride-sharing services available</span>
+                    </li>
+        
+                    {/* List Item 2: Bus */}
+                    <li className="flex items-start gap-3">
+                      <div className="relative w-5 h-5 flex-shrink-0 mt-0.5">
+                        <Image src="/images/icons/bus-green.svg" alt="Bus" fill className="object-contain" />
+                      </div>
+                      <span className="text-[#5C5C5C]">Public bus route 1A stops nearby</span>
+                    </li>
+        
+                    {/* List Item 3: Parking */}
+                    <li className="flex items-start gap-3">
+                      <div className="relative w-5 h-5 flex-shrink-0 mt-0.5">
+                        <Image src="/images/icons/parking-green.svg" alt="Parking" fill className="object-contain" />
+                      </div>
+                      <span className="text-[#5C5C5C]">Free on-site parking for 50+ vehicles</span>
+                    </li>
+                  </ul>
+                </div>
+        
+              </div>
+        
+        
+              {/* --- RIGHT COLUMN: DYNAMIC IMAGE --- */}
+              <div className="relative h-[500px] lg:h-full min-h-[500px] rounded-2xl overflow-hidden shadow-lg bg-gray-100">
+                <iframe
+                  title="Location Map"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3952.062035272993!2d110.36098737466247!3d-7.888546692134261!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7a564c7546808d%3A0x6335193952326715!2sTembi%20Rumah%20Budaya!5e0!3m2!1sid!2sid!4v1701589304323!5m2!1sid!2sid"
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  className="absolute inset-0 w-full h-full"
+                />
+  
+                {/* Optional: Overlay agar map tidak 'menelan' scroll mouse saat user hanya ingin scroll halaman */}
+                <div className="absolute top-0 left-0 w-full h-12 pointer-events-none bg-gradient-to-b from-black/10 to-transparent" />
+              </div>
+        
+            </div>
+          </div>
+        </section>
+
+        {/* --- FLOATING WHATSAPP BUTTON --- */}
+        <Link
+          href="https://wa.me/628123456789?text=Halo,%20saya%20tertarik%20untuk%20bertanya%20mengenai%20Tembi%20Historical%20Home"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="fixed bottom-6 right-6 z-50 bg-[#25D366] hover:bg-[#20bd5a] text-white p-4 rounded-full shadow-[0_4px_14px_0_rgba(0,0,0,0.39)] hover:scale-110 hover:-translate-y-1 transition-all duration-300 flex items-center justify-center"
+          aria-label="Chat on WhatsApp"
+        >
+          {/* Icon WhatsApp SVG */}
+          <svg 
+            viewBox="0 0 24 24" 
+            fill="currentColor" 
+            className="w-8 h-8"
+          >
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+          </svg>
+        </Link>
       </main>
     </div>
   );

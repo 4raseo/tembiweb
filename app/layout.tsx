@@ -4,6 +4,7 @@ import "./globals.css";
 // import Link from "next/link";
 import Header from "../components/Header";
 import Footer  from "../components/Footer";
+import { LanguageProvider } from '@/app/context/LanguageContext';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -30,9 +31,12 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <Header />
-        {children}
-        <Footer />
+        <LanguageProvider>
+          <Header />
+          {children}
+          <Footer />
+        </LanguageProvider>
+        
       </body>
     </html>
   );

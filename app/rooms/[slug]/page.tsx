@@ -4,8 +4,8 @@ import { notFound } from 'next/navigation';
 import { roomData } from '@/data/roomData';
 import { 
   Wifi, Wind, Bath, Coffee, 
-  Utensils, Mountain, BedDouble, 
-  Users, Scan, Star, ArrowLeft 
+  Utensils, Mountain, 
+  Star, ArrowLeft 
 } from 'lucide-react';
 import Link from 'next/link';
 
@@ -49,16 +49,15 @@ export default function RoomDetail({ params }: RoomDetailProps) {
   }
 
   // Fallback gallery logic
-  const galleryImages = room.galleryImages.length > 0 && room.galleryImages[0] !== "" 
-    ? room.galleryImages 
-    : [room.imageUrl, room.imageUrl, room.imageUrl, room.imageUrl];
+  // const galleryImages = room.galleryImages.length > 0 && room.galleryImages[0] !== "" 
+  //   ? room.galleryImages 
+  //   : [room.imageUrl, room.imageUrl, room.imageUrl, room.imageUrl];
 
   return (
     <main className="bg-[#F8F9FA] min-h-screen pb-20">
       
-      {/* --- 1. HERO SECTION --- */}
-      {/* Tetap ada, tapi tidak ditumpuk oleh card di bawahnya */}
-      <div className="relative h-[60vh] min-h-[500px] w-full">
+      {/* --- SECTION 1: HERO --- */}
+      <section className="relative h-[60vh] min-h-[500px] w-full">
         <Image
           src={room.imageUrl}
           alt={room.name}
@@ -102,14 +101,13 @@ export default function RoomDetail({ params }: RoomDetailProps) {
 
           </div>
         </div>
-      </div>
+      </section>
 
-      {/* --- 2. CONTENT CONTAINER --- */}
-      {/* Gunakan py-12 agar ada jarak normal dari Hero (Tidak Floating/Overlap) */}
+      {/* --- CONTENT CONTAINER --- */}
       <div className="container mx-auto px-4 md:px-10 py-12 space-y-8">
         
-        {/* === CARD 1: INFO UTAMA === */}
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-8 md:p-10">
+        {/* === SECTION 2: INFO UTAMA === */}
+        <section className="bg-white rounded-xl shadow-sm border border-gray-200 p-8 md:p-10">
           
           {/* HEADER ROW DALAM CARD: Judul Hitam & Harga */}
           <div className="flex flex-col md:flex-row justify-between items-start mb-8">
@@ -123,9 +121,9 @@ export default function RoomDetail({ params }: RoomDetailProps) {
   
               {/* Bed Icon */}
               <div className="flex items-center gap-2">
-                <div className="relative w-5 h-5 opacity-80"> {/* w-5 h-5 setara dengan size={20} */}
+                <div className="relative w-5 h-5 opacity-80">
                   <Image 
-                    src="/images/icons/bed.png" // Ganti dengan path icon bed Anda
+                    src="/images/icons/bed.png" 
                     alt="Bed Size"
                     fill
                     className="object-contain"
@@ -138,7 +136,7 @@ export default function RoomDetail({ params }: RoomDetailProps) {
               <div className="flex items-center gap-2">
                 <div className="relative w-5 h-5 opacity-80">
                   <Image 
-                    src="/images/icons/group.png" // Ganti dengan path icon guests Anda
+                    src="/images/icons/group.png" 
                     alt="Guests Capacity"
                     fill
                     className="object-contain"
@@ -151,7 +149,7 @@ export default function RoomDetail({ params }: RoomDetailProps) {
               <div className="flex items-center gap-2">
                 <div className="relative w-5 h-5 opacity-80">
                   <Image 
-                    src="/images/icons/size2.png" // Ganti dengan path icon size Anda
+                    src="/images/icons/size2.png" 
                     alt="Room Size"
                     fill
                     className="object-contain"
@@ -174,8 +172,9 @@ export default function RoomDetail({ params }: RoomDetailProps) {
 
           {/* DESCRIPTION */}
           <div className="space-y-6 text-gray-600 leading-relaxed mb-10 text-justify md:text-left">
-            <p>{room.description}</p>
-            <p>{room.longDescription}</p>
+            {room.longDescription.map((paragraph, index) => (
+              <p key={index}>{paragraph}</p>
+            ))}
           </div>
 
           {/* SEPARATOR */}
@@ -186,7 +185,6 @@ export default function RoomDetail({ params }: RoomDetailProps) {
             <h3 className="text-xl font-bold text-gray-800 mb-6 font-serif">
               Cultural Amenities & Facilities
             </h3>
-            {/* Menggunakan grid 2 kolom (mobile) dan 3 kolom (desktop) */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {room.amenities.map((amenity, index) => (
                 <div key={index} className="flex items-center gap-3 p-4 bg-[#F8F9FA] rounded-lg">
@@ -198,10 +196,10 @@ export default function RoomDetail({ params }: RoomDetailProps) {
               ))}
             </div>
           </div>
-        </div>
+        </section>
 
-        {/* === CARD 2: GALLERY === */}
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-8 md:p-10">
+        {/* === SECTION 3: GALLERY === */}
+        <section className="bg-white rounded-xl shadow-sm border border-gray-200 p-8 md:p-10">
           <div className="flex justify-between items-end mb-8">
             <h3 className="text-2xl font-bold text-gray-800 font-serif">Room Gallery</h3>
             <button className="text-[#8B9D68] font-semibold hover:underline cursor-pointer text-sm">
@@ -209,58 +207,35 @@ export default function RoomDetail({ params }: RoomDetailProps) {
             </button>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-4 grid-rows-2 gap-4 h-[500px]">
-            {/* Main Large Image */}
-            <div className="md:col-span-2 md:row-span-2 relative rounded-lg overflow-hidden group cursor-pointer">
-              <Image 
-                src={galleryImages[0]} 
-                alt="Main Gallery" 
-                fill 
-                className="object-cover group-hover:scale-105 transition-transform duration-700"
-              />
-            </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 auto-rows-[200px]">
+  {room.galleryImages?.map((imageSrc, index) => {
+    // Cek apakah ini gambar pertama
+    const isFirst = index === 0;
 
-            {/* Side Images */}
-            <div className="relative rounded-lg overflow-hidden group cursor-pointer">
-              <Image 
-                src={galleryImages[1] || galleryImages[0]} 
-                alt="Gallery 2" 
-                fill 
-                className="object-cover group-hover:scale-105 transition-transform duration-700"
-              />
-            </div>
-            <div className="relative rounded-lg overflow-hidden group cursor-pointer">
-               <Image 
-                src={galleryImages[2] || galleryImages[0]} 
-                alt="Gallery 3" 
-                fill 
-                className="object-cover group-hover:scale-105 transition-transform duration-700"
-              />
-            </div>
-            <div className="relative rounded-lg overflow-hidden group cursor-pointer">
-               <Image 
-                src={galleryImages[3] || galleryImages[0]} 
-                alt="Gallery 4" 
-                fill 
-                className="object-cover group-hover:scale-105 transition-transform duration-700"
-              />
-            </div>
-             <div className="relative rounded-lg overflow-hidden group cursor-pointer">
-               <Image 
-                src={galleryImages[0]} 
-                alt="Gallery 5" 
-                fill 
-                className="object-cover group-hover:scale-105 transition-transform duration-700"
-              />
-              <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <span className="text-white font-medium tracking-wider">See More</span>
-              </div>
-            </div>
-          </div>
-        </div>
+    return (
+      <div 
+        key={index} 
+        className={`relative rounded-xl overflow-hidden group shadow-sm hover:shadow-lg transition-all duration-300
+          ${isFirst ? 'sm:col-span-2 sm:row-span-2' : ''} 
+        `}
+      >
+        <Image
+          src={imageSrc}
+          alt={`${room.name} room ${index + 1}`}
+          fill
+          className="object-cover transition-transform duration-700 group-hover:scale-110"
+        />
+        
+        {/* Overlay tipis */}
+        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300" />
+      </div>
+    );
+  })}
+</div>
+        </section>
 
-        {/* === CARD 3: ROOM POLICIES & INFORMATION === */}
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-8 md:p-10">
+        {/* === SECTION 4: ROOM POLICIES & INFORMATION === */}
+        <section className="bg-white rounded-xl shadow-sm border border-gray-200 p-8 md:p-10">
           <h3 className="text-2xl font-bold text-gray-800 mb-8 font-serif">
             Room Policies & Information
           </h3>
@@ -296,21 +271,18 @@ export default function RoomDetail({ params }: RoomDetailProps) {
             <div>
               <h4 className="font-bold text-gray-800 mb-4 text-sm">Cancellation Policy</h4>
               <ul className="space-y-4 text-gray-600 text-sm">
-                {/* Item 1 */}
                 <li className="flex items-center gap-3">
                    <div className="relative w-4 h-4">
                       <Image src="/images/icons/check.png" alt="check" fill className="object-contain" />
                    </div>
                    <span>Free cancellation 48h before</span>
                 </li>
-                {/* Item 2 */}
                 <li className="flex items-center gap-3">
                    <div className="relative w-4 h-4">
                       <Image src="/images/icons/info.png" alt="info" fill className="object-contain" />
                    </div>
                    <span>50% refund 24h before</span>
                 </li>
-                {/* Item 3 */}
                 <li className="flex items-center gap-3">
                    <div className="relative w-4 h-4">
                       <Image src="/images/icons/warning.png" alt="warning" fill className="object-contain" />
@@ -355,21 +327,19 @@ export default function RoomDetail({ params }: RoomDetailProps) {
 
             </div>
           </div>
-        </div>
+        </section>
 
-        {/* === CARD 4: BOOKING ACTION === */}
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-8 md:px-10 md:py-8">
+        {/* === SECTION 5: BOOKING ACTION === */}
+        <section className="bg-white rounded-xl shadow-sm border border-gray-200 p-8 md:px-10 md:py-8">
            <div className="flex flex-col md:flex-row justify-between items-center mb-8">
               <h3 className="text-2xl md:text-3xl font-bold text-gray-800 font-serif self-start md:self-auto">
                 {room.name}
               </h3>
-              <div className="text-left md:text-right self-start md:self-auto mt-2 md:mt-0">
-                <span className="text-2xl md:text-3xl font-bold text-[#8B9D68]">
-                   {formatRupiah(room.price)}
-                </span>
-                <span className="text-gray-400 text-sm block md:inline ml-0 md:ml-1">
-                   per night
-                </span>
+              <div className="mt-6 md:mt-0 text-left md:text-right">
+                <div className="text-3xl font-bold text-[#8B9D68]">
+                  {formatRupiah(room.price)}
+                </div>
+                <p className="text-gray-400 text-sm mt-1">per night</p>
               </div>
            </div>
            
@@ -379,7 +349,7 @@ export default function RoomDetail({ params }: RoomDetailProps) {
            >
              Booking Now
            </Link>
-        </div>
+        </section>
 
       </div>
     </main>
