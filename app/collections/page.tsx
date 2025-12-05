@@ -14,28 +14,28 @@ interface StatItem {
 const statsData: StatItem[] = [
   {
     id: 1,
-    iconUrl: '/images/icons/diamond.png', 
+    iconUrl: '/images/icons/diamond-green.svg', 
     alt: 'Artifacts Icon',
     value: '250+',
     label: 'Artifacts',
   },
   {
     id: 2,
-    iconUrl: '/images/icons/date.png', 
+    iconUrl: '/images/icons/calendar-green.svg', 
     alt: 'Origins Icon',
     value: '15th',
     label: 'Century Origins',
   },
   {
     id: 3,
-    iconUrl: '/images/icons/location.png', 
+    iconUrl: '/images/icons/gps-green.svg', 
     alt: 'Regions Icon',
     value: '5',
     label: 'Regions',
   },
   {
     id: 4,
-    iconUrl: '/images/icons/group.png', 
+    iconUrl: '/images/icons/group-green.svg', 
     alt: 'Visitors Icon',
     value: '50K+',
     label: 'Annual Visitors',
@@ -53,24 +53,45 @@ const collectionsData: CollectionCategory[] = [
     items: [
       {
         id: 1,
-        imageUrl: "/images/collection/cundrik1.png", // Pastikan gambar ada
+        imageUrl: "/images/collection/GPT0541.svg", // Pastikan gambar ada
         category: "Cundrik",
         title: "GPT0541",
         description: "A small Javanese cundrik carried as a personal talisman. It represents alertness and protection, shaped with the fine coastal character of Cirebon craftsmanship."
       },
       {
         id: 2,
-        imageUrl: "/images/collection/cundrik2.png",
+        imageUrl: "/images/collection/GPT0540.svg",
         category: "Cundrik",
         title: "GPT0540",
         description: "A longer cundrik forged with sanak patterns. Its flowing lines reflect Majapahit era techniques and symbolize resilience and personal strength."
       },
       {
         id: 3,
-        imageUrl: "/images/collection/cundrik3.png",
+        imageUrl: "/images/collection/GPT0539.svg",
         category: "Cundrik",
         title: "GPT0539",
         description: "A slender cundrik used in household traditions and ceremonies. Its light form and Segaluh forging style highlight practicality and cultural identity."
+      },
+      {
+        id: 4,
+        imageUrl: "/images/collection/GPT0538.svg", // Pastikan gambar ada
+        category: "Cundrik",
+        title: "GPT0538",
+        description: ""
+      },
+      {
+        id: 5,
+        imageUrl: "/images/collection/GPT0537.svg",
+        category: "Cundrik",
+        title: "GPT0537",
+        description: ""
+      },
+      {
+        id: 6,
+        imageUrl: "/images/collection/GPT0536.svg",
+        category: "Cundrik",
+        title: "GPT0536",
+        description: ""
       }
     ]
   },
@@ -78,25 +99,93 @@ const collectionsData: CollectionCategory[] = [
     title: "Sword Collection",
     items: [
       {
-        id: 4,
-        imageUrl: "/images/collection/sword1.png",
+        id: 7,
+        imageUrl: "/images/collection/GPT0578.svg",
         category: "Sword",
-        title: "GPT0778",
+        title: "GPT0578",
         description: "A short Javanese sword carried as a personal protective item. It reflects Cirebon craftsmanship and symbolizes readiness and self defense."
       },
       {
-        id: 5,
-        imageUrl: "/images/collection/sword2.png",
+        id: 8,
+        imageUrl: "/images/collection/GPT0576.svg",
         category: "Sword",
-        title: "GPT0776",
+        title: "GPT0576",
         description: "A slender Javanese sword with a longer blade and visible forging patterns. It reflects Majapahit metalwork and represents firmness."
       },
       {
-        id: 6,
-        imageUrl: "/images/collection/sword3.png",
+        id: 9,
+        imageUrl: "/images/collection/GPT0575.svg",
         category: "Sword",
-        title: "GPT0775",
+        title: "GPT0575",
         description: "A light Javanese sword with a narrow blade and a simple wooden hilt. It follows the segaluh forging style and symbolizes cultural identity."
+      },
+      {
+        id: 10,
+        imageUrl: "/images/collection/GPT0574.svg", // Pastikan gambar ada
+        category: "Sword",
+        title: "GPT0574",
+        description: ""
+      },
+      {
+        id: 11,
+        imageUrl: "/images/collection/GPT0572.svg",
+        category: "Sword",
+        title: "GPT0572",
+        description: ""
+      },
+      {
+        id: 12,
+        imageUrl: "/images/collection/GPT0571.svg",
+        category: "Sword",
+        title: "GPT0571",
+        description: ""
+      }
+    ]
+  },
+  {
+    title: "Sken Collection",
+    items: [
+      {
+        id: 13,
+        imageUrl: "/images/collection/GPT0518.svg",
+        category: "Sken",
+        title: "GPT0518",
+        description: "A small traditional Javanese dagger with a wooden handle and sheath. The Cekel Bahuluk symbolizes protection and practicality, often carried as a personal tool during the Majapahit era."
+      },
+      {
+        id: 14,
+        imageUrl: "/images/collection/GPT0521.svg",
+        category: "Sken",
+        title: "GPT0521",
+        description: "A long, leaf-shaped traditional blade with a wooden hilt and sheath. The Kujang Malang represents courage and authority, used in both ceremonial and martial contexts during the Mataram Amangkurat period."
+      },
+      {
+        id: 15,
+        imageUrl: "/images/collection/GPT0516.svg",
+        category: "Sken",
+        title: "GPT0516",
+        description: "A ceremonial dagger with a broad, leaf shaped blade and finely carved wooden handle and sheath. The Godong Suruh, meaning “betel leaf,” symbolizes sincerity, purity, and harmony in Javanese culture."
+      },
+      {
+        id: 16,
+        imageUrl: "/images/collection/GPT0517.svg", 
+        category: "Sken",
+        title: "GPT0517",
+        description: "" // Tidak ada deskripsi di gambar
+      },
+      {
+        id: 17,
+        imageUrl: "/images/collection/GPT0519.svg",
+        category: "Sken",
+        title: "GPT0519",
+        description: "" // Tidak ada deskripsi di gambar
+      },
+      {
+        id: 18,
+        imageUrl: "/images/collection/GPT0520.svg",
+        category: "Sken",
+        title: "GPT0520",
+        description: "" // Tidak ada deskripsi di gambar
       }
     ]
   },
@@ -132,7 +221,7 @@ export default function CollectionsPage() {
           <div className="inline-flex items-center gap-3 bg-white/10 backdrop-blur-sm border border-white/20 text-gray-100 px-4 py-1.5 rounded-full w-fit mb-6">
             <div className="relative flex items-center justify-center">
                <Image 
-                 src="/images/icons/museumw.png"
+                 src="/images/icons/museum-white.svg"
                  alt="Heritage Icon"
                  width={18} 
                  height={18}
@@ -170,7 +259,7 @@ export default function CollectionsPage() {
             <button className="group flex items-center gap-3 bg-[#8F9F6A] hover:bg-[#7d8c5c] text-white px-6 py-3.5 rounded-lg transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
               <div className="relative w-5 h-5 group-hover:scale-110 transition-transform duration-300">
                 <Image 
-                  src="/images/icons/vieww.png"
+                  src="/images/icons/view-white.svg"
                   alt="Explore Icon"
                   width={20}
                   height={20}
@@ -236,7 +325,6 @@ export default function CollectionsPage() {
                 <h2 className="font-serif text-3xl sm:text-4xl font-bold text-[#433422] mb-4">
                   {category.title}
                 </h2>
-                <div className="h-1 w-20 bg-[#8F9F6A] mx-auto rounded-full" />
               </div>
 
               {/* Grid Cards */}

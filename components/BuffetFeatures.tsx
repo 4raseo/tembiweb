@@ -1,8 +1,6 @@
 'use client';
-
 import React from 'react';
 import Image from 'next/image';
-import { Leaf, Heart, Wheat, Flame } from 'lucide-react'; 
 // Note: Saya menggunakan Lucide untuk icon kecil di bagian Dietary agar lebih ringan. 
 // Tapi untuk 6 Icon Fitur Utama, kita tetap pakai Local Image.
 
@@ -13,32 +11,32 @@ const BuffetFeatures = () => {
     {
       title: "Free Delivery & Setup",
       desc: "Complete delivery, setup, and breakdown service included with every package. Our team arrives 2 hours before your event.",
-      iconSrc: "/images/icons/truckw.png" // Ganti dengan path icon lokal Anda
+      iconSrc: "/images/icons/truck-white.svg" // Ganti dengan path icon lokal Anda
     },
     {
       title: "Professional Staff",
       desc: "Experienced serving staff in traditional attire to maintain the authentic atmosphere throughout your event.",
-      iconSrc: "/images/icons/groupw.png"
+      iconSrc: "/images/icons/group-white.svg"
     },
     {
       title: "Fresh Ingredients",
       desc: "All dishes prepared fresh on the day of your event using locally sourced, organic ingredients from our trusted suppliers.",
-      iconSrc: "/images/icons/leafw.png"
+      iconSrc: "/images/icons/leaf-white.svg"
     },
     {
       title: "Flexible Timing",
       desc: "Available for breakfast, lunch, or dinner events. Extended service hours available for special occasions.",
-      iconSrc: "/images/icons/clockw.png"
+      iconSrc: "/images/icons/clock-white.svg"
     },
     {
       title: "Quality Guaranteed",
       desc: "100% satisfaction guarantee. If you're not completely satisfied, we'll work to make it right or provide a full refund.",
-      iconSrc: "/images/icons/circlew.png"
+      iconSrc: "/images/icons/curly-white.svg"
     },
     {
       title: "Complete Equipment",
       desc: "All serving equipment, plates, utensils, and traditional serving ware included. Eco-friendly options available.",
-      iconSrc: "/images/icons/foodw.png"
+      iconSrc: "/images/icons/food-white.svg"
     }
   ];
 
@@ -90,62 +88,6 @@ const BuffetFeatures = () => {
             </div>
           ))}
         </div>
-
-        {/* --- DIETARY REQUIREMENTS CARD (Bottom Section) --- */}
-        <div className="mt-16 overflow-hidden rounded-3xl bg-white shadow-sm lg:mt-24">
-          <div className="grid lg:grid-cols-2">
-            
-            {/* Left Content (Text) */}
-            <div className="p-8 lg:p-16 flex flex-col justify-center">
-              <h3 className="mb-6 font-serif text-3xl font-bold text-[#4A3B32]">
-                Special Dietary Requirements
-              </h3>
-              <p className="mb-8 text-gray-600 leading-relaxed">
-                We understand that every guest is unique. Our experienced chefs can accommodate various dietary needs while maintaining the authentic flavors of Javanese cuisine.
-              </p>
-
-              {/* List of Options */}
-              <div className="grid grid-cols-1 gap-y-4 gap-x-8 sm:grid-cols-2">
-                <div className="flex items-center gap-3 text-gray-700">
-                   <Leaf className="h-5 w-5 text-[#96A66D]" />
-                   <span className="text-sm font-medium">Vegetarian Options</span>
-                </div>
-                <div className="flex items-center gap-3 text-gray-700">
-                   <Wheat className="h-5 w-5 text-[#96A66D]" />
-                   <span className="text-sm font-medium">Gluten-Free Available</span>
-                </div>
-                <div className="flex items-center gap-3 text-gray-700">
-                   <Flame className="h-5 w-5 text-[#96A66D]" />
-                   <span className="text-sm font-medium">Spice Level Adjustment</span>
-                </div>
-                <div className="flex items-center gap-3 text-gray-700">
-                   <Heart className="h-5 w-5 text-[#96A66D]" />
-                   <span className="text-sm font-medium">Heart-Healthy Options</span>
-                </div>
-              </div>
-            </div>
-
-            {/* Right Content (Image) */}
-            <div className="relative h-64 lg:h-auto min-h-[300px]">
-              <Image 
-                src="/images/foods/buffetcontent5.png" // Ganti path gambar dietary
-                alt="Dietary Options Food"
-                fill
-                className="object-cover"
-                sizes="(max-width: 1024px) 100vw, 50vw"
-              />
-              
-              {/* Floating Badge */}
-              <div className="absolute bottom-6 left-6 right-6 rounded-lg bg-white/95 px-6 py-4 shadow-lg backdrop-blur-sm lg:left-8 lg:right-auto lg:max-w-xs">
-                <p className="text-sm font-medium text-[#4A3B32]">
-                  Custom menu consultation available
-                </p>
-              </div>
-            </div>
-
-          </div>
-        </div>
-
       </div>
     </section>
   );

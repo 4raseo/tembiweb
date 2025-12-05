@@ -12,25 +12,28 @@ const houses = [
     desc: 'Ngadirojo House is a traditional Javanese limasan built in 1946 and relocated from Bawak Village, Cawas, Klaten, Central Java, to Tembi in 2007. Combining Javanese architecture with natural tranquility, it is an ideal choice for guests seeking peace and culture.',
     image: '/images/rooms/ngadirojo/ngadirojo.png',
     features: ['King Bed', 'Rice Field View'],
+    path: '/rooms/ngadirojo-house',
   },
   {
     name: 'Polaman',
     desc: 'Polaman House is a traditional Javanese limasan built in 1948 and relocated from Bawak Village, Cawas, Klaten, to Tembi in 2007. It combines the warmth of Javanese architecture with natural landscapes, making it perfect for an authentic and peaceful stay.',
     image: '/images/rooms/polaman/polaman.png',
     features: ['King Bed', 'Rice Field View'],
+    path: '/rooms/polaman-house',
   },
   {
     name: 'Adikarto',
     desc: 'Adikarto House is a traditional Javanese limasan house that brings coolness and comfort in a natural atmosphere. Built in 1960 in Ngadirejo, Tepus, Gunung Kidul Regency, it was relocated to Tembi in 2007 as part of cultural preservation efforts.',
     image: '/images/rooms/adikarto/adikarto.png',
     features: ['King Bed', 'Rice Field View'],
+    path: '/rooms/adikarto-house',
   },
 ];
 
 const heroImages = [
-  '/images/cover1.png', // Gambar pertama
-  '/images/cover2.png', // Ganti dengan path gambar kedua Anda
-  '/images/cover3.png', // Ganti dengan path gambar ketiga Anda
+  '/images/homepage/homepage-hero1.svg', // Gambar pertama
+  '/images/venue/venue-hero.svg', // Ganti dengan path gambar kedua Anda
+  '/images/foods/foods-hero.svg', // Ganti dengan path gambar ketiga Anda
   // Tambahkan lebih banyak gambar jika diinginkan
 ];
 
@@ -96,22 +99,22 @@ const collections = [
   {
     title: "Cundrik Collection",
     desc: "A small Javanese cundrik carried as a personal talisman.",
-    image: "/images/collection/cundrik1.png" 
+    image: "/images/collection/GPT0541.svg" 
   },
   {
     title: "Cundrik Collection",
     desc: "A longer cundrik forged with sanak patterns. Its flowing lines reflect Majapahit era.",
-    image: "/images/collection/cundrik2.png"
+    image: "/images/collection/GPT0540.svg"
   },
   {
     title: "Sken Collection",
     desc: "A small traditional Javanese dagger with a wooden handle and sheath.",
-    image: "/images/collection/sken1.png"
+    image: "/images/collection/GPT0519.svg"
   },
   {
     title: "Sken Collection",
     desc: "A long, leaf-shaped traditional blade with a wooden hilt and sheath.",
-    image: "/images/collection/sken2.png"
+    image: "/images/collection/GPT0521.svg"
   },
 ];
 
@@ -227,7 +230,7 @@ export default function HomePage() {
                   Historical Home
               </h2>
               <p className="text-gray-600 leading-relaxed text-lg">
-                  Each house is a sanctuary of cultural heritage, thoughtfully designed to immerse you in the timeless elegance of Javanese architecture while providing modern luxury.
+                Each house offers comfort and keeps cultural stories alive. The design flows naturally so the grace of the past and the ease of the present stay together. Warm spaces and thoughtful details create a peaceful and meaningful stay.
               </p>
             </div>
 
@@ -278,9 +281,12 @@ export default function HomePage() {
                     </div>
 
                     {/* Button */}
-                    <button className="w-28 bg-tembi hover:bg-darktembi text-white text-sm font-medium py-3 px-6 rounded-sm transition-colors mx-auto">
+                    <Link 
+                      href={house.path}
+                      className="w-28 bg-tembi hover:bg-darktembi text-white text-sm font-medium py-3 px-6 rounded-sm transition-colors mx-auto flex items-center justify-center" 
+                    >
                       Book Now
-                    </button>
+                    </Link>
                   </div>
                 </div>
               ))}
@@ -319,9 +325,12 @@ export default function HomePage() {
                 <p className="text-gray-600 mb-6 leading-relaxed text-center md:text-right md:pl-20">
                   Experience authentic Javanese hospitality with modern comfort and cultural immersion.
                 </p>
-                <button className="bg-[#8B9B6D] hover:bg-[#7a8a5e] text-white py-3 px-8 rounded-sm text-sm font-medium transition-colors">
+                <Link 
+                  href="/rooms"
+                  className="w-40 bg-tembi hover:bg-darktembi text-white py-3 px-8 rounded-sm text-sm font-medium transition-colors" 
+                >
                   View All House
-                </button>
+                </Link>
               </div>
             </div>
           </div>
@@ -396,9 +405,12 @@ export default function HomePage() {
                 </div>
 
                 {/* Button Pill Shape (Bulat Lonjong) */}
-                <button className="bg-tembi hover:bg-darktembi text-white font-medium py-3 px-8 rounded-full transition-colors shadow-md">
+                <Link 
+                  href="/catering"
+                  className="bg-tembi hover:bg-darktembi text-white font-medium py-3 px-8 rounded-full transition-colors shadow-md" 
+                >
                   View Packages
-                </button>
+                </Link>
               </div>
 
               {/* Sisi Kanan: Galeri Grid Gambar */}
@@ -502,9 +514,12 @@ export default function HomePage() {
 
                     {/* Button */}
                     <div>
-                      <button className="bg-tembi hover:bg-darktembi text-white text-sm font-medium py-3 px-8 rounded-sm transition-colors w-full md:w-auto">
+                      <Link 
+                        href="/venue"
+                        className="bg-tembi hover:bg-darktembi text-white text-sm font-medium py-3 px-8 rounded-sm transition-colors w-full md:w-auto" 
+                      >
                         {evt.buttonText}
-                      </button>
+                      </Link>
                     </div>
                   </div>
                 </div>
@@ -603,9 +618,12 @@ export default function HomePage() {
             </div>
             {/* --- FOOTER BUTTON --- */}
             <div className="flex justify-center mt-12">
-              <button className="bg-[#8B9D68] hover:bg-[#778a55] text-white px-8 py-3 rounded-full font-medium transition-colors duration-300 shadow-md">
+              <Link 
+                href="/collections"
+                className="bg-tembi hover:bg-darktembi text-white px-8 py-3 rounded-full font-medium transition-colors duration-300 shadow-md" 
+              >
                 Explore Full Collection
-              </button>
+              </Link>
             </div>
           </div>
         </section>
@@ -718,7 +736,7 @@ export default function HomePage() {
               <div className="relative h-[500px] lg:h-full min-h-[500px] rounded-2xl overflow-hidden shadow-lg bg-gray-100">
                 <iframe
                   title="Location Map"
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3952.062035272993!2d110.36098737466247!3d-7.888546692134261!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7a564c7546808d%3A0x6335193952326715!2sTembi%20Rumah%20Budaya!5e0!3m2!1sid!2sid!4v1701589304323!5m2!1sid!2sid"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3952.2385536997226!2d110.35363067455535!3d-7.870087878251126!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7a560cf1551d0b%3A0x1db36094db031949!2sTembi%20-%20Historical%20Home!5e0!3m2!1sid!2sid!4v1764903906866!5m2!1sid!2sid"
                   width="100%"
                   height="100%"
                   style={{ border: 0 }}
@@ -738,7 +756,7 @@ export default function HomePage() {
 
         {/* --- FLOATING WHATSAPP BUTTON --- */}
         <Link
-          href="https://wa.me/628123456789?text=Halo,%20saya%20tertarik%20untuk%20bertanya%20mengenai%20Tembi%20Historical%20Home"
+          href="https://wa.me/6282225142729?text=Halo,%20saya%20tertarik%20untuk%20bertanya%20mengenai%20Tembi%20Historical%20Home"
           target="_blank"
           rel="noopener noreferrer"
           className="fixed bottom-6 right-6 z-50 bg-[#25D366] hover:bg-[#20bd5a] text-white p-4 rounded-full shadow-[0_4px_14px_0_rgba(0,0,0,0.39)] hover:scale-110 hover:-translate-y-1 transition-all duration-300 flex items-center justify-center"

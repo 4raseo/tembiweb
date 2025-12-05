@@ -31,7 +31,7 @@ export default function FoodPage() {
             {/* Pill Label */}
             <div className="inline-flex items-center gap-3 border border-white/30 bg-white/10 backdrop-blur-sm px-5 py-2 rounded-full mb-8">
               <Image 
-                src="/images/icons/foodw.png" 
+                src="/images/icons/food-white.svg" 
                 alt="Utensils"
                 width={16}
                 height={16}
@@ -61,11 +61,11 @@ export default function FoodPage() {
           {/* Scroll Indicator (Tetap di tengah bawah layar) */}
           <div className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce">
             <Image 
-              src="/images/icons/down.png" // Pastikan punya icon ini atau ganti dengan SVG
+              src="/images/icons/arrow-down-white.svg" // Pastikan punya icon ini atau ganti dengan SVG
               alt="Scroll Down"
               width={32}
               height={16}
-              className="w-8 h-4 opacity-80"
+              className="w-8 h-4"
             />
           </div>
         </div>
@@ -81,11 +81,11 @@ export default function FoodPage() {
             {/* Tag / Label */}
             <div className="flex items-center gap-3 mb-6">
               <Image 
-                src="/images/icons/leafb.png" // Pastikan file leaf.png ada di public/icons/
+                src="/images/icons/leaf-black.svg" // Pastikan file leaf.png ada di public/icons/
                 alt="Leaf Icon"
                 width={24}
                 height={24}
-                className="w-5 h-5 object-contain opacity-80"
+                className="w-5 h-5 object-contain"
               />
               <span className="text-sm font-semibold uppercase tracking-widest text-gray-800">
                 Cultural Heritage
@@ -147,10 +147,10 @@ export default function FoodPage() {
             {/* Label */}
             <div className="inline-flex items-center gap-2 mb-4">
               <Image 
-                src="/images/icons/packageb.png" // Icon kotak/paket
+                src="/images/icons/package-black.svg" // Icon kotak/paket
                 alt="icon"
                 width={16} height={16}
-                className="w-4 h-4 opacity-70"
+                className="w-4 h-4"
               />
               <span className="text-sm font-semibold text-gray-600 uppercase tracking-wider">
                 Catering Packages
@@ -226,24 +226,18 @@ export default function FoodPage() {
 
           {/* 3. Info Footer Box (White Box at Bottom) */}
           <div className="bg-white rounded-xl p-8 md:p-12 shadow-sm border border-gray-100">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center divide-y md:divide-y-0 md:divide-x divide-gray-100">
-              
+            {/* Ganti grid menjadi flex */}
+            <div className="flex flex-col md:flex-row justify-center items-center gap-8 text-center">
               <InfoItem 
-                icon="/images/icons/groupb.png"
+                icon="/images/icons/group-black.svg"
                 title="Minimum 35 Guests"
                 desc="All packages available for groups of 35 people or more"
               />
               <InfoItem 
-                icon="/images/icons/clockb.png"
+                icon="/images/icons/clock-black.svg"
                 title="24-Hour Notice"
                 desc="Please place orders at least 24 hours in advance"
               />
-              <InfoItem 
-                icon="/images/icons/truckb.png"
-                title="Delivery Available"
-                desc="Free delivery within Yogyakarta city area"
-              />
-
             </div>
           </div>
         </div>
@@ -257,7 +251,7 @@ export default function FoodPage() {
           <div className="text-center max-w-3xl mx-auto mb-20">
             <div className="inline-flex items-center gap-2 mb-4">
               <Image 
-                src="/images/icons/foodb.png" 
+                src="/images/icons/food-black.svg" 
                 alt="icon" 
                 width={14} height={14} 
                 className="w-3.5 h-3.5" 
@@ -345,7 +339,7 @@ export default function FoodPage() {
                 <div className="flex items-start gap-4 mb-4">
                   {/* Icon Bulat Hijau */}
                   <div className="w-12 h-12 rounded-full bg-[#8F9E75] flex items-center justify-center flex-shrink-0">
-                    <Image src="/images/icons/heartw.png" alt="heart" width={20} height={20} className="brightness-0 invert" />
+                    <Image src="/images/icons/heart-white.svg" alt="heart" width={20} height={20} className="brightness-0 invert" />
                   </div>
                   <div>
                     <h4 className="font-serif font-bold text-lg text-gray-900">3 Generations</h4>
@@ -366,7 +360,7 @@ export default function FoodPage() {
 
               {/* Top Label */}
               <div className="flex items-center gap-2 mb-6">
-                <Image src="/images/icons/starb.png" alt="star" width={16} height={16} className="w-4 h-4 opacity-80" />
+                <Image src="/images/icons/star-black.svg" alt="star" width={16} height={16} className="w-4 h-4 opacity-80" />
                 <span className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
                   Our Heritage
                 </span>
@@ -389,17 +383,17 @@ export default function FoodPage() {
               {/* Feature List */}
               <div className="space-y-8">
                 <HeritageItem 
-                  icon="/images/icons/bookb.png"
+                  icon="/images/icons/book-black.svg"
                   title="Traditional Recipes"
                   desc="Authentic recipes dating back to the early 1900s, carefully documented and preserved by our family matriarchs."
                 />
                 <HeritageItem 
-                  icon="/images/icons/plantb.png"
+                  icon="/images/icons/plant-black.svg"
                   title="Farm-to-Table Philosophy"
                   desc="We source ingredients from local farmers and our own heritage garden, ensuring freshness and supporting the community."
                 />
                 <HeritageItem 
-                  icon="/images/icons/handb.png"
+                  icon="/images/icons/hand-black.svg"
                   title="Handcrafted with Love"
                   desc="Every dish is prepared by hand using traditional methods, ensuring authentic taste and cultural integrity."
                 />
@@ -417,7 +411,7 @@ export default function FoodPage() {
           <div className="text-center max-w-3xl mx-auto mb-16">
             <div className="inline-flex items-center gap-2 mb-4">
               <Image 
-                src="/images/icons/dateb.png" // Icon Kalender
+                src="/images/icons/calendar-black.svg" // Icon Kalender
                 alt="icon" 
                 width={16} height={16} 
                 className="w-4 h-4 opacity-80" 
@@ -480,153 +474,24 @@ export default function FoodPage() {
           {/* 3. Stats Grid */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center pt-16">
             <StatItem 
-              icon="/images/icons/starw.png" // Icon Bintang (Putih)
+              icon="/images/icons/star-white.svg" // Icon Bintang (Putih)
               number="100+" 
               label="Events Catered" 
             />
             <StatItem 
-              icon="/images/icons/groupw.png" // Icon User/Group (Putih)
+              icon="/images/icons/group-white.svg" // Icon User/Group (Putih)
               number="1,000+" 
               label="Guests Served" 
             />
             <StatItem 
-              icon="/images/icons/heartw.png" // Icon Hati (Putih)
+              icon="/images/icons/heart-white.svg" // Icon Hati (Putih)
               number="98%" 
               label="Satisfaction Rate" 
             />
             <StatItem 
-              icon="/images/icons/datew.png" // Icon Kalender (Putih)
+              icon="/images/icons/calendar-white.svg" // Icon Kalender (Putih)
               number="15+" 
               label="Years Experience" 
-            />
-          </div>
-        </div>
-      </section>
-
-      {/* --- SECTION 7: PRICING (WhatsApp Linked) --- */}
-      <section className="py-24 px-6 sm:px-12 lg:px-24 max-w-full bg-white">
-        <div className="max-w-7xl mx-auto">
-    
-          {/* 1. Header */}
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <div className="inline-flex items-center gap-2 mb-4">
-              <Image 
-                src="/images/icons/tag.png" // Pastikan ada icon tag.png
-                alt="icon" 
-                width={16} height={16} 
-                className="w-4 h-4 opacity-70" 
-              />
-              <span className="text-sm font-semibold text-gray-600 uppercase tracking-wide">
-                Transparent Pricing
-              </span>
-            </div>
-
-            <h2 className="font-serif text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-              Affordable <span className="text-[#8F9E75]">Excellence</span>
-            </h2>
-
-            <p className="text-gray-600 text-lg leading-relaxed">
-              Quality traditional cuisine at competitive prices. All packages include setup, service, 
-              and cleanup for your convenience.
-            </p>
-          </div>
-
-          {/* 2. Pricing Cards Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
-      
-            {/* CARD 1: Buffet (Standard) */}
-            <PricingCard 
-              title="Buffet Package"
-              subtitle="Complete Traditional Spread"
-              price="85,000"
-              minGuests="35"
-              features={[
-                "Complete buffet setup",
-                "8-10 traditional dishes",
-                "Traditional beverages",
-                "Dessert included",
-                "Service staff included"
-              ]}
-              buttonText="Choose Buffet Package"
-              waMessage="Halo, saya tertarik dengan Buffet Package seharga Rp 85.000."
-              isPopular={false} 
-            />
-
-            {/* CARD 2: Snack Box (Highlighted / Popular) */}
-            <PricingCard 
-              title="Snack Box Package"
-              subtitle="Traditional Treats & Sweets"
-              price="15,000"
-              minGuests="35"
-              features={[
-                "Individual snack boxes",
-                "5-6 traditional snacks",
-                "Traditional tea included",
-                "Sweet & savory mix",
-                "Eco-friendly packaging"
-              ]}
-              buttonText="Choose Snack Box Package"
-              waMessage="Halo, saya tertarik dengan Snack Box Package seharga Rp 15.000."
-              isPopular={true} // Ini yang bikin background hijau
-            />
-
-            {/* CARD 3: Nasi Box (Standard) */}
-            <PricingCard 
-              title="Nasi Box Package"
-              subtitle="Complete Individual Meals"
-              price="20,000"
-              minGuests="35"
-              features={[
-                "Individual meal boxes",
-                "Complete balanced meal",
-                "Main dish + sides",
-                "Fresh sambal included",
-                "Convenient packaging"
-              ]}
-              buttonText="Choose Nasi Box Package"
-              waMessage="Halo, saya tertarik dengan Nasi Box Package seharga Rp 20.000."
-              isPopular={false} 
-            />
-          </div>
-        </div>
-
-        <div className="mt-24 border-t border-gray-100 pt-20">
-      
-          {/* Subsection Header */}
-          <div className="text-center mb-16">
-            <h3 className="font-serif text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Whats Included in All Packages
-            </h3>
-            <p className="text-gray-500 text-lg">
-              Comprehensive service for your peace of mind
-            </p>
-          </div>
-
-          {/* 4 Icons Grid */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-
-            <IncludedItem 
-              icon="/images/icons/truckw.png" 
-              title="Free Delivery" 
-              desc="Within Yogyakarta city area" 
-            />
-
-            <IncludedItem 
-              icon="/images/icons/foodw.png" 
-              title="Setup Service" 
-              desc="Professional presentation setup" 
-            />
-
-            <IncludedItem 
-              icon="/images/icons/groupw.png" 
-              title="Service Staff" 
-              desc="Trained hospitality professionals" 
-            />
-
-            <IncludedItem 
-              icon="/images/icons/brushw.png" 
-              title="Cleanup" 
-              desc="Complete post-event cleanup" 
             />
           </div>
         </div>
@@ -653,7 +518,7 @@ export default function FoodPage() {
               {/* Icon Wrapper */}
               <div className="w-16 h-16 bg-[#8F9E75] rounded-full flex items-center justify-center mb-6 shadow-md shadow-[#8F9E75]/20">
                 <Image 
-                  src="/images/icons/phonew.png" 
+                  src="/images/icons/phone-white.svg" 
                   alt="phone" 
                   width={24} height={24} 
                   className="brightness-0 invert" 
@@ -670,7 +535,7 @@ export default function FoodPage() {
             <div className="bg-[#F8F9F5] rounded-3xl p-10 flex flex-col items-center text-center hover:shadow-lg transition-all duration-300">
               <div className="w-16 h-16 bg-[#8F9E75] rounded-full flex items-center justify-center mb-6 shadow-md shadow-[#8F9E75]/20">
                  <Image 
-                  src="/images/icons/waw.png" 
+                  src="/images/icons/whatsapp-white.svg" 
                   alt="wa" 
                   width={28} height={28} 
                   className="brightness-0 invert" 
@@ -694,7 +559,7 @@ export default function FoodPage() {
             <div className="bg-[#F8F9F5] rounded-3xl p-10 flex flex-col items-center text-center hover:shadow-lg transition-all duration-300">
               <div className="w-16 h-16 bg-[#8F9E75] rounded-full flex items-center justify-center mb-6 shadow-md shadow-[#8F9E75]/20">
                  <Image 
-                  src="/images/icons/mailw.png" 
+                  src="/images/icons/mail-white.svg" 
                   alt="email" 
                   width={24} height={24} 
                   className="brightness-0 invert" 
@@ -757,13 +622,12 @@ function FeatureItem({ title, desc }: { title: string; desc: string }) {
     <div className="flex gap-4 items-start">
       <div className="flex-shrink-0 mt-1">
         {/* Lingkaran Background */}
-        <div className="w-6 h-6 rounded-full bg-[#829168] flex items-center justify-center overflow-hidden relative">
+        <div className="w-6 h-6 flex items-center justify-center overflow-hidden relative">
            {/* Icon Centang (Gambar Local) */}
            <Image 
-             src="/images/icons/check2.png" // Icon Centang
+             src="/images/icons/check-green.svg" // Icon Centang
              alt="Check"
-             width={12}
-             height={12}
+             fill
              className="object-contain" // brightness-0 invert = membuatnya jadi putih
            />
         </div>
@@ -808,9 +672,8 @@ function PackageCard({
         <div className="space-y-3 mb-8 flex-grow">
           {features.map((feat, i) => (
             <div key={i} className="flex items-start gap-3">
-              <div className="w-4 h-4 rounded-full bg-black flex items-center justify-center mt-0.5 shrink-0">
-                 {/* Icon Centang Putih Kecil */}
-                 <Image src="/images/icons/check2.png" alt="check" width={8} height={8} className="brightness-0 invert" />
+              <div className="w-4 h-4 flex items-center justify-center overflow-hidden relative">
+                 <Image src="/images/icons/check-black.svg" alt="check" fill className="" />
               </div>
               {/* Tidak perlu manual type :string disini karena TS sudah tahu features adalah string[] */}
               <span className="text-sm text-gray-700">{feat}</span>
@@ -823,7 +686,7 @@ function PackageCard({
           href={linkUrl}
           className="w-full text-center bg-[#8F9E75] hover:bg-[#7A8B60] text-white font-semibold py-3 px-4 rounded-lg transition-colors flex items-center justify-center gap-2"
         >
-          <Image src="/images/icons/vieww.png" alt="view" width={16} height={16} className="" />
+          <Image src="/images/icons/view-white.svg" alt="view" width={18} height={16} className="" />
           {buttonText}
         </Link>
       </div>
@@ -960,14 +823,8 @@ function OccasionItem({ image, title, subtitle, features }: OccasionItemProps) {
       <div className="space-y-3 px-2">
         {features.map((feat, idx) => (
           <div key={idx} className="flex items-start gap-3">
-             {/* Black Circle Check Icon */}
-            <div className="w-5 h-5 rounded-full bg-black flex items-center justify-center flex-shrink-0 mt-0.5">
-              <Image 
-                src="/images/icons/check2.png" 
-                alt="check" 
-                width={10} height={10} 
-                className="brightness-0 invert" // Putih
-              />
+            <div className="w-4 h-4 flex items-center justify-center overflow-hidden relative">
+              <Image src="/images/icons/check-black.svg" alt="check" fill className="" />
             </div>
             <span className="text-gray-600 text-sm">{feat}</span>
           </div>

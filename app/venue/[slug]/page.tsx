@@ -57,17 +57,17 @@ export default function VenueDetailPage({ params }: { params: { slug: string } }
                     <div className="flex items-center gap-2">
                       {/* Icon Capacity */}
                       <div className="relative w-5 h-5">
-                         <Image src="/icons/icon-capacity-white.png" alt="Capacity" fill className="object-contain" />
+                         <Image src="/images/icons/group-green.svg" alt="Capacity" fill className="object-contain" />
                       </div>
                       <span>{venue.capacity}</span>
                     </div>
-                    <div className="flex items-center gap-2">
+                    {/* <div className="flex items-center gap-2"> */}
                       {/* Icon Price */}
-                      <div className="relative w-5 h-5">
-                         <Image src="/icons/icon-price-white.png" alt="Price" fill className="object-contain" />
-                      </div>
-                      <span>From {venue.basePriceString}</span>
-                    </div>
+                      {/* <div className="relative w-5 h-5"> */}
+                         {/* <Image src="/icons/icon-price-white.png" alt="Price" fill className="object-contain" /> */}
+                      {/* </div> */}
+                      {/* <span>From {venue.basePriceString}</span> */}
+                    {/* </div> */}
                 </div>
             </div>
         </div>
@@ -114,7 +114,7 @@ export default function VenueDetailPage({ params }: { params: { slug: string } }
                 <div className="flex gap-4">
                   <div className="mt-1 relative w-6 h-6 flex-shrink-0">
                     {/* Ganti '/icons/icon-capacity.png' dengan file icon Anda */}
-                    <Image src="/icons/icon-capacity.png" alt="Capacity Icon" fill className="object-contain" />
+                    <Image src="/images/icons/group-green.svg" alt="Capacity Icon" fill className="object-contain" />
                   </div>
                   <div>
                     <p className="font-bold text-[#2C2420] text-sm">Capacity</p>
@@ -126,7 +126,7 @@ export default function VenueDetailPage({ params }: { params: { slug: string } }
                 <div className="flex gap-4">
                   <div className="mt-1 relative w-6 h-6 flex-shrink-0">
                     {/* Ganti '/icons/icon-heart.png' dengan file icon Anda */}
-                    <Image src="/icons/icon-heart.png" alt="Heart Icon" fill className="object-contain" />
+                    <Image src="/images/icons/heart-green.svg" alt="Heart Icon" fill className="object-contain" />
                   </div>
                   <div>
                     <p className="font-bold text-[#2C2420] text-sm">Best For</p>
@@ -159,42 +159,42 @@ export default function VenueDetailPage({ params }: { params: { slug: string } }
             
             {/* Facility 1: Venue Space */}
             <FacilityCard 
-              iconSrc="/icons/fac-venue.png"
+              iconSrc="/images/icons/build-green.svg"
               title="Venue Space"
               description="Traditional Javanese pavilion with authentic teak wood architecture"
             />
 
             {/* Facility 2: Free Chairs */}
             <FacilityCard 
-              iconSrc="/icons/fac-chair.png"
+              iconSrc="/images/icons/chair-green.svg"
               title="Free Chairs"
               description="Complimentary seating for up to 80 guests included"
             />
 
             {/* Facility 3: Sound System */}
             <FacilityCard 
-              iconSrc="/icons/fac-sound.png"
+              iconSrc="/images/icons/volume-green.svg"
               title="Sound System"
               description="Portable sound system for speeches and announcements"
             />
 
             {/* Facility 4: Toilet Facilities */}
             <FacilityCard 
-              iconSrc="/icons/fac-toilet.png"
+              iconSrc="/images/icons/gender-green.svg"
               title="Toilet Facilities"
               description="Clean and well-maintained restroom facilities"
             />
 
             {/* Facility 5: Cleaning Service */}
             <FacilityCard 
-              iconSrc="/icons/fac-clean.png"
+              iconSrc="/images/icons/brush-green.svg"
               title="Cleaning Service"
               description="Professional cleaning before and after your event"
             />
 
             {/* Facility 6: Parking Space */}
             <FacilityCard 
-              iconSrc="/icons/fac-parking.png"
+              iconSrc="/images/icons/parking-green.svg"
               title="Parking Space"
               description="Ample parking space for guests' vehicles"
             />
@@ -211,25 +211,25 @@ export default function VenueDetailPage({ params }: { params: { slug: string } }
               
               {/* Add-on 1 */}
               <AddOnItem 
-                iconSrc="/icons/addon-projector.png" 
+                iconSrc="/images/icons/video-green.svg" 
                 label="Projector & Screen" 
               />
               
               {/* Add-on 2 */}
               <AddOnItem 
-                iconSrc="/icons/addon-mic.png" 
+                iconSrc="/images/icons/mic-green.svg" 
                 label="Enhanced Sound System" 
               />
               
               {/* Add-on 3 */}
               <AddOnItem 
-                iconSrc="/icons/addon-catering.png" 
+                iconSrc="/images/icons/food-green.svg" 
                 label="Catering Services" 
               />
               
               {/* Add-on 4 */}
               <AddOnItem 
-                iconSrc="/icons/addon-decor.png" 
+                iconSrc="/images/icons/paint-green.svg" 
                 label="Decoration Setup" 
               />
 
@@ -295,7 +295,6 @@ export default function VenueDetailPage({ params }: { params: { slug: string } }
             <div className="hidden md:grid grid-cols-12 gap-4 p-6 border-b border-gray-100 bg-white font-serif text-[#2C2420] font-bold">
               <div className="col-span-4">Service</div>
               <div className="col-span-5">Description</div>
-              <div className="col-span-3 text-right">Price</div>
             </div>
 
             {/* Table Body - Mapping dari variable lokal 'additionalServices' */}
@@ -312,13 +311,6 @@ export default function VenueDetailPage({ params }: { params: { slug: string } }
                   <div className="col-span-1 md:col-span-5">
                     <span className="text-sm text-[#5C5C5C]">{item.description}</span>
                   </div>
-
-                  {/* Price */}
-                  <div className="col-span-1 md:col-span-3 md:text-right flex justify-between md:block mt-2 md:mt-0">
-                    <span className="md:hidden text-xs font-bold text-gray-400 uppercase tracking-wider">Price</span>
-                    <span className="font-medium text-[#2C2420]">{item.price}</span>
-                  </div>
-
                 </div>
               ))}
             </div>
@@ -346,7 +338,7 @@ export default function VenueDetailPage({ params }: { params: { slug: string } }
 
       <section className="py-20 bg-white">
         <div className="container mx-auto px-6">
-          
+                    
           {/* Header */}
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-serif text-[#2C2420] mb-3">
@@ -356,7 +348,7 @@ export default function VenueDetailPage({ params }: { params: { slug: string } }
               Easy to reach from Yogyakarta city center and airport
             </p>
           </div>
-
+                
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
             
             {/* --- LEFT COLUMN: INFO WITH LOCAL ICONS --- */}
@@ -367,7 +359,7 @@ export default function VenueDetailPage({ params }: { params: { slug: string } }
                 <div className="flex items-center gap-3 mb-4">
                   {/* Icon Address */}
                   <div className="relative w-6 h-6 flex-shrink-0">
-                    <Image src="/icons/loc-pin.png" alt="Address" fill className="object-contain" />
+                    <Image src="/images/icons/gps-green.svg" alt="Address" fill className="object-contain" />
                   </div>
                   <h3 className="text-xl font-serif font-bold text-[#2C2420]">Address</h3>
                 </div>
@@ -375,7 +367,7 @@ export default function VenueDetailPage({ params }: { params: { slug: string } }
                   Jl. Parangtritis KM 8.4, Timbulharjo, Sewon, Bantul, Yogyakarta 55186, Indonesia
                 </p>
               </div>
-
+                
               {/* Grid for Airport & City Center */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 
@@ -384,7 +376,7 @@ export default function VenueDetailPage({ params }: { params: { slug: string } }
                   <div className="flex items-center gap-3 mb-4">
                     {/* Icon Airport */}
                     <div className="relative w-6 h-6 flex-shrink-0">
-                      <Image src="/icons/loc-plane.png" alt="Airport" fill className="object-contain" />
+                      <Image src="/images/icons/plane-green.svg" alt="Airport" fill className="object-contain" />
                     </div>
                     <h3 className="text-lg font-serif font-bold text-[#2C2420]">From Airport</h3>
                   </div>
@@ -392,13 +384,13 @@ export default function VenueDetailPage({ params }: { params: { slug: string } }
                     25 minutes drive from Yogyakarta International Airport
                   </p>
                 </div>
-
+                
                 {/* 3. From City Center */}
                 <div className="bg-[#F9F9F0] p-8 rounded-2xl">
                   <div className="flex items-center gap-3 mb-4">
                     {/* Icon City */}
                     <div className="relative w-6 h-6 flex-shrink-0">
-                      <Image src="/icons/loc-building.png" alt="City" fill className="object-contain" />
+                      <Image src="/images/icons/city-green.svg" alt="City" fill className="object-contain" />
                     </div>
                     <h3 className="text-lg font-serif font-bold text-[#2C2420]">From City Center</h3>
                   </div>
@@ -407,13 +399,13 @@ export default function VenueDetailPage({ params }: { params: { slug: string } }
                   </p>
                 </div>
               </div>
-
+                
               {/* 4. Transportation Options Block */}
               <div className="bg-[#F9F9F0] p-8 rounded-2xl">
                 <div className="flex items-center gap-3 mb-6">
                   {/* Header Icon Car */}
                   <div className="relative w-6 h-6 flex-shrink-0">
-                    <Image src="/icons/loc-car.png" alt="Transport" fill className="object-contain" />
+                    <Image src="/images/icons/car-green.svg" alt="Transport" fill className="object-contain" />
                   </div>
                   <h3 className="text-xl font-serif font-bold text-[#2C2420]">Transportation Options</h3>
                 </div>
@@ -422,29 +414,29 @@ export default function VenueDetailPage({ params }: { params: { slug: string } }
                   {/* List Item 1: Taxi */}
                   <li className="flex items-start gap-3">
                     <div className="relative w-5 h-5 flex-shrink-0 mt-0.5">
-                      <Image src="/icons/loc-taxi.png" alt="Taxi" fill className="object-contain" />
+                      <Image src="/images/icons/taxi-green.svg" alt="Taxi" fill className="object-contain" />
                     </div>
                     <span className="text-[#5C5C5C]">Taxi and ride-sharing services available</span>
                   </li>
-
+                
                   {/* List Item 2: Bus */}
                   <li className="flex items-start gap-3">
                     <div className="relative w-5 h-5 flex-shrink-0 mt-0.5">
-                      <Image src="/icons/loc-bus.png" alt="Bus" fill className="object-contain" />
+                      <Image src="/images/icons/bus-green.svg" alt="Bus" fill className="object-contain" />
                     </div>
                     <span className="text-[#5C5C5C]">Public bus route 1A stops nearby</span>
                   </li>
-
+                
                   {/* List Item 3: Parking */}
                   <li className="flex items-start gap-3">
                     <div className="relative w-5 h-5 flex-shrink-0 mt-0.5">
-                      <Image src="/icons/loc-parking.png" alt="Parking" fill className="object-contain" />
+                      <Image src="/images/icons/parking-green.svg" alt="Parking" fill className="object-contain" />
                     </div>
                     <span className="text-[#5C5C5C]">Free on-site parking for 50+ vehicles</span>
                   </li>
                 </ul>
               </div>
-
+                
             </div>
 
 
@@ -599,31 +591,30 @@ const additionalServices = [
     {
       name: "Sound System Non-Portable",
       description: "Professional grade fixed sound system with multiple microphones",
-      price: "Rp 875.000"
     },
     {
       name: "Wedding Sound Package",
       description: "Complete audio setup for wedding ceremonies and receptions",
-      price: "Rp 1.000.000 - 1.250.000"
+
     },
     {
       name: "Projector + Screen",
       description: "HD projector with large screen for presentations",
-      price: "Rp 350.000 / day"
+
     },
     {
       name: "Additional Chair",
       description: "Extra seating beyond the included 80 chairs",
-      price: "Rp 10.000 / pcs"
+
     },
     {
       name: "Lighting Enhancement",
       description: "Professional lighting setup for evening events",
-      price: "Rp 500.000"
+
     },
     {
       name: "Photography Package",
       description: "Professional event photography services",
-      price: "Starting from Rp 2.000.000"
+
     }
   ];

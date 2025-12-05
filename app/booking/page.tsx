@@ -26,8 +26,8 @@ const formatCurrency = (amount: number) => {
 // --- KOMPONEN STEPPER ---
 const BookingStepper = () => (
   <div className="flex items-center justify-center w-full max-w-lg mx-auto mb-8 font-sans text-xs md:text-sm relative z-10">
-    <div className="flex items-center text-green-700">
-      <div className="flex items-center justify-center w-6 h-6 rounded-full bg-green-700 text-white font-bold text-xs">1</div>
+    <div className="flex items-center text-tembi">
+      <div className="flex items-center justify-center w-6 h-6 rounded-full bg-tembi text-white font-bold text-xs">1</div>
       <span className="ml-2 font-semibold">Booking Details</span>
     </div>
     <div className="w-12 border-t border-gray-300 mx-2"></div>
@@ -137,7 +137,7 @@ export default function BookingPage() {
         {/* LEFT COLUMN: Inputs */}
         <div className="lg:col-span-2 bg-white rounded-2xl shadow-lg p-6 md:p-8 border border-gray-100">
           <div className="flex items-center gap-2 mb-6 border-b border-gray-100 pb-4">
-            <Calendar className="w-5 h-5 text-green-700" />
+            <Calendar className="w-5 h-5 text-tembi" />
             <h3 className="text-xl font-bold font-serif text-gray-900">Booking Details</h3>
           </div>
 
@@ -146,25 +146,25 @@ export default function BookingPage() {
              <label className="block text-sm font-semibold text-gray-700 mb-3">Select Your Dates</label>
              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="relative">
-                  <span className="absolute top-2.5 left-3 text-green-700 text-xs font-bold flex items-center gap-1">
+                  <span className="absolute top-2.5 left-3 text-tembi text-xs font-bold flex items-center gap-1">
                     →] Check-in
                   </span>
                   <input 
                     type="date" 
                     value={checkIn} 
                     onChange={(e) => setCheckIn(e.target.value)} 
-                    className="w-full pt-8 pb-2 px-3 border border-gray-200 rounded-xl bg-gray-50 focus:bg-white focus:outline-none focus:ring-1 focus:ring-green-600 text-sm font-medium transition-colors"
+                    className="w-full pt-8 pb-2 px-3 border border-gray-200 rounded-xl bg-gray-50 focus:bg-white focus:outline-none focus:ring-1 focus:ring-tembi text-sm font-medium transition-colors"
                   />
                 </div>
                 <div className="relative">
-                  <span className="absolute top-2.5 left-3 text-green-700 text-xs font-bold flex items-center gap-1">
+                  <span className="absolute top-2.5 left-3 text-tembi text-xs font-bold flex items-center gap-1">
                     [← Check-out
                   </span>
                   <input 
                     type="date" 
                     value={checkOut} 
                     onChange={(e) => setCheckOut(e.target.value)} 
-                    className="w-full pt-8 pb-2 px-3 border border-gray-200 rounded-xl bg-gray-50 focus:bg-white focus:outline-none focus:ring-1 focus:ring-green-600 text-sm font-medium transition-colors"
+                    className="w-full pt-8 pb-2 px-3 border border-gray-200 rounded-xl bg-gray-50 focus:bg-white focus:outline-none focus:ring-1 focus:ring-tembi text-sm font-medium transition-colors"
                   />
                 </div>
              </div>
@@ -200,7 +200,7 @@ export default function BookingPage() {
           {/* Room List */}
           <div className="mb-10">
             <div className="flex items-center gap-2 mb-4">
-              <Home className="w-4 h-4 text-green-700" />
+              <Home className="w-4 h-4 text-tembi" />
               <h4 className="font-bold text-gray-800">Choose Your Cultural Room</h4>
             </div>
             <div className="space-y-4">
@@ -210,7 +210,7 @@ export default function BookingPage() {
                   onClick={() => setSelectedRoomId(room.id)}
                   className={`relative flex flex-col md:flex-row justify-between items-start md:items-center p-5 rounded-xl border cursor-pointer transition-all duration-200 
                     ${selectedRoomId === room.id 
-                      ? 'border-green-600 bg-green-50/30 shadow-sm ring-1 ring-green-600' 
+                      ? 'border-tembi bg-green-50/30 shadow-sm ring-1 ring-tembi' 
                       : 'border-gray-200 hover:border-gray-300 hover:bg-gray-50'}`}
                 >
                   <div className="mb-2 md:mb-0">
@@ -219,7 +219,7 @@ export default function BookingPage() {
                   </div>
                   <div className="text-left md:text-right w-full md:w-auto mt-2 md:mt-0 flex flex-row md:flex-col justify-between md:justify-center items-center md:items-end">
                     <div>
-                        <p className="font-bold text-green-700 text-lg">{formatCurrency(room.price)}</p>
+                        <p className="font-bold text-tembi text-lg">{formatCurrency(room.price)}</p>
                         <p className="text-[10px] text-gray-400 uppercase tracking-wider text-right hidden md:block">/night</p>
                     </div>
                   </div>
@@ -231,14 +231,14 @@ export default function BookingPage() {
           {/* Special Requests */}
           <div>
             <div className="flex items-center gap-2 mb-3">
-              <span className="text-green-700 text-xs">●</span>
+              <span className="text-tembi text-xs">●</span>
               <h4 className="font-bold text-gray-800 text-sm">Special Requests</h4>
             </div>
             <textarea 
               value={specialRequests}
               onChange={(e) => setSpecialRequests(e.target.value)}
               placeholder="Let us know about any special requirements, dietary restrictions, or cultural experiences you'd like to arrange..."
-              className="w-full p-4 border border-gray-200 rounded-xl text-sm text-gray-600 focus:outline-none focus:border-green-600 focus:ring-1 focus:ring-green-600 h-32 resize-none bg-gray-50 focus:bg-white transition-colors"
+              className="w-full p-4 border border-gray-200 rounded-xl text-sm text-gray-600 focus:outline-none focus:border-tembi focus:ring-1 focus:ring-tembi h-32 resize-none bg-gray-50 focus:bg-white transition-colors"
             ></textarea>
           </div>
         </div>
@@ -247,7 +247,7 @@ export default function BookingPage() {
         <div className="lg:col-span-1">
             <div className="bg-white rounded-2xl shadow-lg p-6 border border-gray-100 h-fit sticky top-8">
             
-            <div className="flex items-center gap-2 mb-6 text-green-800 border-b border-gray-100 pb-4">
+            <div className="flex items-center gap-2 mb-6 text-tembi border-b border-gray-100 pb-4">
                 <Eye className="w-5 h-5" />
                 <h3 className="text-lg font-serif font-bold">Room Preview</h3>
             </div>
@@ -310,14 +310,14 @@ export default function BookingPage() {
                     <button 
                     onClick={() => toggleAddon('breakfast')}
                     className={`mt-0.5 w-5 h-5 rounded border flex items-center justify-center flex-shrink-0 transition-colors
-                        ${addons.breakfast ? 'bg-green-700 border-green-700 text-white' : 'bg-white border-gray-300'}`}
+                        ${addons.breakfast ? 'bg-tembi border-tembi text-white' : 'bg-white border-gray-300'}`}
                     >
                     {addons.breakfast && <Check size={14} />}
                     </button>
                     <div className="flex-1">
                     <div className="flex justify-between items-center">
                         <span className="text-sm font-bold text-gray-800">Breakfast</span>
-                        <span className="text-xs font-semibold text-green-700">+{formatCurrency(ADDONS_PRICE.breakfast)}</span>
+                        <span className="text-xs font-semibold text-tembi">+{formatCurrency(ADDONS_PRICE.breakfast)}</span>
                     </div>
                     </div>
                 </div>
@@ -325,14 +325,14 @@ export default function BookingPage() {
                     <button 
                     onClick={() => toggleAddon('extrabed')}
                     className={`mt-0.5 w-5 h-5 rounded border flex items-center justify-center flex-shrink-0 transition-colors
-                        ${addons.extrabed ? 'bg-green-700 border-green-700 text-white' : 'bg-white border-gray-300'}`}
+                        ${addons.extrabed ? 'bg-tembi border-tembi text-white' : 'bg-white border-gray-300'}`}
                     >
                     {addons.extrabed && <Check size={14} />}
                     </button>
                     <div className="flex-1">
                     <div className="flex justify-between items-center">
                         <span className="text-sm font-bold text-gray-800">Extra Bed</span>
-                        <span className="text-xs font-semibold text-green-700">+{formatCurrency(ADDONS_PRICE.extrabed)}</span>
+                        <span className="text-xs font-semibold text-tembi">+{formatCurrency(ADDONS_PRICE.extrabed)}</span>
                     </div>
                     </div>
                 </div>
@@ -342,7 +342,7 @@ export default function BookingPage() {
             <div className="flex justify-between items-end mb-6">
                 <div>
                     <p className="text-xs text-gray-500 mb-1">Total Payment</p>
-                    <p className="font-bold text-2xl text-green-800">{formatCurrency(totalPrice)}</p>
+                    <p className="font-bold text-2xl text-tembi">{formatCurrency(totalPrice)}</p>
                 </div>
             </div>
 
@@ -361,7 +361,7 @@ export default function BookingPage() {
                 aria-disabled={!isFormValid}
                 className={`w-full block text-center py-4 rounded-xl font-bold text-white transition-all transform 
                 ${isFormValid 
-                    ? 'bg-[#8B8055] hover:bg-[#766c44] shadow-lg shadow-[#8B8055]/30 active:scale-95 cursor-pointer' 
+                    ? 'bg-tembi hover:bg-darktembi shadow-lg shadow-tembi/30 active:scale-95 cursor-pointer' 
                     : 'bg-gray-300 cursor-not-allowed pointer-events-none' 
                 }`}
             >

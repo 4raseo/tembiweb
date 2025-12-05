@@ -7,10 +7,6 @@ export interface VenueProps {
   imageSrc: string;
   title: string;
   description: string;
-  basePrice: string;    // Contoh: "Rp 1.800.000"
-  baseDuration: string; // Contoh: "2 hours"
-  extraPrice: string;   // Contoh: "Rp 875.000"
-  extraDuration: string;// Contoh: "Extra hour"
   capacity?: string;    // Opsional, misal "80 pax"
   facilities: string[]; // Array fasilitas, misal ["Sound System", "Toilet"]
 }
@@ -19,10 +15,6 @@ const VenueCard: React.FC<VenueProps> = ({
   imageSrc,
   title,
   description,
-  basePrice,
-  baseDuration,
-  extraPrice,
-  extraDuration,
   capacity,
   facilities,
 }) => {
@@ -57,18 +49,6 @@ const VenueCard: React.FC<VenueProps> = ({
           <p className="text-[#5C5C5C] text-sm leading-relaxed">
             {description}
           </p>
-        </div>
-
-        {/* Kotak Harga */}
-        <div className="bg-[#F4F6E6] rounded-xl p-4 grid grid-cols-2 gap-4 mb-6 text-center">
-          <div className="border-r border-[#D8DCC5] pr-2">
-            <p className="text-[#8B9D77] font-bold text-lg">{basePrice}</p>
-            <p className="text-[#6B6B6B] text-xs">{baseDuration}</p>
-          </div>
-          <div className="pl-2">
-            <p className="text-[#8B9D77] font-bold text-lg">{extraPrice}</p>
-            <p className="text-[#6B6B6B] text-xs">{extraDuration}</p>
-          </div>
         </div>
 
         {/* Fasilitas */}

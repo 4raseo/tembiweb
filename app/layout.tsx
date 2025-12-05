@@ -5,6 +5,7 @@ import "./globals.css";
 import Header from "../components/Header";
 import Footer  from "../components/Footer";
 import { LanguageProvider } from '@/app/context/LanguageContext';
+import BackgroundMusic from "@/components/BackgroundMusic";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -31,12 +32,12 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <BackgroundMusic />
         <LanguageProvider>
           <Header />
           {children}
           <Footer />
         </LanguageProvider>
-        
       </body>
     </html>
   );

@@ -9,34 +9,52 @@ import BuffetBooking from '@/components/BuffetBooking';
 const myPackages: PackageItem[] = [
     {
       name: "Buffet Standard",
-      price: "85,000",
       minPax: "35 Pax",
       description: "Perfect for corporate events",
       theme: "standard",
-      // Ganti dengan path icon lokal Anda
-      iconSrc: "/images/icons/foodw.png", 
-      items: ["Sup Ayam", "Ayam Goreng", "Es Teh"]
+      iconSrc: "/images/icons/food-white.svg", 
+      items: [
+        "1 Traditional Soup (Sup Ayam Jagung or Lodeh)",
+        "2 Main Dishes (Ayam Goreng Kalasan + Telur Balado)",
+        "2 Side Dishes (Tumis Tempe + Oseng Terong)",
+        "1 Traditional Dessert (Es Dawet)",
+        "2 Beverages (Es Teh + Es Jeruk)",
+        "Basic table setup & serving equipment"
+      ]
     },
     {
       name: "Buffet Premium",
-      price: "125,000",
-      minPax: "50 Pax",
+      minPax: "50 Pax", // Sesuai gambar English version
       description: "Ideal for weddings & celebrations",
       theme: "premium",
       isPopular: true,
-      // Icon berbeda (misal icon mahkota)
-      iconSrc: "/images/icons/crownw.png", 
-      items: ["Sup Kimlo", "Sapi Lada Hitam", "Es Buah"]
+      iconSrc: "/images/icons/crown-white.svg", 
+      items: [
+        "2 Traditional Soups (Choice of 3 options)",
+        "3 Premium Main Dishes including Ayam Lada Hitam",
+        "3 Side Dishes with Kembung Cabe Ijo",
+        "2 Traditional Desserts + Fruit platter",
+        "3 Beverages including Wedang Jahe",
+        "Enhanced table setup with traditional decorations",
+        "Professional serving staff included"
+      ]
     },
     {
       name: "Buffet Exclusive",
-      price: "185,000",
-      minPax: "100 Pax",
+      minPax: "100 Pax", // Sesuai gambar English version
       description: "Ultimate traditional experience",
       theme: "exclusive",
-      // Icon berbeda (misal icon diamond)
-      iconSrc: "/images/icons/diamondw.png", 
-      items: ["Full Buffet", "Live Music", "Gamelan"]
+      iconSrc: "/images/icons/diamond-white.svg", 
+      items: [
+        "Full traditional buffet setup with banana leaves",
+        "3 Traditional Soups in clay serving pots",
+        "5 Premium Main Dishes + Gulai Telur special",
+        "4 Traditional Side Dishes",
+        "Complete dessert station with 4 varieties",
+        "Traditional beverage station with live preparation",
+        "Full decorative service with gamelan music",
+        "Dedicated event coordinator & serving team"
+      ]
     }
 ];
 
@@ -71,7 +89,7 @@ export default function RiceBoxPage() {
             <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-[#96A66D] px-4 py-1.5 text-sm font-medium text-white shadow-sm">
               <div className="relative h-4 w-4">
                 <Image 
-                  src="/images/icons/foodw.png" 
+                  src="/images/icons/food-white.svg" 
                   alt="Service Icon"
                   fill
                   className="object-contain brightness-0 invert" 
@@ -94,14 +112,14 @@ export default function RiceBoxPage() {
             <div className="mb-10 flex flex-wrap gap-4">
               <div className="flex items-center gap-3 rounded-full bg-white/20 px-5 py-2.5 text-white backdrop-blur-md border border-white/10 transition hover:bg-white/30">
                 <div className="relative h-5 w-5">
-                  <Image src="/images/icons/group.png" alt="Pax Icon" fill className="object-contain" />
+                  <Image src="/images/icons/group-green.svg" alt="Pax Icon" fill className="object-contain" />
                 </div>
                 <span className="font-medium">Minimum 35 Pax</span>
               </div>
 
               <div className="flex items-center gap-3 rounded-full bg-white/20 px-5 py-2.5 text-white backdrop-blur-md border border-white/10 transition hover:bg-white/30">
                 <div className="relative h-5 w-5">
-                  <Image src="/images/icons/clock.png" alt="Time Icon" fill className="object-contain" />
+                  <Image src="/images/icons/clock-green.svg" alt="Time Icon" fill className="object-contain" />
                 </div>
                 <span className="font-medium">4-6 Hours Service</span>
               </div>
@@ -111,7 +129,7 @@ export default function RiceBoxPage() {
             <button className="group flex items-center gap-3 rounded-full bg-[#96A66D] px-8 py-4 text-base font-semibold text-white transition-all hover:bg-[#849260] hover:shadow-lg hover:-translate-y-0.5">
               View Packages
               <div className="relative h-4 w-4 transition-transform group-hover:translate-y-1">
-                <Image src="/images/icons/downarroww.png" alt="Arrow" fill className="object-contain brightness-0 invert" />
+                <Image src="/images/icons/down-arrow-white.svg" alt="Arrow" fill className="object-contain brightness-0 invert" />
               </div>
             </button>
           </div>
@@ -120,12 +138,10 @@ export default function RiceBoxPage() {
         {/* Scroll Indicator */}
         <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce z-20">
           <div className="relative h-8 w-8 opacity-80">
-            <Image src="/images/icons/down.png" alt="Scroll Down" fill className="object-contain brightness-0 invert" />
+            <Image src="/images/icons/arrow-down-white.svg" alt="Scroll Down" fill className="object-contain brightness-0 invert" />
           </div>
         </div>
       </section>
-
-
       {/* ==================================================================
           2. HERITAGE SECTION (Content)
           ================================================================== */}
@@ -197,8 +213,6 @@ export default function RiceBoxPage() {
           </div>
         </div>
       </section>
-
-
       {/* ==================================================================
           3. MENU SECTION (Cards)
           ================================================================== */}
@@ -213,136 +227,119 @@ export default function RiceBoxPage() {
               Authentic Javanese Flavors
             </h2>
             <p className="text-lg text-gray-600">
-              Each buffet package is carefully crafted with a perfect balance of Javanese flavors — from savory mains to refreshing drinks.
+              Each buffet package is carefully crafted with a perfect balance of Javanese flavors — from savory mains that warm the soul to refreshing drinks and sweet desserts that complete the experience.
             </p>
           </div>
 
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+            {/* Card 1: Soup */}
             <MenuCard 
-              icon="/images/icons/warningw.png" title="Main Courses" subtitle="Pilih Kuah & Sayur"
-              items={['Sup Ayam Jagung', 'Jangan Asem', 'Lodeh Tradisional', 'Gulai Nangka Muda']}
+              icon="/images/icons/circle-white.svg" 
+              title="Soup" 
+              subtitle="Pilih Kuah & Sayur"
+              items={[
+                'Sup Sayur Bening', 'Sup Bakso Sosis', 'Sup Rolade',
+                'Sup Ayam Jagung', 'Sup Timlo', 'Jangan Lodeh',
+                'Jangan Asem', 'Jangan Bobor Gandol', 'Oblok Godhong Telo',
+                'Gulai Nangka Muda'
+              ]}
             />
+
+            {/* Card 2: Main Course */}
             <MenuCard 
-              icon="/images/icons/chickenw.png" title="Side Dishes" subtitle="Tumis & Lauk"
-              items={['Tumis Tempe Kacang', 'Oseng Terong Balado', 'Ayam Goreng Kalasan', 'Mangut Lele', 'Telur Balado']}
+              icon="/images/icons/chicken-white.svg" 
+              title="Main Course" 
+              subtitle="Tumis & Lauk"
+              items={[
+                'Tumis Tempe Kacang Panjang', 'Tumis Tahu Tomat Ijo', 
+                'Oseng Tempe Lombok Ijo', 'Oseng Janggel Sosis', 
+                'Oseng Terong Balado', 'Oseng Labu Siam', "Ca' Buncis Tahu", 
+                "Ca' Kembang Kol Bakso", "Ca' Brokoli Jamur Kuping", 'Sapo Tahu'
+              ]}
             />
+
+            {/* Card 3: Desserts */}
             <MenuCard 
-              icon="/images/icons/icecreamw.png" title="Desserts" subtitle="Traditional Sweets"
-              items={['Es Dawet Tradisional', 'Klepon Gula Jawa', 'Onde-onde Wijen', 'Lupis Ketan']}
+              icon="/images/icons/ice-cream-white.svg" 
+              title="Desserts" 
+              subtitle="Traditional Sweets"
+              items={[
+                'Es Dawet Tradisional', 'Klepon Gula Jawa', 
+                'Onde-onde Wijen', 'Lupis Ketan'
+              ]}
             />
+
+            {/* Card 4: Beverages */}
             <MenuCard 
-              icon="/images/icons/glassw.png" title="Beverages" subtitle="Refreshing Drinks"
-              items={['Es Jeruk Segar', 'Es Teh Manis', 'Es Setrup', 'Wedang Jahe']}
+              icon="/images/icons/drink-white.svg" 
+              title="Beverages" 
+              subtitle="Refreshing Drinks"
+              items={[
+                'Es Degan', 'Es Teh Manis', 'Es Jeruk', 'Es Setup',
+                'Es Dawet', 'Es Serut Melon', 'Es Buah', 'Es Cincau',
+                'Es Cocktail', 'Es Infuse Water'
+              ]}
+            />
+
+            {/* Card 5: Chicken */}
+            <MenuCard 
+              icon="/images/icons/circle-white.svg" 
+              title="Chicken" 
+              subtitle="Pilihan Ayam"
+              items={[
+                'Ayam Goreng Kalasan', 'Ayam Goreng Kremes', 'Ayam Lada Hitam',
+                'Ayam Daun Temuru', 'Ayam Fillet Goreng', 'Ayam Saus Mentega',
+                'Ayam Semur', "Ayam Ca' Jamur", 'Ayam Cabe Ijo', 'Chicken Katsu'
+              ]}
+            />
+
+            {/* Card 6: Egg */}
+            <MenuCard 
+              icon="/images/icons/chicken-white.svg" 
+              title="Egg" 
+              subtitle="Pilihan Telur"
+              items={[
+                'Telur Semur', 'Telur Balado', 'Telur Dadar Padang',
+                'Telur Asin', 'Telur Rebus', 'Telur Crispy',
+                'Telur Ceplok Bumbu Bali', 'Telur Goreng Cabe Ijo',
+                'Gulai Telur', 'Fuyung Hai'
+              ]}
+            />
+
+            {/* Card 7: Fish */}
+            <MenuCard 
+              icon="/images/icons/circle-white.svg" 
+              title="Fish" 
+              subtitle="Pilihan Ikan"
+              items={[
+                'Lele Goreng Kremes', 'Mangut Lele', 'Nila Sambal Matah',
+                'Nila Goreng/Bakar', 'Kembung Cabe Ijo', 'Kembung Balado',
+                'Ikan Fillet Asam Manis', 'Ikan Fillet Sambal Matah',
+                'Ikan Fillet Dabu-Dabu', 'Ikan Katsu'
+              ]}
+            />
+
+            {/* Card 8: Side Dish */}
+            <MenuCard 
+              icon="/images/icons/chicken-white.svg" 
+              title="Side Dish" 
+              subtitle="Pilihan Menu Pendamping"
+              items={[
+                'Mendoan', 'Tahu/Tempe Goreng', 'Tahu/Tempe Bacem',
+                'Perkedel Tahu', 'Tahu Susu', 'Tahu Crispy',
+                'Bakwan Sayur', 'Bakwan Jagung', 'Perkedel Kentang',
+                'Jamur Crispy'
+              ]}
             />
           </div>
         </div>
       </section>
-    
-        
       <BuffetPricing 
         whatsappNumber="62812345678"
         packages={myPackages}
        />
-
        <BuffetFeatures />
-
        <BuffetBooking />
-
-       <section className="py-24 px-6 sm:px-12 lg:px-24 max-w-full bg-white">
-               <div className="max-w-7xl mx-auto">
-                 {/* 1. Section Header */}
-                 <div className="text-center max-w-2xl mx-auto mb-16">
-                   <h2 className="font-serif text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-                     Need Help or Have Questions?
-                   </h2>
-                   <p className="text-gray-600 text-lg leading-relaxed">
-                     Our team is here to help you plan the perfect catering experience for your 
-                     special event.
-                   </p>
-                 </div>
-       
-                 {/* 2. Contact Cards Grid */}
-                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-                   {/* Card 1: Call Us */}
-                   <div className="bg-[#F8F9F5] rounded-3xl p-10 flex flex-col items-center text-center hover:shadow-lg transition-all duration-300">
-                     {/* Icon Wrapper */}
-                     <div className="w-16 h-16 bg-[#8F9E75] rounded-full flex items-center justify-center mb-6 shadow-md shadow-[#8F9E75]/20">
-                       <Image 
-                         src="/images/icons/phonew.png" 
-                         alt="phone" 
-                         width={24} height={24} 
-                         className="brightness-0 invert" 
-                       />
-                     </div>
-                     <h3 className="font-serif text-2xl font-bold text-gray-900 mb-3">Call Us</h3>
-                     <p className="text-gray-500 mb-4 text-sm">Speak directly with our catering specialists</p>
-       
-                     <p className="text-gray-900 font-bold text-lg mb-2">+62 274 368 000</p>
-                     <p className="text-gray-400 text-xs font-medium">Daily 8:00 AM - 8:00 PM</p>
-                   </div>
-       
-                   {/* Card 2: WhatsApp */}
-                   <div className="bg-[#F8F9F5] rounded-3xl p-10 flex flex-col items-center text-center hover:shadow-lg transition-all duration-300">
-                     <div className="w-16 h-16 bg-[#8F9E75] rounded-full flex items-center justify-center mb-6 shadow-md shadow-[#8F9E75]/20">
-                        <Image 
-                         src="/images/icons/waw.png" 
-                         alt="wa" 
-                         width={28} height={28} 
-                         className="brightness-0 invert" 
-                       />
-                     </div>
-                     <h3 className="font-serif text-2xl font-bold text-gray-900 mb-3">WhatsApp</h3>
-                     <p className="text-gray-500 mb-4 text-sm">Quick response for urgent inquiries</p>
-       
-                     <p className="text-gray-900 font-bold text-lg mb-6">+62 822 2514 2729</p>
-       
-                     {/* Chat Now Button */}
-                     <Link 
-                       href="https://wa.me/6282225142729"
-                       className="bg-[#8F9E75] text-white text-sm font-bold py-3 px-8 rounded-lg hover:bg-[#7A8B60] transition-colors shadow-sm"
-                     >
-                       Chat Now
-                     </Link>
-                   </div>
-       
-                   {/* Card 3: Email Us */}
-                   <div className="bg-[#F8F9F5] rounded-3xl p-10 flex flex-col items-center text-center hover:shadow-lg transition-all duration-300">
-                     <div className="w-16 h-16 bg-[#8F9E75] rounded-full flex items-center justify-center mb-6 shadow-md shadow-[#8F9E75]/20">
-                        <Image 
-                         src="/images/icons/mailw.png" 
-                         alt="email" 
-                         width={24} height={24} 
-                         className="brightness-0 invert" 
-                       />
-                     </div>
-                     <h3 className="font-serif text-2xl font-bold text-gray-900 mb-3">Email Us</h3>
-                     <p className="text-gray-500 mb-4 text-sm">Detailed inquiries and custom requests</p>
-       
-                     {/* Email Link */}
-                     <a href="mailto:catering@tembihistoricalhome.com" className="text-[#8F9E75] font-bold text-lg mb-2 hover:underline break-all">
-                       catering@tembihistoricalhome.com
-                     </a>
-                     <p className="text-gray-400 text-xs font-medium">Response within 24 hours</p>
-                   </div>
-                 </div>
-                 {/* 3. Special Requests Bottom Banner */}
-                 <div className="bg-[#F8F9F5] rounded-3xl p-12 text-center w-full">
-                   <h3 className="font-serif text-2xl md:text-3xl font-bold text-gray-900 mb-4">
-                     Special Requests & Custom Packages
-                   </h3>
-                   <p className="text-gray-600 leading-relaxed max-w-3xl mx-auto mb-8">
-                     Planning a unique event or need a custom menu? Our culinary team can create bespoke catering 
-                     solutions tailored to your specific requirements, dietary needs, and cultural preferences.
-                   </p>
-                   <Link 
-                       href="https://wa.me/6282225142729"
-                       className="bg-[#8F9E75] text-white font-bold py-4 px-10 rounded-lg hover:bg-[#7A8B60] transition-colors shadow-md hover:shadow-lg transform hover:-translate-y-1 duration-300"
-                   >
-                     Request Custom Quote
-                   </Link>
-                 </div>
-               </div>
-             </section>
     </main>
   );
 }

@@ -6,7 +6,7 @@ export function AmenitiesSection() {
   const mainAmenities = [
     {
       title: "Room Comfort",
-      icon: "/images/icons/bed.png", // Ganti dengan path icon Anda
+      icon: "/images/icons/bed-green.svg", // Ganti dengan path icon Anda
       items: [
         "Air conditioning",
         "Traditional furnishing",
@@ -17,7 +17,7 @@ export function AmenitiesSection() {
     },
     {
       title: "Technology",
-      icon: "/images/icons/wifi.png",
+      icon: "/images/icons/wifi-green.svg",
       items: [
         "Free high-speed WiFi",
         "Smart TV",
@@ -28,7 +28,7 @@ export function AmenitiesSection() {
     },
     {
       title: "Cultural Services",
-      icon: "/images/icons/paint.png",
+      icon: "/images/icons/paint-green.svg",
       items: [
         "Cultural concierge",
         "Traditional performances",
@@ -39,7 +39,7 @@ export function AmenitiesSection() {
     },
     {
       title: "Dining & Wellness",
-      icon: "/images/icons/food.png",
+      icon: "/images/icons/food-green.svg",
       items: [
         "Traditional cuisine",
         "Room service",
@@ -52,12 +52,12 @@ export function AmenitiesSection() {
 
   // Data untuk Box Bawah (Additional)
   const resortAmenities = [
-    { name: "Swimming Pool", icon: "/images/icons/pool.png" },
-    { name: "Spa & Wellness", icon: "/images/icons/flower.png"},
-    { name: "Fitness Center", icon: "/images/icons/gym.png" },
-    { name: "Garden Tours", icon: "/images/icons/tree.png" },
-    { name: "Airport Transfer", icon: "/images/icons/car.png" },
-    { name: "24/7 Concierge", icon: "/images/icons/bell.png" },
+    { name: "Swimming Pool", icon: "/images/icons/swim-green.svg" },
+    { name: "Spa & Wellness", icon: "/images/icons/flower-green.svg"},
+    { name: "Fitness Center", icon: "/images/icons/dumble-green.svg" },
+    { name: "Garden Tours", icon: "/images/icons/tree-green.svg" },
+    { name: "Airport Transfer", icon: "/images/icons/car-green.svg" },
+    { name: "24/7 Concierge", icon: "/images/icons/bell-green.svg" },
   ];
 
   return (

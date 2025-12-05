@@ -3,8 +3,6 @@ import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { roomData } from '@/data/roomData';
 import { 
-  Wifi, Wind, Bath, Coffee, 
-  Utensils, Mountain, 
   Star, ArrowLeft 
 } from 'lucide-react';
 import Link from 'next/link';
@@ -28,13 +26,28 @@ const formatRupiah = (price: number) => {
 // 3. Helper Function Icon Amenities
 const getAmenityIcon = (amenity: string) => {
   const lower = amenity.toLowerCase();
-  if (lower.includes('wifi')) return <Wifi size={20} />;
-  if (lower.includes('air') || lower.includes('ac')) return <Wind size={20} />;
-  if (lower.includes('bath') || lower.includes('toilet')) return <Bath size={20} />;
-  if (lower.includes('mini') || lower.includes('bar')) return <Coffee size={20} />;
-  if (lower.includes('food') || lower.includes('break')) return <Utensils size={20} />;
-  if (lower.includes('view') || lower.includes('mountain') || lower.includes('rice')) return <Mountain size={20} />;
-  return <Star size={20} />; 
+  
+  // Tentukan path default
+  let iconPath = '/images/icons/star.svg'; // Pastikan file ini ada di public/icons/
+
+  // Logika mapping icon
+  if (lower.includes('wifi')) iconPath = '/images/icons/wifi-green.svg';
+  else if (lower.includes('air') || lower.includes('snow')) iconPath = '/images/icons/snow-green.svg';
+  else if (lower.includes('bath') || lower.includes('toilet')) iconPath = '/images/icons/bathub-green.svg';
+  else if (lower.includes('rice') || lower.includes('field')) iconPath = '/images/icons/leaf-green.svg';
+  else if (lower.includes('bar') || lower.includes('mini')) iconPath = '/images/icons/minibar-green.svg';
+  else if (lower.includes('terrace') || lower.includes('terace')) iconPath = '/images/icons/terrace-green.svg';
+  
+  // Return komponen Image Next.js
+  return (
+    <Image 
+      src={iconPath} 
+      alt={amenity}
+      width={20} 
+      height={20}
+      className="object-contain" // Menjaga proporsi gambar
+    />
+  );
 };
 
 interface RoomDetailProps {
@@ -70,7 +83,7 @@ export default function RoomDetail({ params }: RoomDetailProps) {
         <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
 
         {/* Back Button */}
-        <Link href="/rooms" className="absolute top-8 left-6 z-20 text-white hover:text-gray-200 flex items-center gap-2 transition-colors">
+        <Link href="/rooms" className="absolute top-24 left-6 z-20 text-white hover:text-gray-200 flex items-center gap-2 transition-colors">
             <ArrowLeft size={24} /> <span className="font-medium">Back to Collection</span>
         </Link>
 
@@ -123,7 +136,7 @@ export default function RoomDetail({ params }: RoomDetailProps) {
               <div className="flex items-center gap-2">
                 <div className="relative w-5 h-5 opacity-80">
                   <Image 
-                    src="/images/icons/bed.png" 
+                    src="/images/icons/bed-green.svg" 
                     alt="Bed Size"
                     fill
                     className="object-contain"
@@ -136,7 +149,7 @@ export default function RoomDetail({ params }: RoomDetailProps) {
               <div className="flex items-center gap-2">
                 <div className="relative w-5 h-5 opacity-80">
                   <Image 
-                    src="/images/icons/group.png" 
+                    src="/images/icons/group-green.svg" 
                     alt="Guests Capacity"
                     fill
                     className="object-contain"
@@ -149,7 +162,7 @@ export default function RoomDetail({ params }: RoomDetailProps) {
               <div className="flex items-center gap-2">
                 <div className="relative w-5 h-5 opacity-80">
                   <Image 
-                    src="/images/icons/size2.png" 
+                    src="/images/icons/corner-green.svg" 
                     alt="Room Size"
                     fill
                     className="object-contain"
@@ -208,30 +221,30 @@ export default function RoomDetail({ params }: RoomDetailProps) {
           </div>
           
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 auto-rows-[200px]">
-  {room.galleryImages?.map((imageSrc, index) => {
-    // Cek apakah ini gambar pertama
-    const isFirst = index === 0;
+            {room.galleryImages?.map((imageSrc, index) => {
+             // Cek apakah ini gambar pertama
+              const isFirst = index === 0;
 
-    return (
-      <div 
-        key={index} 
-        className={`relative rounded-xl overflow-hidden group shadow-sm hover:shadow-lg transition-all duration-300
-          ${isFirst ? 'sm:col-span-2 sm:row-span-2' : ''} 
-        `}
-      >
-        <Image
-          src={imageSrc}
-          alt={`${room.name} room ${index + 1}`}
-          fill
-          className="object-cover transition-transform duration-700 group-hover:scale-110"
-        />
-        
-        {/* Overlay tipis */}
-        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300" />
-      </div>
-    );
-  })}
-</div>
+              return (
+                <div 
+                  key={index} 
+                  className={`relative rounded-xl overflow-hidden group shadow-sm hover:shadow-lg transition-all duration-300
+                    ${isFirst ? 'sm:col-span-2 sm:row-span-2' : ''} 
+                  `}
+                >
+                  <Image
+                    src={imageSrc}
+                    alt={`${room.name} room ${index + 1}`}
+                    fill
+                    className="object-cover transition-transform duration-700 group-hover:scale-110"
+                  />
+
+                  {/* Overlay tipis */}
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300" />
+                </div>
+              );
+            })}
+          </div>
         </section>
 
         {/* === SECTION 4: ROOM POLICIES & INFORMATION === */}
@@ -248,19 +261,19 @@ export default function RoomDetail({ params }: RoomDetailProps) {
               <ul className="space-y-4 text-gray-600 text-sm">
                 <li className="flex items-center gap-3">
                    <div className="relative w-4 h-4 opacity-70">
-                      <Image src="/images/icons/clock.png" alt="clock" fill className="object-contain" />
+                      <Image src="/images/icons/clock-green.svg" alt="-green" fill className="object-contain" />
                    </div>
                    <span>Check-in: {room.policies.checkIn}</span>
                 </li>
                 <li className="flex items-center gap-3">
                    <div className="relative w-4 h-4 opacity-70">
-                      <Image src="/images/icons/clock.png" alt="clock" fill className="object-contain" />
+                      <Image src="/images/icons/clock-green.svg" alt="clock" fill className="object-contain" />
                    </div>
                    <span>Check-out: {room.policies.checkOut}</span>
                 </li>
                 <li className="flex items-center gap-3">
                    <div className="relative w-4 h-4 opacity-70">
-                      <Image src="/images/icons/id.png" alt="id" fill className="object-contain" />
+                      <Image src="/images/icons/id-green.svg" alt="id" fill className="object-contain" />
                    </div>
                    <span>Valid ID required</span>
                 </li>
@@ -273,19 +286,19 @@ export default function RoomDetail({ params }: RoomDetailProps) {
               <ul className="space-y-4 text-gray-600 text-sm">
                 <li className="flex items-center gap-3">
                    <div className="relative w-4 h-4">
-                      <Image src="/images/icons/check.png" alt="check" fill className="object-contain" />
+                      <Image src="/images/icons/check.svg" alt="check" fill className="object-contain" />
                    </div>
                    <span>Free cancellation 48h before</span>
                 </li>
                 <li className="flex items-center gap-3">
                    <div className="relative w-4 h-4">
-                      <Image src="/images/icons/info.png" alt="info" fill className="object-contain" />
+                      <Image src="/images/icons/info.svg" alt="info" fill className="object-contain" />
                    </div>
                    <span>50% refund 24h before</span>
                 </li>
                 <li className="flex items-center gap-3">
                    <div className="relative w-4 h-4">
-                      <Image src="/images/icons/warning.png" alt="warning" fill className="object-contain" />
+                      <Image src="/images/icons/warning.svg" alt="warning" fill className="object-contain" />
                    </div>
                    <span>No refund same day</span>
                 </li>
@@ -304,7 +317,7 @@ export default function RoomDetail({ params }: RoomDetailProps) {
               {/* Rule 1: Smoking */}
               <div className="flex items-center gap-3">
                  <div className="relative w-4 h-4 opacity-60">
-                    <Image src="/images/icons/smoking.png" alt="smoking" fill className="object-contain" />
+                    <Image src="/images/icons/no-smoking.svg" alt="smoking" fill className="object-contain" />
                  </div>
                  <span>{room.houseRules.smoking ? "Smoking allowed" : "No smoking"}</span>
               </div>
@@ -312,7 +325,7 @@ export default function RoomDetail({ params }: RoomDetailProps) {
               {/* Rule 2: Pets */}
               <div className="flex items-center gap-3">
                  <div className="relative w-4 h-4 opacity-60">
-                    <Image src="/images/icons/paw.png" alt="pets" fill className="object-contain" />
+                    <Image src="/images/icons/pet-green.svg" alt="pets" fill className="object-contain" />
                  </div>
                  <span>{room.houseRules.pets ? "Pets allowed" : "No pets allowed"}</span>
               </div>
@@ -320,7 +333,7 @@ export default function RoomDetail({ params }: RoomDetailProps) {
               {/* Rule 3: Quiet Hours */}
               <div className="flex items-center gap-3">
                  <div className="relative w-4 h-4 opacity-60">
-                    <Image src="/images/icons/volume.png" alt="quiet" fill className="object-contain" />
+                    <Image src="/images/icons/sound-green.svg" alt="quiet" fill className="object-contain" />
                  </div>
                  <span>Quiet hours {room.houseRules.quietHours}</span>
               </div>

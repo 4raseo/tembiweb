@@ -20,7 +20,7 @@ export function FeaturedRoomCard({ room }: FeaturedRoomCardProps) {
                 {/* Icon Crown Lokal */}
                 <div className="relative w-4 h-4"> {/* Wrapper untuk Image icon */}
                   <Image 
-                    src="/images/icons/crown.png" // Ganti path sesuai lokasi icon Anda
+                    src="/images/icons/crown.svg" // Ganti path sesuai lokasi icon Anda
                     alt="Crown Icon"
                     fill
                     className="object-contain"
@@ -47,7 +47,7 @@ export function FeaturedRoomCard({ room }: FeaturedRoomCardProps) {
               <div className="flex items-center gap-2">
                 <div className="relative w-4 h-4 opacity-80"> {/* Wrapper untuk Image icon */}
                     <Image 
-                        src="/images/icons/sizegray.png" // Ganti path sesuai lokasi icon Anda
+                        src="/images/icons/size-gray.svg" // Ganti path sesuai lokasi icon Anda
                         alt="Size Icon"
                         fill
                         className="object-contain"
@@ -60,7 +60,7 @@ export function FeaturedRoomCard({ room }: FeaturedRoomCardProps) {
               <div className="flex items-center gap-2">
                 <div className="relative w-4 h-4 opacity-80"> {/* Wrapper untuk Image icon */}
                     <Image 
-                        src="/images/icons/groupgray.png" // Ganti path sesuai lokasi icon Anda
+                        src="/images/icons/group-gray.svg" // Ganti path sesuai lokasi icon Anda
                         alt="Guests Icon"
                         fill
                         className="object-contain"
@@ -73,7 +73,7 @@ export function FeaturedRoomCard({ room }: FeaturedRoomCardProps) {
               <div className="flex items-center gap-2">
                 <div className="relative w-4 h-4 opacity-80"> {/* Wrapper untuk Image icon */}
                     <Image 
-                        src="/images/icons/leafgray.png" // Ganti path sesuai lokasi icon Anda
+                        src="/images/icons/leaf-gray.svg" // Ganti path sesuai lokasi icon Anda
                         alt="View Icon"
                         fill
                         className="object-contain"

@@ -35,7 +35,7 @@ export function StandardRoomCard({ room }: StandardRoomCardProps) {
             {/* Icon Camera Lokal */}
             <div className="relative w-3.5 h-3.5">
               <Image 
-                src="/images/icons/camera.png" 
+                src="/images/icons/image-white.svg" 
                 alt="camera" 
                 fill 
                 className="object-contain invert brightness-0 filter" // Opsional: agar icon putih jika gambar aslinya hitam
@@ -60,7 +60,7 @@ export function StandardRoomCard({ room }: StandardRoomCardProps) {
               {/* Icon Star Lokal */}
               {/* <div className="relative w-3.5 h-3.5"> */}
                  {/* <Image  */}
-                    {/* src="/images/icons/star.png"  */}
+                    {/* src="/images/icons/star.svg"  */}
                     {/* alt="rating"  */}
                     {/* fill  */}
                     {/* className="object-contain" */}
@@ -81,7 +81,7 @@ export function StandardRoomCard({ room }: StandardRoomCardProps) {
             {/* Size */}
             <div className="flex items-center gap-2">
               <div className="relative w-4 h-4 opacity-80">
-                 <Image src="/images/icons/size.png" alt="size" fill className="object-contain" />
+                 <Image src="/images/icons/size-green.svg" alt="size" fill className="object-contain" />
               </div>
               <span>{room.details.size || "45 m²"}</span>
             </div>
@@ -89,7 +89,7 @@ export function StandardRoomCard({ room }: StandardRoomCardProps) {
             {/* Guests */}
             <div className="flex items-center gap-2">
               <div className="relative w-4 h-4 opacity-80">
-                 <Image src="/images/icons/group.png" alt="guests" fill className="object-contain" />
+                 <Image src="/images/icons/group-green.svg" alt="guests" fill className="object-contain" />
               </div>
               <span>{room.details.guests} guests</span>
             </div>
@@ -97,7 +97,7 @@ export function StandardRoomCard({ room }: StandardRoomCardProps) {
             {/* View */}
             <div className="flex items-center gap-2">
               <div className="relative w-4 h-4 opacity-80">
-                 <Image src="/images/icons/leafsm.png" alt="view" fill className="object-contain" />
+                 <Image src="/images/icons/leaf-green.svg" alt="view" fill className="object-contain" />
               </div>
               <span >Garden view</span>
             </div>
@@ -105,7 +105,7 @@ export function StandardRoomCard({ room }: StandardRoomCardProps) {
             {/* Wifi */}
             <div className="flex items-center gap-2">
               <div className="relative w-4 h-4 opacity-80">
-                 <Image src="/images/icons/wifi.png" alt="wifi" fill className="object-contain" />
+                 <Image src="/images/icons/wifi-green.svg" alt="wifi" fill className="object-contain" />
               </div>
               <span>Free WiFi</span>
             </div>

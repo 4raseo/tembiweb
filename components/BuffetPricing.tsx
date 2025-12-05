@@ -8,7 +8,6 @@ import { Check, MessageCircle } from 'lucide-react';
 // 1. Update Interface: Ganti 'icon' menjadi 'iconSrc' (string)
 export interface PackageItem {
   name: string;
-  price: string;
   minPax: string;
   description: string;
   theme: 'standard' | 'premium' | 'exclusive';
@@ -110,14 +109,6 @@ const BuffetPricing = ({
                   <p className={`mt-2 text-sm ${isExclusive ? 'text-white/80' : 'text-gray-500'}`}>
                     {pkg.description}
                   </p>
-                  
-                  <div className="mt-6 flex items-baseline justify-center gap-1">
-                    <span className="text-sm font-semibold">Rp</span>
-                    <span className={`font-serif text-4xl font-bold ${isExclusive ? 'text-white' : 'text-[#8B9D61]'}`}>
-                      {pkg.price}
-                    </span>
-                  </div>
-                  <span className={`block text-sm ${isExclusive ? 'text-white/60' : 'text-gray-400'}`}>per person</span>
                 </div>
 
                 <div className={`mt-6 rounded-lg py-2 text-center text-sm font-medium ${isExclusive ? 'bg-white/20 text-white' : 'bg-white text-gray-600 shadow-sm'}`}>

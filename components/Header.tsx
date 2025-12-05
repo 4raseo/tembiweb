@@ -4,6 +4,7 @@
 import { useState } from 'react';
 import { Menu, X, Globe } from 'lucide-react';
 import { useLanguage } from '@/app/context/LanguageContext'; // Import hook
+import Link from 'next/link';
 
 export default function Header() { 
   const [isSidebarOpen, setSidebarOpen] = useState(false);
@@ -38,12 +39,20 @@ export default function Header() {
           </div>
 
           {/* Tengah: Logo */}
-          <div className="text-center bg-[url(/images/logotembi.png)] bg-contain bg-center bg-no-repeat h-10 w-32 mx-auto">
-            <h1 className="text-xl font-bold font-serif opacity-0">Tembi</h1>
-          </div>
+          <Link href="/" className="mx-auto"> 
+            <div className="text-center bg-[url(/images/logotembi.png)] bg-contain bg-center bg-no-repeat h-10 w-32 cursor-pointer">
+              <h1 className="text-xl font-bold font-serif opacity-0">Tembi</h1>
+            </div>
+          </Link>
 
           {/* Kanan: Language Switcher & Button */}
           <div className="justify-self-end flex items-center gap-4">
+            <Link 
+              href="/booking" 
+              className="hidden md:inline-block bg-tembi hover:bg-primary-dark text-white font-semibold py-2 px-5 rounded-md transition-colors"
+            >
+              {t.nav.book}
+            </Link>
             {/* Language Toggle Button */}
             <button 
                 onClick={toggleLanguage} 
@@ -54,10 +63,6 @@ export default function Header() {
                 <span className="text-gray-300">|</span>
                 <span className={language === 'id' ? 'font-bold' : 'font-normal'}>ID</span>
             </button>
-
-            <a href="" className="hidden md:inline-block bg-tembi hover:bg-primary-dark text-white font-semibold py-2 px-5 rounded-md transition-colors">
-              {t.nav.book}
-            </a>
           </div>
         </div>
       </header>
@@ -72,7 +77,10 @@ export default function Header() {
         <nav className="p-6">
           <ul className="flex flex-col space-y-4">
             {navLinks.map((link) => (
-              <li key={link.href}><a href={link.href} className="text-lg text-slate-800 hover:text-tembi transition-colors">{link.name}</a></li>
+              <li key={link.href}>
+                <Link href={link.href} className="text-lg text-slate-800 hover:text-tembi transition-colors">{link.name}
+                </Link>
+              </li>
             ))}
           </ul>
         </nav>
