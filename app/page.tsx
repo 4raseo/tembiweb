@@ -11,21 +11,21 @@ const houses = [
     name: 'Ngadirojo',
     desc: 'Ngadirojo House is a traditional Javanese limasan built in 1946 and relocated from Bawak Village, Cawas, Klaten, Central Java, to Tembi in 2007. Combining Javanese architecture with natural tranquility, it is an ideal choice for guests seeking peace and culture.',
     image: '/images/rooms/ngadirojo/ngadirojo.png',
-    features: ['King Bed', 'Rice Field View'],
+    features: ['King Bed', 'Pool View'],
     path: '/rooms/ngadirojo-house',
   },
   {
     name: 'Polaman',
     desc: 'Polaman House is a traditional Javanese limasan built in 1948 and relocated from Bawak Village, Cawas, Klaten, to Tembi in 2007. It combines the warmth of Javanese architecture with natural landscapes, making it perfect for an authentic and peaceful stay.',
     image: '/images/rooms/polaman/polaman.png',
-    features: ['King Bed', 'Rice Field View'],
+    features: ['King Bed', 'Pool View'],
     path: '/rooms/polaman-house',
   },
   {
     name: 'Adikarto',
     desc: 'Adikarto House is a traditional Javanese limasan house that brings coolness and comfort in a natural atmosphere. Built in 1960 in Ngadirejo, Tepus, Gunung Kidul Regency, it was relocated to Tembi in 2007 as part of cultural preservation efforts.',
     image: '/images/rooms/adikarto/adikarto.png',
-    features: ['King Bed', 'Rice Field View'],
+    features: ['King Bed', 'Garden View'],
     path: '/rooms/adikarto-house',
   },
 ];
@@ -48,7 +48,7 @@ const icons = [
 
 const heritageFeatures = [
   {
-    title: "Cultural Heritage",
+    title: "Historical Culture",
     desc: "Authentic Javanese architecture and traditions",
     icon: "/images/icons/museum-green.svg" // Icon bangunan/museum
   },
@@ -156,12 +156,10 @@ export default function HomePage() {
           </div>
           <div className="absolute inset-0 bg-black bg-opacity-40 z-10"></div>
           <div className="relative z-20 flex flex-col items-center justify-center h-full text-center text-white px-4">
-            <h2 className="text-5xl md:text-6xl font-serif font-bold mb-4 leading-tight">
-              Where Culture <br /> Meets Serenity
+            <h2 className="text-5xl md:text-6xl font-serif font-bold mb-8 leading-tight">
+              Where Historical Culture <br /> is Divine
             </h2>
-            <p className="text-xl md:text-xl max-w-2xl mb-8 font-light tracking-wide">
-              Experience authentic Javanese heritage in luxurious comfort
-            </p>
+            
             <div className="flex space-x-4">
               <Link
                 href="/rooms"
@@ -183,7 +181,7 @@ export default function HomePage() {
         <section className="py-20 px-10 bg-stone-50">
           <div className="container mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
             <div className="text-center md:text-left">
-              <h3 className="text-6xl font-serif font-thin mb-10">A Living Javanese Heritage</h3>
+              <h3 className="text-6xl font-serif font-thin mb-10">Experience Javanese Historical Culture</h3>
               <p className="text-gray-600 mb-6">
                 A place that brings calm and comfort so your mind feels lighter. The sound of nature welcomes you as soon as you step in. Fresh air helps your body relax. A well arranged space protects your rest so nothing interrupts your peace.
               </p>
@@ -276,7 +274,7 @@ export default function HomePage() {
                         <div className="relative w-3 h-3">
                           <Image src="/images/icons/mount-gray.svg" alt="View" fill className="object-contain" />
                         </div>
-                        <span>Rice Field View</span>
+                        <span>{house.features[1]}</span>
                       </div>
                     </div>
 
@@ -342,12 +340,12 @@ export default function HomePage() {
 
             {/* A SANCTUARY OF HERITAGE */}
             <div className="text-center max-w-4xl mx-auto mb-32">
-              <h2 className="text-4xl md:text-5xl font-serif font-bold text-gray-900 mb-8">
-                Living Heritage
+              <h2 className="text-4xl md:text-5xl font-serif font-bold text-gray-900 mb-24">
+                Living Experience
               </h2>
-              <p className="text-gray-600 leading-relaxed mb-16 px-4 md:px-12 text-lg">
-                Nestled in the heart of Yogyakarta, Tembi Historical Home is more than a resort, its a living collection where centuries old Javanese traditions harmoniously blend with contemporary luxury. Our carefully preserved cultural spaces and authentic architecture create an immersive experience that celebrates Indonesias rich heritage while providing the ultimate in comfort and tranquility.
-              </p>
+              {/* <p className="text-gray-600 leading-relaxed mb-16 px-4 md:px-12 text-lg"> */}
+                {/* Nestled in the heart of Yogyakarta, Tembi Historical Home is more than a resort, its a living collection where centuries old Javanese traditions harmoniously blend with contemporary luxury. Our carefully preserved cultural spaces and authentic architecture create an immersive experience that celebrates Indonesias rich heritage while providing the ultimate in comfort and tranquility. */}
+              {/* </p> */}
 
               {/* 3 Kolom Fitur */}
               <div className="grid md:grid-cols-3 gap-12">
@@ -379,7 +377,7 @@ export default function HomePage() {
               {/* Sisi Kiri: Teks & List */}
               <div className=''>
                 <h2 className="text-4xl md:text-5xl font-serif font-bold text-gray-900 mb-10 leading-tight">
-                  Food And Drink
+                  Food and Drink
                 </h2>
                 <p className="text-gray-600 mb-8 leading-relaxed pr-16 text-lg">
                   Enjoy a culinary experience that highlights the richness of Indonesian flavors. Traditional recipes are preserved and refined with modern techniques so each dish feels familiar yet exciting. The calm atmosphere adds comfort to every meal. Culture becomes part of the dining moment through flavors that feel warm and full of character.
@@ -755,22 +753,7 @@ export default function HomePage() {
         </section>
 
         {/* --- FLOATING WHATSAPP BUTTON --- */}
-        <Link
-          href="https://wa.me/6282225142729?text=Halo,%20saya%20tertarik%20untuk%20bertanya%20mengenai%20Tembi%20Historical%20Home"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="fixed bottom-6 right-6 z-50 bg-[#25D366] hover:bg-[#20bd5a] text-white p-4 rounded-full shadow-[0_4px_14px_0_rgba(0,0,0,0.39)] hover:scale-110 hover:-translate-y-1 transition-all duration-300 flex items-center justify-center"
-          aria-label="Chat on WhatsApp"
-        >
-          {/* Icon WhatsApp SVG */}
-          <svg 
-            viewBox="0 0 24 24" 
-            fill="currentColor" 
-            className="w-8 h-8"
-          >
-            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
-          </svg>
-        </Link>
+        
       </main>
     </div>
   );
