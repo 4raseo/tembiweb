@@ -12,8 +12,11 @@ export interface Room {
     bed: string;
     guests: number;
     size: string;
+    view: string;
   };
+  detailsIcons: string;
   amenities: string[];
+  amenitiesIcons: string;
   policies: {
     checkIn: string;
     checkOut: string;
@@ -34,8 +37,8 @@ export const roomData: Room[] = [
     slug: "ngadirojo-house",
     name: "Ngadirojo House",
     tagline: "A Javanese Limasan with Pool and Rice Field Views",
-    price: 845000,
-    description: "Experience the pinnacle of Javanese luxury in our Nandini suite, offering expansive garden views and a private terrace.",
+    price: 547000,
+    description: "Enjoy a meaningful Javanese stay in our suite, complete with traditional joglo architecture, a private garden terrace, and cultural concierge support.",
     longDescription:[ 
       "Ngadirojo House is a traditional Javanese limasan built in 1946 and relocated from Bawak Village, Cawas, Klaten, Central Java, to Tembi in 2007. Combining Javanese architecture with natural tranquility, it is an ideal choice for guests seeking peace and culture.",
       "With 43.2 square meters, the house includes free Wi-Fi, air conditioning, a minibar, and a private bathroom. Its highlight is the view: the front terrace overlooks a lush garden, while the back terrace opens directly to the swimming pool and expansive rice fields.",
@@ -49,8 +52,10 @@ export const roomData: Room[] = [
       "/images/rooms/ngadirojo/ngadirojo.png",
       "/images/rooms/ngadirojo/ngadirojo5.png",
     ],
-    details: { bed: "King Size Bed", guests: 2, size: "43,2 m²" },
-    amenities: ["Free WiFi", "Air Conditioning", "Private Bathroom", "Rice Field View", "Minibar", "Terrace"],
+    details: { bed: "King Size Bed", guests: 2, size: "43,2 m²", view: "Pool View" },
+    detailsIcons:"/images/icons/swim-white.svg",
+    amenities: ["Free WiFi", "Air Conditioning", "Private Bathroom", "Pool View", "Minibar", "Terrace"],
+    amenitiesIcons:"/images/icons/swim-white.svg",
     policies: { 
         checkIn: "03:00 PM", 
         checkOut: "12:00 PM", 
@@ -65,8 +70,8 @@ export const roomData: Room[] = [
     slug: "polaman-house",
     name: "Polaman House",
     tagline: "A Spacious Javanese Limasan with Pool and Rice Field Views",
-    price: 979500,
-    description: "Polaman House is a traditional Javanese limasan built in 1948 and relocated from Bawak Village, Cawas, Klaten, to Tembi in 2007. It combines the warmth of Javanese architecture with natural landscapes, making it perfect for an authentic and peaceful stay.",
+    price: 700000,
+    description: "Experience a peaceful Javanese stay in our suite, featuring traditional joglo architecture, a private garden terrace, pool view, and personalized cultural concierge service.",
     longDescription:[ 
       "Polaman House is a traditional Javanese limasan built in 1948 and relocated from Bawak Village, Cawas, Klaten, to Tembi in 2007. It combines the warmth of Javanese architecture with natural landscapes, making it perfect for an authentic and peaceful stay.",
       "With 63.13 square meters, the house provides free Wi-Fi, air conditioning, a minibar, a private bathroom, and a cozy terrace. The front terrace faces a shaded garden, while the back terrace overlooks the swimming pool and rice fields, offering a calming natural retreat.",
@@ -80,8 +85,10 @@ export const roomData: Room[] = [
       "/images/rooms/polaman/polaman4.png",
       "/images/rooms/polaman/polaman5.png",
     ],
-    details: { bed: "King Size Bed", guests: 2, size: "63,13 m²" },
-    amenities: ["Free WiFi", "Air Conditioning", "Private Bathroom", "Rice Field View", "Minibar", "Terrace"],
+    details: { bed: "King Size Bed", guests: 2, size: "63,13 m²", view: "Pool View" },
+    detailsIcons:"/images/icons/swim-white.svg",
+    amenities: ["Free WiFi", "Air Conditioning", "Private Bathroom", "Pool View", "Minibar", "Terrace"],
+    amenitiesIcons:"/images/icons/swim-green.svg",
     policies: { checkIn: "03:00 PM", checkOut: "12:00 PM", cancellation: ["Free cancellation 48h before"] },
     houseRules: { smoking: false, pets: true, quietHours: "10 PM" },
     rating: 4.9, 
@@ -93,8 +100,8 @@ export const roomData: Room[] = [
     slug: "adikarto-house",
     name: "Adikarto House",
     tagline: "The Serenity of a Classic Javanese Limasan Home",
-    price: 500000,
-    description: "Adikarto House is a traditional Javanese limasan house that brings coolness and comfort in a natural atmosphere. Built in 1960 in Ngadirejo, Tepus, Gunung Kidul Regency, it was relocated to Tembi in 2007 as part of cultural preservation efforts.",
+    price: 430000,
+    description: "Enjoy a meaningful Javanese stay with joglo-inspired architecture, a private garden terrace, relaxing garden view, and cultural concierge support.",
     longDescription:[ 
       "Adikarto House is a traditional Javanese limasan house that brings coolness and comfort in a natural atmosphere. Built in 1960 in Ngadirejo, Tepus, Gunung Kidul Regency, it was relocated to Tembi in 2007 as part of cultural preservation efforts.",
       "With 51.6 square meters of space, the house is equipped with free Wi-Fi, air conditioning, a minibar, a private bathroom, and a personal terrace facing the garden. The peaceful surroundings make it the perfect choice for guests seeking tranquility with a touch of tradition.",
@@ -108,8 +115,10 @@ export const roomData: Room[] = [
       "/images/rooms/adikarto/adikarto4.png",
       "/images/rooms/adikarto/adikarto5.png",
     ],
-    details: { bed: "King Size Bed", guests: 2, size: "51,6 m²" },
-    amenities: ["Free WiFi", "Air Conditioning", "Private Bathroom", "Rice Field View", "Minibar", "Terrace"],
+    details: { bed: "King Size Bed", guests: 2, size: "51,6 m²", view: "Garden View" },
+    detailsIcons:"/images/icons/leaf-gray.svg",
+    amenities: ["Free WiFi", "Air Conditioning", "Private Bathroom", "Garden View", "Minibar", "Terrace"],
+    amenitiesIcons:"/images/icons/leaf-green.svg",
     policies: { checkIn: "03:00 PM", checkOut: "12:00 PM", cancellation: ["Free cancellation 48h before"] },
     houseRules: { smoking: false, pets: true, quietHours: "10 PM" },
     rating: 4.9, 
@@ -120,7 +129,7 @@ export const roomData: Room[] = [
     slug: "ganjuran-house",
     name: "Ganjuran House",
     tagline: "Harmony of Javanese Tradition and Nature",
-    price: 889500,
+    price: 682000,
     description: "Ganjuran House is a traditional limasan built in 1939 and relocated from Jepitu Hamlet, Tepus, Gunung Kidul, to Tembi in 2007. With its authentic Javanese architecture, it offers a serene stay deeply connected to cultural heritage.",
     longDescription:[ 
       "Ganjuran House is a traditional limasan built in 1939 and relocated from Jepitu Hamlet, Tepus, Gunung Kidul, to Tembi in 2007. With its authentic Javanese architecture, it offers a serene stay deeply connected to cultural heritage.",
@@ -135,8 +144,10 @@ export const roomData: Room[] = [
       "/images/rooms/ganjuran/ganjuran5.png",
       "/images/rooms/ganjuran/ganjuran6.png",
     ],
-    details: { bed: "King Size Bed", guests: 3, size: "68,15 m²" },
-    amenities: ["Free WiFi", "Air Conditioning", "Private Bathroom", "Rice Field View", "Minibar", "Terrace"],
+    details: { bed: "King Size Bed", guests: 3, size: "68,15 m²", view: "Garden View" },
+    detailsIcons:"/images/icons/leaf-green.svg",
+    amenities: ["Free WiFi", "Air Conditioning", "Private Bathroom", "Garden View", "Minibar", "Terrace"],
+    amenitiesIcons:"/images/icons/leaf-green.svg",
     policies: { checkIn: "03:00 PM", checkOut: "12:00 PM", cancellation: ["Free cancellation 48h before"] },
     houseRules: { smoking: false, pets: true, quietHours: "10 PM" },
     rating: 4.9, 
@@ -147,7 +158,7 @@ export const roomData: Room[] = [
     slug: "badegan-house",
     name: "Badegan House",
     tagline: "A Touch of Sundanese Tradition in Yogyakarta’s Nature",
-    price: 450000,
+    price: 430000,
     description: "Staying at Badegan House is more than just resting—it is about experiencing the warmth of a traditional Sundanese wooden house rich in meaning. Built in 1954 in Sumedang, West Java, this stilt house was relocated to Tembi in 2006.",
     longDescription:[ 
       "Staying at Badegan House is more than just resting—it is about experiencing the warmth of a traditional Sundanese wooden house rich in meaning. Built in 1954 in Sumedang, West Java, this stilt house was relocated to Tembi in 2006.",
@@ -162,8 +173,10 @@ export const roomData: Room[] = [
       "/images/rooms/badegan/badegan5.png",
       "/images/rooms/badegan/badegan6.png",
     ],
-    details: { bed: "King Size Bed", guests: 4, size: "46 m²" },
-    amenities: ["Free WiFi", "Air Conditioning", "Private Bathroom", "Rice Field View", "Minibar", "Terrace"],
+    details: { bed: "King Size Bed", guests: 4, size: "46 m²", view: "Garden View" },
+    detailsIcons:"/images/icons/leaf-green.svg",
+    amenities: ["Free WiFi", "Air Conditioning", "Private Bathroom", "Garden View", "Minibar", "Terrace"],
+    amenitiesIcons:"/images/icons/leaf-green.svg",
     policies: { checkIn: "03:00 PM", checkOut: "12:00 PM", cancellation: ["Free cancellation 48h before"] },
     houseRules: { smoking: false, pets: true, quietHours: "10 PM" },
     rating: 4.9, 
@@ -174,7 +187,7 @@ export const roomData: Room[] = [
     slug: "wuryantoro-house",
     name: "Wuryantoro House",
     tagline: "A Javanese Limasan Home Amidst Nature’s Calm",
-    price: 650000,
+    price: 430000,
     description: "Wuryantoro House is a traditional Javanese limasan home that blends heritage with modern comfort. Built in 1960 in Ngadirejo, Tepus, Gunung Kidul, it was relocated to Tembi in 2007.",
     longDescription:[ 
       "Wuryantoro House is a traditional Javanese limasan home that blends heritage with modern comfort. Built in 1960 in Ngadirejo, Tepus, Gunung Kidul, it was relocated to Tembi in 2007.",
@@ -189,8 +202,10 @@ export const roomData: Room[] = [
       "/images/rooms/wuryantoro/wuryantoro5.png",
       "/images/rooms/wuryantoro/wuryantoro6.png",
     ],
-    details: { bed: "King Size Bed", guests: 3, size: "40,5 m²" },
-    amenities: ["Free WiFi", "Air Conditioning", "Private Bathroom", "Rice Field View", "Minibar", "Terrace"],
+    details: { bed: "King Size Bed", guests: 3, size: "40,5 m²", view: "Garden View" },
+    detailsIcons:"/images/icons/leaf-green.svg",
+    amenities: ["Free WiFi", "Air Conditioning", "Private Bathroom", "Garden View", "Minibar", "Terrace"],
+    amenitiesIcons:"/images/icons/leaf-green.svg",
     policies: { checkIn: "03:00 PM", checkOut: "12:00 PM", cancellation: ["Free cancellation 48h before"] },
     houseRules: { smoking: false, pets: true, quietHours: "10 PM" },
     rating: 4.9, 
@@ -201,7 +216,7 @@ export const roomData: Room[] = [
     slug: "morangan-house",
     name: "Morangan House",
     tagline: "Three Levels of Comfort in Traditional Architecture",
-    price: 1330000,
+    price: 970000,
     description: "Morangan House is a unique three-story accommodation created from three traditional Javanese houses originating from Tambak, Klaten (1936), Jepitu, Gunung Kidul (1939), and Majasto, Sukoharjo (1952). They were relocated and unified in Tembi in 2007, combining heritage with modern living.",
     longDescription:[ 
       "Morangan House is a unique three-story accommodation created from three traditional Javanese houses originating from Tambak, Klaten (1936), Jepitu, Gunung Kidul (1939), and Majasto, Sukoharjo (1952). They were relocated and unified in Tembi in 2007, combining heritage with modern living.",
@@ -216,8 +231,10 @@ export const roomData: Room[] = [
       "/images/rooms/morangan/morangan5.png",
       "/images/rooms/morangan/morangan6.png",
     ],
-    details: { bed: "King Size Bed", guests: 4, size: "70,7 m²" },
-    amenities: ["Free WiFi", "Air Conditioning", "Private Bathroom", "Rice Field View", "Minibar", "Terrace"],
+    details: { bed: "King Size Bed", guests: 4, size: "70,7 m²", view: "Pool View" },
+    detailsIcons:"/images/icons/swim-green.svg",
+    amenities: ["Free WiFi", "Air Conditioning", "Private Bathroom", "Pool View", "Minibar", "Terrace"],
+    amenitiesIcons:"/images/icons/swim-green.svg",
     policies: { checkIn: "03:00 PM", checkOut: "12:00 PM", cancellation: ["Free cancellation 48h before"] },
     houseRules: { smoking: false, pets: true, quietHours: "10 PM" },
     rating: 4.9, 

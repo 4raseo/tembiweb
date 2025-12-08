@@ -11,6 +11,7 @@ const houses = [
     name: 'Ngadirojo',
     desc: 'Ngadirojo House is a traditional Javanese limasan built in 1946 and relocated from Bawak Village, Cawas, Klaten, Central Java, to Tembi in 2007. Combining Javanese architecture with natural tranquility, it is an ideal choice for guests seeking peace and culture.',
     image: '/images/rooms/ngadirojo/ngadirojo.png',
+    icons: ['/images/icons/bed-gray.svg', '/images/icons/swim-gray.svg'],
     features: ['King Bed', 'Pool View'],
     path: '/rooms/ngadirojo-house',
   },
@@ -18,6 +19,7 @@ const houses = [
     name: 'Polaman',
     desc: 'Polaman House is a traditional Javanese limasan built in 1948 and relocated from Bawak Village, Cawas, Klaten, to Tembi in 2007. It combines the warmth of Javanese architecture with natural landscapes, making it perfect for an authentic and peaceful stay.',
     image: '/images/rooms/polaman/polaman.png',
+    icons: ['/images/icons/bed-gray.svg', '/images/icons/swim-gray.svg'],
     features: ['King Bed', 'Pool View'],
     path: '/rooms/polaman-house',
   },
@@ -25,6 +27,7 @@ const houses = [
     name: 'Adikarto',
     desc: 'Adikarto House is a traditional Javanese limasan house that brings coolness and comfort in a natural atmosphere. Built in 1960 in Ngadirejo, Tepus, Gunung Kidul Regency, it was relocated to Tembi in 2007 as part of cultural preservation efforts.',
     image: '/images/rooms/adikarto/adikarto.png',
+    icons: ['/images/icons/bed-gray.svg', '/images/icons/mount-gray.svg'],
     features: ['King Bed', 'Garden View'],
     path: '/rooms/adikarto-house',
   },
@@ -38,12 +41,9 @@ const heroImages = [
 ];
 
 const icons = [
-  { icon: "/images/icons/wifi-green.svg", text: "Complimentary Wi-Fi" },
-  { icon: "/images/icons/cup-green.svg", text: "Welcome Tea Ceremony" },
-  { icon: "/images/icons/flower-green.svg", text: "Traditional Amenities" },
-  { icon: "/images/icons/bell-green.svg", text: "Cultural Concierge" },
-  { icon: "/images/icons/bike-green.svg", text: "Bicycle Access" },
-  { icon: "/images/icons/music-green.svg", text: "Gamelan Course" },
+  { icon: "/images/icons/wifi-green.svg", text: "Wi-Fi" },
+  { icon: "/images/icons/cup-green.svg", text: "Special Welcome Drink" },
+  { icon: "/images/icons/music-green.svg", text: "Traditional Course" },
 ];
 
 const heritageFeatures = [
@@ -98,23 +98,23 @@ const eventPackages = [
 const collections = [
   {
     title: "Cundrik Collection",
-    desc: "A small Javanese cundrik carried as a personal talisman.",
-    image: "/images/collection/GPT0541.svg" 
+    desc: "A small cundrik once carried as a personal weapon.",
+    image: "/images/collection/cundrik/GPT0541.svg" 
   },
   {
     title: "Cundrik Collection",
-    desc: "A longer cundrik forged with sanak patterns. Its flowing lines reflect Majapahit era.",
-    image: "/images/collection/GPT0540.svg"
+    desc: "A longer cundrik forged with sanak patterns.",
+    image: "/images/collection/cundrik/GPT0540.svg"
   },
   {
-    title: "Sken Collection",
-    desc: "A small traditional Javanese dagger with a wooden handle and sheath.",
-    image: "/images/collection/GPT0519.svg"
+    title: "Keris Collection",
+    desc: "A keris from the Surakarta tradition with a straight blade.",
+    image: "/images/collection/keris/K.A 001.svg"
   },
   {
-    title: "Sken Collection",
-    desc: "A long, leaf-shaped traditional blade with a wooden hilt and sheath.",
-    image: "/images/collection/GPT0521.svg"
+    title: "Keris Collection",
+    desc: "A keris with five curves and a strong pamor pattern along the blade.",
+    image: "/images/collection/keris/K.A 002.svg"
   },
 ];
 
@@ -156,8 +156,8 @@ export default function HomePage() {
           </div>
           <div className="absolute inset-0 bg-black bg-opacity-40 z-10"></div>
           <div className="relative z-20 flex flex-col items-center justify-center h-full text-center text-white px-4">
-            <h2 className="text-5xl md:text-6xl font-serif font-bold mb-8 leading-tight">
-              Where Historical Culture <br /> is Divine
+            <h2 className="text-5xl md:text-8xl font-serif font-semibold mb-8 leading-10 md:leading-[0.8] md:drop-shadow-2xl">
+              Where Historical <br /> Culture is Divine
             </h2>
             
             <div className="flex space-x-4">
@@ -181,7 +181,7 @@ export default function HomePage() {
         <section className="py-20 px-10 bg-stone-50">
           <div className="container mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
             <div className="text-center md:text-left">
-              <h3 className="text-6xl font-serif font-thin mb-10">Experience Javanese Historical Culture</h3>
+              <h3 className="text-6xl font-serif font-thin mb-10 drop-shadow-2xl">Experience Javanese Historical Culture</h3>
               <p className="text-gray-600 mb-6">
                 A place that brings calm and comfort so your mind feels lighter. The sound of nature welcomes you as soon as you step in. Fresh air helps your body relax. A well arranged space protects your rest so nothing interrupts your peace.
               </p>
@@ -198,7 +198,7 @@ export default function HomePage() {
                   <p className="text-gray-500 text-sm mt-1">Artifacts</p>
                 </div>
                 <div>
-                  <h4 className="text-3xl font-bold text-tembi">7</h4>
+                  <h4 className="text-3xl font-bold text-tembi">9</h4>
                   <p className="text-gray-500 text-sm mt-1">House</p>
                 </div>
               </div>
@@ -264,15 +264,15 @@ export default function HomePage() {
                       {/* Icon */}
                       <div className="flex items-center gap-2">
                         <div className="relative w-3 h-3">
-                          <Image src="/images/icons/bed-gray.svg" alt="Bed" fill className="object-contain" />
+                          <Image src={house.icons[0]} alt="Bed" fill className="object-contain" />
                         </div>
-                        <span>King Bed</span>
+                        <span>{house.features[0]}</span>
                       </div>
 
                       {/* Icon */}
                       <div className="flex items-center gap-2">
                         <div className="relative w-3 h-3">
-                          <Image src="/images/icons/mount-gray.svg" alt="View" fill className="object-contain" />
+                          <Image src={house.icons[1]} alt="View" fill className="object-contain" />
                         </div>
                         <span>{house.features[1]}</span>
                       </div>
@@ -293,39 +293,44 @@ export default function HomePage() {
 
           {/* All Pavilions Include */}
           <div className="bg-stone-50 rounded-lg p-10 md:p-14">
-            <div className="grid md:grid-cols-2 gap-12 items-center">
-    
-              {/* Icon */}
+            {/* CHANGE 1: Increase grid columns to 4 to give more room to the middle section */}
+            <div className="grid md:grid-cols-4 gap-12 items-center">
+
+              {/* Column 1: Title (Takes 1 space) */}
               <div>
-                <h3 className="text-2xl font-serif font-bold mb-8 text-gray-900">
-                  All Pavilions Include
+                <h3 className="text-5xl font-serif font-medium text-gray-900 leading-[0.75]">
+                  All Pavilions <br className="hidden md:block" /> Include
                 </h3>
-                <div className="grid grid-cols-2 gap-y-4 gap-x-8">
+              </div>
+
+              {/* Column 2: Icons (Takes 2 spaces) */}
+              {/* CHANGE 2: Added md:col-span-2 so this section is wider */}
+              <div className="md:col-span-2">
+                {/* CHANGE 3: Increased gap-x to 24 (6rem) or 32 for even more space */}
+                <div className="grid grid-cols-3 gap-y-6">
                   {icons.map((item, idx) => (
-                    <div key={idx} className="flex items-center gap-3 text-gray-600 text-sm">
-                      <div className="relative w-5 h-5 flex-shrink-0"> 
+                    <div key={idx} className="flex flex-col items-center gap-2 text-gray-600 text-base text-center">
+
+                      <div className="relative w-16 h-16 flex-shrink-0"> 
                         <Image 
                           src={item.icon} 
                           alt={item.text}
                           fill
                           className="object-contain"
-                          sizes="20px"
+                          sizes="64px"
                         />
                       </div>
-                      <span>{item.text}</span>
+                      <span className="leading-tight">{item.text}</span>
                     </div>
                   ))}
                 </div>
               </div>
 
-              {/* Text & Button */}
-              <div className="text-center md:text-right md:border-l md:border-gray-200 md:px-12 flex flex-col items-center md:items-end justify-center h-full">
-                <p className="text-gray-600 mb-6 leading-relaxed text-center md:text-right md:pl-20">
-                  Experience authentic Javanese hospitality with modern comfort and cultural immersion.
-                </p>
+              {/* Column 3: Button (Takes 1 space) */}
+              <div className="text-center md:text-right md:border-l md:border-gray-200 md:pl-12 flex flex-col items-center md:items-end justify-center">
                 <Link 
                   href="/rooms"
-                  className="w-40 bg-tembi hover:bg-darktembi text-white py-3 px-8 rounded-sm text-sm font-medium transition-colors" 
+                  className="inline-block bg-tembi hover:bg-darktembi text-white py-3 px-8 rounded-sm text-sm font-medium transition-colors whitespace-nowrap" 
                 >
                   View All House
                 </Link>
@@ -340,8 +345,8 @@ export default function HomePage() {
 
             {/* A SANCTUARY OF HERITAGE */}
             <div className="text-center max-w-4xl mx-auto mb-32">
-              <h2 className="text-4xl md:text-5xl font-serif font-bold text-gray-900 mb-24">
-                Living Experience
+              <h2 className="text-4xl md:text-8xl font-serif font-bold text-gray-900 mb-24 md:leading-[0.9] drop-shadow-2xl">
+                Living <br/> Experience
               </h2>
               {/* <p className="text-gray-600 leading-relaxed mb-16 px-4 md:px-12 text-lg"> */}
                 {/* Nestled in the heart of Yogyakarta, Tembi Historical Home is more than a resort, its a living collection where centuries old Javanese traditions harmoniously blend with contemporary luxury. Our carefully preserved cultural spaces and authentic architecture create an immersive experience that celebrates Indonesias rich heritage while providing the ultimate in comfort and tranquility. */}
@@ -376,8 +381,8 @@ export default function HomePage() {
 
               {/* Sisi Kiri: Teks & List */}
               <div className=''>
-                <h2 className="text-4xl md:text-5xl font-serif font-bold text-gray-900 mb-10 leading-tight">
-                  Food and Drink
+                <h2 className="text-4xl md:text-7xl font-serif font-bold text-gray-900 mb-10 leading-tight md:leading-[0.8] md:drop-shadow-lg">
+                  Food & <br/> Drink
                 </h2>
                 <p className="text-gray-600 mb-8 leading-relaxed pr-16 text-lg">
                   Enjoy a culinary experience that highlights the richness of Indonesian flavors. Traditional recipes are preserved and refined with modern techniques so each dish feels familiar yet exciting. The calm atmosphere adds comfort to every meal. Culture becomes part of the dining moment through flavors that feel warm and full of character.
@@ -417,7 +422,7 @@ export default function HomePage() {
                 {/* Gambar Besar (Atas) - Mengambil 2 Kolom */}
                 <div className="col-span-2 relative h-96 rounded-2xl overflow-hidden shadow-lg">
                   <Image
-                    src="/images/foods/food1.png" // Ganti gambar resto
+                    src="/images/foods/food1.svg" // Ganti gambar resto
                     alt="Restaurant Interior"
                     fill
                     className="object-cover hover:scale-105 transition-transform duration-700"

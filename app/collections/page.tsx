@@ -53,44 +53,65 @@ const collectionsData: CollectionCategory[] = [
     items: [
       {
         id: 1,
-        imageUrl: "/images/collection/GPT0541.svg", // Pastikan gambar ada
+        imageUrl: "/images/collection/cundrik/GPT0541.svg", // Pastikan gambar ada
         category: "Cundrik",
         title: "GPT0541",
         description: "A small Javanese cundrik carried as a personal talisman. It represents alertness and protection, shaped with the fine coastal character of Cirebon craftsmanship."
       },
       {
         id: 2,
-        imageUrl: "/images/collection/GPT0540.svg",
+        imageUrl: "/images/collection/cundrik/GPT0540.svg",
         category: "Cundrik",
         title: "GPT0540",
         description: "A longer cundrik forged with sanak patterns. Its flowing lines reflect Majapahit era techniques and symbolize resilience and personal strength."
       },
       {
         id: 3,
-        imageUrl: "/images/collection/GPT0539.svg",
+        imageUrl: "/images/collection/cundrik/GPT0539.svg",
         category: "Cundrik",
         title: "GPT0539",
         description: "A slender cundrik used in household traditions and ceremonies. Its light form and Segaluh forging style highlight practicality and cultural identity."
       },
       {
         id: 4,
-        imageUrl: "/images/collection/GPT0538.svg", // Pastikan gambar ada
+        imageUrl: "/images/collection/cundrik/GPT0538.svg", // Pastikan gambar ada
         category: "Cundrik",
         title: "GPT0538",
         description: ""
       },
       {
         id: 5,
-        imageUrl: "/images/collection/GPT0537.svg",
+        imageUrl: "/images/collection/cundrik/GPT0537.svg",
         category: "Cundrik",
         title: "GPT0537",
         description: ""
       },
       {
         id: 6,
-        imageUrl: "/images/collection/GPT0536.svg",
+        imageUrl: "/images/collection/cundrik/GPT0536.svg",
         category: "Cundrik",
         title: "GPT0536",
+        description: ""
+      },
+      {
+        id: 7,
+        imageUrl: "/images/collection/cundrik/GPT0535.svg", // Pastikan gambar ada
+        category: "Cundrik",
+        title: "GPT0535",
+        description: ""
+      },
+      {
+        id: 8,
+        imageUrl: "/images/collection/cundrik/GPT0534.svg",
+        category: "Cundrik",
+        title: "GPT0534",
+        description: ""
+      },
+      {
+        id: 9,
+        imageUrl: "/images/collection/cundrik/GPT0533.svg",
+        category: "Cundrik",
+        title: "GPT0533",
         description: ""
       }
     ]
@@ -99,42 +120,63 @@ const collectionsData: CollectionCategory[] = [
     title: "Sword Collection",
     items: [
       {
-        id: 7,
+        id: 10,
         imageUrl: "/images/collection/GPT0578.svg",
         category: "Sword",
         title: "GPT0578",
         description: "A short Javanese sword carried as a personal protective item. It reflects Cirebon craftsmanship and symbolizes readiness and self defense."
       },
       {
-        id: 8,
+        id: 11,
         imageUrl: "/images/collection/GPT0576.svg",
         category: "Sword",
         title: "GPT0576",
         description: "A slender Javanese sword with a longer blade and visible forging patterns. It reflects Majapahit metalwork and represents firmness."
       },
       {
-        id: 9,
+        id: 12,
         imageUrl: "/images/collection/GPT0575.svg",
         category: "Sword",
         title: "GPT0575",
         description: "A light Javanese sword with a narrow blade and a simple wooden hilt. It follows the segaluh forging style and symbolizes cultural identity."
       },
       {
-        id: 10,
+        id: 13,
         imageUrl: "/images/collection/GPT0574.svg", // Pastikan gambar ada
         category: "Sword",
         title: "GPT0574",
         description: ""
       },
       {
-        id: 11,
+        id: 14,
         imageUrl: "/images/collection/GPT0572.svg",
         category: "Sword",
         title: "GPT0572",
         description: ""
       },
       {
-        id: 12,
+        id: 15,
+        imageUrl: "/images/collection/GPT0571.svg",
+        category: "Sword",
+        title: "GPT0571",
+        description: ""
+      },
+      {
+        id: 16,
+        imageUrl: "/images/collection/GPT0574.svg", // Pastikan gambar ada
+        category: "Sword",
+        title: "GPT0574",
+        description: ""
+      },
+      {
+        id: 17,
+        imageUrl: "/images/collection/GPT0572.svg",
+        category: "Sword",
+        title: "GPT0572",
+        description: ""
+      },
+      {
+        id: 18,
         imageUrl: "/images/collection/GPT0571.svg",
         category: "Sword",
         title: "GPT0571",
@@ -146,49 +188,186 @@ const collectionsData: CollectionCategory[] = [
     title: "Sken Collection",
     items: [
       {
-        id: 13,
-        imageUrl: "/images/collection/GPT0518.svg",
+        id: 19,
+        imageUrl: "/images/collection/sken/GPT0518.svg",
         category: "Sken",
         title: "GPT0518",
         description: "A small traditional Javanese dagger with a wooden handle and sheath. The Cekel Bahuluk symbolizes protection and practicality, often carried as a personal tool during the Majapahit era."
       },
       {
-        id: 14,
-        imageUrl: "/images/collection/GPT0521.svg",
+        id: 20,
+        imageUrl: "/images/collection/sken/GPT0521.svg",
         category: "Sken",
         title: "GPT0521",
         description: "A long, leaf-shaped traditional blade with a wooden hilt and sheath. The Kujang Malang represents courage and authority, used in both ceremonial and martial contexts during the Mataram Amangkurat period."
       },
       {
-        id: 15,
-        imageUrl: "/images/collection/GPT0516.svg",
+        id: 21,
+        imageUrl: "/images/collection/sken/GPT0516.svg",
         category: "Sken",
         title: "GPT0516",
         description: "A ceremonial dagger with a broad, leaf shaped blade and finely carved wooden handle and sheath. The Godong Suruh, meaning “betel leaf,” symbolizes sincerity, purity, and harmony in Javanese culture."
       },
       {
-        id: 16,
-        imageUrl: "/images/collection/GPT0517.svg", 
+        id: 22,
+        imageUrl: "/images/collection/sken/GPT0517.svg", 
         category: "Sken",
         title: "GPT0517",
-        description: "" // Tidak ada deskripsi di gambar
+        description: "" 
       },
       {
-        id: 17,
-        imageUrl: "/images/collection/GPT0519.svg",
+        id: 23,
+        imageUrl: "/images/collection/sken/GPT0519.svg",
         category: "Sken",
         title: "GPT0519",
-        description: "" // Tidak ada deskripsi di gambar
+        description: "" 
       },
       {
-        id: 18,
-        imageUrl: "/images/collection/GPT0520.svg",
+        id: 24,
+        imageUrl: "/images/collection/sken/GPT0520.svg",
         category: "Sken",
         title: "GPT0520",
-        description: "" // Tidak ada deskripsi di gambar
+        description: "" 
       }
     ]
   },
+  {
+    title: "Spear Collection",
+    items: [
+      {
+        id: 25,
+        imageUrl: "/images/collection/spear/GPT407.svg",
+        category: "Spear",
+        title: "GPT407",
+        description: "A traditional Javanese dagger with a long, narrow blade and a simple wooden hilt and sheath. The minimalist design reflects the utilitarian craftsmanship of Javanese blacksmiths, emphasizing balance and functionality rather than ornamentation."
+      },
+      {
+        id: 26,
+        imageUrl: "/images/collection/spear/GPT408.svg",
+        category: "Spear",
+        title: "GPT408",
+        description: "A traditional dagger featuring a distinctive patterned (pamor) blade and a dark wooden handle. The pamor markings are created through layered forging, symbolizing spiritual harmony and inner strength in Javanese culture."
+      },
+      {
+        id: 27,
+        imageUrl: "/images/collection/spear/GPT409.svg",
+        category: "Spear",
+        title: "GPT409",
+        description: "A short Javanese blade with a plain wooden sheath and handle, measuring 25.5 cm in blade length and 49 cm overall."
+      },
+      {
+        id: 28,
+        imageUrl: "/images/collection/spear/GPT410.svg",
+        category: "Spear",
+        title: "GPT410",
+        description: "" 
+      },
+      {
+        id: 29,
+        imageUrl: "/images/collection/spear/GPT412.svg",
+        category: "Spear",
+        title: "GPT412",
+        description: "" 
+      },
+      {
+        id: 30,
+        imageUrl: "/images/collection/spear/GPT416.svg",
+        category: "Spear",
+        title: "GPT416",
+        description: "" 
+      },
+      {
+        id: 31,
+        imageUrl: "/images/collection/spear/GPT507.svg",
+        category: "Spear",
+        title: "GPT507",
+        description: "" 
+      },
+      {
+        id: 32,
+        imageUrl: "/images/collection/spear/GPT411.svg",
+        category: "Spear",
+        title: "GPT411",
+        description: "" 
+      },
+      {
+        id: 33,
+        imageUrl: "/images/collection/spear/GPT413.svg",
+        category: "Spear",
+        title: "GPT413",
+        description: "" 
+      }
+    ]
+  },
+  {
+    title: "Wayang Collection",
+    items: [
+      {
+        id: 34,
+        imageUrl: "/images/collection/wayang/drona.svg",
+        category: "Wayang",
+        title: "Drona",
+        description: "A Javanese shadow puppet representing an elder adviser figure. The calm posture and patterned costume reflect wisdom, discipline, and high social status."
+      },
+      {
+        id: 35,
+        imageUrl: "/images/collection/wayang/gareng.svg",
+        category: "Wayang",
+        title: "Gareng",
+        description: "A comedic Javanese shadow puppet known for expressive gestures and humorous roles. The rounded body and playful stance show his role as a loyal companion who brings lightness to the story."
+      },
+      {
+        id: 36,
+        imageUrl: "/images/collection/wayang/citraksa.svg",
+        category: "Wayang",
+        title: "Citraksa",
+        description: "A traditional Javanese shadow puppet showing a noble warrior figure. The detailed carving and bright colors highlight strength, authority, and refined movement."
+      },
+      {
+        id: 37,
+        imageUrl: "/images/collection/wayang/bima.svg",
+        category: "Wayang",
+        title: "Bima",
+        description: "" 
+      },
+      {
+        id: 38,
+        imageUrl: "/images/collection/wayang/aswatama.svg",
+        category: "Wayang",
+        title: "Aswatama",
+        description: "" 
+      },
+      {
+        id: 39,
+        imageUrl: "/images/collection/wayang/bagong.svg",
+        category: "Wayang",
+        title: "Bagong",
+        description: "" 
+      },
+      {
+        id: 40,
+        imageUrl: "/images/collection/wayang/abilawa.svg",
+        category: "Wayang",
+        title: "Abilawa",
+        description: "" 
+      },
+      {
+        id: 41,
+        imageUrl: "/images/collection/wayang/arimbi.svg",
+        category: "Wayang",
+        title: "Arimbi",
+        description: "" 
+      },
+      {
+        id: 42,
+        imageUrl: "/images/collection/wayang/nakula.svg",
+        category: "Wayang",
+        title: "Nakula",
+        description: "" 
+      }
+    ]
+  }
+  
 ];
 
 export default function CollectionsPage() {

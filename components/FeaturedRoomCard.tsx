@@ -73,13 +73,13 @@ export function FeaturedRoomCard({ room }: FeaturedRoomCardProps) {
               <div className="flex items-center gap-2">
                 <div className="relative w-4 h-4 opacity-80"> {/* Wrapper untuk Image icon */}
                     <Image 
-                        src="/images/icons/leaf-gray.svg" // Ganti path sesuai lokasi icon Anda
+                        src={room.detailsIcons} // Ganti path sesuai lokasi icon Anda
                         alt="View Icon"
                         fill
                         className="object-contain"
                     />
                 </div>
-                <span>Rice Field View</span>
+                <span>{room.details.view}</span>
               </div>
 
             </div>

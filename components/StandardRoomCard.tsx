@@ -97,9 +97,9 @@ export function StandardRoomCard({ room }: StandardRoomCardProps) {
             {/* View */}
             <div className="flex items-center gap-2">
               <div className="relative w-4 h-4 opacity-80">
-                 <Image src="/images/icons/leaf-green.svg" alt="view" fill className="object-contain" />
+                 <Image src={room.detailsIcons} alt="view" fill className="object-contain" />
               </div>
-              <span >Garden view</span>
+              <span >{room.details.view}</span>
             </div>
 
             {/* Wifi */}

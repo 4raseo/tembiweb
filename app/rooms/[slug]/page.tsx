@@ -34,9 +34,10 @@ const getAmenityIcon = (amenity: string) => {
   if (lower.includes('wifi')) iconPath = '/images/icons/wifi-green.svg';
   else if (lower.includes('air') || lower.includes('snow')) iconPath = '/images/icons/snow-green.svg';
   else if (lower.includes('bath') || lower.includes('toilet')) iconPath = '/images/icons/bathub-green.svg';
-  else if (lower.includes('rice') || lower.includes('field')) iconPath = '/images/icons/leaf-green.svg';
+  else if (lower.includes('rice') || lower.includes('garden')) iconPath = '/images/icons/leaf-green.svg';
   else if (lower.includes('bar') || lower.includes('mini')) iconPath = '/images/icons/minibar-green.svg';
   else if (lower.includes('terrace') || lower.includes('terace')) iconPath = '/images/icons/terrace-green.svg';
+  else if (lower.includes('pool') || lower.includes('swim')) iconPath = '/images/icons/swim-green.svg';
   
   // Return komponen Image Next.js
   return (
