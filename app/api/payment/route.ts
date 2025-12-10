@@ -16,7 +16,6 @@ const xenditClient = new Xendit({ secretKey: process.env.XENDIT_API_KEY || '' })
 // ];
 
 
-
 export async function POST(request: Request) {
   try {
     const {
