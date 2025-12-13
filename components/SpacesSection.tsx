@@ -93,7 +93,7 @@ const SpacesSection: React.FC = () => {
             Where Culture Meets Comfort
           </h2>
           <p className="text-gray-600 text-lg font-light leading-relaxed">
-            Every space at Tembi is thoughtfully designed to honor our heritage while offering comfort and practicality.
+            Every space at Tembi is thoughtfully designed to honor our heritage while providing modern comfort and functionality.
           </p>
         </div>
 
