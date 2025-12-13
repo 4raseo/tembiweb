@@ -6,10 +6,10 @@ import { MapPin, Phone, Mail } from 'lucide-react';
 export default function Footer() {
   // Data Social Media
   const socialMedia = [
-    { name: "Facebook", icon: "/images/icons/facebook.png", link: "#" },
-    { name: "Instagram", icon: "/images/icons/instagram.png", link: "#" },
-    { name: "Twitter", icon: "/images/icons/twitter.png", link: "#" },
-    { name: "YouTube", icon: "/images/icons/youtube.png", link: "#" },
+    { name: "Facebook", icon: "/images/icons/facebook-white.svg", link: "#" },
+    { name: "Instagram", icon: "/images/icons/instagram-white.svg", link: "#" },
+    { name: "Twitter", icon: "/images/icons/twitter-white.svg", link: "#" },
+    { name: "YouTube", icon: "/images/icons/youtube-white.svg", link: "#" },
   ];
 
   return (
@@ -31,14 +31,14 @@ export default function Footer() {
               <a 
                 key={index} 
                 href={social.link} 
-                className="opacity-100 hover:opacity-70 transition-opacity duration-300"
+                className="opacity-60 hover:opacity-100 transition-opacity duration-300"
               >
                 <div className="relative w-5 h-5">
                   <Image 
                     src={social.icon} 
                     alt={social.name} 
                     fill 
-                    className="object-contain invert" 
+                    className="object-contain" 
                   />
                 </div>
               </a>

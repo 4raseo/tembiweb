@@ -6,7 +6,7 @@ export function AmenitiesSection() {
   const mainAmenities = [
     {
       title: "Room Comfort",
-      icon: "/images/icons/bed.png", // Ganti dengan path icon Anda
+      icon: "/images/icons/bed-green.svg", // Ganti dengan path icon Anda
       items: [
         "Air conditioning",
         "Traditional furnishing",
@@ -17,20 +17,16 @@ export function AmenitiesSection() {
     },
     {
       title: "Technology",
-      icon: "/images/icons/wifi.png",
+      icon: "/images/icons/wifi-green.svg",
       items: [
         "Free high-speed WiFi",
-        "Smart TV",
         "USB charging ports",
-        "International channels",
-        "Bluetooth speakers",
       ],
     },
     {
       title: "Cultural Services",
-      icon: "/images/icons/paint.png",
+      icon: "/images/icons/paint-green.svg",
       items: [
-        "Cultural concierge",
         "Traditional performances",
         "Art workshops",
         "Local guide services",
@@ -39,7 +35,7 @@ export function AmenitiesSection() {
     },
     {
       title: "Dining & Wellness",
-      icon: "/images/icons/food.png",
+      icon: "/images/icons/food-green.svg",
       items: [
         "Traditional cuisine",
         "Room service",
@@ -52,12 +48,9 @@ export function AmenitiesSection() {
 
   // Data untuk Box Bawah (Additional)
   const resortAmenities = [
-    { name: "Swimming Pool", icon: "/images/icons/pool.png" },
-    { name: "Spa & Wellness", icon: "/images/icons/flower.png"},
-    { name: "Fitness Center", icon: "/images/icons/gym.png" },
-    { name: "Garden Tours", icon: "/images/icons/tree.png" },
-    { name: "Airport Transfer", icon: "/images/icons/car.png" },
-    { name: "24/7 Concierge", icon: "/images/icons/bell.png" },
+    { name: "Swimming Pool", icon: "/images/icons/swim-green.svg" },
+    { name: "Spa & Wellness", icon: "/images/icons/flower-green.svg"},
+    { name: "Garden Tours", icon: "/images/icons/tree-green.svg" },
   ];
 
   return (
@@ -70,8 +63,7 @@ export function AmenitiesSection() {
             Amenities & Services
           </h2>
           <p className="text-gray-600 max-w-2xl mx-auto text-lg leading-relaxed">
-            Every room comes equipped with modern amenities while maintaining authentic
-            Indonesian cultural elements and providing exceptional hospitality services.
+            Every room provides comfort and convenience, enriched by authentic Indonesian cultural atmosphere and heartfelt hospitality.
           </p>
         </div>
 
@@ -110,11 +102,11 @@ export function AmenitiesSection() {
 
         {/* --- ADDITIONAL RESORT AMENITIES BOX --- */}
         <div className="bg-[#F8F9F7] rounded-[2rem] p-10 md:p-16">
-          <h3 className="text-2xl font-serif font-bold text-center text-[#1A2B1E] mb-12">
-            Additional Resort Amenities
+          <h3 className="text-2xl md:text-5xl font-serif font-bold text-center text-[#1A2B1E] mb-12">
+            Additional House Amenities
           </h3>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 text-center">
+          <div className="flex flex-wrap justify-center gap-8 md:gap-32 text-center">
             {resortAmenities.map((amenity, index) => (
               <div key={index} className="flex flex-col items-center gap-4 group">
                  {/* Icon Wrapper */}
