@@ -12,7 +12,7 @@ export default function SejarahPage() {
         {/* 1. Background Image */}
         <div className="absolute inset-0 w-full h-full">
           <Image
-            src="/images/sejarah/sejarahcover.png" // Sesuaikan path gambar background
+            src="/images/sejarah/history-hero.svg" // Sesuaikan path gambar background
             alt="Tembi Historical Home Background"
             fill
             className="object-cover"
@@ -96,12 +96,12 @@ export default function SejarahPage() {
               </div>
               {/* Stat 2 */}
               <div>
-                <h3 className="text-3xl font-serif font-bold text-[#9CA389]">1000+</h3>
+                <h3 className="text-3xl font-serif font-bold text-[#9CA389]">100+</h3>
                 <p className="text-xs md:text-sm text-gray-500 mt-1">Cultural Programs</p>
               </div>
               {/* Stat 3 */}
               <div>
-                <h3 className="text-3xl font-serif font-bold text-[#9CA389]">50k+</h3>
+                <h3 className="text-3xl font-serif font-bold text-[#9CA389]">5k+</h3>
                 <p className="text-xs md:text-sm text-gray-500 mt-1">Visitors Welcomed</p>
               </div>
             </div>
@@ -119,7 +119,7 @@ export default function SejarahPage() {
             {/* Gambar Utama */}
             <div className="relative w-full aspect-[4/3] rounded-[2.5rem] overflow-hidden shadow-xl">
                <Image 
-                 src="/images/sejarah/sejarah1.png" // Ganti dengan gambar interior Anda
+                 src="/images/sejarah/history1.svg" // Ganti dengan gambar interior Anda
                  alt="Tembi Interior Javanese Style"
                  fill
                  className="object-cover hover:scale-105 transition-transform duration-700"
@@ -129,9 +129,9 @@ export default function SejarahPage() {
 
         </div>
       </div>
-    </section>
+      </section>
 
-    <section className="py-20 md:py-28 px-6 md:px-16 lg:px-24 bg-white overflow-hidden">
+      <section className="py-20 md:py-28 px-6 md:px-16 lg:px-24 bg-white overflow-hidden">
       <div className="max-w-screen-xl mx-auto">
         
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
@@ -195,9 +195,9 @@ export default function SejarahPage() {
           </div>
         </div>
       </div>
-    </section>
+      </section>
 
-    <section className="py-20 md:py-28 px-6 md:px-16 lg:px-24 bg-[#F8F6F1]">
+      <section className="py-20 md:py-28 px-6 md:px-16 lg:px-24 bg-[#F8F6F1]">
       <div className="max-w-screen-xl mx-auto">
         
         {/* --- HEADER --- */}
@@ -300,11 +300,11 @@ export default function SejarahPage() {
         </div>
 
       </div>
-    </section>
+      </section>
 
-    <SpacesSection />
+      <SpacesSection />
 
-    <section className="relative w-full py-24 md:py-32 px-6 md:px-16 lg:px-24 overflow-hidden">
+      <section className="relative w-full py-24 md:py-32 px-6 md:px-16 lg:px-24 overflow-hidden">
       
       {/* --- 1. BACKGROUND LAYER --- */}
       <div className="absolute inset-0 w-full h-full z-0">
@@ -324,15 +324,14 @@ export default function SejarahPage() {
       <div className="relative z-10 max-w-screen-xl mx-auto text-center">
         
         {/* Quote Besar */}
-        <h2 className="text-3xl md:text-5xl font-serif font-bold text-white mb-6 leading-tight drop-shadow-lg">
-          Tembi Historical Home is <br className="hidden md:block" />
-          not just a place to visit — it is <br className="hidden md:block" />
-          a way to feel culture.
+        <h2 className="text-3xl md:text-8xl font-serif font-bold text-white mb-6 leading-tight drop-shadow-lg">
+          Where Historical <br className="hidden md:block" />
+          Culture Is Divine
         </h2>
 
         {/* Subtext */}
         <p className="text-gray-200 text-lg font-light max-w-3xl mx-auto mb-16 leading-relaxed">
-          Join us in preserving and experiencing the rich heritage of Java. Every visit supports our mission to keep traditions alive for future generations.
+          Join us in preserving and experiencing Javanese historical culture, where every visit becomes a way to connect with tradition
         </p>
 
         {/* --- 3. CARDS GRID (Glass Effect) --- */}
@@ -355,7 +354,7 @@ export default function SejarahPage() {
         </div>
 
       </div>
-    </section>
+      </section>
     </main>
   );
 }

@@ -121,65 +121,65 @@ const collectionsData: CollectionCategory[] = [
     items: [
       {
         id: 10,
-        imageUrl: "/images/collection/GPT0578.svg",
+        imageUrl: "/images/collection/sword/GPT0548.svg",
         category: "Sword",
-        title: "GPT0578",
-        description: "A short Javanese sword carried as a personal protective item. It reflects Cirebon craftsmanship and symbolizes readiness and self defense."
+        title: "GPT0548",
+        description: "A traditional single-edged blade with a hooked profile and a carved wooden handle. The form resembles regional utility and ceremonial weapons found in parts of Java."
       },
       {
         id: 11,
-        imageUrl: "/images/collection/GPT0576.svg",
+        imageUrl: "/images/collection/sword/GPT0576.svg",
         category: "Sword",
         title: "GPT0576",
         description: "A slender Javanese sword with a longer blade and visible forging patterns. It reflects Majapahit metalwork and represents firmness."
       },
       {
         id: 12,
-        imageUrl: "/images/collection/GPT0575.svg",
+        imageUrl: "/images/collection/sword/GPT0575.svg",
         category: "Sword",
         title: "GPT0575",
         description: "A light Javanese sword with a narrow blade and a simple wooden hilt. It follows the segaluh forging style and symbolizes cultural identity."
       },
       {
         id: 13,
-        imageUrl: "/images/collection/GPT0574.svg", // Pastikan gambar ada
+        imageUrl: "/images/collection/sword/GPT0549.svg", // Pastikan gambar ada
         category: "Sword",
-        title: "GPT0574",
+        title: "GPT0549",
         description: ""
       },
       {
         id: 14,
-        imageUrl: "/images/collection/GPT0572.svg",
-        category: "Sword",
-        title: "GPT0572",
-        description: ""
-      },
-      {
-        id: 15,
-        imageUrl: "/images/collection/GPT0571.svg",
-        category: "Sword",
-        title: "GPT0571",
-        description: ""
-      },
-      {
-        id: 16,
-        imageUrl: "/images/collection/GPT0574.svg", // Pastikan gambar ada
+        imageUrl: "/images/collection/sword/GPT0574.svg",
         category: "Sword",
         title: "GPT0574",
         description: ""
       },
       {
-        id: 17,
-        imageUrl: "/images/collection/GPT0572.svg",
+        id: 15,
+        imageUrl: "/images/collection/sword/GPT0550.svg",
         category: "Sword",
-        title: "GPT0572",
+        title: "GPT0550",
+        description: ""
+      },
+      {
+        id: 16,
+        imageUrl: "/images/collection/sword/GPT0570.svg", // Pastikan gambar ada
+        category: "Sword",
+        title: "GPT0550",
+        description: ""
+      },
+      {
+        id: 17,
+        imageUrl: "/images/collection/sword/GPT0571.svg",
+        category: "Sword",
+        title: "GPT0571",
         description: ""
       },
       {
         id: 18,
-        imageUrl: "/images/collection/GPT0571.svg",
+        imageUrl: "/images/collection/sword/GPT0568.svg",
         category: "Sword",
-        title: "GPT0571",
+        title: "GPT0568",
         description: ""
       }
     ]
@@ -366,8 +366,101 @@ const collectionsData: CollectionCategory[] = [
         description: "" 
       }
     ]
+  },
+  {
+    title: "Keris Collection",
+    items: [
+      {
+        id: 43,
+        imageUrl: "/images/collection/keris/KA001.svg",
+        category: "Keris",
+        title: "K.A 001",
+        description: "A keris from the Surakarta tradition with a straight blade. The pamor shows a clear layered structure that reflects careful forging techniques. The wooden hilt and engraved metal scabbard show craftsmanship associated with noble circles."
+      },
+      {
+        id: 44,
+        imageUrl: "/images/collection/keris/KA002.svg",
+        category: "Keris",
+        title: "K.A 002",
+        description: "A keris with five curves and a strong pamor pattern along the blade. The Surakarta style hilt and decorated metal scabbard reflect the cultural role of this weapon in ceremonies and heritage."
+      },
+      {
+        id: 45,
+        imageUrl: "/images/collection/keris/KA003.svg",
+        category: "Keris",
+        title: "K.A 003",
+        description: "A traditional Javanese keris with a curved pamor pattern and a wooden hilt. The scabbard uses a metal covering that indicates later preservation work. This piece represents a personal heirloom used for protection and identity."
+      },
+      {
+        id: 46,
+        imageUrl: "/images/collection/keris/KA004.svg",
+        category: "Keris",
+        title: "K.A 004",
+        description: ""
+      },
+      {
+        id: 47,
+        imageUrl: "/images/collection/keris/KA005.svg",
+        category: "Keris",
+        title: "K.A 005",
+        description: ""
+      },
+      {
+        id: 48,
+        imageUrl: "/images/collection/keris/KA006.svg",
+        category: "Keris",
+        title: "K.A 006",
+        description: ""
+      },
+      {
+        id: 49,
+        imageUrl: "/images/collection/keris/KA007.svg",
+        category: "Keris",
+        title: "K.A 007",
+        description: ""
+      },
+      {
+        id: 50,
+        imageUrl: "/images/collection/keris/KA008.svg",
+        category: "Keris",
+        title: "K.A 008",
+        description: ""
+      },
+      {
+        id: 51,
+        imageUrl: "/images/collection/keris/KA009.svg",
+        category: "Keris",
+        title: "K.A 009",
+        description: ""
+      }
+    ]
+  },
+  {
+    title: "Other Collection",
+    items: [
+      {
+        id: 52,
+        imageUrl: "/images/collection/another/GPT0578.svg",
+        category: "Other",
+        title: "Command Staff",
+        description: "A carved wooden staff featuring a pointed end and decorative top section. Objects of this form are often associated with leadership roles or ceremonial use. The material and finish suggest a relatively recent production."
+      },
+      {
+        id: 53,
+        imageUrl: "/images/collection/another/GPT0573.svg",
+        category: "Other",
+        title: "VOC Flintlock Pistol",
+        description: "A single-shot flintlock pistol associated with the VOC period in the Indonesian archipelago (17th–19th century). Flintlock pistols were commonly carried by military personnel and officers as short-range weapons and status symbols."
+      },
+      {
+        id: 54,
+        imageUrl: "/images/collection/another/GPT0572.svg",
+        category: "Other",
+        title: "Triple-Bladed Weapon",
+        description: "A three-pronged blade consisting of a central spear-like point flanked by two curved projections. The weapon is fitted with a wooden handle and sheath. Its form suggests use in close-quarter combat or ceremonial contexts, depending on historical setting and tradition."
+      },
+    ]
   }
-  
 ];
 
 export default function CollectionsPage() {
