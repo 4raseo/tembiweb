@@ -1,21 +1,14 @@
+// app/payment/page.tsx
 "use client";
 
 import { useSearchParams, useRouter } from 'next/navigation';
 import { useMemo, useState } from 'react';
 import { roomData } from '@/data/roomData';
 import { differenceInCalendarDays, format, parseISO } from 'date-fns';
-import { 
-  Check, 
-  CheckCircle, 
-  XCircle, 
-  CreditCard, 
-  Landmark, 
-  Wallet, 
-  Lock,
-  Loader2 
-} from 'lucide-react';
+import Image from 'next/image';
+import { CheckCircle, XCircle, ShieldCheck, Loader2 } from 'lucide-react';
 
-// Fungsi format mata uang
+// Fungsi untuk format mata uang Rupiah
 const formatCurrency = (amount: number) => {
   return new Intl.NumberFormat('id-ID', {
     style: 'currency',
@@ -24,24 +17,22 @@ const formatCurrency = (amount: number) => {
   }).format(amount);
 };
 
-// --- KOMPONEN STEPPER (Style dari Page2) ---
+// Komponen Stepper dengan langkah ke-2 aktif
 const PaymentStepper = () => (
-  <div className="flex items-center justify-center w-full max-w-xl mx-auto mt-8 mb-4 text-sm relative z-10">
-    <div className="flex items-center gap-2 text-[#8B8055] font-semibold">
-      <div className="bg-[#8B8055] text-white rounded-full p-0.5 w-5 h-5 flex items-center justify-center">
-        <Check size={12} strokeWidth={3} />
-      </div>
-      <span>Booking Details</span>
+  <div className="flex items-center justify-center w-full max-w-2xl mx-auto my-8">
+    <div className="flex items-center text-gray-500">
+      <ShieldCheck className="w-8 h-8 text-green-700" />
+      <span className="ml-2">Booking Details</span>
     </div>
-    <div className="w-12 h-[2px] bg-[#8B8055] mx-3"></div>
-    <div className="flex items-center gap-2 text-[#8B8055] font-bold">
-      <div className="w-6 h-6 rounded-full bg-[#8B8055] text-white flex items-center justify-center text-xs">2</div>
-      <span>Payment</span>
+    <div className="flex-auto border-t-2 border-green-700 mx-4"></div>
+    <div className="flex items-center text-green-700">
+      <div className="flex items-center justify-center w-8 h-8 rounded-full bg-green-700 text-white font-bold">2</div>
+      <span className="ml-2 font-semibold">Payment</span>
     </div>
-    <div className="w-12 h-[2px] bg-gray-300 mx-3"></div>
-    <div className="flex items-center gap-2 text-gray-400 font-medium">
-      <div className="w-6 h-6 rounded-full bg-gray-200 text-gray-400 flex items-center justify-center text-xs font-bold">3</div>
-      <span>Confirmation</span>
+    <div className="flex-auto border-t-2 border-gray-300 mx-4"></div>
+    <div className="flex items-center text-gray-500">
+      <div className="flex items-center justify-center w-8 h-8 rounded-full bg-gray-300 font-bold">3</div>
+      <span className="ml-2">Confirmation</span>
     </div>
   </div>
 );
@@ -50,17 +41,26 @@ export default function PaymentPage() {
   const searchParams = useSearchParams();
   const router = useRouter();
   
-  // --- STATE & LOGIC (DARI PAGE.TSX ASLI - DIPERTAHANKAN) ---
-  
-  const [billingInfo, setBillingInfo] = useState({
-    name: 'John Doe (Test)',
-    email: 'test@example.com',
-    phone: '+6281234567890',
-    address: '123 Test Street',
-    city: 'Jakarta',
-    postalCode: '12345',
-  });
+  // State untuk billing information
+  // const [billingInfo, setBillingInfo] = useState({
+  //   name: '',
+  //   email: '',
+  //   phone: '',
+  //   address: '',
+  //   city: '',
+  //   postalCode: '',
+  // });
 
+  const [billingInfo, setBillingInfo] = useState({
+    name: 'John Doe (Test)',
+    email: 'test@example.com',
+    phone: '+6281234567890',
+    address: '123 Test Street',
+    city: 'Jakarta',
+    postalCode: '12345',
+  });
+
+  // State untuk loading dan error
   const [isProcessing, setIsProcessing] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -73,14 +73,21 @@ export default function PaymentPage() {
 
     const room = roomData.find(r => r.slug === roomSlug);
     
+    console.log('Booking Data Debug:', {
+      roomSlug,
+      foundRoom: room,
+      allRooms: roomData.map(r => r.slug)
+    });
+
     if (!room || !checkIn || !checkOut) {
+      console.error('Invalid booking data:', { room, checkIn, checkOut });
       return null;
     }
 
     const nights = differenceInCalendarDays(parseISO(checkOut), parseISO(checkIn));
     const basePrice = room.price * nights;
-    const serviceFee = Math.round(basePrice * 0.05);
-    const tourismTax = 30000 * nights;
+    const serviceFee = Math.round(basePrice * 0.05); // 5% service fee
+    const tourismTax = 30000 * nights; // Pajak per malam
     const total = basePrice + serviceFee + tourismTax;
 
     return { 
@@ -98,6 +105,7 @@ export default function PaymentPage() {
     };
   }, [searchParams]);
 
+  // Handler untuk perubahan input
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setBillingInfo({
       ...billingInfo,
@@ -105,21 +113,25 @@ export default function PaymentPage() {
     });
   };
 
+  // Handler untuk submit payment
   const handlePayment = async () => {
+    // Validasi billing info
     if (!billingInfo.name || !billingInfo.email || !billingInfo.phone) {
       setError('Please fill in all required fields (Name, Email, Phone)');
       return;
     }
 
+    // Validasi email format
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(billingInfo.email)) {
       setError('Please enter a valid email address');
       return;
     }
 
+    // Validasi phone format (Indonesia)
     const phoneRegex = /^(\+62|62|0)[0-9]{9,12}$/;
     if (!phoneRegex.test(billingInfo.phone.replace(/\s/g, ''))) {
-      setError('Please enter a valid Indonesian phone number');
+      setError('Please enter a valid Indonesian phone number (e.g., +62812345678 or 0812345678)');
       return;
     }
 
@@ -132,7 +144,14 @@ export default function PaymentPage() {
     setError(null);
 
     try {
-      // Simulasi API Call (Sesuaikan dengan endpoint asli Anda)
+      console.log('Sending payment request with:', {
+        roomSlug: bookingData.roomSlug,
+        checkIn: bookingData.checkIn,
+        checkOut: bookingData.checkOut,
+        booker: billingInfo,
+      });
+
+      // Kirim request ke API payment
       const response = await fetch('/api/payment', {
         method: 'POST',
         headers: {
@@ -144,17 +163,28 @@ export default function PaymentPage() {
           checkOut: bookingData.checkOut,
           adults: bookingData.adults,
           children: bookingData.children,
-          booker: billingInfo,
+          booker: {
+            name: billingInfo.name,
+            email: billingInfo.email,
+            phone: billingInfo.phone,
+            address: billingInfo.address,
+            city: billingInfo.city,
+            postalCode: billingInfo.postalCode,
+          },
         }),
       });
 
       const data = await response.json();
+      
+      console.log('Payment API response:', data);
 
       if (!response.ok) {
         throw new Error(data.message || 'Payment processing failed');
       }
 
+      // Redirect ke Xendit payment page
       if (data.invoiceUrl) {
+        console.log('Redirecting to:', data.invoiceUrl);
         window.location.href = data.invoiceUrl;
       } else {
         throw new Error('Payment URL not received');
@@ -171,9 +201,10 @@ export default function PaymentPage() {
     return (
       <div className="container mx-auto px-4 py-20 text-center">
         <h2 className="text-2xl font-bold text-red-600">Invalid Booking Data</h2>
+        <p className="mt-4 text-gray-600">Please return to the booking page and try again.</p>
         <button 
           onClick={() => router.push('/booking')}
-          className="mt-6 bg-[#8B8055] text-white px-6 py-2 rounded-lg hover:bg-[#766c44]"
+          className="mt-6 bg-green-800 text-white px-6 py-2 rounded-lg hover:bg-green-900"
         >
           Back to Booking
         </button>
@@ -183,238 +214,194 @@ export default function PaymentPage() {
 
   const { room, checkIn, checkOut, adults, children, nights, basePrice, serviceFee, tourismTax, total } = bookingData;
 
-  // --- STYLE CONSTANTS (DARI PAGE2.TSX) ---
-  const cardStyle = "bg-white p-6 rounded-xl shadow-sm border border-gray-100 relative z-10";
-  const inputStyle = "w-full px-4 py-3 rounded-lg border border-gray-200 focus:outline-none focus:border-[#8B8055] focus:ring-1 focus:ring-[#8B8055] transition-all text-sm";
+  const cardStyle = "bg-white p-6 rounded-lg shadow-md border";
 
   return (
-    <main className="min-h-screen bg-[#EFF1F0] font-sans text-gray-800 pb-20 relative overflow-hidden">
-      
-      {/* === BACKGROUND BELAH KETUPAT (RHOMBUS) === */}
-      <div className="absolute top-0 left-0 w-full h-full pointer-events-none z-0 overflow-hidden">
-        <div 
-          className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-[1400px] h-[1400px] bg-[#FAFAF9] shadow-2xl opacity-100"
-          style={{ 
-            clipPath: "polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)" 
-          }}
-        ></div>
-      </div>
-
-      {/* === HERO SECTION === */}
-      <div className="relative pt-16 pb-12 z-10">
-        <div className="container mx-auto px-4 text-center">
-          <h1 className="text-4xl md:text-5xl font-serif font-bold text-[#1A202C] mb-3">
-            Complete Your Payment
-          </h1>
-          <p className="text-gray-500 text-sm md:text-base max-w-2xl mx-auto font-light">
-            Secure your stay with us at Tembi Cultural House and experience <br className="hidden md:block" />
-            authentic Javanese hospitality
-          </p>
-          <PaymentStepper />
+    <main className="bg-gray-50 pb-20">
+      <div className="container mx-auto px-4 py-10">
+        <div className="text-center">
+          <h1 className="text-4xl font-bold">Complete Your Payment</h1>
+          <p className="mt-2 text-gray-600">Secure your stay with us at Tembi Cultural House and experience authentic Javanese hospitality.</p>
         </div>
-      </div>
-
-      {/* === ERROR MESSAGE DISPLAY === */}
-      {error && (
-        <div className="container mx-auto px-4 relative z-20 mb-6 max-w-6xl">
-          <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded relative">
-            <strong className="font-bold">Error: </strong>
-            <span className="block sm:inline">{error}</span>
-          </div>
-        </div>
-      )}
-
-      {/* === MAIN CONTENT === */}
-      <div className="container mx-auto px-4 py-2 max-w-6xl relative z-10">
+        <PaymentStepper />
         
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        {/* Error Message */}
+        {error && (
+          <div className="max-w-4xl mx-auto mb-6 p-4 bg-red-50 border border-red-200 rounded-lg">
+            <p className="text-red-700 font-medium">{error}</p>
+          </div>
+        )}
+
+        <div className="flex flex-col gap-8 mt-10">
+          
+          {/* Section 1: Grid untuk detail dan pembayaran */}
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             
             {/* === Kolom Kiri === */}
-            <div className="lg:col-span-1 flex flex-col gap-6">
+            <div className="lg:col-span-1 flex flex-col gap-8">
               
-              {/* Card 1: Booking Summary */}
-              <div className={`${cardStyle} p-0 overflow-hidden`}>
-                <div className="relative h-48 w-full">
-                    {/* Menggunakan backgroundImage agar sama persis dengan page2.tsx */}
-                    <div 
-                        className="absolute inset-0 bg-cover bg-center"
-                        style={{ backgroundImage: `url(${room.imageUrl})` }}
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                    <div className="absolute bottom-4 left-4 text-white">
-                        <h3 className="text-xl font-bold font-serif">{room.name}</h3>
-                        <p className="text-xs opacity-90">{room.tagline}</p>
-                    </div>
-                    <div className="absolute top-4 right-4">
-                        <span className="bg-green-100/90 backdrop-blur-sm text-green-800 text-xs font-bold px-3 py-1 rounded-full shadow-sm">
-                            Confirmed
-                        </span>
-                    </div>
+              {/* Card 1: Booking Summary & Price Details */}
+              <div className={cardStyle}>
+                <div className="flex justify-between items-center pb-4 border-b">
+                  <h2 className="text-xl font-bold">Booking Summary</h2>
+                  <span className="text-xs font-semibold bg-green-100 text-green-800 px-2 py-1 rounded-full">Confirmed</span>
                 </div>
-
-                <div className="p-6">
-                    <h2 className="font-bold text-lg font-serif mb-4 text-gray-900">Booking Summary</h2>
-                    <div className="space-y-3 text-sm text-gray-600 mb-6">
-                        <div className="flex justify-between pb-2 border-b border-dashed border-gray-200">
-                            <span>Check-in</span><span className="font-bold text-gray-800">{format(parseISO(checkIn), 'EEE, MMM dd, yyyy')}</span>
-                        </div>
-                        <div className="flex justify-between pb-2 border-b border-dashed border-gray-200">
-                            <span>Check-out</span><span className="font-bold text-gray-800">{format(parseISO(checkOut), 'EEE, MMM dd, yyyy')}</span>
-                        </div>
-                        <div className="flex justify-between">
-                            <span>Guests</span><span className="font-bold text-gray-800">{adults} Adults{children > 0 ? `, ${children} Children` : ''}</span>
-                        </div>
-                        <div className="flex justify-between">
-                            <span>Duration</span><span className="font-bold text-gray-800">{nights} Nights</span>
-                        </div>
+                <div className="mt-4">
+                  {room.imageUrl && (
+                    <Image src={room.imageUrl} alt={room.name} width={400} height={250} className="rounded-lg object-cover" />
+                  )}
+                  <h3 className="text-lg font-bold mt-4">{room.name}</h3>
+                  <p className="text-sm text-gray-500">{room.tagline}</p>
+                </div>
+                <div className="space-y-3 mt-6 text-sm">
+                  <div className="flex justify-between"><span>Check-in</span><span className="font-semibold">{format(parseISO(checkIn), 'EEE, MMM dd, yyyy')}</span></div>
+                  <div className="flex justify-between"><span>Check-out</span><span className="font-semibold">{format(parseISO(checkOut), 'EEE, MMM dd, yyyy')}</span></div>
+                  <div className="flex justify-between"><span>Guests</span><span className="font-semibold">{adults} Adults{children > 0 ? `, ${children} Children` : ''}</span></div>
+                  <div className="flex justify-between"><span>Duration</span><span className="font-semibold">{nights} Nights</span></div>
+                </div>
+                <div className="border-t my-4"></div>
+                <h4 className="font-semibold mb-2 text-sm">Price Details</h4>
+                <div className="space-y-2 text-sm">
+                    <div className="flex justify-between text-gray-600">
+                      <span>{formatCurrency(room.price)} x {nights} nights</span>
+                      <span>{formatCurrency(basePrice)}</span>
                     </div>
-
-                    <div className="bg-gray-50 p-4 rounded-lg">
-                        <h4 className="font-bold text-gray-900 mb-3 text-sm">Price Details</h4>
-                        <div className="space-y-2 text-sm text-gray-600">
-                            <div className="flex justify-between"><span>{formatCurrency(room.price)} x {nights} nights</span><span>{formatCurrency(basePrice)}</span></div>
-                            <div className="flex justify-between"><span>Service fee (5%)</span><span>{formatCurrency(serviceFee)}</span></div>
-                            <div className="flex justify-between"><span>Tourism tax</span><span>{formatCurrency(tourismTax)}</span></div>
-                        </div>
+                    <div className="flex justify-between text-gray-600">
+                      <span>Service fee (5%)</span>
+                      <span>{formatCurrency(serviceFee)}</span>
+                    </div>
+                    <div className="flex justify-between text-gray-600">
+                      <span>Tourism tax</span>
+                      <span>{formatCurrency(tourismTax)}</span>
                     </div>
                 </div>
               </div>
               
               {/* Card 2: Cancellation Policy */}
               <div className={cardStyle}>
-                  <h4 className="font-bold mb-4 text-lg font-serif">Cancellation Policy</h4>
-                  <ul className="space-y-3 text-sm text-gray-600">
-                      <li className="flex items-start"><CheckCircle className="w-4 h-4 mr-3 mt-0.5 text-green-600 flex-shrink-0"/> <span>Free cancellation until 48h before check-in.</span></li>
-                      <li className="flex items-start"><CheckCircle className="w-4 h-4 mr-3 mt-0.5 text-orange-500 flex-shrink-0"/> <span>50% refund within 48h.</span></li>
-                      <li className="flex items-start"><XCircle className="w-4 h-4 mr-3 mt-0.5 text-red-600 flex-shrink-0"/> <span>No refund for no-shows.</span></li>
+                  <h4 className="font-bold mb-4 text-xl">Cancellation Policy</h4>
+                  <ul className="space-y-2 text-sm text-gray-600">
+                      <li className="flex items-start">
+                        <CheckCircle className="w-4 h-4 mr-2 mt-0.5 text-green-600 flex-shrink-0"/> 
+                        Free cancellation until 48 hours before check-in.
+                      </li>
+                      <li className="flex items-start">
+                        <CheckCircle className="w-4 h-4 mr-2 mt-0.5 text-orange-500 flex-shrink-0"/> 
+                        50% refund for cancellations within 48 hours.
+                      </li>
+                      <li className="flex items-start">
+                        <XCircle className="w-4 h-4 mr-2 mt-0.5 text-red-600 flex-shrink-0"/> 
+                        No refund for no-shows.
+                      </li>
                   </ul>
               </div>
             </div>
 
             {/* === Kolom Kanan === */}
-            <div className="lg:col-span-2 flex flex-col gap-6">
+            <div className="lg:col-span-2 flex flex-col gap-8">
               
-              {/* Card 3: Billing Information (Layout Page2, Fungsi Page1) */}
+              {/* Card: Billing Information */}
               <div className={cardStyle}>
-                <h2 className="text-xl font-serif font-bold text-gray-900 mb-6">Billing Information</h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                  
-                  {/* Full Name */}
-                  <div className="col-span-2 md:col-span-1">
-                    <label className="block text-xs font-bold text-gray-600 mb-1.5 ml-1">Full Name *</label>
-                    <input 
-                        type="text" 
-                        name="name"
-                        value={billingInfo.name}
-                        onChange={handleInputChange}
-                        placeholder="John Doe"
-                        className={inputStyle}
-                    />
-                  </div>
-
-                  {/* Email Address */}
-                  <div className="col-span-2 md:col-span-1">
-                    <label className="block text-xs font-bold text-gray-600 mb-1.5 ml-1">Email Address *</label>
-                    <input 
-                        type="email" 
-                        name="email"
-                        value={billingInfo.email}
-                        onChange={handleInputChange}
-                        placeholder="email@example.com"
-                        className={inputStyle}
-                    />
-                  </div>
-
-                  {/* Phone Number */}
-                  <div className="col-span-2 md:col-span-1">
-                    <label className="block text-xs font-bold text-gray-600 mb-1.5 ml-1">Phone Number *</label>
-                    <input 
-                        type="tel" 
-                        name="phone"
-                        value={billingInfo.phone}
-                        onChange={handleInputChange}
-                        placeholder="+62..."
-                        className={inputStyle}
-                    />
-                  </div>
-
-                  {/* City */}
-                  <div className="col-span-2 md:col-span-1">
-                    <label className="block text-xs font-bold text-gray-600 mb-1.5 ml-1">City</label>
-                    <input 
-                        type="text" 
-                        name="city"
-                        value={billingInfo.city}
-                        onChange={handleInputChange}
-                        placeholder="Jakarta"
-                        className={inputStyle}
-                    />
-                  </div>
-
-                  {/* Address */}
-                  <div className="col-span-2">
-                    <label className="block text-xs font-bold text-gray-600 mb-1.5 ml-1">Address</label>
-                    <input 
-                        type="text" 
-                        name="address"
-                        value={billingInfo.address}
-                        onChange={handleInputChange}
-                        placeholder="Street Address"
-                        className={inputStyle}
-                    />
-                  </div>
-
-                   {/* Postal Code */}
-                   <div className="col-span-2 md:col-span-1">
-                    <label className="block text-xs font-bold text-gray-600 mb-1.5 ml-1">Postal Code</label>
-                    <input 
-                        type="text" 
-                        name="postalCode"
-                        value={billingInfo.postalCode}
-                        onChange={handleInputChange}
-                        placeholder="12345"
-                        className={inputStyle}
-                    />
-                  </div>
-
+                <h2 className="text-xl font-bold mb-4">Billing Information</h2>
+                <p className="text-sm text-gray-600 mb-4">Please enter your contact details for booking confirmation.</p>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <input 
+                    type="text" 
+                    name="name"
+                    placeholder="Full Name *" 
+                    value={billingInfo.name}
+                    onChange={handleInputChange}
+                    className="col-span-2 p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-700"
+                    required
+                  />
+                  <input 
+                    type="email" 
+                    name="email"
+                    placeholder="Email Address *" 
+                    value={billingInfo.email}
+                    onChange={handleInputChange}
+                    className="p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-700"
+                    required
+                  />
+                  <input 
+                    type="tel" 
+                    name="phone"
+                    placeholder="Phone Number * (e.g., +62812345678 or 0812345678)" 
+                    value={billingInfo.phone}
+                    onChange={handleInputChange}
+                    className="p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-700"
+                    required
+                  />
+                  <input 
+                    type="text" 
+                    name="address"
+                    placeholder="Address (Optional)" 
+                    value={billingInfo.address}
+                    onChange={handleInputChange}
+                    className="col-span-2 p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-700"
+                  />
+                  <input 
+                    type="text" 
+                    name="city"
+                    placeholder="City (Optional)" 
+                    value={billingInfo.city}
+                    onChange={handleInputChange}
+                    className="p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-700"
+                  />
+                  <input 
+                    type="text" 
+                    name="postalCode"
+                    placeholder="Postal Code (Optional)" 
+                    value={billingInfo.postalCode}
+                    onChange={handleInputChange}
+                    className="p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-green-700"
+                  />
                 </div>
+                <p className="text-xs text-gray-500 mt-4">* Required fields</p>
+              </div>
+
+              {/* Info Section */}
+              <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+                <h4 className="font-semibold text-blue-900 mb-2">Payment Information</h4>
+                <ul className="text-sm text-blue-800 space-y-1">
+                  <li>• You will be redirected to Xendit payment gateway</li>
+                  <li>• Multiple payment methods available (Credit Card, Bank Transfer, E-Wallet)</li>
+                  <li>• Secure payment processing with 256-bit SSL encryption</li>
+                  <li>• Payment confirmation will be sent to your email</li>
+                </ul>
               </div>
             </div>
-        </div>
+          </div>
 
-        {/* Card Total & Button */}
-        <div className={`mt-8 ${cardStyle} border-t-4 border-t-[#8B8055]`}>
-            <div className="flex flex-col md:flex-row justify-between items-center gap-6">
-                <div className="text-center md:text-left">
-                    <p className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-1">Total Amount</p>
-                    <div className="flex items-baseline gap-2 justify-center md:justify-start">
-                      <p className="text-3xl font-bold text-[#8B8055] font-serif">{formatCurrency(total)}</p>
-                      <p className="text-xs text-gray-400">Includes taxes</p>
-                    </div>
-                </div>
-                <div className="w-full md:w-auto flex flex-col items-center gap-2">
-                    <button 
+          {/* Section 2: Total Amount & Payment Button */}
+          <div className={cardStyle}>
+              <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+                  <div>
+                      <p className="font-semibold text-gray-700">Total Amount</p>
+                      <p className="text-3xl font-bold text-green-800">{formatCurrency(total)}</p>
+                      <p className="text-xs text-gray-500 mt-1">Includes all taxes and fees</p>
+                  </div>
+                  <div className="w-full md:w-auto">
+                      <button 
                         onClick={handlePayment}
                         disabled={isProcessing}
-                        className={`w-full md:w-72 bg-[#8B8055] hover:bg-[#766c44] text-white font-bold text-lg py-3.5 rounded-xl shadow-lg shadow-[#8B8055]/30 transition-all transform active:scale-[0.98] flex items-center justify-center gap-2 ${isProcessing ? 'opacity-70 cursor-not-allowed' : ''}`}
-                    >
+                        className={`w-full md:w-auto bg-green-800 text-white font-bold py-4 px-12 rounded-lg hover:bg-green-900 transition-colors flex items-center justify-center gap-2 ${isProcessing ? 'opacity-50 cursor-not-allowed' : ''}`}
+                      >
                         {isProcessing ? (
                           <>
                             <Loader2 className="animate-spin" size={20} />
                             Processing...
                           </>
                         ) : (
-                          'Confirm & Pay'
+                          'Proceed to Payment'
                         )}
-                    </button>
-                    <div className="flex items-center gap-1.5 text-[10px] text-gray-400">
-                        <Lock size={10} />
-                        <span>Payments are secured and encrypted</span>
-                    </div>
-                </div>
-            </div>
-        </div>
+                      </button>
+                      <p className="text-xs text-gray-500 mt-2 text-center">You won't be charged until payment confirmation</p>
+                  </div>
+              </div>
+          </div>
 
+        </div>
       </div>
     </main>
   );
