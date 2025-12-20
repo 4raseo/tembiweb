@@ -78,7 +78,10 @@ export default function Header() {
           <ul className="flex flex-col space-y-4">
             {navLinks.map((link) => (
               <li key={link.href}>
-                <Link href={link.href} className="text-lg text-slate-800 hover:text-tembi transition-colors">{link.name}
+                <Link href={link.href} className="text-lg text-slate-800 hover:text-tembi transition-colors"
+                onClick={() => setSidebarOpen(false)}
+                >
+                {link.name}
                 </Link>
               </li>
             ))}

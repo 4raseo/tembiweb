@@ -12,7 +12,7 @@ export default function SejarahPage() {
         {/* 1. Background Image */}
         <div className="absolute inset-0 w-full h-full">
           <Image
-            src="/images/sejarah/sejarahcover.png" // Sesuaikan path gambar background
+            src="/images/sejarah/history-hero.svg" // Sesuaikan path gambar background
             alt="Tembi Historical Home Background"
             fill
             className="object-cover"
@@ -119,7 +119,7 @@ export default function SejarahPage() {
             {/* Gambar Utama */}
             <div className="relative w-full aspect-[4/3] rounded-[2.5rem] overflow-hidden shadow-xl">
                <Image 
-                 src="/images/sejarah/sejarah1.png" // Ganti dengan gambar interior Anda
+                 src="/images/sejarah/history1.svg" // Ganti dengan gambar interior Anda
                  alt="Tembi Interior Javanese Style"
                  fill
                  className="object-cover hover:scale-105 transition-transform duration-700"
@@ -324,15 +324,14 @@ export default function SejarahPage() {
       <div className="relative z-10 max-w-screen-xl mx-auto text-center">
         
         {/* Quote Besar */}
-        <h2 className="text-3xl md:text-5xl font-serif font-bold text-white mb-6 leading-tight drop-shadow-lg">
-          Tembi Historical Home is <br className="hidden md:block" />
-          not just a place to visit — it is <br className="hidden md:block" />
-          a way to feel culture.
+        <h2 className="text-3xl md:text-7xl font-serif font-bold text-white mb-6 md:leading-[0.8] drop-shadow-lg">
+          Where Historical <br className="hidden md:block" />
+          Culture Is Divine
         </h2>
 
         {/* Subtext */}
         <p className="text-gray-200 text-lg font-light max-w-3xl mx-auto mb-16 leading-relaxed">
-          Join us in preserving and experiencing the rich heritage of Java. Every visit supports our mission to keep traditions alive for future generations.
+          Join us in preserving and experiencing Javanese historical culture, where every visit becomes a way to connect with tradition
         </p>
 
         {/* --- 3. CARDS GRID (Glass Effect) --- */}

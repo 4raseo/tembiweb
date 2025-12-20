@@ -42,9 +42,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
+        suppressHydrationWarning={true}
         className={`${geistSans.variable} ${geistMono.variable} ${playfairDisplay.variable} ${lato.variable} antialiased`}
       >
-        <BackgroundMusic />
+        {/* <BackgroundMusic /> */}
         <LanguageProvider>
           <Header />
           {children}

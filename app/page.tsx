@@ -4,13 +4,20 @@ import Image from 'next/image';
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useLanguage } from '@/app/context/LanguageContext';
+import HouseCard from "@/components/HouseCard";
 
 // Data dummy
 const houses = [
   {
     name: 'Ngadirojo',
     desc: 'Ngadirojo House is a traditional Javanese limasan built in 1946 and relocated from Bawak Village, Cawas, Klaten, Central Java, to Tembi in 2007. Combining Javanese architecture with natural tranquility, it is an ideal choice for guests seeking peace and culture.',
-    image: '/images/rooms/ngadirojo/ngadirojo.png',
+    images: 
+    [
+      '/images/rooms/ngadirojo/ngadirojo.png',
+      '/images/rooms/ngadirojo/ngadirojo1.png',
+      '/images/rooms/ngadirojo/ngadirojo2.png',
+      '/images/rooms/ngadirojo/ngadirojo3.png',
+    ],
     icons: ['/images/icons/bed-gray.svg', '/images/icons/swim-gray.svg'],
     features: ['King Bed', 'Pool View'],
     path: '/rooms/ngadirojo-house',
@@ -18,7 +25,13 @@ const houses = [
   {
     name: 'Polaman',
     desc: 'Polaman House is a traditional Javanese limasan built in 1948 and relocated from Bawak Village, Cawas, Klaten, to Tembi in 2007. It combines the warmth of Javanese architecture with natural landscapes, making it perfect for an authentic and peaceful stay.',
-    image: '/images/rooms/polaman/polaman.png',
+    images: 
+    [
+      '/images/rooms/polaman/polaman.png',
+      '/images/rooms/polaman/polaman1.png',
+      '/images/rooms/polaman/polaman2.png',
+      '/images/rooms/polaman/polaman3.png',
+    ],
     icons: ['/images/icons/bed-gray.svg', '/images/icons/swim-gray.svg'],
     features: ['King Bed', 'Pool View'],
     path: '/rooms/polaman-house',
@@ -26,7 +39,14 @@ const houses = [
   {
     name: 'Adikarto',
     desc: 'Adikarto House is a traditional Javanese limasan house that brings coolness and comfort in a natural atmosphere. Built in 1960 in Ngadirejo, Tepus, Gunung Kidul Regency, it was relocated to Tembi in 2007 as part of cultural preservation efforts.',
-    image: '/images/rooms/adikarto/adikarto.png',
+    images: 
+    [
+      '/images/rooms/adikarto/adikarto.png',
+      '/images/rooms/adikarto/adikarto1.png',
+      '/images/rooms/adikarto/adikarto2.png',
+      '/images/rooms/adikarto/adikarto3.png',
+
+    ],
     icons: ['/images/icons/bed-gray.svg', '/images/icons/mount-gray.svg'],
     features: ['King Bed', 'Garden View'],
     path: '/rooms/adikarto-house',
@@ -34,92 +54,88 @@ const houses = [
 ];
 
 const heroImages = [
-  '/images/homepage/homepage-hero1.svg', // Gambar pertama
-  '/images/venue/venue-hero.svg', // Ganti dengan path gambar kedua Anda
-  '/images/foods/foods-hero.svg', // Ganti dengan path gambar ketiga Anda
+  '/images/homepage/homepage-hero1.jpg', // Gambar pertama
+  '/images/homepage/homepage-hero2.jpg', // Ganti dengan path gambar kedua Anda
+  '/images/homepage/homepage-hero3.jpg', // Ganti dengan path gambar ketiga Anda
   // Tambahkan lebih banyak gambar jika diinginkan
-];
-
-const icons = [
-  { icon: "/images/icons/wifi-green.svg", text: "Wi-Fi" },
-  { icon: "/images/icons/cup-green.svg", text: "Special Welcome Drink" },
-  { icon: "/images/icons/music-green.svg", text: "Traditional Course" },
-];
-
-const heritageFeatures = [
-  {
-    title: "Historical Culture",
-    desc: "Authentic Javanese architecture and traditions",
-    icon: "/images/icons/museum-green.svg" // Icon bangunan/museum
-  },
-  {
-    title: "Natural Harmony",
-    desc: "Surrounded by lush tropical gardens and rice fields",
-    icon: "/images/icons/leaf-green.svg" // Icon daun
-  },
-  {
-    title: "Meaningful Moments",
-    desc: "Rest that feels valuable and memorable",
-    icon: "/images/icons/diamond-green.svg" // Icon diamond/mewah
-  }
-];
-
-const foodPoints = [
-  { text: "Fresh ingredients from local organic farms", icon: "/images/icons/leaf-green.svg" },
-  { text: "Traditional recipes with modern presentation", icon: "/images/icons/food-green.svg" },
-  { text: "Friendly service that makes you feel at home", icon: "/images/icons/glass-green.svg" },
-];
-
-const eventPackages = [
-  {
-    title: "Wedding Ceremonies",
-    description: "Celebrate your special moment in our quiet pendopo, surrounded by fresh greenery and a peaceful atmosphere. Our team will help take care of the details so your ceremony feels personal and meaningful.",
-    image: "/images/homepage/content2.png", // Ganti dengan foto pernikahan
-    buttonText: "Plan Your Wedding",
-    features: [
-      { text: "Capacity: Up to 150 guests", icon: "/images/icons/group-green.svg" }, // Icon orang banyak
-      { text: "Garden ceremony options", icon: "/images/icons/leaf-green.svg" }, // Icon daun
-      { text: "Traditional gamelan accompaniment", icon: "/images/icons/music-green.svg" }, // Icon nada musik
-    ]
-  },
-  {
-    title: "Corporate Retreats",
-    description: "Spark new ideas and strengthen teamwork in a calm and inspiring setting.Our meeting spaces combine traditional charm with modern facilities, creating a comfortable place for focused work and meaningful collaboration.",
-    image: "/images/homepage/content3.png", // Ganti dengan foto rapat
-    buttonText: "Book Corporate Event",
-    features: [
-      { text: "Multiple room configurations", icon: "/images/icons/group-green.svg" }, // Icon denah/layout
-      { text: "High-speed internet & AV equipment", icon: "/images/icons/wifi-green.svg" }, // Icon wifi
-      { text: "Traditional refreshment service", icon: "/images/icons/cup-green.svg" }, // Icon kopi/cangkir
-    ]
-  }
-];
-
-const collections = [
-  {
-    title: "Cundrik Collection",
-    desc: "A small cundrik once carried as a personal weapon.",
-    image: "/images/collection/cundrik/GPT0541.svg" 
-  },
-  {
-    title: "Cundrik Collection",
-    desc: "A longer cundrik forged with sanak patterns.",
-    image: "/images/collection/cundrik/GPT0540.svg"
-  },
-  {
-    title: "Keris Collection",
-    desc: "A keris from the Surakarta tradition with a straight blade.",
-    image: "/images/collection/keris/K.A 001.svg"
-  },
-  {
-    title: "Keris Collection",
-    desc: "A keris with five curves and a strong pamor pattern along the blade.",
-    image: "/images/collection/keris/K.A 002.svg"
-  },
 ];
 
 export default function HomePage() {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const { t } = useLanguage();
+  const icons = [
+    { icon: "/images/icons/wifi-green.svg", text: t.homepage.pavillion.desc[0] },
+    { icon: "/images/icons/cup-green.svg", text: t.homepage.pavillion.desc[1] },
+    { icon: "/images/icons/music-green.svg", text: t.homepage.pavillion.desc[2] },
+  ];
+  const heritageFeatures = [
+    {
+      title: t.homepage.living.title.item1,
+      desc: t.homepage.living.desc.item1,
+      icon: "/images/icons/museum-green.svg" // Icon bangunan/museum
+    },
+    {
+      title: t.homepage.living.title.item2,
+      desc: t.homepage.living.desc.item2,
+      icon: "/images/icons/leaf-green.svg" // Icon daun
+    },
+    {
+      title: t.homepage.living.title.item3,
+      desc: t.homepage.living.desc.item3,
+      icon: "/images/icons/diamond-green.svg" // Icon diamond/mewah
+    }
+  ];
+  const foodPoints = [
+    { text: t.homepage.food.item.item1, icon: "/images/icons/leaf-green.svg" },
+    { text: t.homepage.food.item.item2, icon: "/images/icons/food-green.svg" },
+    { text: t.homepage.food.item.item3, icon: "/images/icons/glass-green.svg" },
+  ];
+  const eventPackages = [
+    {
+      title: t.homepage.venue.firstCard.title,
+      description: t.homepage.venue.firstCard.desc,
+      image: "/images/homepage/content2.png", // Ganti dengan foto pernikahan
+      buttonText: t.homepage.venue.firstCard.button,
+      features: [
+        { text: t.homepage.venue.firstCard.item1, icon: "/images/icons/group-green.svg" }, // Icon orang banyak
+        { text: t.homepage.venue.firstCard.item2, icon: "/images/icons/leaf-green.svg" }, // Icon daun
+        { text: t.homepage.venue.firstCard.item3, icon: "/images/icons/music-green.svg" }, // Icon nada musik
+      ]
+    },
+    {
+      title: t.homepage.venue.secondCard.title,
+      description: t.homepage.venue.secondCard.desc,
+      image: "/images/homepage/content3.png", // Ganti dengan foto rapat
+      buttonText: t.homepage.venue.secondCard.button,
+      features: [
+        { text: t.homepage.venue.secondCard.item1, icon: "/images/icons/group-green.svg" }, // Icon denah/layout
+        { text: t.homepage.venue.secondCard.item2, icon: "/images/icons/wifi-green.svg" }, // Icon wifi
+        { text: t.homepage.venue.secondCard.item3, icon: "/images/icons/cup-green.svg" }, // Icon kopi/cangkir
+      ]
+    }
+  ];
+  const collections = [
+    {
+      title: t.homepage.collection.cardTitle.item1,
+      desc: t.homepage.collection.cardDesc.item1,
+      image: "/images/collection/cundrik/GPT0541.svg" 
+    },
+    {
+      title: t.homepage.collection.cardTitle.item2,
+      desc: t.homepage.collection.cardDesc.item2,
+      image: "/images/collection/cundrik/GPT0540.svg"
+    },
+    {
+      title: t.homepage.collection.cardTitle.item3,
+      desc: t.homepage.collection.cardDesc.item3,
+      image: "/images/collection/keris/K.A 001.svg"
+    },
+    {
+      title: t.homepage.collection.cardTitle.item4,
+      desc: t.homepage.collection.cardDesc.item4,
+      image: "/images/collection/keris/K.A 002.svg"
+    },
+  ];
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -157,7 +173,7 @@ export default function HomePage() {
           <div className="absolute inset-0 bg-black bg-opacity-40 z-10"></div>
           <div className="relative z-20 flex flex-col items-center justify-center h-full text-center text-white px-4">
             <h2 className="text-5xl md:text-8xl font-serif font-semibold mb-8 leading-10 md:leading-[0.8] md:drop-shadow-2xl">
-              Where Historical <br /> Culture is Divine
+              {t.homepage.hero.title[0]} <br /> {t.homepage.hero.title[1]}
             </h2>
             
             <div className="flex space-x-4">
@@ -165,13 +181,13 @@ export default function HomePage() {
                 href="/rooms"
                 className="bg-tembi hover:bg-darktembi text-white font-semibold py-3 px-8 rounded-full transition-colors duration-300 shadow-lg"
               >
-                Explore Our Rooms
+                {t.homepage.hero.explore}
               </Link>
               <Link
                 href="/rooms"
                 className="border-2 border-white text-white font-semibold py-3 px-8 rounded-full hover:bg-white hover:text-gray-800 transition-colors duration-300 shadow-lg"
               >
-                View Gallery
+                {t.homepage.hero.gallery}
               </Link>
             </div>
           </div>
@@ -181,25 +197,25 @@ export default function HomePage() {
         <section className="py-20 px-10 bg-stone-50">
           <div className="container mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
             <div className="text-center md:text-left">
-              <h3 className="text-6xl font-serif font-thin mb-10 drop-shadow-2xl">Experience Javanese Historical Culture</h3>
+              <h3 className="text-6xl font-serif font-thin mb-10 drop-shadow-2xl">{t.homepage.intro.title}</h3>
               <p className="text-gray-600 mb-6">
-                A place that brings calm and comfort so your mind feels lighter. The sound of nature welcomes you as soon as you step in. Fresh air helps your body relax. A well arranged space protects your rest so nothing interrupts your peace.
+                {t.homepage.intro.p1}
               </p>
               <p className="text-gray-600 mb-10">
-                Morning comes with a warm breakfast so the day feels kinder. Sitting on the terrace or taking a slow walk in the garden is enough to ease your heart. Energy returns slowly. A quiet peace appears on its own. Rest here is more than sleep, You have space to recover.
+                {t.homepage.intro.p2}
               </p>
               <div className="grid grid-cols-3 gap-4">
                 <div>
                   <h4 className="text-3xl font-bold text-tembi">2000</h4>
-                  <p className="text-gray-500 text-sm mt-1">Founded</p>
+                  <p className="text-gray-500 text-sm mt-1">{t.homepage.intro.stats.founded}</p>
                 </div>
                 <div>
                   <h4 className="text-3xl font-bold text-tembi">500+</h4>
-                  <p className="text-gray-500 text-sm mt-1">Artifacts</p>
+                  <p className="text-gray-500 text-sm mt-1">{t.homepage.intro.stats.artifacts}</p>
                 </div>
                 <div>
                   <h4 className="text-3xl font-bold text-tembi">9</h4>
-                  <p className="text-gray-500 text-sm mt-1">House</p>
+                  <p className="text-gray-500 text-sm mt-1">{t.homepage.intro.stats.house}</p>
                 </div>
               </div>
             </div>
@@ -222,71 +238,20 @@ export default function HomePage() {
             {/* Header Section */}
             <div className="text-center max-w-3xl mx-auto mb-16">
               <h4 className="text-xs font-bold tracking-[0.2em] text-tembi uppercase mb-3">
-                  Accommodation
+                {t.homepage.accommodation.label}
               </h4>
               <h2 className="text-5xl font-serif text-gray-900 mb-6">
-                  Historical Home
+                {t.homepage.accommodation.title}
               </h2>
               <p className="text-gray-600 leading-relaxed text-lg">
-                Each house offers comfort and keeps cultural stories alive. The design flows naturally so the grace of the past and the ease of the present stay together. Warm spaces and thoughtful details create a peaceful and meaningful stay.
+                {t.homepage.accommodation.desc}
               </p>
             </div>
 
             {/* Cards Grid */}
             <div className="grid md:grid-cols-3 gap-8 mb-20 mx-20 w-400">
-              {houses.map((house, index) => (
-                <div key={index} className="bg-white border border-gray-100 rounded-sm hover:shadow-xl transition-shadow duration-300 group flex flex-col">
-      
-                  {/* House Image */}
-                  <div className="relative h-80 overflow-hidden">
-                    <Image
-                      src={house.image}
-                      alt={house.name}
-                      fill
-                      className="object-cover group-hover:scale-105 transition-transform duration-500"
-                    />
-                    <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1 text-xs font-medium text-gray-700 rounded-sm shadow-sm">
-                      Recommendation
-                    </div>
-                  </div>
-
-                  {/* Card Content */}
-                  <div className="p-8 flex flex-col flex-grow">
-                    <h3 className="text-xl font-serif font-bold mb-3 text-gray-900">
-                      {house.name}
-                    </h3>
-                    <p className="text-gray-500 text-sm leading-relaxed mb-6 line-clamp-4 flex-grow">
-                      {house.desc}
-                    </p>
-
-                    {/* Facilities */}
-                    <div className="flex gap-5 text-xs text-gray-500 mb-8 border-t border-gray-100 pt-4">
-                      {/* Icon */}
-                      <div className="flex items-center gap-2">
-                        <div className="relative w-3 h-3">
-                          <Image src={house.icons[0]} alt="Bed" fill className="object-contain" />
-                        </div>
-                        <span>{house.features[0]}</span>
-                      </div>
-
-                      {/* Icon */}
-                      <div className="flex items-center gap-2">
-                        <div className="relative w-3 h-3">
-                          <Image src={house.icons[1]} alt="View" fill className="object-contain" />
-                        </div>
-                        <span>{house.features[1]}</span>
-                      </div>
-                    </div>
-
-                    {/* Button */}
-                    <Link 
-                      href={house.path}
-                      className="w-28 bg-tembi hover:bg-darktembi text-white text-sm font-medium py-3 px-6 rounded-sm transition-colors mx-auto flex items-center justify-center" 
-                    >
-                      Book Now
-                    </Link>
-                  </div>
-                </div>
+              {houses.map((house, index) => (                
+                <HouseCard key={index} house={house} />
               ))}
             </div>
           </div>
@@ -299,7 +264,7 @@ export default function HomePage() {
               {/* Column 1: Title (Takes 1 space) */}
               <div>
                 <h3 className="text-5xl font-serif font-medium text-gray-900 leading-[0.75]">
-                  All Pavilions <br className="hidden md:block" /> Include
+                  {t.homepage.pavillion.title[0]} <br className="hidden md:block" /> {t.homepage.pavillion.title[1]}
                 </h3>
               </div>
 
@@ -332,7 +297,7 @@ export default function HomePage() {
                   href="/rooms"
                   className="inline-block bg-tembi hover:bg-darktembi text-white py-3 px-8 rounded-sm text-sm font-medium transition-colors whitespace-nowrap" 
                 >
-                  View All House
+                  {t.homepage.pavillion.button}
                 </Link>
               </div>
             </div>
@@ -346,7 +311,7 @@ export default function HomePage() {
             {/* A SANCTUARY OF HERITAGE */}
             <div className="text-center max-w-4xl mx-auto mb-32">
               <h2 className="text-4xl md:text-8xl font-serif font-bold text-gray-900 mb-24 md:leading-[0.9] drop-shadow-2xl">
-                Living <br/> Experience
+                {t.homepage.living.head[0]} <br/> {t.homepage.living.head[1]}
               </h2>
               {/* <p className="text-gray-600 leading-relaxed mb-16 px-4 md:px-12 text-lg"> */}
                 {/* Nestled in the heart of Yogyakarta, Tembi Historical Home is more than a resort, its a living collection where centuries old Javanese traditions harmoniously blend with contemporary luxury. Our carefully preserved cultural spaces and authentic architecture create an immersive experience that celebrates Indonesias rich heritage while providing the ultimate in comfort and tranquility. */}
@@ -382,10 +347,10 @@ export default function HomePage() {
               {/* Sisi Kiri: Teks & List */}
               <div className=''>
                 <h2 className="text-4xl md:text-7xl font-serif font-bold text-gray-900 mb-10 leading-tight md:leading-[0.8] md:drop-shadow-lg">
-                  Food & <br/> Drink
+                  {t.homepage.food.head[0]} <br/> {t.homepage.food.head[1]}
                 </h2>
                 <p className="text-gray-600 mb-8 leading-relaxed pr-16 text-lg">
-                  Enjoy a culinary experience that highlights the richness of Indonesian flavors. Traditional recipes are preserved and refined with modern techniques so each dish feels familiar yet exciting. The calm atmosphere adds comfort to every meal. Culture becomes part of the dining moment through flavors that feel warm and full of character.
+                  {t.homepage.food.desc}
                 </p>
 
                 {/* List Poin dengan Icon Kecil */}
@@ -412,7 +377,7 @@ export default function HomePage() {
                   href="/catering"
                   className="bg-tembi hover:bg-darktembi text-white font-medium py-3 px-8 rounded-full transition-colors shadow-md" 
                 >
-                  View Packages
+                  {t.homepage.food.button}
                 </Link>
               </div>
 
@@ -461,13 +426,13 @@ export default function HomePage() {
             {/* Header Title */}
             <div className="text-center max-w-3xl mx-auto mb-16">
               <h4 className="text-xs font-bold tracking-[0.2em] text-[#8B9B6D] uppercase mb-3">
-                Events & Celebrations
+                {t.homepage.venue.head}
               </h4>
               <h2 className="text-4xl md:text-5xl font-serif text-gray-900 mb-6">
-                Sacred Spaces for <span className="italic font-normal">Special Moments</span>
+                {t.homepage.venue.title}
               </h2>
               <p className="text-gray-600 leading-relaxed">
-                Create unforgettable memories in our culturally rich venues, where traditional Javanese architecture provides the perfect backdrop for weddings, corporate retreats, and cultural celebrations.
+                {t.homepage.venue.desc}
               </p>
             </div>
 
@@ -541,11 +506,10 @@ export default function HomePage() {
             {/* --- HEADER --- */}
             <div className="text-center max-w-3xl mx-auto mb-16">
               <h2 className="text-4xl md:text-5xl font-serif font-bold text-gray-900 mb-6">
-                Historical Collection
+                {t.homepage.collection.title}
               </h2>
               <p className="text-gray-500 leading-relaxed text-lg">
-                Discover our carefully curated collection of Javanese cultural artifacts that tell 
-                the story of Indonesias rich heritage and artistic traditions
+                {t.homepage.collection.desc}
               </p>
             </div>
 
@@ -625,7 +589,7 @@ export default function HomePage() {
                 href="/collections"
                 className="bg-tembi hover:bg-darktembi text-white px-8 py-3 rounded-full font-medium transition-colors duration-300 shadow-md" 
               >
-                Explore Full Collection
+                {t.homepage.collection.button}
               </Link>
             </div>
           </div>
@@ -637,10 +601,10 @@ export default function HomePage() {
             {/* Header */}
             <div className="text-center mb-12">
               <h2 className="text-3xl md:text-4xl font-serif text-[#2C2420] mb-3">
-                Location & Access
+                {t.homepage.location.title}
               </h2>
               <p className="text-[#5C5C5C]">
-                Easy to reach from Yogyakarta city center and airport
+                {t.homepage.location.subtitle}
               </p>
             </div>
         
@@ -656,10 +620,10 @@ export default function HomePage() {
                     <div className="relative w-6 h-6 flex-shrink-0">
                       <Image src="/images/icons/gps-green.svg" alt="Address" fill className="object-contain" />
                     </div>
-                    <h3 className="text-xl font-serif font-bold text-[#2C2420]">Address</h3>
+                    <h3 className="text-xl font-serif font-bold text-[#2C2420]">{t.homepage.location.cardTitle.item1}</h3>
                   </div>
                   <p className="text-[#5C5C5C] leading-relaxed pl-9"> {/* pl-9 agar rata dengan teks judul */}
-                    Jl. Parangtritis KM 8.4, Timbulharjo, Sewon, Bantul, Yogyakarta 55186, Indonesia
+                    {t.homepage.location.cardDesc.item1}
                   </p>
                 </div>
         
@@ -673,10 +637,10 @@ export default function HomePage() {
                       <div className="relative w-6 h-6 flex-shrink-0">
                         <Image src="/images/icons/plane-green.svg" alt="Airport" fill className="object-contain" />
                       </div>
-                      <h3 className="text-lg font-serif font-bold text-[#2C2420]">From Airport</h3>
+                      <h3 className="text-lg font-serif font-bold text-[#2C2420]">{t.homepage.location.cardTitle.item2}</h3>
                     </div>
                     <p className="text-[#5C5C5C] text-sm leading-relaxed">
-                      25 minutes drive from Yogyakarta International Airport
+                      {t.homepage.location.cardDesc.item2}
                     </p>
                   </div>
         
@@ -687,10 +651,10 @@ export default function HomePage() {
                       <div className="relative w-6 h-6 flex-shrink-0">
                         <Image src="/images/icons/city-green.svg" alt="City" fill className="object-contain" />
                       </div>
-                      <h3 className="text-lg font-serif font-bold text-[#2C2420]">From City Center</h3>
+                      <h3 className="text-lg font-serif font-bold text-[#2C2420]">{t.homepage.location.cardTitle.item3}</h3>
                     </div>
                     <p className="text-[#5C5C5C] text-sm leading-relaxed">
-                      15 minutes drive from Malioboro Street and city center
+                      {t.homepage.location.cardDesc.item3}
                     </p>
                   </div>
                 </div>
@@ -702,7 +666,7 @@ export default function HomePage() {
                     <div className="relative w-6 h-6 flex-shrink-0">
                       <Image src="/images/icons/car-green.svg" alt="Transport" fill className="object-contain" />
                     </div>
-                    <h3 className="text-xl font-serif font-bold text-[#2C2420]">Transportation Options</h3>
+                    <h3 className="text-xl font-serif font-bold text-[#2C2420]">{t.homepage.location.transport.title}</h3>
                   </div>
                   
                   <ul className="space-y-4">
@@ -711,7 +675,7 @@ export default function HomePage() {
                       <div className="relative w-5 h-5 flex-shrink-0 mt-0.5">
                         <Image src="/images/icons/taxi-green.svg" alt="Taxi" fill className="object-contain" />
                       </div>
-                      <span className="text-[#5C5C5C]">Taxi and ride-sharing services available</span>
+                      <span className="text-[#5C5C5C]">{t.homepage.location.transport.item1}</span>
                     </li>
         
                     {/* List Item 2: Bus */}
@@ -719,7 +683,7 @@ export default function HomePage() {
                       <div className="relative w-5 h-5 flex-shrink-0 mt-0.5">
                         <Image src="/images/icons/bus-green.svg" alt="Bus" fill className="object-contain" />
                       </div>
-                      <span className="text-[#5C5C5C]">Public bus route 1A stops nearby</span>
+                      <span className="text-[#5C5C5C]">{t.homepage.location.transport.item2}</span>
                     </li>
         
                     {/* List Item 3: Parking */}
@@ -727,7 +691,7 @@ export default function HomePage() {
                       <div className="relative w-5 h-5 flex-shrink-0 mt-0.5">
                         <Image src="/images/icons/parking-green.svg" alt="Parking" fill className="object-contain" />
                       </div>
-                      <span className="text-[#5C5C5C]">Free on-site parking for 50+ vehicles</span>
+                      <span className="text-[#5C5C5C]">{t.homepage.location.transport.item3}</span>
                     </li>
                   </ul>
                 </div>

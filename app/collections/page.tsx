@@ -17,27 +17,20 @@ const statsData: StatItem[] = [
     iconUrl: '/images/icons/diamond-green.svg', 
     alt: 'Artifacts Icon',
     value: '250+',
-    label: 'Artifacts',
+    label: 'Collection',
   },
   {
     id: 2,
     iconUrl: '/images/icons/calendar-green.svg', 
     alt: 'Origins Icon',
-    value: '15th',
+    value: '18th',
     label: 'Century Origins',
   },
   {
     id: 3,
-    iconUrl: '/images/icons/gps-green.svg', 
-    alt: 'Regions Icon',
-    value: '5',
-    label: 'Regions',
-  },
-  {
-    id: 4,
     iconUrl: '/images/icons/group-green.svg', 
     alt: 'Visitors Icon',
-    value: '50K+',
+    value: '5K',
     label: 'Annual Visitors',
   },
 ];
@@ -457,7 +450,7 @@ export default function CollectionsPage() {
         <div className="max-w-7xl mx-auto">
           
           {/* Grid Container */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-12 sm:gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-12 sm:gap-8 justify-items-center">
             
             {statsData.map((stat) => (
               <div key={stat.id} className="flex flex-col items-center text-center group">

@@ -66,17 +66,17 @@ const SpacesSection: React.FC = () => {
     {
       title: "Heritage Accommodation",
       desc: "Experience authentic Javanese hospitality in rooms decorated with traditional crafts and modern comfort.",
-      imageSrc: "/images/sejarah/sejarah8.png",
+      imageSrc: "/images/sejarah/sejarah8.svg",
     },
     {
       title: "Cultural Venues",
       desc: "Our amphitheater and studios host regular performances, workshops, and cultural celebrations.",
-      imageSrc: "/images/sejarah/sejarah9.png",
+      imageSrc: "/images/sejarah/sejarah9.svg",
     },
     {
       title: "Special Events",
       desc: "Create memorable moments with traditional Javanese ceremonies and modern event facilities.",
-      imageSrc: "/images/sejarah/sejarah10.png",
+      imageSrc: "/images/sejarah/sejarah10.svg",
     },
   ];
 
@@ -93,7 +93,7 @@ const SpacesSection: React.FC = () => {
             Where Culture Meets Comfort
           </h2>
           <p className="text-gray-600 text-lg font-light leading-relaxed">
-            Every space at Tembi is thoughtfully designed to honor our heritage while providing modern comfort and functionality.
+            Every space at Tembi is thoughtfully designed to honor our heritage while offering comfort and practicality.
           </p>
         </div>
 
