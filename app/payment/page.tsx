@@ -15,6 +15,10 @@ import {
   Loader2 
 } from 'lucide-react';
 
+const ADDONS_PRICE = {
+  breakfast: 50000,
+  extrabed: 150000
+};
 // Fungsi format mata uang
 const formatCurrency = (amount: number) => {
   return new Intl.NumberFormat('id-ID', {
@@ -71,6 +75,17 @@ export default function PaymentPage() {
     const adults = Number(searchParams.get('adults') || 1);
     const children = Number(searchParams.get('children') || 0);
 
+    const addonsParam = searchParams.get('addons');
+    let addons = { breakfast: 0, extrabed: 0 };
+
+    try {
+      if (addonsParam) {
+        addons = JSON.parse(addonsParam);
+      }
+    } catch (e) {
+      console.error("Error parsing addons", e);
+    }
+
     const room = roomData.find(r => r.slug === roomSlug);
     
     if (!room || !checkIn || !checkOut) {
@@ -79,9 +94,15 @@ export default function PaymentPage() {
 
     const nights = differenceInCalendarDays(parseISO(checkOut), parseISO(checkIn));
     const basePrice = room.price * nights;
-    const serviceFee = Math.round(basePrice * 0.05);
+    const breakfastCost = (addons.breakfast * ADDONS_PRICE.breakfast) * nights;
+    const extrabedCost = (addons.extrabed * ADDONS_PRICE.extrabed) * nights;
+    const totalAddonsCost = breakfastCost + extrabedCost;
+
+    const serviceFee = Math.round(basePrice * 0.05); // Service fee dari harga kamar
     const tourismTax = 30000 * nights;
-    const total = basePrice + serviceFee + tourismTax;
+    
+    // Total Akhir
+    const total = basePrice + totalAddonsCost + serviceFee + tourismTax;
 
     return { 
       room, 
@@ -90,7 +111,9 @@ export default function PaymentPage() {
       checkOut, 
       adults, 
       children,
-      nights, 
+      nights,
+      addons,
+      addonCosts: { breakfast: breakfastCost, extrabed: extrabedCost },
       basePrice, 
       serviceFee, 
       tourismTax, 
@@ -144,6 +167,8 @@ export default function PaymentPage() {
           checkOut: bookingData.checkOut,
           adults: bookingData.adults,
           children: bookingData.children,
+          addons: bookingData.addons,
+          totalAmount: bookingData.total,
           booker: billingInfo,
         }),
       });
@@ -181,7 +206,7 @@ export default function PaymentPage() {
     );
   }
 
-  const { room, checkIn, checkOut, adults, children, nights, basePrice, serviceFee, tourismTax, total } = bookingData;
+  const { room, checkIn, checkOut, adults, children, nights, addons, addonCosts, basePrice, serviceFee, tourismTax, total } = bookingData;
 
   // --- STYLE CONSTANTS (DARI PAGE2.TSX) ---
   const cardStyle = "bg-white p-6 rounded-xl shadow-sm border border-gray-100 relative z-10";
@@ -268,11 +293,37 @@ export default function PaymentPage() {
                             <span>Duration</span><span className="font-bold text-gray-800">{nights} Nights</span>
                         </div>
                     </div>
-
                     <div className="bg-gray-50 p-4 rounded-lg">
                         <h4 className="font-bold text-gray-900 mb-3 text-sm">Price Details</h4>
                         <div className="space-y-2 text-sm text-gray-600">
-                            <div className="flex justify-between"><span>{formatCurrency(room.price)} x {nights} nights</span><span>{formatCurrency(basePrice)}</span></div>
+                            {/* Harga Kamar */}
+                            <div className="flex justify-between">
+                                <span>{formatCurrency(room.price)} x {nights} nights</span>
+                                <span>{formatCurrency(basePrice)}</span>
+                            </div>
+
+                            {/* Rincian Add-ons (Hanya muncul jika dipilih) */}
+                            {addons.extrabed > 0 && (
+                                <div className="flex justify-between text-gray-700">
+                                    <span className="flex items-center gap-1">
+                                      Extra Bed <span className="text-xs bg-[#8B8055] text-white px-1.5 rounded-md">{addons.extrabed}x</span>
+                                    </span>
+                                    <span>{formatCurrency(addonCosts.extrabed)}</span>
+                                </div>
+                            )}
+                            
+                            {addons.breakfast > 0 && (
+                                <div className="flex justify-between text-gray-700">
+                                    <span className="flex items-center gap-1">
+                                      Breakfast <span className="text-xs bg-orange-500 text-white px-1.5 rounded-md">{addons.breakfast}x</span>
+                                    </span>
+                                    <span>{formatCurrency(addonCosts.breakfast)}</span>
+                                </div>
+                            )}
+
+                            <div className="border-t border-gray-200 my-2"></div>
+
+                            {/* Pajak & Layanan */}
                             <div className="flex justify-between"><span>Service fee (5%)</span><span>{formatCurrency(serviceFee)}</span></div>
                             <div className="flex justify-between"><span>Tourism tax</span><span>{formatCurrency(tourismTax)}</span></div>
                         </div>

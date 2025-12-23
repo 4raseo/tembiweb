@@ -130,7 +130,78 @@ const translations = {
           item3: "Free on-site parking for 50+ vehicles"
         }
       }
-    } 
+    },
+    history:{
+      hero:{
+        title: ['Our Story:', 'Tembi History Home'],
+        subtitle: 'A place where heritage lives and traditions continue — preserving Javanese culture with heart and harmony.',
+      },
+      intro:{
+        head: 'HERITAGE & CULTURE',
+        title: [
+          'Where Javanese Soul', 
+          'Meets Modern', 
+          'Comfort',
+        ],
+        subtitle: [
+          'Founded on May 20, 2000, Tembi Historical Home was originally known as Tembi Rumah Budaya, a sanctuary dedicated to preserving the richness of Javanese philosophy, art, and traditions. It began as a humble cultural space designed for education, expression, and documentation of Javanese culture, becoming a living archive where heritage meets daily life.',
+          'Over time, Tembi evolved beyond a cultural institution into a boutique heritage hospitality destination. Since 2008, it has offered accommodations, dining experiences, and event venues, from intimate gatherings to grand weddings, while maintaining its essence as a center for cultural preservation.'
+        ],
+        item: [
+          'Years of Heritage',
+          'Cultural Programs',
+          'Visitor Welcomed'
+        ]
+      },
+      founder:{
+        head: 'Our Founder',
+        title: [
+          'The Visionary Behind',
+          'Our Cultural Mission'
+        ],
+        desc1: [
+          'Tembi Historical Home was founded by the late',
+          'Pollycarpus Swantoro,', 
+          'an esteemed cultural figure and journalist in Indonesia. Inspired by his childhood memories and love for his hometown, Yogyakarta, he envisioned a place where people could reconnect with their cultural roots amidst the waves of modernization.',
+        ],
+        desc2:[
+          'His legacy is now carried forward by his eldest son,',
+          'Norbertus Nuranto.',
+          'who continues to nurture Tembi as a space of inclusive and inspiring culture, where everyone, from local communities to international visitors, can experience the timeless beauty of Javanese heritage.'
+        ],
+      },
+      living:{
+        head: 'LIVING CULTURE',
+        title: 'A Home of Living Culture',
+        subtitle: 'Tembi is more than a place to stay. It is an experience of Javanese life through its traditions, arts, and philosophy. From classical Javanese dance classes to batik-making and macapat sessions, we continue to nurture cultural expression and learning.',
+        title2: 'Cultural Philosophy',
+        desc: [
+          'Our cultural programs are built on the Javanese philosophy of Hamemayu Hayuning Bawana - to beautify and preserve the world.',
+          'We believe culture is not a collection piece but a living, breathing entity that grows through sharing and practice.'
+        ],
+        item: [
+          'Cultural Activities',
+          'Monthly Participants'
+        ]
+      },
+      contact:{
+        title: [
+          'Where Historical',
+          'Culture Is Divine'
+        ],
+        subtitle: 'Join us in preserving and experiencing Javanese historical culture, where every visit becomes a way to connect with tradition',
+        itemTitle: [
+          'Direct Booking',
+          'Cultural Inquiries',
+          'Visit Us'
+        ],
+        itemDesc:[
+          'Call us directly for personalized cultural experiences and special packages.',
+          'Learn more about our workshops, events, and heritage programs.',
+          'Located in the heart of Yogyakartas cultural district.'
+        ]
+      }
+    }
   },
   id: {
     nav: {
@@ -254,8 +325,78 @@ const translations = {
           item3: "Parkir gratis di lokasi untuk 50+ kendaraan."
         }
       }
+    },
+    history:{
+      hero:{
+        title: ['Cerita Kami:', 'Tembi Rumah Budaya'],
+        subtitle: 'Tempat di mana warisan budaya tetap hidup dan tradisi terus berlanjut. Tembi Historical Home menjaga kebudayaan Jawa dengan ketulusan dan keharmonisan sehingga setiap tamu bisa merasakannya secara nyata.',
+      },
+      intro:{
+        head: 'Warisan & Budaya',
+        title: [
+          'Tempat di mana Jiwa',
+          'Budaya Jawa Bertemu',
+          'Kenyamanan Masa Kini'
+        ],
+        subtitle: [
+          'Tembi Historical Home berdiri pada 20 Mei 2000 dengan nama Tembi Rumah Budaya. Tujuannya menjaga filosofi, seni, dan tradisi Jawa tetap hidup. Tempat ini menjadi ruang edukasi dan ekspresi. Warisan budaya terdokumentasi dengan baik agar bisa terus dinikmati oleh generasi berikutnya.',
+          'Perjalanan Tembi berkembang dari institusi budaya menjadi destinasi hospitality berbasis warisan Jawa. Sejak 2008, Tembi menghadirkan pengalaman menginap, bersantap, dan venue untuk berbagai acara. Dari pertemuan kecil hingga perayaan besar. Semua tetap berpegang pada misi pelestarian budaya.'
+        ],
+        item: [
+          'Tahun menjaga warisan',
+          'Program budaya',
+          'Tamu yang datang'
+        ]
+      },
+      founder:{
+        head: 'Our Founder',
+        title: [
+          'The Visionary Behind',
+          'Our Cultural Mission'
+        ],
+        desc1: [
+          'Tembi Historical Home didirikan oleh almarhum',
+          'Pollycarpus Swantoro,', 
+          'seorang tokoh budaya dan jurnalis terkemuka di Indonesia. Ia terinspirasi oleh kenangan masa kecil dan kecintaannya pada Yogyakarta. Ia membayangkan sebuah tempat yang memungkinkan setiap orang kembali merasakan akar budaya di tengah perkembangan zaman.',
+        ],
+        desc2:[
+          'Warisan gagasannya kini diteruskan oleh putra sulungnya,',
+          'Norbertus Nuranto.',
+          'Ia menjaga Tembi tetap menjadi ruang budaya yang inklusif dan menginspirasi. Semua orang dapat merasakan keindahan warisan Jawa yang terus hidup, baik dari komunitas lokal maupun pengunjung mancanegara.'
+        ],
+      },
+      living:{
+        head: 'Budaya yang Hidup',
+        title: 'Rumah dengan Budaya yang Hidup',
+        subtitle: 'Tembi bukan hanya tempat menginap. Kamu merasakan kehidupan Jawa lewat tradisi, seni, dan filosofi. Kamu bisa ikut kelas tari Jawa klasik, membatik, dan macapat. Kami menjaga ruang belajar dan ekspresi budaya agar terus tumbuh.',
+        title2: 'Filosofi Budaya',
+        desc: [
+          'Program budaya kami berlandaskan filosofi Jawa Hamemayu Hayuning Bawana. Artinya menjaga dan memperindah dunia. Setiap aktivitas. Setiap pelajaran. Setiap momen yang dibagikan berkontribusi pada tujuan ini.',
+          'Kami percaya budaya itu hidup. Budaya berkembang melalui praktik dan berbagi. Kamu tidak hanya melihat budaya Jawa. Kamu ikut menjadi bagian dari kelanjutannya.'
+        ],
+        item: [
+          'Kegiatan Budaya',
+          'Peserta Setiap Bulan'
+        ]
+      },
+      contact:{
+        title: [
+          'Where Historical',
+          'Culture Is Divine'
+        ],
+        subtitle: 'Bergabunglah menjaga dan menikmati warisan Jawa. Setiap kunjungan membantu tradisi tetap terus ada untuk generasi berikutnya.',
+        itemTitle: [
+          'Pemesanan Langsung',
+          'Informasi Budaya',
+          'Kunjungi Kami'
+        ],
+        itemDesc:[
+          'Hubungi langsung untuk pengalaman budaya yang dipersonalisasi dan pilihan paket khusus.',
+          'Cari informasi tentang workshop, acara, dan program pelestarian budaya.',
+          'Kami berada di pusat kawasan budaya Yogyakarta. Datang dan rasakan sendiri kehangatan Tembi.'
+        ]
+      }
     }
-    
   },
 };
 

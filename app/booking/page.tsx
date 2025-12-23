@@ -2,15 +2,16 @@
 
 import { useState, useEffect, useMemo } from 'react';
 import { useSearchParams } from 'next/navigation';
+import Image from 'next/image';
 import { roomData } from '@/data/roomData';
 import { differenceInCalendarDays, parseISO } from 'date-fns';
-import { Calendar, User, Home, Eye, Check } from 'lucide-react';
+import { Calendar, User, Home, Eye, Coffee, BedDouble, Plus, Minus } from 'lucide-react';
 import Link from 'next/link';
 
 // --- KONFIGURASI HARGA TAMBAHAN ---
 const ADDONS_PRICE = {
-  breakfast: 250000, 
-  extrabed: 350000   
+  breakfast: 50000, 
+  extrabed: 150000   
 };
 
 // Fungsi format Rupiah
@@ -63,8 +64,8 @@ export default function BookingPage() {
   
   const [specialRequests, setSpecialRequests] = useState('');
   const [addons, setAddons] = useState({
-    breakfast: false,
-    extrabed: false
+    breakfast: 0,
+    extrabed: 0
   });
 
   useEffect(() => {
@@ -88,17 +89,23 @@ export default function BookingPage() {
 
   const totalPrice = useMemo(() => {
     let total = 0;
+    const nights = numberOfNights || 1;
     if (selectedRoom && numberOfNights > 0) {
       total += selectedRoom.price * numberOfNights;
     }
-    if (addons.breakfast) total += ADDONS_PRICE.breakfast * (adults + children) * (numberOfNights || 1);
-    if (addons.extrabed) total += ADDONS_PRICE.extrabed * (numberOfNights || 1);
+    if (addons.breakfast > 0) total += (addons.breakfast * ADDONS_PRICE.breakfast) * nights;
+    if (addons.extrabed > 0) total += (addons.extrabed * ADDONS_PRICE.extrabed) * nights;
     
     return total;
-  }, [selectedRoom, numberOfNights, addons, adults, children]);
+  }, [selectedRoom, numberOfNights, addons]);
 
-  const toggleAddon = (key: 'breakfast' | 'extrabed') => {
-    setAddons(prev => ({ ...prev, [key]: !prev[key] }));
+  const handleAddonUpdate = (type: 'breakfast' | 'extrabed', change: number) => {
+    setAddons(prev => {
+      const newValue = prev[type] + change;
+      // Validasi: Min 0, Max 5
+      if (newValue < 0 || newValue > 5) return prev;
+      return { ...prev, [type]: newValue };
+    });
   };
 
   const isFormValid = Boolean(selectedRoom && checkIn && checkOut && numberOfNights > 0);
@@ -197,6 +204,78 @@ export default function BookingPage() {
             </div>
           </div>
 
+          {/* Additional Add-ons */}
+          <div className="mb-10">
+            <label className="block text-sm font-semibold text-gray-700 mb-3">Additional Services (Optional)</label>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              
+              {/* Kolom Extra Bed */}
+              <div className="bg-white border border-gray-200 rounded-xl p-4 flex flex-col justify-between">
+                 <div className="flex items-start justify-between mb-3">
+                    <div className="flex items-center gap-2">
+                        <div className="p-2 bg-green-50 rounded-lg text-tembi">
+                            <BedDouble size={18} />
+                        </div>
+                        <div>
+                            <p className="font-bold text-sm text-gray-800">Extra Bed</p>
+                            <p className="text-xs text-gray-500">{formatCurrency(ADDONS_PRICE.extrabed)} /bed</p>
+                        </div>
+                    </div>
+                 </div>
+                 <div className="flex items-center justify-between bg-gray-50 rounded-lg p-1">
+                    <button 
+                        onClick={() => handleAddonUpdate('extrabed', -1)}
+                        disabled={addons.extrabed <= 0}
+                        className="w-8 h-8 flex items-center justify-center rounded-md bg-white shadow-sm border border-gray-200 text-gray-600 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-100 transition-colors"
+                    >
+                        <Minus size={14}/>
+                    </button>
+                    <span className="font-bold text-sm text-gray-800">{addons.extrabed}</span>
+                    <button 
+                        onClick={() => handleAddonUpdate('extrabed', 1)}
+                        disabled={addons.extrabed >= 5}
+                        className="w-8 h-8 flex items-center justify-center rounded-md bg-white shadow-sm border border-gray-200 text-tembi disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-100 transition-colors"
+                    >
+                        <Plus size={14}/>
+                    </button>
+                 </div>
+              </div>
+
+              {/* Kolom Breakfast */}
+              <div className="bg-white border border-gray-200 rounded-xl p-4 flex flex-col justify-between">
+                 <div className="flex items-start justify-between mb-3">
+                    <div className="flex items-center gap-2">
+                        <div className="p-2 bg-orange-50 rounded-lg text-orange-600">
+                            <Coffee size={18} />
+                        </div>
+                        <div>
+                            <p className="font-bold text-sm text-gray-800">Breakfast</p>
+                            <p className="text-xs text-gray-500">{formatCurrency(ADDONS_PRICE.breakfast)} /pax</p>
+                        </div>
+                    </div>
+                 </div>
+                 <div className="flex items-center justify-between bg-gray-50 rounded-lg p-1">
+                    <button 
+                        onClick={() => handleAddonUpdate('breakfast', -1)}
+                        disabled={addons.breakfast <= 0}
+                        className="w-8 h-8 flex items-center justify-center rounded-md bg-white shadow-sm border border-gray-200 text-gray-600 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-100 transition-colors"
+                    >
+                        <Minus size={14}/>
+                    </button>
+                    <span className="font-bold text-sm text-gray-800">{addons.breakfast}</span>
+                    <button 
+                        onClick={() => handleAddonUpdate('breakfast', 1)}
+                        disabled={addons.breakfast >= 5}
+                        className="w-8 h-8 flex items-center justify-center rounded-md bg-white shadow-sm border border-gray-200 text-tembi disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-100 transition-colors"
+                    >
+                        <Plus size={14}/>
+                    </button>
+                 </div>
+              </div>
+
+            </div>
+          </div>
+
           {/* Room List */}
           <div className="mb-10">
             <div className="flex items-center gap-2 mb-4">
@@ -256,11 +335,13 @@ export default function BookingPage() {
             <div className="relative h-48 w-full bg-gray-50 rounded-xl mb-6 overflow-hidden shadow-sm border border-gray-100">
                 {selectedRoom ? (
                     <>
-                        <img 
+                        <Image 
                             // Gunakan imageUrl dari data, atau fallback ke placeholder jika tidak ada
                             src={selectedRoom.imageUrl || "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=1000&auto=format&fit=crop"} 
                             alt={selectedRoom.name}
-                            className="w-full h-full object-cover"
+                            fill
+                            className="object-cover"
+                            priority
                         />
                         {/* Overlay Text di atas Gambar */}
                         <div className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/80 via-black/40 to-transparent p-4">
@@ -302,43 +383,35 @@ export default function BookingPage() {
                 </div>
             </div>
 
-            {/* Additional Add-ons */}
-            <div className="bg-gray-50 rounded-xl p-4 mb-6">
-                <h5 className="font-bold text-gray-900 mb-3 text-xs uppercase tracking-wider">Additional Services</h5>
-                <div className="space-y-3">
-                <div className="flex items-start gap-3">
-                    <button 
-                    onClick={() => toggleAddon('breakfast')}
-                    className={`mt-0.5 w-5 h-5 rounded border flex items-center justify-center flex-shrink-0 transition-colors
-                        ${addons.breakfast ? 'bg-tembi border-tembi text-white' : 'bg-white border-gray-300'}`}
-                    >
-                    {addons.breakfast && <Check size={14} />}
-                    </button>
-                    <div className="flex-1">
-                    <div className="flex justify-between items-center">
-                        <span className="text-sm font-bold text-gray-800">Breakfast</span>
-                        <span className="text-xs font-semibold text-tembi">+{formatCurrency(ADDONS_PRICE.breakfast)}</span>
-                    </div>
-                    </div>
-                </div>
-                <div className="flex items-start gap-3">
-                    <button 
-                    onClick={() => toggleAddon('extrabed')}
-                    className={`mt-0.5 w-5 h-5 rounded border flex items-center justify-center flex-shrink-0 transition-colors
-                        ${addons.extrabed ? 'bg-tembi border-tembi text-white' : 'bg-white border-gray-300'}`}
-                    >
-                    {addons.extrabed && <Check size={14} />}
-                    </button>
-                    <div className="flex-1">
-                    <div className="flex justify-between items-center">
-                        <span className="text-sm font-bold text-gray-800">Extra Bed</span>
-                        <span className="text-xs font-semibold text-tembi">+{formatCurrency(ADDONS_PRICE.extrabed)}</span>
-                    </div>
+            {(addons.breakfast > 0 || addons.extrabed > 0) && (
+                <div className="bg-gray-50 rounded-xl p-4 mb-6">
+                    <h5 className="font-bold text-gray-900 mb-3 text-xs uppercase tracking-wider">Selected Services</h5>
+                    <div className="space-y-2">
+                        {addons.breakfast > 0 && (
+                            <div className="flex justify-between items-center text-sm">
+                                <span className="text-gray-600 flex items-center gap-2">
+                                    <span className="font-bold text-tembi">{addons.breakfast}x</span> Breakfast
+                                </span>
+                                <span className="font-semibold text-gray-900">
+                                    {formatCurrency(addons.breakfast * ADDONS_PRICE.breakfast * (numberOfNights || 1))}
+                                </span>
+                            </div>
+                        )}
+                        {addons.extrabed > 0 && (
+                            <div className="flex justify-between items-center text-sm">
+                                <span className="text-gray-600 flex items-center gap-2">
+                                    <span className="font-bold text-tembi">{addons.extrabed}x</span> Extra Bed
+                                </span>
+                                <span className="font-semibold text-gray-900">
+                                    {formatCurrency(addons.extrabed * ADDONS_PRICE.extrabed * (numberOfNights || 1))}
+                                </span>
+                            </div>
+                        )}
                     </div>
                 </div>
-                </div>
-            </div>
+            )}
 
+            {/* Total Price */}
             <div className="flex justify-between items-end mb-6">
                 <div>
                     <p className="text-xs text-gray-500 mb-1">Total Payment</p>

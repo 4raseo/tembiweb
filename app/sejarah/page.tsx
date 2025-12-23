@@ -1,8 +1,11 @@
+'use client';
 import React from 'react';
 import Image from 'next/image';
 import SpacesSection from '@/components/SpacesSection';
+import { useLanguage } from '@/app/context/LanguageContext';
 
 export default function SejarahPage() {
+  const { t } = useLanguage();
   return (
     // Tag <main> membungkus seluruh konten halaman utama
     <main className="min-h-screen w-full bg-[#FDFBF7]">
@@ -29,13 +32,12 @@ export default function SejarahPage() {
         <div className="relative z-20 h-full flex flex-col justify-center px-6 md:px-16 lg:px-24 max-w-screen-xl mx-auto">
           <div className="max-w-3xl animate-fade-in-up">
             <h1 className="text-5xl md:text-7xl font-serif font-bold text-white leading-[1.1] mb-6 drop-shadow-lg">
-              Our Story: <br />
-              Tembi Historical <br />
-              Home
+              {t.history.hero.title[0]} <br />
+              {t.history.hero.title[1]}
             </h1>
             
             <p className="text-lg md:text-xl text-gray-200 font-light leading-relaxed max-w-2xl border-l-2 border-transparent pl-1">
-              A place where heritage lives and traditions continue — preserving Javanese culture with heart and harmony.
+              {t.history.hero.subtitle}
             </p>
           </div>
         </div>
@@ -62,28 +64,23 @@ export default function SejarahPage() {
           <div className="order-2 lg:order-1">
             {/* Tagline */}
             <span className="block text-sm font-bold tracking-widest text-[#9CA389] uppercase mb-4">
-              Heritage & Culture
+              {t.history.intro.head}
             </span>
             
             {/* Heading */}
             <h2 className="text-4xl md:text-5xl font-serif font-bold text-[#4A3B2A] mb-8 leading-tight">
-              Where Javanese Soul <br />
-              Meets Modern <br />
-              Comfort
+              {t.history.intro.title[0]} <br />
+              {t.history.intro.title[1]} <br />
+              {t.history.intro.title[2]}
             </h2>
 
             {/* Paragraphs */}
             <div className="text-gray-600 space-y-6 text-lg leading-relaxed font-light mb-10 text-justify">
               <p>
-                Founded on May 20, 2000, Tembi Historical Home was originally known as Tembi Rumah Budaya, 
-                a sanctuary dedicated to preserving the richness of Javanese philosophy, art, and traditions.
-                It began as a humble cultural space designed for education, expression, and documentation 
-                of Javanese culture, becoming a living archive where heritage meets daily life.
+                {t.history.intro.subtitle[0]}
               </p>
               <p>
-                Over time, Tembi evolved beyond a cultural institution into a boutique heritage hospitality 
-                destination. Since 2008, it has offered accommodations, dining experiences, and event venues, 
-                from intimate gatherings to grand weddings, while maintaining its essence as a center for cultural preservation.
+                {t.history.intro.subtitle[1]}
               </p>
             </div>
 
@@ -92,17 +89,17 @@ export default function SejarahPage() {
               {/* Stat 1 */}
               <div>
                 <h3 className="text-3xl font-serif font-bold text-[#9CA389]">25+</h3>
-                <p className="text-xs md:text-sm text-gray-500 mt-1">Years of Heritage</p>
+                <p className="text-xs md:text-sm text-gray-500 mt-1">{t.history.intro.item[0]}</p>
               </div>
               {/* Stat 2 */}
               <div>
-                <h3 className="text-3xl font-serif font-bold text-[#9CA389]">1000+</h3>
-                <p className="text-xs md:text-sm text-gray-500 mt-1">Cultural Programs</p>
+                <h3 className="text-3xl font-serif font-bold text-[#9CA389]">100+</h3>
+                <p className="text-xs md:text-sm text-gray-500 mt-1">{t.history.intro.item[1]}</p>
               </div>
               {/* Stat 3 */}
               <div>
-                <h3 className="text-3xl font-serif font-bold text-[#9CA389]">50k+</h3>
-                <p className="text-xs md:text-sm text-gray-500 mt-1">Visitors Welcomed</p>
+                <h3 className="text-3xl font-serif font-bold text-[#9CA389]">5k+</h3>
+                <p className="text-xs md:text-sm text-gray-500 mt-1">{t.history.intro.item[2]}</p>
               </div>
             </div>
           </div>
@@ -129,9 +126,9 @@ export default function SejarahPage() {
 
         </div>
       </div>
-    </section>
+      </section>
 
-    <section className="py-20 md:py-28 px-6 md:px-16 lg:px-24 bg-white overflow-hidden">
+      <section className="py-20 md:py-28 px-6 md:px-16 lg:px-24 bg-white overflow-hidden">
       <div className="max-w-screen-xl mx-auto">
         
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
@@ -155,27 +152,22 @@ export default function SejarahPage() {
           <div className="lg:col-span-6 order-1 lg:order-2 text-center lg:px-4">
             {/* Tagline */}
             <span className="block text-sm font-bold tracking-widest text-[#9CA389] uppercase mb-4">
-              Our Founder
+              {t.history.founder.head}
             </span>
             
             {/* Heading */}
             <h2 className="text-4xl md:text-5xl font-serif font-bold text-[#4A3B2A] mb-8 leading-tight">
-              The Visionary Behind <br />
-              Our Cultural Mission
+              {t.history.founder.title[0]} <br />
+              {t.history.founder.title[1]}
             </h2>
 
             {/* Paragraphs */}
             <div className="text-gray-600 space-y-6 text-lg leading-relaxed font-light text-justify">
               <p>
-                Tembi Historical Home was founded by the late <strong>Pollycarpus Swantoro</strong>, 
-                an esteemed cultural figure and journalist in Indonesia. Inspired by his childhood memories 
-                and love for his hometown, Yogyakarta, he envisioned a place where people could reconnect 
-                with their cultural roots amidst the waves of modernization.
+                {t.history.founder.desc1[0]} <strong>{t.history.founder.desc1[1]}</strong> {t.history.founder.desc1[2]}
               </p>
               <p>
-                His legacy is now carried forward by his eldest son, <strong>Norbertus Nuranto</strong>, 
-                who continues to nurture Tembi as a space of inclusive and inspiring culture, where everyone, 
-                from local communities to international visitors, can experience the timeless beauty of Javanese heritage.
+                {t.history.founder.desc2[0]} <strong>{t.history.founder.desc2[1]}</strong> {t.history.founder.desc2[2]}
               </p>
             </div>
           </div>
@@ -195,22 +187,21 @@ export default function SejarahPage() {
           </div>
         </div>
       </div>
-    </section>
+      </section>
 
-    <section className="py-20 md:py-28 px-6 md:px-16 lg:px-24 bg-[#F8F6F1]">
+      <section className="py-20 md:py-28 px-6 md:px-16 lg:px-24 bg-[#F8F6F1]">
       <div className="max-w-screen-xl mx-auto">
         
         {/* --- HEADER --- */}
         <div className="text-center max-w-3xl mx-auto mb-16">
           <span className="block text-sm font-bold tracking-widest text-[#9CA389] uppercase mb-4">
-            Living Culture
+            {t.history.living.head}
           </span>
           <h2 className="text-4xl md:text-5xl font-serif font-bold text-[#4A3B2A] mb-6">
-            A Home of Living Culture
+            {t.history.living.title}
           </h2>
           <p className="text-gray-600 text-lg font-light leading-relaxed">
-            Tembi is more than a place to stay. It is an experience of Javanese life through its traditions, arts, and philosophy. 
-            From classical Javanese dance classes to batik-making and macapat sessions, we continue to nurture cultural expression and learning.
+            {t.history.living.subtitle}
           </p>
         </div>
 
@@ -246,26 +237,26 @@ export default function SejarahPage() {
             {/* Kiri: Teks */}
             <div>
               <h3 className="text-3xl md:text-4xl font-serif font-bold text-[#4A3B2A] mb-6">
-                Cultural Philosophy
+                {t.history.living.title2}
               </h3>
               <div className="text-gray-600 space-y-5 font-light leading-relaxed mb-8 text-justify">
                 <p>
-                  Our cultural programs are built on the Javanese philosophy of Hamemayu Hayuning Bawana - to beautify and preserve the world. 
+                  {t.history.living.desc[0]}
                 </p>
                 <p>
-                  We believe culture is not a collection piece but a living, breathing entity that grows through sharing and practice. 
+                  {t.history.living.desc[1]}
                 </p>
               </div>
 
               {/* Stats Box */}
               <div className="flex gap-4">
-                <div className="bg-[#F8F6F1] rounded-xl p-4 w-40 text-center">
+                <div className="bg-[#F8F6F1] rounded-xl p-4 w-52 text-center">
                   <span className="block text-2xl font-serif font-bold text-[#9CA389]">15+</span>
-                  <span className="text-xs text-gray-500 uppercase tracking-wide">Cultural Activities</span>
+                  <span className="text-xs text-gray-500 uppercase tracking-wide">{t.history.living.item[0]}</span>
                 </div>
-                <div className="bg-[#F8F6F1] rounded-xl p-4 w-40 text-center">
+                <div className="bg-[#F8F6F1] rounded-xl p-4 w-52 text-center">
                   <span className="block text-2xl font-serif font-bold text-[#9CA389]">200+</span>
-                  <span className="text-xs text-gray-500 uppercase tracking-wide">Monthly Participants</span>
+                  <span className="text-xs text-gray-500 uppercase tracking-wide">{t.history.living.item[1]}</span>
                 </div>
               </div>
             </div>
@@ -300,11 +291,11 @@ export default function SejarahPage() {
         </div>
 
       </div>
-    </section>
+      </section>
 
-    <SpacesSection />
+      <SpacesSection />
 
-    <section className="relative w-full py-24 md:py-32 px-6 md:px-16 lg:px-24 overflow-hidden">
+      <section className="relative w-full py-24 md:py-32 px-6 md:px-16 lg:px-24 overflow-hidden">
       
       {/* --- 1. BACKGROUND LAYER --- */}
       <div className="absolute inset-0 w-full h-full z-0">
@@ -325,36 +316,36 @@ export default function SejarahPage() {
         
         {/* Quote Besar */}
         <h2 className="text-3xl md:text-7xl font-serif font-bold text-white mb-6 md:leading-[0.8] drop-shadow-lg">
-          Where Historical <br className="hidden md:block" />
-          Culture Is Divine
+          {t.history.contact.title[0]} <br className="hidden md:block" />
+          {t.history.contact.title[1]}
         </h2>
 
         {/* Subtext */}
         <p className="text-gray-200 text-lg font-light max-w-3xl mx-auto mb-16 leading-relaxed">
-          Join us in preserving and experiencing Javanese historical culture, where every visit becomes a way to connect with tradition
+          {t.history.contact.subtitle}
         </p>
 
         {/* --- 3. CARDS GRID (Glass Effect) --- */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-left">
           <ContactCard 
-            title="Direct Booking"
-            desc="Call us directly for personalized cultural experiences and special packages."
+            title={t.history.contact.itemTitle[0]}
+            desc={t.history.contact.itemDesc[0]}
             iconSrc="/images/icons/phonew.png" // Pastikan ada icon telepon
           />
           <ContactCard 
-            title="Cultural Inquiries"
-            desc="Learn more about our workshops, events, and heritage programs."
+            title={t.history.contact.itemTitle[1]}
+            desc={t.history.contact.itemDesc[1]}
             iconSrc="/images/icons/mailw.png" // Pastikan ada icon amplop/surat
           />
           <ContactCard 
-            title="Visit Us"
-            desc="Located in the heart of Yogyakarta's cultural district."
+            title={t.history.contact.itemTitle[2]}
+            desc={t.history.contact.itemDesc[2]}
             iconSrc="/images/icons/locationw.png" // Pastikan ada icon lokasi/pin
           />
         </div>
 
       </div>
-    </section>
+      </section>
     </main>
   );
 }
