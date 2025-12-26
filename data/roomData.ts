@@ -1,5 +1,6 @@
 export interface Room {
   id: number;
+  badge: string;
   slug: string;
   name: string;
   tagline: string;
@@ -34,6 +35,7 @@ export interface Room {
 export const roomData: Room[] = [
   {
     id: 1,
+    badge: "Premium",
     slug: "ngadirojo-house",
     name: "Ngadirojo House",
     tagline: "A Javanese Limasan with Pool and Rice Field Views",
@@ -67,6 +69,7 @@ export const roomData: Room[] = [
   },
   {
     id: 2,
+    badge: "Premium",
     slug: "polaman-house",
     name: "Polaman House",
     tagline: "A Spacious Javanese Limasan with Pool and Rice Field Views",
@@ -97,6 +100,7 @@ export const roomData: Room[] = [
 
   {
     id: 3,
+    badge: "Premium",
     slug: "adikarto-house",
     name: "Adikarto House",
     tagline: "The Serenity of a Classic Javanese Limasan Home",
@@ -126,6 +130,7 @@ export const roomData: Room[] = [
   },
  {
     id: 4,
+    badge: "Premium",
     slug: "ganjuran-house",
     name: "Ganjuran House",
     tagline: "Harmony of Javanese Tradition and Nature",
@@ -155,6 +160,7 @@ export const roomData: Room[] = [
   },
   {
     id: 5,
+    badge: "Best Value",
     slug: "badegan-house",
     name: "Badegan House",
     tagline: "A Touch of Sundanese Tradition in Yogyakarta’s Nature",
@@ -184,6 +190,7 @@ export const roomData: Room[] = [
   },
   {
     id: 6,
+    badge: "Best Value",
     slug: "wuryantoro-house",
     name: "Wuryantoro House",
     tagline: "A Javanese Limasan Home Amidst Nature’s Calm",
@@ -213,6 +220,7 @@ export const roomData: Room[] = [
   },
   {
     id: 7,
+    badge: "Premium",
     slug: "morangan-house",
     name: "Morangan House",
     tagline: "Three Levels of Comfort in Traditional Architecture",
@@ -235,6 +243,66 @@ export const roomData: Room[] = [
     detailsIcons:"/images/icons/swim-green.svg",
     amenities: ["Free WiFi", "Air Conditioning", "Private Bathroom", "Pool View", "Minibar", "Terrace"],
     amenitiesIcons:"/images/icons/swim-green.svg",
+    policies: { checkIn: "03:00 PM", checkOut: "12:00 PM", cancellation: ["Free cancellation 48h before"] },
+    houseRules: { smoking: false, pets: true, quietHours: "10 PM" },
+    rating: 4.9, 
+    layoutType: 'standard'
+  },
+  {
+    id: 8,
+    badge: "Premium",
+    slug: "kriyan-lor-house",
+    name: "Kriyan Lor House",
+    tagline: "An Intimate Limasan House with Traditional Javanese Character",
+    price: 430000,
+    description: "Rumah Kriyan is a traditional 1940s limasan house relocated to Tembi in 2009, offering two intimate mirrored units with modern comforts, a private garden terrace, and a strong connection to Javanese history and culture.",
+    longDescription:[ 
+      "Kriyan house is a traditional limasan house built around the 1940s and relocated from Paliyan Village, Wonosari, Gunung Kidul, to the Tembi area in 2009. Originally one complete house, it was later adapted and divided into two symmetrical units, Kriyan Lor and Kriyan Kidul. Both units share the same layout with mirrored orientation. Each house measures 24 square meters and offers an intimate setting for couples or guests seeking a quiet and private stay.",
+      "The house is equipped with modern facilities including complimentary Wi-Fi, air conditioning, a minibar, and a private bathroom. Rumah Kriyan blends traditional simplicity with present day comfort. A private terrace facing a lush garden creates a calm atmosphere for relaxation within a Javanese rural setting.",
+      "The name Kriyan comes from an area in Keputran Jeron Beteng, Yogyakarta Palace. It was the residence of Mr. R. M. Koesbandarum Sasmi, the father of Mrs. R. A. Koeswardiyah Swantoro, from around 1940 to 1960. This house reflects a close family connection to Javanese history and culture.",
+    ],
+    imageUrl: "/images/rooms/kriyan/kriyan2.svg",
+    galleryImages: [
+      "/images/rooms/kriyan/kriyan1.svg",
+      "/images/rooms/kriyan/kriyan3.svg",
+      "/images/rooms/kriyan/kriyan4.svg",
+      "/images/rooms/kriyan/kriyan5.svg",
+      "/images/rooms/kriyan/kriyan6.svg",
+    ],
+    details: { bed: "King Size Bed", guests: 2, size: "24 m²", view: "Rice Field View" },
+    detailsIcons:"/images/icons/leaf-green.svg",
+    amenities: ["Free WiFi", "Air Conditioning", "Private Bathroom", "Rice Field View", "Minibar", "Terrace"],
+    amenitiesIcons:"/images/icons/leaf-green.svg",
+    policies: { checkIn: "03:00 PM", checkOut: "12:00 PM", cancellation: ["Free cancellation 48h before"] },
+    houseRules: { smoking: false, pets: true, quietHours: "10 PM" },
+    rating: 4.9, 
+    layoutType: 'standard'
+  },
+  {
+    id: 9,
+    badge: "Premium",
+    slug: "kriyan-kidul-house",
+    name: "Kriyan Kidul House",
+    tagline: "An Intimate Limasan House with Traditional Javanese Character",
+    price: 430000,
+    description: "Rumah Kriyan is a traditional 1940s limasan house relocated to Tembi in 2009, offering two intimate mirrored units with modern comforts, a private garden terrace, and a strong connection to Javanese history and culture.",
+    longDescription:[ 
+      "Kriyan house is a traditional limasan house built around the 1940s and relocated from Paliyan Village, Wonosari, Gunung Kidul, to the Tembi area in 2009. Originally one complete house, it was later adapted and divided into two symmetrical units, Kriyan Lor and Kriyan Kidul. Both units share the same layout with mirrored orientation. Each house measures 24 square meters and offers an intimate setting for couples or guests seeking a quiet and private stay.",
+      "The house is equipped with modern facilities including complimentary Wi-Fi, air conditioning, a minibar, and a private bathroom. Rumah Kriyan blends traditional simplicity with present day comfort. A private terrace facing a lush garden creates a calm atmosphere for relaxation within a Javanese rural setting.",
+      "The name Kriyan comes from an area in Keputran Jeron Beteng, Yogyakarta Palace. It was the residence of Mr. R. M. Koesbandarum Sasmi, the father of Mrs. R. A. Koeswardiyah Swantoro, from around 1940 to 1960. This house reflects a close family connection to Javanese history and culture.",
+    ],
+    imageUrl: "/images/rooms/kriyan/kriyan1.svg",
+    galleryImages: [
+      "/images/rooms/kriyan/kriyan2.svg",
+      "/images/rooms/kriyan/kriyan3.svg",
+      "/images/rooms/kriyan/kriyan4.svg",
+      "/images/rooms/kriyan/kriyan5.svg",
+      "/images/rooms/kriyan/kriyan6.svg",
+    ],
+    details: { bed: "King Size Bed", guests: 2, size: "24 m²", view: "Rice Field View" },
+    detailsIcons:"/images/icons/leaf-green.svg",
+    amenities: ["Free WiFi", "Air Conditioning", "Private Bathroom", "Rice Field View", "Minibar", "Terrace"],
+    amenitiesIcons:"/images/icons/leaf-green.svg",
     policies: { checkIn: "03:00 PM", checkOut: "12:00 PM", cancellation: ["Free cancellation 48h before"] },
     houseRules: { smoking: false, pets: true, quietHours: "10 PM" },
     rating: 4.9, 

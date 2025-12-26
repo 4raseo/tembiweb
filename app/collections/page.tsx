@@ -450,7 +450,7 @@ export default function CollectionsPage() {
         <div className="max-w-7xl mx-auto">
           
           {/* Grid Container */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-12 sm:gap-8 justify-items-center">
+          <div className="flex flex-wrap justify-center gap-16 lg:gap-48">
             
             {statsData.map((stat) => (
               <div key={stat.id} className="flex flex-col items-center text-center group">

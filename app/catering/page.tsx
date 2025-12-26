@@ -41,8 +41,8 @@ export default function FoodPage() {
             </div>
 
             {/* Main Heading */}
-            <h1 className="font-serif text-6xl font-bold text-white leading-none drop-shadow-lg">
-              Food & Drink
+            <h1 className="font-serif text-6xl font-bold text-white mb-6 leading-none drop-shadow-lg">
+              Food & Drink <br /> Packages
             </h1>
 
             {/* Subheading */}
@@ -59,14 +59,16 @@ export default function FoodPage() {
           </div>
 
           {/* Scroll Indicator (Tetap di tengah bawah layar) */}
-          <div className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce">
-            <Image 
-              src="/images/icons/arrow-down-white.svg" // Pastikan punya icon ini atau ganti dengan SVG
-              alt="Scroll Down"
-              width={32}
-              height={16}
-              className="w-8 h-4"
-            />
+          <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20">
+            <a href="#our-story" className="animate-bounce cursor-pointer p-2 block">
+               <Image
+                  src="/images/icons/down.png" // Sesuaikan path icon lokal
+                  alt="Scroll Down"
+                  width={16}
+                  height={16}
+                  className="brightness-0 invert drop-shadow-md"
+               />
+            </a>
           </div>
         </div>
       </section>

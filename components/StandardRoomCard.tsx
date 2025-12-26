@@ -7,11 +7,6 @@ interface StandardRoomCardProps {
 }
 
 export function StandardRoomCard({ room }: StandardRoomCardProps) {
-  // Logika dummy untuk badge status
-  const isPremium = room.price > 1000000; 
-  const badgeText = isPremium ? "Premium" : "Best Value";
-  const badgeColor = isPremium ? "bg-[#8B9D68]" : "bg-[#6B7B4D]"; 
-
   return (
     <Link href={`/rooms/${room.slug}`} className="block group h-full">
       <div className="bg-white border border-gray-100 rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 flex flex-col h-full relative">
@@ -26,8 +21,8 @@ export function StandardRoomCard({ room }: StandardRoomCardProps) {
           />
           
           {/* Badge Kiri Atas (Premium / Best Value) */}
-          <div className={`absolute top-4 left-4 ${badgeColor} text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-sm`}>
-            {badgeText}
+          <div className={`absolute top-4 left-4 bg-tembi text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-sm`}>
+            {room.badge}
           </div>
 
           {/* Badge Kiri Bawah (Photos Count) */}
@@ -42,7 +37,7 @@ export function StandardRoomCard({ room }: StandardRoomCardProps) {
                 // Atau hapus className di atas jika gambar sumber sudah putih
               />
             </div>
-            <span>{Math.floor(Math.random() * 5) + 4} photos</span>
+            <span>6 photos</span>
           </div>
         </div>
 

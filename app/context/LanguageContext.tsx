@@ -18,8 +18,7 @@ const translations = {
       collections: 'Collections',
       book: 'Book Now',
     },
-    homepage:
-    {
+    homepage:{
       hero: {
         title: 
         [
@@ -201,6 +200,219 @@ const translations = {
           'Located in the heart of Yogyakartas cultural district.'
         ]
       }
+    },
+    foods:{
+      hero:{
+        label: 'Authentic Javanese Cuisine',
+        title: ['Food & Drink', 'Packages'],
+        subtitle: 'Authentic Javanese taste for every occasion',
+        desc: 'Enjoy the warmth of Javanese hospitality through our food. From classic buffet spreads to snack and meal boxes, every dish is prepared with cultural care and local flavor, bringing you the authentic taste of Central Javas culinary heritage.'
+      },
+      intro:{
+        label: 'Cultural Heritage',
+        title: ['Preserving Tradition Through', 'Authentic Flavors'],
+        desc: 'At Tembi Historical Home, we believe that food is the heart of cultural preservation. Our catering services bring together generations of Javanese culinary wisdom, using traditional recipes passed down through families and prepared with locally-sourced ingredients.',
+        itemTitle:[
+          'Traditional Recipes',
+          'Local Ingredients',
+          'Cultural Presentation'
+        ],
+        itemDesc: [
+          'Authentic Javanese dishes prepared using time-honored methods',
+          'Fresh, locally-sourced ingredients from Yogyakarta region',
+          'Served on traditional banana leaves and wooden plates'
+        ],
+      },
+      packages:{
+        label: 'Catering Packages',
+        title: ['Choose Your Perfect', 'Package'],
+        subtitle: 'Each package is carefully curated to deliver an authentic Javanese dining experience, perfect for various occasions and group sizes.',
+        card1:{
+          badge: '≥35 pax',
+          title: 'Buffet Package',
+          subtitle: 'Perfect for Large Gatherings',
+          desc: 'Ideal for gatherings, meetings, and cultural events. A complete spread featuring rice, soup, main dishes.',
+          features: [
+            'Complete meal spread',
+            'Traditional serving style',
+            'Multiple dish options',
+            'Dessert & beverages included'
+          ],
+          linkUrl: '/catering/buffet',
+          buttonText: 'View Buffet Menu'
+        },
+        card2:{
+          badge: '≥35 pax',
+          title: 'Snack Box Package',
+          subtitle: 'Delightful Traditional Treats',
+          desc: 'A delightful assortment of traditional snacks and sweets perfect for light events, meetings, or afternoon tea.',
+          features: [
+            'Traditional snacks variety',
+            'Individual packaging',
+            'Sweet & savory options',
+            'Traditional tea included'
+          ],
+          linkUrl: '/catering/snack-box',
+          buttonText: 'View Snack Box Menu'
+        },
+        card3:{
+          badge: '≥35 pax',
+          title: 'Rice Box Package',
+          subtitle: 'Complete Individual Meals',
+          desc: 'A complete individual meal packed with authentic Javanese dishes. Perfect for business meetings or seminars.',
+          features: [
+          'Complete balanced meal',
+            'Individual box packaging',
+            'Traditional main dishes',
+            'Authentic sambal included'
+          ],
+          linkUrl: '/catering/rice-box',
+          buttonText: 'View Rice Box Menu'
+        },
+        footerTitle: [
+          'Minimum 35 Guests',
+          '24-Hour Notice'
+        ],
+        footerDesc: [
+          'All packages available for groups of 35 people or more',
+          'Please place orders at least 24 hours in advance'
+        ]
+      },
+      menus:{
+        label: 'Sample Menus',
+        title: ['Taste the', 'Authentic Flavors'],
+        desc: 'Experience the rich culinary heritage of Java through our carefully selected traditional dishes, each prepared with love and authentic recipes.',
+        buffet: {
+          title: 'Buffet Package Highlight',
+          desc: 'A complete spread of traditional Javanese dishes',
+          item:[
+            { image: '/images/foods/nasi-liwet.png', title: 'Nasi Liwet', desc: 'Aromatic coconut rice cooked in banana leaves with traditional spices' },
+            { image: '/images/foods/ayam-kremes.png', title: 'Ayam Goreng Kremes', desc: 'Crispy fried chicken with traditional peanut coating' },
+            { image: '/images/foods/sayur-asem.png', title: 'Sayur Asem', desc: 'Traditional tamarind soup with mixed vegetables' },
+            { image: '/images/foods/sambal.png', title: 'Sambal Bajak', desc: 'Spicy traditional chili paste with peanuts and spices' },
+            { image: '/images/foods/es-dawet.png', title: 'Es Dawet', desc: 'Refreshing coconut milk drink with rice flour jelly' },
+          ],
+        },
+        snack: {
+          title: 'Snack Box Delights',
+          desc: 'Traditional sweets and savory treats',
+          item:[
+            { image: '/images/foods/klepon.png', title: 'Klepon', desc: 'Green rice balls filled with palm sugar and rolled in coconut' },
+            { image: '/images/foods/kue-lumpur.png', title: 'Kue Lumpur', desc: 'Soft traditional cake with coconut milk and raisins' },
+            { image: '/images/foods/pastel.png', title: 'Pastel', desc: 'Crispy fried pastry with seasoned vegetable and meat filling' },
+            { image: '/images/foods/teh.png', title: 'Teh Hangat', desc: 'Warm traditional herbal tea with aromatic spices' },
+          ],
+        },
+        rice: {
+          title: 'Rice Box Complete Meal',
+          desc: 'Balanced individual portions of authentic dishes',
+          item: [
+            { image: '/images/foods/nasi-putih.png', title: 'Nasi Putih', desc: 'Perfectly steamed jasmine rice as the foundation' },
+            { image: '/images/foods/ayam-kalasan.png', title: 'Ayam Kalasan', desc: 'Traditional grilled chicken with sweet soy sauce marinade' },
+            { image: '/images/foods/tempe.png', title: 'Tempe Bacem', desc: 'Braised tempeh with palm sugar and traditional spices' },
+            { image: '/images/foods/urap.png', title: 'Urap', desc: 'Mixed vegetable salad with seasoned grated coconut' },
+            { image: '/images/foods/sambal-fresh.png', title: 'Sambal', desc: 'Fresh homemade chili paste with authentic spice blend' },
+          ]
+        }
+      },
+      gen: {
+        card: {
+          title: '3 Generations',
+          subtitle: 'Of culinary tradition',
+          desc: 'Every dish tells a story of our ancestors and their love for authentic flavors.'
+        },
+        label: 'Our Heritage',
+        title: [
+          'Three Generations of',
+          'Culinary Excellence'
+        ],
+        desc: 'Our recipes have been carefully preserved and passed down through three generations of the Tembi family. Each dish represents not just a meal, but a piece of Javanese cultural heritage that were proud to share with every guest.',
+        itemTitle: [
+          'Traditional Recipes',
+          'Farm-to-Table Philosophy',
+          'Handcrafted with Love'
+        ],
+        itemDesc: [
+          'Authentic recipes dating back to the early 1900s, carefully documented and preserved by our family matriarchs.',
+          'We source ingredients from local farmers and our own heritage garden, ensuring freshness and supporting the community.',
+          'Every dish is prepared by hand using traditional methods, ensuring authentic taste and cultural integrity.'
+        ]
+      },
+      celebrate: {
+        label: 'Perfect Occasions',
+        title: ['Celebrate Every', 'Moment'],
+        desc: 'From intimate gatherings to grand celebrations, our catering packages are designed to make every occasion memorable with authentic Javanese hospitality.',
+        card1: {
+          title: 'Corporate Events',
+          subtitle: 'Professional meetings with cultural flair',
+          features: [
+            'Business meetings & seminars',
+            'Corporate retreats',
+            'Team building events'
+          ]
+        },
+        card2: {
+          title: 'Cultural Celebrations',
+          subtitle: 'Weddings and traditional ceremonies',
+          features: [
+            'Traditional weddings',
+            'Cultural festivals',
+            'Religious ceremonies'
+          ]
+        },
+        card3: {
+          title: 'Family Gatherings',
+          subtitle: 'Intimate celebrations with loved ones',
+          features: [
+            'Birthday celebrations',
+            'Family reunions',
+            'Holiday gatherings'
+          ]
+        },
+        stat1: {
+          number: '100+',
+          label: 'Events Catered'
+        },
+        stat2: {
+          number: '1,000+',
+          label: 'Guests Served'
+        },
+        stat3: {
+          number: '98%',
+          label: 'Satisfaction Rate'
+        },
+        stat4: {
+          number: '15+',
+          label: 'Years Experience'
+        },
+      },
+      contact: {
+        title: 'Need Help or Have Questions?',
+        subtitle: 'Our team is here to help you plan the perfect catering experience for your special event.',
+        card1: {
+          title: 'Call Us',
+          subtitle: 'Speak directly with our catering specialists',
+          phone: '+62 274 368 000',
+          desc: 'Daily 8:00 AM - 8:00 PM'
+        },
+        card2: {
+          title: 'WhatsApp',
+          subtitle: 'Quick response for urgent inquiries',
+          phone: '+62 822 2514 2729',
+          desc: 'Chat Now'
+        },
+        card3: {
+          title: 'Email Us',
+          subtitle: 'Detailed inquiries and custom requests',
+          phone: 'catering@tembihistoricalhome.com',
+          desc: 'Response within 24 hours'
+        },
+        footer: {
+          title: 'Special Requests & Custom Packages',
+          desc: 'Planning a unique event or need a custom menu? Our culinary team can create bespoke catering solutions tailored to your specific requirements, dietary needs, and cultural preferences.',
+          button: 'Request Custom Quote'
+        }
+      }
     }
   },
   id: {
@@ -349,10 +561,10 @@ const translations = {
         ]
       },
       founder:{
-        head: 'Our Founder',
+        head: 'Pendiri Kami',
         title: [
-          'The Visionary Behind',
-          'Our Cultural Mission'
+          'Sosok di Balik Misi',
+          'Pelestarian Budaya'
         ],
         desc1: [
           'Tembi Historical Home didirikan oleh almarhum',
@@ -395,6 +607,219 @@ const translations = {
           'Cari informasi tentang workshop, acara, dan program pelestarian budaya.',
           'Kami berada di pusat kawasan budaya Yogyakarta. Datang dan rasakan sendiri kehangatan Tembi.'
         ]
+      }
+    },
+    foods:{
+      hero:{
+        label: 'Authentic Javanese Cuisine',
+        title: ['Food & Drink', 'Packages'],
+        subtitle: 'Authentic Javanese taste for every occasion',
+        desc: 'Enjoy the warmth of Javanese hospitality through our food. From classic buffet spreads to snack and meal boxes, every dish is prepared with cultural care and local flavor, bringing you the authentic taste of Central Javas culinary heritage.'
+      },
+      intro:{
+        label: 'Cultural Heritage',
+        title: ['Preserving Tradition Through', 'Authentic Flavors'],
+        desc: 'At Tembi Historical Home, we believe that food is the heart of cultural preservation. Our catering services bring together generations of Javanese culinary wisdom, using traditional recipes passed down through families and prepared with locally-sourced ingredients.',
+        itemTitle:[
+          'Traditional Recipes',
+          'Local Ingredients',
+          'Cultural Presentation'
+        ],
+        itemDesc: [
+          'Authentic Javanese dishes prepared using time-honored methods',
+          'Fresh, locally-sourced ingredients from Yogyakarta region',
+          'Served on traditional banana leaves and wooden plates'
+        ],
+      },
+      packages:{
+        label: 'Catering Packages',
+        title: ['Choose Your Perfect', 'Package'],
+        subtitle: 'Each package is carefully curated to deliver an authentic Javanese dining experience, perfect for various occasions and group sizes.',
+        card1:{
+          badge: '≥35 pax',
+          title: 'Buffet Package',
+          subtitle: 'Perfect for Large Gatherings',
+          desc: 'Ideal for gatherings, meetings, and cultural events. A complete spread featuring rice, soup, main dishes.',
+          features: [
+            'Complete meal spread',
+            'Traditional serving style',
+            'Multiple dish options',
+            'Dessert & beverages included'
+          ],
+          linkUrl: '/catering/buffet',
+          buttonText: 'View Buffet Menu'
+        },
+        card2:{
+          badge: '≥35 pax',
+          title: 'Snack Box Package',
+          subtitle: 'Delightful Traditional Treats',
+          desc: 'A delightful assortment of traditional snacks and sweets perfect for light events, meetings, or afternoon tea.',
+          features: [
+            'Traditional snacks variety',
+            'Individual packaging',
+            'Sweet & savory options',
+            'Traditional tea included'
+          ],
+          linkUrl: '/catering/snack-box',
+          buttonText: 'View Snack Box Menu'
+        },
+        card3:{
+          badge: '≥35 pax',
+          title: 'Rice Box Package',
+          subtitle: 'Complete Individual Meals',
+          desc: 'A complete individual meal packed with authentic Javanese dishes. Perfect for business meetings or seminars.',
+          features: [
+          'Complete balanced meal',
+            'Individual box packaging',
+            'Traditional main dishes',
+            'Authentic sambal included'
+          ],
+          linkUrl: '/catering/rice-box',
+          buttonText: 'View Rice Box Menu'
+        },
+        footerTitle: [
+          'Minimum 35 Guests',
+          '24-Hour Notice'
+        ],
+        footerDesc: [
+          'All packages available for groups of 35 people or more',
+          'Please place orders at least 24 hours in advance'
+        ]
+      },
+      menus:{
+        label: 'Sample Menus',
+        title: ['Taste the', 'Authentic Flavors'],
+        desc: 'Experience the rich culinary heritage of Java through our carefully selected traditional dishes, each prepared with love and authentic recipes.',
+        buffet: {
+          title: 'Buffet Package Highlight',
+          desc: 'A complete spread of traditional Javanese dishes',
+          item:[
+            { image: '/images/foods/nasi-liwet.png', title: 'Nasi Liwet', desc: 'Aromatic coconut rice cooked in banana leaves with traditional spices' },
+            { image: '/images/foods/ayam-kremes.png', title: 'Ayam Goreng Kremes', desc: 'Crispy fried chicken with traditional peanut coating' },
+            { image: '/images/foods/sayur-asem.png', title: 'Sayur Asem', desc: 'Traditional tamarind soup with mixed vegetables' },
+            { image: '/images/foods/sambal.png', title: 'Sambal Bajak', desc: 'Spicy traditional chili paste with peanuts and spices' },
+            { image: '/images/foods/es-dawet.png', title: 'Es Dawet', desc: 'Refreshing coconut milk drink with rice flour jelly' },
+          ],
+        },
+        snack: {
+          title: 'Snack Box Delights',
+          desc: 'Traditional sweets and savory treats',
+          item:[
+            { image: '/images/foods/klepon.png', title: 'Klepon', desc: 'Green rice balls filled with palm sugar and rolled in coconut' },
+            { image: '/images/foods/kue-lumpur.png', title: 'Kue Lumpur', desc: 'Soft traditional cake with coconut milk and raisins' },
+            { image: '/images/foods/pastel.png', title: 'Pastel', desc: 'Crispy fried pastry with seasoned vegetable and meat filling' },
+            { image: '/images/foods/teh.png', title: 'Teh Hangat', desc: 'Warm traditional herbal tea with aromatic spices' },
+          ],
+        },
+        rice: {
+          title: 'Rice Box Complete Meal',
+          desc: 'Balanced individual portions of authentic dishes',
+          item: [
+            { image: '/images/foods/nasi-putih.png', title: 'Nasi Putih', desc: 'Perfectly steamed jasmine rice as the foundation' },
+            { image: '/images/foods/ayam-kalasan.png', title: 'Ayam Kalasan', desc: 'Traditional grilled chicken with sweet soy sauce marinade' },
+            { image: '/images/foods/tempe.png', title: 'Tempe Bacem', desc: 'Braised tempeh with palm sugar and traditional spices' },
+            { image: '/images/foods/urap.png', title: 'Urap', desc: 'Mixed vegetable salad with seasoned grated coconut' },
+            { image: '/images/foods/sambal-fresh.png', title: 'Sambal', desc: 'Fresh homemade chili paste with authentic spice blend' },
+          ]
+        }
+      },
+      gen: {
+        card: {
+          title: '3 Generations',
+          subtitle: 'Of culinary tradition',
+          desc: 'Every dish tells a story of our ancestors and their love for authentic flavors.'
+        },
+        label: 'Our Heritage',
+        title: [
+          'Three Generations of',
+          'Culinary Excellence'
+        ],
+        desc: 'Our recipes have been carefully preserved and passed down through three generations of the Tembi family. Each dish represents not just a meal, but a piece of Javanese cultural heritage that were proud to share with every guest.',
+        itemTitle: [
+          'Traditional Recipes',
+          'Farm-to-Table Philosophy',
+          'Handcrafted with Love'
+        ],
+        itemDesc: [
+          'Authentic recipes dating back to the early 1900s, carefully documented and preserved by our family matriarchs.',
+          'We source ingredients from local farmers and our own heritage garden, ensuring freshness and supporting the community.',
+          'Every dish is prepared by hand using traditional methods, ensuring authentic taste and cultural integrity.'
+        ]
+      },
+      celebrate: {
+        label: 'Perfect Occasions',
+        title: ['Celebrate Every', 'Moment'],
+        desc: 'From intimate gatherings to grand celebrations, our catering packages are designed to make every occasion memorable with authentic Javanese hospitality.',
+        card1: {
+          title: 'Corporate Events',
+          subtitle: 'Professional meetings with cultural flair',
+          features: [
+            'Business meetings & seminars',
+            'Corporate retreats',
+            'Team building events'
+          ]
+        },
+        card2: {
+          title: 'Cultural Celebrations',
+          subtitle: 'Weddings and traditional ceremonies',
+          features: [
+            'Traditional weddings',
+            'Cultural festivals',
+            'Religious ceremonies'
+          ]
+        },
+        card3: {
+          title: 'Family Gatherings',
+          subtitle: 'Intimate celebrations with loved ones',
+          features: [
+            'Birthday celebrations',
+            'Family reunions',
+            'Holiday gatherings'
+          ]
+        },
+        stat1: {
+          number: '100+',
+          label: 'Events Catered'
+        },
+        stat2: {
+          number: '1,000+',
+          label: 'Guests Served'
+        },
+        stat3: {
+          number: '98%',
+          label: 'Satisfaction Rate'
+        },
+        stat4: {
+          number: '15+',
+          label: 'Years Experience'
+        },
+      },
+      contact: {
+        title: 'Need Help or Have Questions?',
+        subtitle: 'Our team is here to help you plan the perfect catering experience for your special event.',
+        card1: {
+          title: 'Call Us',
+          subtitle: 'Speak directly with our catering specialists',
+          phone: '+62 274 368 000',
+          desc: 'Daily 8:00 AM - 8:00 PM'
+        },
+        card2: {
+          title: 'WhatsApp',
+          subtitle: 'Quick response for urgent inquiries',
+          phone: '+62 822 2514 2729',
+          desc: 'Chat Now'
+        },
+        card3: {
+          title: 'Email Us',
+          subtitle: 'Detailed inquiries and custom requests',
+          phone: 'catering@tembihistoricalhome.com',
+          desc: 'Response within 24 hours'
+        },
+        footer: {
+          title: 'Special Requests & Custom Packages',
+          desc: 'Planning a unique event or need a custom menu? Our culinary team can create bespoke catering solutions tailored to your specific requirements, dietary needs, and cultural preferences.',
+          button: 'Request Custom Quote'
+        }
       }
     }
   },
