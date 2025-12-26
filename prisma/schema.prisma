@@ -1,5 +1,4 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
+// prisma/schema.prisma
 
 generator client {
   provider = "prisma-client-js"
@@ -7,6 +6,7 @@ generator client {
 
 datasource db {
   provider = "postgresql"
+  url      = env("DATABASE_URL")
 }
 
 model Booking {
@@ -14,30 +14,35 @@ model Booking {
   
   // Room Information
   roomId             String
-  roomSlug           String   // ✅ TAMBAHAN: untuk identifikasi room
+  roomSlug           String
   roomName           String
-  roomPrice          Int      // ✅ CHANGED: Float -> Int (Rupiah tidak ada decimal)
+  roomPrice          Int
   
   // Price Breakdown
-  basePrice          Int      // ✅ TAMBAHAN: harga dasar (roomPrice * duration)
-  serviceFee         Int      // ✅ TAMBAHAN: biaya layanan (5%)
-  tourismTax         Int      // ✅ TAMBAHAN: pajak pariwisata
-  totalPrice         Int      // ✅ CHANGED: Float -> Int
+  basePrice          Int      // Harga dasar (termasuk addons)
+  serviceFee         Int
+  tourismTax         Int
+  totalPrice         Int
   
   // Booking Dates
   checkInDate        DateTime
   checkOutDate       DateTime
-  duration           Int      // ✅ TAMBAHAN: jumlah malam
+  duration           Int
   
   // Guest Information
   adults             Int
   children           Int
+  
+  // ✅ TAMBAHAN: Kolom untuk menyimpan data addons
+  breakfast          Int      @default(0)
+  extraBed           Int      @default(0)
+
   customerName       String
   customerEmail      String
   customerPhone      String
-  customerAddress    String?  // ✅ TAMBAHAN: alamat (optional)
-  customerCity       String?  // ✅ TAMBAHAN: kota (optional)
-  customerPostalCode String?  // ✅ TAMBAHAN: kode pos (optional)
+  customerAddress    String?
+  customerCity       String?
+  customerPostalCode String?
   
   // Booking Details
   specialRequest     String?
@@ -46,13 +51,13 @@ model Booking {
   // Payment Information
   paymentMethod      String?
   xenditInvoiceId    String?
-  xenditInvoiceUrl   String?  // ✅ TAMBAHAN: URL invoice Xendit
+  xenditInvoiceUrl   String?
   
   // Timestamps
   createdAt          DateTime @default(now())
   updatedAt          DateTime @updatedAt
 
-  // Indexes untuk query performance
+  // Indexes
   @@index([customerEmail])
   @@index([status])
   @@index([checkInDate])

@@ -20,6 +20,8 @@ CREATE TABLE "Booking" (
     "customerAddress" TEXT,
     "customerCity" TEXT,
     "customerPostalCode" TEXT,
+    "breakfast" INTEGER NOT NULL DEFAULT 0,
+    "extraBed" INTEGER NOT NULL DEFAULT 0,
     "specialRequest" TEXT,
     "status" TEXT NOT NULL DEFAULT 'PENDING',
     "paymentMethod" TEXT,

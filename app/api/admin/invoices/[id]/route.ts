@@ -7,11 +7,14 @@ const prisma = new PrismaClient();
 // GET: Ambil detail satu invoice berdasarkan ID
 export async function GET(
   request: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> } // ✅ Ubah tipe menjadi Promise
 ) {
   try {
+    // ✅ Await params sebelum mengakses propertinya
+    const { id } = await params;
+
     const booking = await prisma.booking.findUnique({
-      where: { id: params.id },
+      where: { id: id },
     });
 
     if (!booking) {
@@ -27,16 +30,19 @@ export async function GET(
 // PATCH: Update data invoice (misal: koreksi nama, ubah status manual)
 export async function PATCH(
   request: Request,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> } // ✅ Ubah tipe menjadi Promise
 ) {
   try {
+    // ✅ Await params sebelum mengakses propertinya
+    const { id } = await params;
+    
     const body = await request.json();
     
     // Filter field apa saja yang boleh diedit demi keamanan
     const { customerName, customerEmail, customerPhone, status, specialRequest } = body;
 
     const updatedBooking = await prisma.booking.update({
-      where: { id: params.id },
+      where: { id: id },
       data: {
         customerName,
         customerEmail,

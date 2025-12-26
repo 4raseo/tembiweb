@@ -8,9 +8,6 @@ import {
   Check, 
   CheckCircle, 
   XCircle, 
-  CreditCard, 
-  Landmark, 
-  Wallet, 
   Lock,
   Loader2 
 } from 'lucide-react';
@@ -19,6 +16,7 @@ const ADDONS_PRICE = {
   breakfast: 50000,
   extrabed: 150000
 };
+
 // Fungsi format mata uang
 const formatCurrency = (amount: number) => {
   return new Intl.NumberFormat('id-ID', {
@@ -28,7 +26,7 @@ const formatCurrency = (amount: number) => {
   }).format(amount);
 };
 
-// --- KOMPONEN STEPPER (Style dari Page2) ---
+// --- KOMPONEN STEPPER ---
 const PaymentStepper = () => (
   <div className="flex items-center justify-center w-full max-w-xl mx-auto mt-8 mb-4 text-sm relative z-10">
     <div className="flex items-center gap-2 text-[#8B8055] font-semibold">
@@ -54,15 +52,13 @@ export default function PaymentPage() {
   const searchParams = useSearchParams();
   const router = useRouter();
   
-  // --- STATE & LOGIC (DARI PAGE.TSX ASLI - DIPERTAHANKAN) ---
-  
   const [billingInfo, setBillingInfo] = useState({
-    name: 'John Doe (Test)',
-    email: 'test@example.com',
-    phone: '+6281234567890',
-    address: '123 Test Street',
-    city: 'Jakarta',
-    postalCode: '12345',
+    name: '',
+    email: '',
+    phone: '',
+    address: '',
+    city: '',
+    postalCode: '',
   });
 
   const [isProcessing, setIsProcessing] = useState(false);
@@ -75,6 +71,7 @@ export default function PaymentPage() {
     const adults = Number(searchParams.get('adults') || 1);
     const children = Number(searchParams.get('children') || 0);
 
+    // ✅ Mengambil data addons dari URL
     const addonsParam = searchParams.get('addons');
     let addons = { breakfast: 0, extrabed: 0 };
 
@@ -93,12 +90,14 @@ export default function PaymentPage() {
     }
 
     const nights = differenceInCalendarDays(parseISO(checkOut), parseISO(checkIn));
+    
+    // ✅ Perhitungan Biaya
     const basePrice = room.price * nights;
     const breakfastCost = (addons.breakfast * ADDONS_PRICE.breakfast) * nights;
     const extrabedCost = (addons.extrabed * ADDONS_PRICE.extrabed) * nights;
     const totalAddonsCost = breakfastCost + extrabedCost;
 
-    const serviceFee = Math.round(basePrice * 0.05); // Service fee dari harga kamar
+    const serviceFee = Math.round((basePrice + totalAddonsCost) * 0.05); // Service fee dari total kamar + addons
     const tourismTax = 30000 * nights;
     
     // Total Akhir
@@ -134,18 +133,6 @@ export default function PaymentPage() {
       return;
     }
 
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(billingInfo.email)) {
-      setError('Please enter a valid email address');
-      return;
-    }
-
-    const phoneRegex = /^(\+62|62|0)[0-9]{9,12}$/;
-    if (!phoneRegex.test(billingInfo.phone.replace(/\s/g, ''))) {
-      setError('Please enter a valid Indonesian phone number');
-      return;
-    }
-
     if (!bookingData) {
       setError('Invalid booking data');
       return;
@@ -155,7 +142,6 @@ export default function PaymentPage() {
     setError(null);
 
     try {
-      // Simulasi API Call (Sesuaikan dengan endpoint asli Anda)
       const response = await fetch('/api/payment', {
         method: 'POST',
         headers: {
@@ -167,7 +153,7 @@ export default function PaymentPage() {
           checkOut: bookingData.checkOut,
           adults: bookingData.adults,
           children: bookingData.children,
-          addons: bookingData.addons,
+          addons: bookingData.addons, // ✅ Kirim data addons ke backend
           totalAmount: bookingData.total,
           booker: billingInfo,
         }),
@@ -208,38 +194,29 @@ export default function PaymentPage() {
 
   const { room, checkIn, checkOut, adults, children, nights, addons, addonCosts, basePrice, serviceFee, tourismTax, total } = bookingData;
 
-  // --- STYLE CONSTANTS (DARI PAGE2.TSX) ---
   const cardStyle = "bg-white p-6 rounded-xl shadow-sm border border-gray-100 relative z-10";
   const inputStyle = "w-full px-4 py-3 rounded-lg border border-gray-200 focus:outline-none focus:border-[#8B8055] focus:ring-1 focus:ring-[#8B8055] transition-all text-sm";
 
   return (
     <main className="min-h-screen bg-[#EFF1F0] font-sans text-gray-800 pb-20 relative overflow-hidden">
       
-      {/* === BACKGROUND BELAH KETUPAT (RHOMBUS) === */}
+      {/* Background Decor */}
       <div className="absolute top-0 left-0 w-full h-full pointer-events-none z-0 overflow-hidden">
         <div 
           className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-[1400px] h-[1400px] bg-[#FAFAF9] shadow-2xl opacity-100"
-          style={{ 
-            clipPath: "polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)" 
-          }}
+          style={{ clipPath: "polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)" }}
         ></div>
       </div>
 
-      {/* === HERO SECTION === */}
       <div className="relative pt-16 pb-12 z-10">
         <div className="container mx-auto px-4 text-center">
           <h1 className="text-4xl md:text-5xl font-serif font-bold text-[#1A202C] mb-3">
             Complete Your Payment
           </h1>
-          <p className="text-gray-500 text-sm md:text-base max-w-2xl mx-auto font-light">
-            Secure your stay with us at Tembi Cultural House and experience <br className="hidden md:block" />
-            authentic Javanese hospitality
-          </p>
           <PaymentStepper />
         </div>
       </div>
 
-      {/* === ERROR MESSAGE DISPLAY === */}
       {error && (
         <div className="container mx-auto px-4 relative z-20 mb-6 max-w-6xl">
           <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded relative">
@@ -249,31 +226,18 @@ export default function PaymentPage() {
         </div>
       )}
 
-      {/* === MAIN CONTENT === */}
       <div className="container mx-auto px-4 py-2 max-w-6xl relative z-10">
-        
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             
-            {/* === Kolom Kiri === */}
+            {/* Kolom Kiri - Summary */}
             <div className="lg:col-span-1 flex flex-col gap-6">
-              
-              {/* Card 1: Booking Summary */}
               <div className={`${cardStyle} p-0 overflow-hidden`}>
                 <div className="relative h-48 w-full">
-                    {/* Menggunakan backgroundImage agar sama persis dengan page2.tsx */}
-                    <div 
-                        className="absolute inset-0 bg-cover bg-center"
-                        style={{ backgroundImage: `url(${room.imageUrl})` }}
-                    />
+                    <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url(${room.imageUrl})` }} />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
                     <div className="absolute bottom-4 left-4 text-white">
                         <h3 className="text-xl font-bold font-serif">{room.name}</h3>
                         <p className="text-xs opacity-90">{room.tagline}</p>
-                    </div>
-                    <div className="absolute top-4 right-4">
-                        <span className="bg-green-100/90 backdrop-blur-sm text-green-800 text-xs font-bold px-3 py-1 rounded-full shadow-sm">
-                            Confirmed
-                        </span>
                     </div>
                 </div>
 
@@ -293,16 +257,16 @@ export default function PaymentPage() {
                             <span>Duration</span><span className="font-bold text-gray-800">{nights} Nights</span>
                         </div>
                     </div>
+                    
                     <div className="bg-gray-50 p-4 rounded-lg">
                         <h4 className="font-bold text-gray-900 mb-3 text-sm">Price Details</h4>
                         <div className="space-y-2 text-sm text-gray-600">
-                            {/* Harga Kamar */}
                             <div className="flex justify-between">
-                                <span>{formatCurrency(room.price)} x {nights} nights</span>
+                                <span>Room Price x {nights} nights</span>
                                 <span>{formatCurrency(basePrice)}</span>
                             </div>
 
-                            {/* Rincian Add-ons (Hanya muncul jika dipilih) */}
+                            {/* ✅ Detail Addons */}
                             {addons.extrabed > 0 && (
                                 <div className="flex justify-between text-gray-700">
                                     <span className="flex items-center gap-1">
@@ -322,8 +286,6 @@ export default function PaymentPage() {
                             )}
 
                             <div className="border-t border-gray-200 my-2"></div>
-
-                            {/* Pajak & Layanan */}
                             <div className="flex justify-between"><span>Service fee (5%)</span><span>{formatCurrency(serviceFee)}</span></div>
                             <div className="flex justify-between"><span>Tourism tax</span><span>{formatCurrency(tourismTax)}</span></div>
                         </div>
@@ -331,7 +293,6 @@ export default function PaymentPage() {
                 </div>
               </div>
               
-              {/* Card 2: Cancellation Policy */}
               <div className={cardStyle}>
                   <h4 className="font-bold mb-4 text-lg font-serif">Cancellation Policy</h4>
                   <ul className="space-y-3 text-sm text-gray-600">
@@ -342,98 +303,40 @@ export default function PaymentPage() {
               </div>
             </div>
 
-            {/* === Kolom Kanan === */}
+            {/* Kolom Kanan - Form */}
             <div className="lg:col-span-2 flex flex-col gap-6">
-              
-              {/* Card 3: Billing Information (Layout Page2, Fungsi Page1) */}
               <div className={cardStyle}>
                 <h2 className="text-xl font-serif font-bold text-gray-900 mb-6">Billing Information</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                  
-                  {/* Full Name */}
                   <div className="col-span-2 md:col-span-1">
                     <label className="block text-xs font-bold text-gray-600 mb-1.5 ml-1">Full Name *</label>
-                    <input 
-                        type="text" 
-                        name="name"
-                        value={billingInfo.name}
-                        onChange={handleInputChange}
-                        placeholder="John Doe"
-                        className={inputStyle}
-                    />
+                    <input type="text" name="name" value={billingInfo.name} onChange={handleInputChange} placeholder="John Doe" className={inputStyle} />
                   </div>
-
-                  {/* Email Address */}
                   <div className="col-span-2 md:col-span-1">
                     <label className="block text-xs font-bold text-gray-600 mb-1.5 ml-1">Email Address *</label>
-                    <input 
-                        type="email" 
-                        name="email"
-                        value={billingInfo.email}
-                        onChange={handleInputChange}
-                        placeholder="email@example.com"
-                        className={inputStyle}
-                    />
+                    <input type="email" name="email" value={billingInfo.email} onChange={handleInputChange} placeholder="email@example.com" className={inputStyle} />
                   </div>
-
-                  {/* Phone Number */}
                   <div className="col-span-2 md:col-span-1">
                     <label className="block text-xs font-bold text-gray-600 mb-1.5 ml-1">Phone Number *</label>
-                    <input 
-                        type="tel" 
-                        name="phone"
-                        value={billingInfo.phone}
-                        onChange={handleInputChange}
-                        placeholder="+62..."
-                        className={inputStyle}
-                    />
+                    <input type="tel" name="phone" value={billingInfo.phone} onChange={handleInputChange} placeholder="+62..." className={inputStyle} />
                   </div>
-
-                  {/* City */}
                   <div className="col-span-2 md:col-span-1">
                     <label className="block text-xs font-bold text-gray-600 mb-1.5 ml-1">City</label>
-                    <input 
-                        type="text" 
-                        name="city"
-                        value={billingInfo.city}
-                        onChange={handleInputChange}
-                        placeholder="Jakarta"
-                        className={inputStyle}
-                    />
+                    <input type="text" name="city" value={billingInfo.city} onChange={handleInputChange} placeholder="Jakarta" className={inputStyle} />
                   </div>
-
-                  {/* Address */}
                   <div className="col-span-2">
                     <label className="block text-xs font-bold text-gray-600 mb-1.5 ml-1">Address</label>
-                    <input 
-                        type="text" 
-                        name="address"
-                        value={billingInfo.address}
-                        onChange={handleInputChange}
-                        placeholder="Street Address"
-                        className={inputStyle}
-                    />
+                    <input type="text" name="address" value={billingInfo.address} onChange={handleInputChange} placeholder="Street Address" className={inputStyle} />
                   </div>
-
-                   {/* Postal Code */}
                    <div className="col-span-2 md:col-span-1">
                     <label className="block text-xs font-bold text-gray-600 mb-1.5 ml-1">Postal Code</label>
-                    <input 
-                        type="text" 
-                        name="postalCode"
-                        value={billingInfo.postalCode}
-                        onChange={handleInputChange}
-                        placeholder="12345"
-                        className={inputStyle}
-                    />
+                    <input type="text" name="postalCode" value={billingInfo.postalCode} onChange={handleInputChange} placeholder="12345" className={inputStyle} />
                   </div>
-
                 </div>
               </div>
             </div>
         </div>
 
-        {/* Card Total & Button */}
         <div className={`mt-8 ${cardStyle} border-t-4 border-t-[#8B8055]`}>
             <div className="flex flex-col md:flex-row justify-between items-center gap-6">
                 <div className="text-center md:text-left">
@@ -449,14 +352,7 @@ export default function PaymentPage() {
                         disabled={isProcessing}
                         className={`w-full md:w-72 bg-[#8B8055] hover:bg-[#766c44] text-white font-bold text-lg py-3.5 rounded-xl shadow-lg shadow-[#8B8055]/30 transition-all transform active:scale-[0.98] flex items-center justify-center gap-2 ${isProcessing ? 'opacity-70 cursor-not-allowed' : ''}`}
                     >
-                        {isProcessing ? (
-                          <>
-                            <Loader2 className="animate-spin" size={20} />
-                            Processing...
-                          </>
-                        ) : (
-                          'Confirm & Pay'
-                        )}
+                        {isProcessing ? (<><Loader2 className="animate-spin" size={20} /> Processing...</>) : ('Confirm & Pay')}
                     </button>
                     <div className="flex items-center gap-1.5 text-[10px] text-gray-400">
                         <Lock size={10} />
