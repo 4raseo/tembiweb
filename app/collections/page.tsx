@@ -1,6 +1,7 @@
 import React from 'react';
 import Image from 'next/image';
 import CollectionCard, { CollectionItem } from '@/components/CollectionCard';
+import ScrollReveal from '@/components/ScrollReveal';
 
 interface StatItem {
   id: number;
@@ -453,32 +454,34 @@ export default function CollectionsPage() {
           <div className="flex flex-wrap justify-center gap-16 lg:gap-48">
             
             {statsData.map((stat) => (
-              <div key={stat.id} className="flex flex-col items-center text-center group">
-                
-                {/* Icon Circle Background */}
-                <div className="mb-6 w-20 h-20 rounded-full bg-[#F4F5F0] flex items-center justify-center transition-transform duration-300 group-hover:scale-110">
-                  <div className="relative w-8 h-8">
-                    <Image 
-                      src={stat.iconUrl}
-                      alt={stat.alt}
-                      width={32}
-                      height={32}
-                      className="object-contain w-full h-full opacity-60"
-                    />
+              <ScrollReveal key={stat.id} animation="fadeUp" delay={stat.id * 150} duration={800}>
+                <div className="flex flex-col items-center text-center group">
+                  
+                  {/* Icon Circle Background */}
+                  <div className="mb-6 w-20 h-20 rounded-full bg-[#F4F5F0] flex items-center justify-center transition-transform duration-300 group-hover:scale-110">
+                    <div className="relative w-8 h-8">
+                      <Image 
+                        src={stat.iconUrl}
+                        alt={stat.alt}
+                        width={32}
+                        height={32}
+                        className="object-contain w-full h-full opacity-60"
+                      />
+                    </div>
                   </div>
+
+                  {/* Value (Angka) */}
+                  <h3 className="font-serif text-4xl sm:text-5xl font-bold text-[#433422] mb-2">
+                    {stat.value}
+                  </h3>
+
+                  {/* Label (Keterangan) */}
+                  <p className="font-sans text-sm sm:text-base text-gray-500 tracking-wide font-medium">
+                    {stat.label}
+                  </p>
+                  
                 </div>
-
-                {/* Value (Angka) */}
-                <h3 className="font-serif text-4xl sm:text-5xl font-bold text-[#433422] mb-2">
-                  {stat.value}
-                </h3>
-
-                {/* Label (Keterangan) */}
-                <p className="font-sans text-sm sm:text-base text-gray-500 tracking-wide font-medium">
-                  {stat.label}
-                </p>
-                
-              </div>
+              </ScrollReveal>
             ))}
 
           </div>
@@ -493,16 +496,20 @@ export default function CollectionsPage() {
             <div key={index} className="mb-20 last:mb-0">
               
               {/* Category Title */}
-              <div className="text-center mb-12">
-                <h2 className="font-serif text-3xl sm:text-4xl font-bold text-[#433422] mb-4">
-                  {category.title}
-                </h2>
-              </div>
+              <ScrollReveal animation="fadeUp" duration={800}>
+                <div className="text-center mb-12">
+                  <h2 className="font-serif text-3xl sm:text-4xl font-bold text-[#433422] mb-4">
+                    {category.title}
+                  </h2>
+                </div>
+              </ScrollReveal>
 
               {/* Grid Cards */}
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                {category.items.map((item) => (
-                  <CollectionCard key={item.id} item={item} />
+                {category.items.map((item, itemIdx) => (
+                  <ScrollReveal key={item.id} animation="fadeUp" delay={itemIdx * 100} duration={700}>
+                    <CollectionCard item={item} />
+                  </ScrollReveal>
                 ))}
               </div>
 

@@ -3,6 +3,7 @@ import React from 'react';
 import Image from 'next/image';
 import SpacesSection from '@/components/SpacesSection';
 import { useLanguage } from '@/app/context/LanguageContext';
+import ScrollReveal from '@/components/ScrollReveal';
 
 export default function SejarahPage() {
   const { t } = useLanguage();
@@ -61,27 +62,29 @@ export default function SejarahPage() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           
           {/* --- KOLOM KIRI: TEKS --- */}
-          <div className="order-2 lg:order-1">
-            {/* Tagline */}
-            <span className="block text-sm font-bold tracking-widest text-[#9CA389] uppercase mb-4">
-              {t.history.intro.head}
-            </span>
-            
-            {/* Heading */}
-            <h2 className="text-4xl md:text-5xl font-serif font-bold text-[#4A3B2A] mb-8 leading-tight">
-              {t.history.intro.title[0]} <br />
-              {t.history.intro.title[1]} <br />
-              {t.history.intro.title[2]}
-            </h2>
+          <ScrollReveal animation="slideLeft" duration={800}>
+            <div className="order-2 lg:order-1">
+              {/* Tagline */}
+              <span className="block text-sm font-bold tracking-widest text-[#9CA389] uppercase mb-4">
+                {t.history.intro.head}
+              </span>
+              
+              {/* Heading */}
+              <h2 className="text-4xl md:text-5xl font-serif font-bold text-[#4A3B2A] mb-8 leading-tight">
+                {t.history.intro.title[0]} <br />
+                {t.history.intro.title[1]} <br />
+                {t.history.intro.title[2]}
+              </h2>
 
-            {/* Paragraphs */}
-            <div className="text-gray-600 space-y-6 text-lg leading-relaxed font-light mb-10 text-justify">
+              {/* Paragraphs */}
+              <div className="text-gray-600 space-y-6 text-lg leading-relaxed font-light mb-10 text-justify">
               <p>
                 {t.history.intro.subtitle[0]}
               </p>
               <p>
                 {t.history.intro.subtitle[1]}
               </p>
+              </div>
             </div>
 
             {/* Stats Section */}
@@ -102,7 +105,7 @@ export default function SejarahPage() {
                 <p className="text-xs md:text-sm text-gray-500 mt-1">{t.history.intro.item[2]}</p>
               </div>
             </div>
-          </div>
+          </ScrollReveal>
 
           {/* --- KOLOM KANAN: GAMBAR & DEKORASI --- */}
           <div className="relative order-1 lg:order-2">

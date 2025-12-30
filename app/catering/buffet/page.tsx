@@ -1,7 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
-import { Check } from 'lucide-react'; // Pastikan install lucide-react: npm i lucide-react
+import MenuCard from '@/components/MenuCard';
 import BuffetPricing, { PackageItem } from '@/components/BuffetPricing';
 import BuffetFeatures from '@/components/BuffetFeatures';
 import BuffetBooking from '@/components/BuffetBooking';
@@ -136,10 +135,16 @@ export default function BuffetPage() {
         </div>
 
         {/* Scroll Indicator */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce z-20">
-          <div className="relative h-8 w-8 opacity-80">
-            <Image src="/images/icons/arrow-down-white.svg" alt="Scroll Down" fill className="object-contain brightness-0 invert" />
-          </div>
+        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20">
+          <a href="#our-story" className="animate-bounce cursor-pointer p-2 block">
+             <Image
+                src="/images/icons/down.png" // Sesuaikan path icon lokal
+                alt="Scroll Down"
+                width={16}
+                height={16}
+                className="brightness-0 invert drop-shadow-md"
+             />
+          </a>
         </div>
       </section>
       {/* ==================================================================
@@ -231,106 +236,130 @@ export default function BuffetPage() {
             </p>
           </div>
 
-          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
-            {/* Card 1: Soup */}
-            <MenuCard 
-              icon="/images/icons/circle-white.svg" 
-              title="Soup" 
-              subtitle="Pilih Kuah & Sayur"
-              items={[
-                'Sup Sayur Bening', 'Sup Bakso Sosis', 'Sup Rolade',
-                'Sup Ayam Jagung', 'Sup Timlo', 'Jangan Lodeh',
-                'Jangan Asem', 'Jangan Bobor Gandol', 'Oblok Godhong Telo',
-                'Gulai Nangka Muda'
-              ]}
-            />
+          <div className="flex flex-wrap justify-center gap-8">
+            <div className="w-full md:w-[calc(50%-1rem)] lg:w-[calc(25%-1.5rem)] flex flex-col">
+              {/* Card 1: Soup */}
+              <MenuCard 
+                className="h-full"
+                icon="/images/icons/circle-white.svg" 
+                title="Soup" 
+                subtitle="Pilih Kuah & Sayur"
+                items={[
+                  'Sup Sayur Bening', 'Sup Bakso Sosis', 'Sup Rolade',
+                  'Sup Ayam Jagung', 'Sup Timlo', 'Jangan Lodeh',
+                  'Jangan Asem', 'Jangan Bobor Gandol', 'Oblok Godhong Telo',
+                  'Gulai Nangka Muda'
+                ]}
+              />
+            </div>
+            
+            <div className="w-full md:w-[calc(50%-1rem)] lg:w-[calc(25%-1.5rem)] flex flex-col">
+              {/* Card 2: Main Course */}
+              <MenuCard 
+                className="h-full"
+                icon="/images/icons/chicken-white.svg" 
+                title="Main Course" 
+                subtitle="Tumis & Lauk"
+                items={[
+                  'Tumis Tempe Kacang Panjang', 'Tumis Tahu Tomat Ijo', 
+                  'Oseng Tempe Lombok Ijo', 'Oseng Janggel Sosis', 
+                  'Oseng Terong Balado', 'Oseng Labu Siam', "Ca' Buncis Tahu", 
+                  "Ca' Kembang Kol Bakso", "Ca' Brokoli Jamur Kuping", 'Sapo Tahu'
+                ]}
+              />
+            </div>
 
-            {/* Card 2: Main Course */}
-            <MenuCard 
-              icon="/images/icons/chicken-white.svg" 
-              title="Main Course" 
-              subtitle="Tumis & Lauk"
-              items={[
-                'Tumis Tempe Kacang Panjang', 'Tumis Tahu Tomat Ijo', 
-                'Oseng Tempe Lombok Ijo', 'Oseng Janggel Sosis', 
-                'Oseng Terong Balado', 'Oseng Labu Siam', "Ca' Buncis Tahu", 
-                "Ca' Kembang Kol Bakso", "Ca' Brokoli Jamur Kuping", 'Sapo Tahu'
-              ]}
-            />
+            <div className="w-full md:w-[calc(50%-1rem)] lg:w-[calc(25%-1.5rem)] flex flex-col">
+              {/* Card 3: Desserts */}
+              <MenuCard 
+                className="h-full"
+                icon="/images/icons/ice-cream-white.svg" 
+                title="Desserts" 
+                subtitle="Traditional Sweets"
+                items={[
+                  'Es Dawet Tradisional', 'Klepon Gula Jawa', 
+                  'Onde-onde Wijen', 'Lupis Ketan'
+                ]}
+              />
+            </div>
 
-            {/* Card 3: Desserts */}
-            <MenuCard 
-              icon="/images/icons/ice-cream-white.svg" 
-              title="Desserts" 
-              subtitle="Traditional Sweets"
-              items={[
-                'Es Dawet Tradisional', 'Klepon Gula Jawa', 
-                'Onde-onde Wijen', 'Lupis Ketan'
-              ]}
-            />
+            <div className="w-full md:w-[calc(50%-1rem)] lg:w-[calc(25%-1.5rem)] flex flex-col">
+              {/* Card 4: Beverages */}
+              <MenuCard 
+                className="h-full"
+                icon="/images/icons/drink-white.svg" 
+                title="Beverages" 
+                subtitle="Refreshing Drinks"
+                items={[
+                  'Es Degan', 'Es Teh Manis', 'Es Jeruk', 'Es Setup',
+                  'Es Dawet', 'Es Serut Melon', 'Es Buah', 'Es Cincau',
+                  'Es Cocktail', 'Es Infuse Water'
+                ]}
+              />
+            </div>
 
-            {/* Card 4: Beverages */}
-            <MenuCard 
-              icon="/images/icons/drink-white.svg" 
-              title="Beverages" 
-              subtitle="Refreshing Drinks"
-              items={[
-                'Es Degan', 'Es Teh Manis', 'Es Jeruk', 'Es Setup',
-                'Es Dawet', 'Es Serut Melon', 'Es Buah', 'Es Cincau',
-                'Es Cocktail', 'Es Infuse Water'
-              ]}
-            />
+            <div className="w-full md:w-[calc(50%-1rem)] lg:w-[calc(25%-1.5rem)] flex flex-col">
+              {/* Card 5: Chicken */}
+              <MenuCard 
+                className="h-full"
+                icon="/images/icons/circle-white.svg" 
+                title="Chicken" 
+                subtitle="Pilihan Ayam"
+                items={[
+                  'Ayam Goreng Kalasan', 'Ayam Goreng Kremes', 'Ayam Lada Hitam',
+                  'Ayam Daun Temuru', 'Ayam Fillet Goreng', 'Ayam Saus Mentega',
+                  'Ayam Semur', "Ayam Ca' Jamur", 'Ayam Cabe Ijo', 'Chicken Katsu'
+                ]}
+              />
+            </div>
 
-            {/* Card 5: Chicken */}
-            <MenuCard 
-              icon="/images/icons/circle-white.svg" 
-              title="Chicken" 
-              subtitle="Pilihan Ayam"
-              items={[
-                'Ayam Goreng Kalasan', 'Ayam Goreng Kremes', 'Ayam Lada Hitam',
-                'Ayam Daun Temuru', 'Ayam Fillet Goreng', 'Ayam Saus Mentega',
-                'Ayam Semur', "Ayam Ca' Jamur", 'Ayam Cabe Ijo', 'Chicken Katsu'
-              ]}
-            />
+            <div className="w-full md:w-[calc(50%-1rem)] lg:w-[calc(25%-1.5rem)] flex flex-col">
+              {/* Card 6: Egg */}
+              <MenuCard 
+                className="h-full"
+                icon="/images/icons/chicken-white.svg" 
+                title="Egg" 
+                subtitle="Pilihan Telur"
+                items={[
+                  'Telur Semur', 'Telur Balado', 'Telur Dadar Padang',
+                  'Telur Asin', 'Telur Rebus', 'Telur Crispy',
+                  'Telur Ceplok Bumbu Bali', 'Telur Goreng Cabe Ijo',
+                  'Gulai Telur', 'Fuyung Hai'
+                ]}
+              />
+            </div>
 
-            {/* Card 6: Egg */}
-            <MenuCard 
-              icon="/images/icons/chicken-white.svg" 
-              title="Egg" 
-              subtitle="Pilihan Telur"
-              items={[
-                'Telur Semur', 'Telur Balado', 'Telur Dadar Padang',
-                'Telur Asin', 'Telur Rebus', 'Telur Crispy',
-                'Telur Ceplok Bumbu Bali', 'Telur Goreng Cabe Ijo',
-                'Gulai Telur', 'Fuyung Hai'
-              ]}
-            />
+            <div className="w-full md:w-[calc(50%-1rem)] lg:w-[calc(25%-1.5rem)] flex flex-col">
+              {/* Card 7: Fish */}
+              <MenuCard 
+                className="h-full"
+                icon="/images/icons/circle-white.svg" 
+                title="Fish" 
+                subtitle="Pilihan Ikan"
+                items={[
+                  'Lele Goreng Kremes', 'Mangut Lele', 'Nila Sambal Matah',
+                  'Nila Goreng/Bakar', 'Kembung Cabe Ijo', 'Kembung Balado',
+                  'Ikan Fillet Asam Manis', 'Ikan Fillet Sambal Matah',
+                  'Ikan Fillet Dabu-Dabu', 'Ikan Katsu'
+                ]}
+              />
+            </div>
 
-            {/* Card 7: Fish */}
-            <MenuCard 
-              icon="/images/icons/circle-white.svg" 
-              title="Fish" 
-              subtitle="Pilihan Ikan"
-              items={[
-                'Lele Goreng Kremes', 'Mangut Lele', 'Nila Sambal Matah',
-                'Nila Goreng/Bakar', 'Kembung Cabe Ijo', 'Kembung Balado',
-                'Ikan Fillet Asam Manis', 'Ikan Fillet Sambal Matah',
-                'Ikan Fillet Dabu-Dabu', 'Ikan Katsu'
-              ]}
-            />
-
-            {/* Card 8: Side Dish */}
-            <MenuCard 
-              icon="/images/icons/chicken-white.svg" 
-              title="Side Dish" 
-              subtitle="Pilihan Menu Pendamping"
-              items={[
-                'Mendoan', 'Tahu/Tempe Goreng', 'Tahu/Tempe Bacem',
-                'Perkedel Tahu', 'Tahu Susu', 'Tahu Crispy',
-                'Bakwan Sayur', 'Bakwan Jagung', 'Perkedel Kentang',
-                'Jamur Crispy'
-              ]}
-            />
+            <div className="w-full md:w-[calc(50%-1rem)] lg:w-[calc(25%-1.5rem)] flex flex-col">
+              {/* Card 8: Side Dish */}
+              <MenuCard 
+                className="h-full"
+                icon="/images/icons/chicken-white.svg" 
+                title="Side Dish" 
+                subtitle="Pilihan Menu Pendamping"
+                items={[
+                  'Mendoan', 'Tahu/Tempe Goreng', 'Tahu/Tempe Bacem',
+                  'Perkedel Tahu', 'Tahu Susu', 'Tahu Crispy',
+                  'Bakwan Sayur', 'Bakwan Jagung', 'Perkedel Kentang',
+                  'Jamur Crispy'
+                ]}
+              />
+            </div>
           </div>
         </div>
       </section>
@@ -343,43 +372,3 @@ export default function BuffetPage() {
     </main>
   );
 }
-
-// ==================================================================
-// HELPER COMPONENT (Untuk Menu Card agar kode lebih rapi)
-// ==================================================================
-type MenuCardProps = {
-  icon: string;
-  title: string;
-  subtitle: string;
-  items: string[];
-};
-
-const MenuCard = ({ icon, title, subtitle, items }: MenuCardProps) => {
-  return (
-    <div className="group rounded-2xl bg-white p-8 shadow-sm transition-all hover:-translate-y-1 hover:shadow-xl">
-      <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-[#96A66D]">
-        <div className="relative h-8 w-8">
-           <Image 
-              src={icon} 
-              alt={title} 
-              fill 
-              sizes="32px"
-              className="object-contain brightness-0 invert" 
-           />
-        </div>
-      </div>
-      <div className="mb-6 text-center">
-        <h3 className="mb-1 font-serif text-2xl font-bold text-[#4A3B32]">{title}</h3>
-        <p className="text-sm text-gray-400">{subtitle}</p>
-      </div>
-      <ul className="space-y-3">
-        {items.map((item, index) => (
-          <li key={index} className="flex items-start gap-3 text-gray-600">
-            <Check className="mt-0.5 h-4 w-4 shrink-0 text-[#96A66D]" strokeWidth={3} />
-            <span className="text-sm font-medium">{item}</span>
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
-};

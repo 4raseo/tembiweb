@@ -1,7 +1,3 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 /* Scroll Reveal Animations */
 @keyframes fadeUp {
   from {
@@ -70,23 +66,4 @@
 /* Smooth easing function */
 .scroll-reveal {
   will-change: opacity, transform;
-}
-
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  /* This ensures Lato is the default font everywhere */
-  font-family: var(--font-lato), sans-serif;
 }

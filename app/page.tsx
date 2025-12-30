@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useLanguage } from '@/app/context/LanguageContext';
 import HouseCard from "@/components/HouseCard";
+import ScrollReveal from "@/components/ScrollReveal";
 
 // Data dummy
 const houses = [
@@ -196,38 +197,42 @@ export default function HomePage() {
         {/* Content Section */}
         <section className="py-20 px-10 bg-stone-50">
           <div className="container mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
-            <div className="text-center md:text-left">
-              <h3 className="text-6xl font-serif font-thin mb-10 drop-shadow-2xl">{t.homepage.intro.title}</h3>
-              <p className="text-gray-600 mb-6">
-                {t.homepage.intro.p1}
-              </p>
-              <p className="text-gray-600 mb-10">
-                {t.homepage.intro.p2}
-              </p>
-              <div className="grid grid-cols-3 gap-4">
-                <div>
-                  <h4 className="text-3xl font-bold text-tembi">2000</h4>
-                  <p className="text-gray-500 text-sm mt-1">{t.homepage.intro.stats.founded}</p>
-                </div>
-                <div>
-                  <h4 className="text-3xl font-bold text-tembi">500+</h4>
-                  <p className="text-gray-500 text-sm mt-1">{t.homepage.intro.stats.artifacts}</p>
-                </div>
-                <div>
-                  <h4 className="text-3xl font-bold text-tembi">9</h4>
-                  <p className="text-gray-500 text-sm mt-1">{t.homepage.intro.stats.house}</p>
+            <ScrollReveal animation="slideLeft" duration={800}>
+              <div className="text-center md:text-left">
+                <h3 className="text-6xl font-serif font-thin mb-10 drop-shadow-2xl">{t.homepage.intro.title}</h3>
+                <p className="text-gray-600 mb-6">
+                  {t.homepage.intro.p1}
+                </p>
+                <p className="text-gray-600 mb-10">
+                  {t.homepage.intro.p2}
+                </p>
+                <div className="grid grid-cols-3 gap-4">
+                  <div>
+                    <h4 className="text-3xl font-bold text-tembi">2000</h4>
+                    <p className="text-gray-500 text-sm mt-1">{t.homepage.intro.stats.founded}</p>
+                  </div>
+                  <div>
+                    <h4 className="text-3xl font-bold text-tembi">500+</h4>
+                    <p className="text-gray-500 text-sm mt-1">{t.homepage.intro.stats.artifacts}</p>
+                  </div>
+                  <div>
+                    <h4 className="text-3xl font-bold text-tembi">9</h4>
+                    <p className="text-gray-500 text-sm mt-1">{t.homepage.intro.stats.house}</p>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div>
-              <Image
-                src="/images/homepage/content1.png"
-                alt="Living museum architecture"
-                width={600}
-                height={450}
-                className="rounded-lg"
-              />
-            </div>
+            </ScrollReveal>
+            <ScrollReveal animation="slideRight" duration={800}>
+              <div>
+                <Image
+                  src="/images/homepage/content1.png"
+                  alt="Living museum architecture"
+                  width={600}
+                  height={450}
+                  className="rounded-lg"
+                />
+              </div>
+            </ScrollReveal>
           </div>
         </section>
 
@@ -236,22 +241,26 @@ export default function HomePage() {
           <div className="container mx-auto px-6">
             
             {/* Header Section */}
-            <div className="text-center max-w-3xl mx-auto mb-16">
-              <h4 className="text-xs font-bold tracking-[0.2em] text-tembi uppercase mb-3">
-                {t.homepage.accommodation.label}
-              </h4>
-              <h2 className="text-5xl font-serif text-gray-900 mb-6">
-                {t.homepage.accommodation.title}
-              </h2>
-              <p className="text-gray-600 leading-relaxed text-lg">
-                {t.homepage.accommodation.desc}
-              </p>
-            </div>
+            <ScrollReveal animation="fadeUp" duration={800}>
+              <div className="text-center max-w-3xl mx-auto mb-16">
+                <h4 className="text-xs font-bold tracking-[0.2em] text-tembi uppercase mb-3">
+                  {t.homepage.accommodation.label}
+                </h4>
+                <h2 className="text-5xl font-serif text-gray-900 mb-6">
+                  {t.homepage.accommodation.title}
+                </h2>
+                <p className="text-gray-600 leading-relaxed text-lg">
+                  {t.homepage.accommodation.desc}
+                </p>
+              </div>
+            </ScrollReveal>
 
             {/* Cards Grid */}
             <div className="grid md:grid-cols-3 gap-8 mb-20 mx-20 w-400">
               {houses.map((house, index) => (                
-                <HouseCard key={index} house={house} />
+                <ScrollReveal key={index} animation="fadeUp" delay={index * 150} duration={700}>
+                  <HouseCard house={house} />
+                </ScrollReveal>
               ))}
             </div>
           </div>
@@ -309,111 +318,118 @@ export default function HomePage() {
           <div className="container mx-auto px-6">
 
             {/* A SANCTUARY OF HERITAGE */}
-            <div className="text-center max-w-4xl mx-auto mb-32">
-              <h2 className="text-4xl md:text-8xl font-serif font-bold text-gray-900 mb-24 md:leading-[0.9] drop-shadow-2xl">
-                {t.homepage.living.head[0]} <br/> {t.homepage.living.head[1]}
-              </h2>
-              {/* <p className="text-gray-600 leading-relaxed mb-16 px-4 md:px-12 text-lg"> */}
-                {/* Nestled in the heart of Yogyakarta, Tembi Historical Home is more than a resort, its a living collection where centuries old Javanese traditions harmoniously blend with contemporary luxury. Our carefully preserved cultural spaces and authentic architecture create an immersive experience that celebrates Indonesias rich heritage while providing the ultimate in comfort and tranquility. */}
-              {/* </p> */}
+            <ScrollReveal animation="fadeUp" duration={800}>
+              <div className="text-center max-w-4xl mx-auto mb-32">
+                <h2 className="text-4xl md:text-8xl font-serif font-bold text-gray-900 mb-24 md:leading-[0.9] drop-shadow-2xl">
+                  {t.homepage.living.head[0]} <br/> {t.homepage.living.head[1]}
+                </h2>
 
-              {/* 3 Kolom Fitur */}
-              <div className="grid md:grid-cols-3 gap-12">
-                {heritageFeatures.map((feature, idx) => (
-                  <div key={idx} className="flex flex-col items-center text-center group">
-                    {/* Icon Container */}
-                    <div className="relative w-10 h-10 mb-4">
-                      <Image 
-                        src={feature.icon} 
-                        alt={feature.title} 
-                        fill 
-                        className="object-contain"
-                      />
-                    </div>
-                    <h3 className="text-lg font-serif font-bold text-gray-900 mb-2">
-                      {feature.title}
-                    </h3>
-                    <p className="text-gray-500 text-sm max-w-xs">
-                      {feature.desc}
-                    </p>
-                  </div>
-                ))}
+                {/* 3 Kolom Fitur */}
+                <div className="grid md:grid-cols-3 gap-12">
+                  {heritageFeatures.map((feature, idx) => (
+                    <ScrollReveal key={idx} animation="fadeUp" delay={idx * 150} duration={700}>
+                      <div className="flex flex-col items-center text-center group">
+                        {/* Icon Container */}
+                        <div className="relative w-10 h-10 mb-4">
+                          <Image 
+                            src={feature.icon} 
+                            alt={feature.title} 
+                            fill 
+                            className="object-contain"
+                          />
+                        </div>
+                        <h3 className="text-lg font-serif font-bold text-gray-900 mb-2">
+                          {feature.title}
+                        </h3>
+                        <p className="text-gray-500 text-sm max-w-xs">
+                          {feature.desc}
+                        </p>
+                      </div>
+                    </ScrollReveal>
+                  ))}
+                </div>
               </div>
-            </div>
+            </ScrollReveal>
             
             {/* --- BAGIAN 2: FOOD AND DRINK PACKAGES --- */}
             <div className="grid md:grid-cols-2 gap-16 items-center mx-20">
 
               {/* Sisi Kiri: Teks & List */}
-              <div className=''>
-                <h2 className="text-4xl md:text-7xl font-serif font-bold text-gray-900 mb-10 leading-tight md:leading-[0.8] md:drop-shadow-lg">
-                  {t.homepage.food.head[0]} <br/> {t.homepage.food.head[1]}
-                </h2>
-                <p className="text-gray-600 mb-8 leading-relaxed pr-16 text-lg">
-                  {t.homepage.food.desc}
-                </p>
+              <ScrollReveal animation="slideLeft" duration={800}>
+                <div className=''>
+                  <h2 className="text-4xl md:text-7xl font-serif font-bold text-gray-900 mb-10 leading-tight md:leading-[0.8] md:drop-shadow-lg">
+                    {t.homepage.food.head[0]} <br/> {t.homepage.food.head[1]}
+                  </h2>
+                  <p className="text-gray-600 mb-8 leading-relaxed pr-16 text-lg">
+                    {t.homepage.food.desc}
+                  </p>
 
-                {/* List Poin dengan Icon Kecil */}
-                <div className="space-y-7 mb-10">
-                  {foodPoints.map((point, idx) => (
-                    <div key={idx} className="flex items-center gap-3">
-                      <div className="relative w-4 h-4 flex-shrink-0">
-                        <Image 
-                          src={point.icon} 
-                          alt="icon" 
-                          fill 
-                          className="object-contain"
-                        />
-                      </div>
-                      <span className="text-gray-600 text-sm font-medium">
-                        {point.text}
-                      </span>
-                    </div>
-                  ))}
+                  {/* List Poin dengan Icon Kecil */}
+                  <div className="space-y-7 mb-10">
+                    {foodPoints.map((point, idx) => (
+                      <ScrollReveal key={idx} animation="fadeUp" delay={idx * 100} duration={600}>
+                        <div className="flex items-center gap-3">
+                          <div className="relative w-4 h-4 flex-shrink-0">
+                            <Image 
+                              src={point.icon} 
+                              alt="icon" 
+                              fill 
+                              className="object-contain"
+                            />
+                          </div>
+                          <span className="text-gray-600 text-sm font-medium">
+                            {point.text}
+                          </span>
+                        </div>
+                      </ScrollReveal>
+                    ))}
+                  </div>
+
+                  {/* Button Pill Shape (Bulat Lonjong) */}
+                  <Link 
+                    href="/catering"
+                    className="bg-tembi hover:bg-darktembi text-white font-medium py-3 px-8 rounded-full transition-colors shadow-md" 
+                  >
+                    {t.homepage.food.button}
+                  </Link>
                 </div>
-
-                {/* Button Pill Shape (Bulat Lonjong) */}
-                <Link 
-                  href="/catering"
-                  className="bg-tembi hover:bg-darktembi text-white font-medium py-3 px-8 rounded-full transition-colors shadow-md" 
-                >
-                  {t.homepage.food.button}
-                </Link>
-              </div>
+              </ScrollReveal>
 
               {/* Sisi Kanan: Galeri Grid Gambar */}
-              <div className="grid grid-cols-2 gap-4">
+              <ScrollReveal animation="slideRight" duration={800}>
+                <div className="grid grid-cols-2 gap-4">
 
-                {/* Gambar Besar (Atas) - Mengambil 2 Kolom */}
-                <div className="col-span-2 relative h-96 rounded-2xl overflow-hidden shadow-lg">
-                  <Image
-                    src="/images/foods/food1.svg" // Ganti gambar resto
-                    alt="Restaurant Interior"
-                    fill
-                    className="object-cover hover:scale-105 transition-transform duration-700"
-                  />
-                </div>
+                  {/* Gambar Besar (Atas) - Mengambil 2 Kolom */}
+                  <div className="col-span-2 relative h-96 rounded-2xl overflow-hidden shadow-lg">
+                    <Image
+                      src="/images/foods/food1.svg" // Ganti gambar resto
+                      alt="Restaurant Interior"
+                      fill
+                      className="object-cover hover:scale-105 transition-transform duration-700"
+                    />
+                  </div>
 
-                {/* Gambar Kecil 1 (Bawah Kiri) */}
-                <div className="relative h-48 rounded-2xl overflow-hidden shadow-lg">
-                  <Image
-                    src="/images/foods/food2.png" // Ganti gambar makanan 1
-                    alt="Signature Dish"
-                    fill
-                    className="object-cover hover:scale-105 transition-transform duration-700"
-                  />
-                </div>
+                  {/* Gambar Kecil 1 (Bawah Kiri) */}
+                  <div className="relative h-48 rounded-2xl overflow-hidden shadow-lg">
+                    <Image
+                      src="/images/foods/food2.png" // Ganti gambar makanan 1
+                      alt="Signature Dish"
+                      fill
+                      className="object-cover hover:scale-105 transition-transform duration-700"
+                    />
+                  </div>
 
-                {/* Gambar Kecil 2 (Bawah Kanan) */}
-                <div className="relative h-48 rounded-2xl overflow-hidden shadow-lg">
-                  <Image
-                    src="/images/foods/food3.png" // Ganti gambar makanan 2
-                    alt="Dessert"
-                    fill
-                    className="object-cover hover:scale-105 transition-transform duration-700"
-                  />
+                  {/* Gambar Kecil 2 (Bawah Kanan) */}
+                  <div className="relative h-48 rounded-2xl overflow-hidden shadow-lg">
+                    <Image
+                      src="/images/foods/food3.png" // Ganti gambar makanan 2
+                      alt="Dessert"
+                      fill
+                      className="object-cover hover:scale-105 transition-transform duration-700"
+                    />
+                  </div>
                 </div>
-              </div>
+              </ScrollReveal>
             </div>
             
           </div>
@@ -424,79 +440,80 @@ export default function HomePage() {
           <div className="container mx-auto px-6">
 
             {/* Header Title */}
-            <div className="text-center max-w-3xl mx-auto mb-16">
-              <h4 className="text-xs font-bold tracking-[0.2em] text-[#8B9B6D] uppercase mb-3">
-                {t.homepage.venue.head}
-              </h4>
-              <h2 className="text-4xl md:text-5xl font-serif text-gray-900 mb-6">
-                {t.homepage.venue.title}
-              </h2>
-              <p className="text-gray-600 leading-relaxed">
-                {t.homepage.venue.desc}
-              </p>
-            </div>
+            <ScrollReveal animation="fadeUp" duration={800}>
+              <div className="text-center max-w-3xl mx-auto mb-16">
+                <h4 className="text-xs font-bold tracking-[0.2em] text-[#8B9B6D] uppercase mb-3">
+                  {t.homepage.venue.head}
+                </h4>
+                <h2 className="text-4xl md:text-5xl font-serif text-gray-900 mb-6">
+                  {t.homepage.venue.title}
+                </h2>
+                <p className="text-gray-600 leading-relaxed">
+                  {t.homepage.venue.desc}
+                </p>
+              </div>
+            </ScrollReveal>
 
             {/* Cards Grid */}
             <div className="grid md:grid-cols-2 gap-10">
               {eventPackages.map((evt, index) => (
-                <div key={index} className="bg-white border border-gray-100 rounded-sm shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col">
+                <ScrollReveal key={index} animation="fadeUp" delay={index * 200} duration={800}>
+                  <div className="bg-white border border-gray-100 rounded-sm shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col">
+                    
+                    {/* Image Area */}
+                    <div className="relative h-72 w-full overflow-hidden">
+                      <Image
+                        src={evt.image}
+                        alt={evt.title}
+                        fill
+                        className="object-cover hover:scale-105 transition-transform duration-700"
+                      />
+                    </div>
                   
-                  {/* Image Area */}
-                  <div className="relative h-72 w-full overflow-hidden">
-                    <Image
-                      src={evt.image}
-                      alt={evt.title}
-                      fill
-                      className="object-cover hover:scale-105 transition-transform duration-700"
-                    />
-                  </div>
-                
-                  {/* Content Area */}
-                  <div className="p-8 md:p-10 flex flex-col flex-grow">
-                    <h3 className="text-2xl font-serif font-bold text-gray-900 mb-4">
-                      {evt.title}
-                    </h3>
-                    <p className="text-gray-500 text-sm leading-relaxed mb-8 flex-grow">
-                      {evt.description}
-                    </p>
+                    {/* Content Area */}
+                    <div className="p-8 md:p-10 flex flex-col flex-grow">
+                      <h3 className="text-2xl font-serif font-bold text-gray-900 mb-4">
+                        {evt.title}
+                      </h3>
+                      <p className="text-gray-500 text-sm leading-relaxed mb-8 flex-grow">
+                        {evt.description}
+                      </p>
 
-                    {/* Feature List dengan Icon Lokal */}
-                    <div className="space-y-4 mb-8">
-                      {evt.features.map((feature, idx) => (
-                        <div key={idx} className="flex items-center gap-3">
-                          {/* Icon Wrapper */}
-                          <div className="relative w-4 h-4 flex-shrink-0 opacity-60">
-                            <Image 
-                              src={feature.icon} 
-                              alt="icon" 
-                              fill 
-                              className="object-contain"
-                            />
+                      {/* Feature List dengan Icon Lokal */}
+                      <div className="space-y-4 mb-8">
+                        {evt.features.map((feature, idx) => (
+                          <div key={idx} className="flex items-center gap-3">
+                            {/* Icon Wrapper */}
+                            <div className="relative w-4 h-4 flex-shrink-0 opacity-60">
+                              <Image 
+                                src={feature.icon} 
+                                alt="icon" 
+                                fill 
+                                className="object-contain"
+                              />
+                            </div>
+                            <span className="text-sm text-gray-600 font-medium">
+                              {feature.text}
+                            </span>
                           </div>
-                          <span className="text-sm text-gray-600 font-medium">
-                            {feature.text}
-                          </span>
-                        </div>
-                      ))}
-                    </div>
+                        ))}
+                      </div>
 
-                    {/* Button */}
-                    <div>
-                      <Link 
-                        href="/venue"
-                        className="bg-tembi hover:bg-darktembi text-white text-sm font-medium py-3 px-8 rounded-sm transition-colors w-full md:w-auto" 
-                      >
-                        {evt.buttonText}
-                      </Link>
+                      {/* Button */}
+                      <div>
+                        <Link 
+                          href="/venue"
+                          className="bg-tembi hover:bg-darktembi text-white text-sm font-medium py-3 px-8 rounded-sm transition-colors w-full md:w-auto" 
+                        >
+                          {evt.buttonText}
+                        </Link>
+                      </div>
                     </div>
                   </div>
-                </div>
+                </ScrollReveal>
               ))}
             </div>
-              
           </div>
-
-
         </section>
         
         {/* Collections Section */}
@@ -504,14 +521,16 @@ export default function HomePage() {
           <div className="container mx-auto px-6 md:px-12">
 
             {/* --- HEADER --- */}
-            <div className="text-center max-w-3xl mx-auto mb-16">
-              <h2 className="text-4xl md:text-5xl font-serif font-bold text-gray-900 mb-6">
-                {t.homepage.collection.title}
-              </h2>
-              <p className="text-gray-500 leading-relaxed text-lg">
-                {t.homepage.collection.desc}
-              </p>
-            </div>
+            <ScrollReveal animation="fadeUp" duration={800}>
+              <div className="text-center max-w-3xl mx-auto mb-16">
+                <h2 className="text-4xl md:text-5xl font-serif font-bold text-gray-900 mb-6">
+                  {t.homepage.collection.title}
+                </h2>
+                <p className="text-gray-500 leading-relaxed text-lg">
+                  {t.homepage.collection.desc}
+                </p>
+              </div>
+            </ScrollReveal>
 
             {/* --- MAIN CONTENT: 2 Column Layout --- */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
@@ -519,33 +538,34 @@ export default function HomePage() {
               {/* === LEFT COLUMN: 4 Product Cards (Grid 2x2) === */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 {collections.map((item, index) => (
-                  <div 
-                    key={index} 
-                    className="bg-white rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition-all duration-300 group overflow-hidden flex flex-col"
-                  >
-                    {/* Image Container - Background Abu-abu */}
-                    <div className="relative w-full aspect-[4/3] bg-slate-50 p-6 flex items-center justify-center">
-                      <div className="relative w-full h-full">
-                        <Image
-                          src={item.image}
-                          alt={item.title}
-                          fill
-                          className="object-contain group-hover:scale-105 transition-transform duration-500 drop-shadow-sm"
-                        />
+                  <ScrollReveal key={index} animation="fadeUp" delay={index * 150} duration={700}>
+                    <div 
+                      className="bg-white rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition-all duration-300 group overflow-hidden flex flex-col"
+                    >
+                      {/* Image Container - Background Abu-abu */}
+                      <div className="relative w-full aspect-[4/3] bg-slate-50 p-6 flex items-center justify-center">
+                        <div className="relative w-full h-full">
+                          <Image
+                            src={item.image}
+                            alt={item.title}
+                            fill
+                            className="object-contain group-hover:scale-105 transition-transform duration-500 drop-shadow-sm"
+                          />
+                        </div>
+                      </div>
+
+                      {/* Text Content */}
+                      <div className="p-5 flex-grow border-t border-gray-50">
+                        <h3 className="text-xl font-serif font-bold text-gray-900 mb-2">
+                          {item.title}
+                        </h3>
+                        {/* Warna tulisan diubah jadi hitam/abu (sesuai request) */}
+                        <p className="text-sm text-gray-600 leading-relaxed font-medium">
+                          {item.desc}
+                        </p>
                       </div>
                     </div>
-
-                    {/* Text Content */}
-                    <div className="p-5 flex-grow border-t border-gray-50">
-                      <h3 className="text-xl font-serif font-bold text-gray-900 mb-2">
-                        {item.title}
-                      </h3>
-                      {/* Warna tulisan diubah jadi hitam/abu (sesuai request) */}
-                      <p className="text-sm text-gray-600 leading-relaxed font-medium">
-                        {item.desc}
-                      </p>
-                    </div>
-                  </div>
+                  </ScrollReveal>
                 ))}
               </div>
 
@@ -553,45 +573,53 @@ export default function HomePage() {
               <div className="flex flex-col gap-6 h-full min-h-[500px]">
 
                 {/* Top Image (Large) */}
-                <div className="relative w-full h-3/5 min-h-[300px] rounded-xl overflow-hidden shadow-sm">
-                  <Image 
-                    src="/images/homepage/content4.png" // Ganti gambar Hall Besar
-                    alt="Main Hall"
-                    fill
-                    className="object-cover hover:scale-105 transition-transform duration-700"
-                  />
-                </div>
+                <ScrollReveal animation="slideRight" duration={800}>
+                  <div className="relative w-full h-3/5 min-h-[300px] rounded-xl overflow-hidden shadow-sm">
+                    <Image 
+                      src="/images/homepage/content4.png" // Ganti gambar Hall Besar
+                      alt="Main Hall"
+                      fill
+                      className="object-cover hover:scale-105 transition-transform duration-700"
+                    />
+                  </div>
+                </ScrollReveal>
 
                 {/* Bottom Images (2 Columns) */}
                 <div className="grid grid-cols-2 gap-6 h-2/5 min-h-[200px]">
-                   <div className="relative w-full h-full rounded-xl overflow-hidden shadow-sm">
-                      <Image 
-                        src="/images/homepage/content5.png" // Ganti gambar Gamelan/Piano
-                        alt="Instruments"
-                        fill
-                        className="object-cover hover:scale-105 transition-transform duration-700"
-                      />
-                   </div>
-                   <div className="relative w-full h-full rounded-xl overflow-hidden shadow-sm">
-                      <Image 
-                        src="/images/homepage/content6.png" // Ganti gambar Etalase Kaca
-                        alt="Artifact Display"
-                        fill
-                        className="object-cover hover:scale-105 transition-transform duration-700"
-                      />
-                   </div>
+                   <ScrollReveal animation="slideLeft" duration={800} delay={100}>
+                     <div className="relative w-full h-full rounded-xl overflow-hidden shadow-sm">
+                        <Image 
+                          src="/images/homepage/content5.png" // Ganti gambar Gamelan/Piano
+                          alt="Instruments"
+                          fill
+                          className="object-cover hover:scale-105 transition-transform duration-700"
+                        />
+                     </div>
+                   </ScrollReveal>
+                   <ScrollReveal animation="slideRight" duration={800} delay={100}>
+                     <div className="relative w-full h-full rounded-xl overflow-hidden shadow-sm">
+                        <Image 
+                          src="/images/homepage/content6.png" // Ganti gambar Etalase Kaca
+                          alt="Artifact Display"
+                          fill
+                          className="object-cover hover:scale-105 transition-transform duration-700"
+                        />
+                     </div>
+                   </ScrollReveal>
                 </div>
               </div>
             </div>
             {/* --- FOOTER BUTTON --- */}
-            <div className="flex justify-center mt-12">
-              <Link 
-                href="/collections"
-                className="bg-tembi hover:bg-darktembi text-white px-8 py-3 rounded-full font-medium transition-colors duration-300 shadow-md" 
-              >
-                {t.homepage.collection.button}
-              </Link>
-            </div>
+            <ScrollReveal animation="fadeUp" duration={800}>
+              <div className="flex justify-center mt-12">
+                <Link 
+                  href="/collections"
+                  className="bg-tembi hover:bg-darktembi text-white px-8 py-3 rounded-full font-medium transition-colors duration-300 shadow-md" 
+                >
+                  {t.homepage.collection.button}
+                </Link>
+              </div>
+            </ScrollReveal>
           </div>
         </section>
 
@@ -599,14 +627,16 @@ export default function HomePage() {
           <div className="container mx-auto px-6">
             
             {/* Header */}
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-serif text-[#2C2420] mb-3">
-                {t.homepage.location.title}
-              </h2>
-              <p className="text-[#5C5C5C]">
-                {t.homepage.location.subtitle}
-              </p>
-            </div>
+            <ScrollReveal animation="fadeUp" duration={800}>
+              <div className="text-center mb-12">
+                <h2 className="text-3xl md:text-4xl font-serif text-[#2C2420] mb-3">
+                  {t.homepage.location.title}
+                </h2>
+                <p className="text-[#5C5C5C]">
+                  {t.homepage.location.subtitle}
+                </p>
+              </div>
+            </ScrollReveal>
         
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
               
@@ -614,108 +644,118 @@ export default function HomePage() {
               <div className="space-y-6">
                 
                 {/* 1. Address Block */}
-                <div className="bg-[#F9F9F0] p-8 rounded-2xl">
-                  <div className="flex items-center gap-3 mb-4">
-                    {/* Icon Address */}
-                    <div className="relative w-6 h-6 flex-shrink-0">
-                      <Image src="/images/icons/gps-green.svg" alt="Address" fill className="object-contain" />
+                <ScrollReveal animation="slideLeft" duration={800}>
+                  <div className="bg-[#F9F9F0] p-8 rounded-2xl">
+                    <div className="flex items-center gap-3 mb-4">
+                      {/* Icon Address */}
+                      <div className="relative w-6 h-6 flex-shrink-0">
+                        <Image src="/images/icons/gps-green.svg" alt="Address" fill className="object-contain" />
+                      </div>
+                      <h3 className="text-xl font-serif font-bold text-[#2C2420]">{t.homepage.location.cardTitle.item1}</h3>
                     </div>
-                    <h3 className="text-xl font-serif font-bold text-[#2C2420]">{t.homepage.location.cardTitle.item1}</h3>
+                    <p className="text-[#5C5C5C] leading-relaxed pl-9"> {/* pl-9 agar rata dengan teks judul */}
+                      {t.homepage.location.cardDesc.item1}
+                    </p>
                   </div>
-                  <p className="text-[#5C5C5C] leading-relaxed pl-9"> {/* pl-9 agar rata dengan teks judul */}
-                    {t.homepage.location.cardDesc.item1}
-                  </p>
-                </div>
+                </ScrollReveal>
         
                 {/* Grid for Airport & City Center */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   
                   {/* 2. From Airport */}
-                  <div className="bg-[#F9F9F0] p-8 rounded-2xl">
-                    <div className="flex items-center gap-3 mb-4">
-                      {/* Icon Airport */}
-                      <div className="relative w-6 h-6 flex-shrink-0">
-                        <Image src="/images/icons/plane-green.svg" alt="Airport" fill className="object-contain" />
+                  <ScrollReveal animation="slideLeft" duration={800} delay={100}>
+                    <div className="bg-[#F9F9F0] p-8 rounded-2xl">
+                      <div className="flex items-center gap-3 mb-4">
+                        {/* Icon Airport */}
+                        <div className="relative w-6 h-6 flex-shrink-0">
+                          <Image src="/images/icons/plane-green.svg" alt="Airport" fill className="object-contain" />
+                        </div>
+                        <h3 className="text-lg font-serif font-bold text-[#2C2420]">{t.homepage.location.cardTitle.item2}</h3>
                       </div>
-                      <h3 className="text-lg font-serif font-bold text-[#2C2420]">{t.homepage.location.cardTitle.item2}</h3>
+                      <p className="text-[#5C5C5C] text-sm leading-relaxed">
+                        {t.homepage.location.cardDesc.item2}
+                      </p>
                     </div>
-                    <p className="text-[#5C5C5C] text-sm leading-relaxed">
-                      {t.homepage.location.cardDesc.item2}
-                    </p>
-                  </div>
+                  </ScrollReveal>
         
                   {/* 3. From City Center */}
-                  <div className="bg-[#F9F9F0] p-8 rounded-2xl">
-                    <div className="flex items-center gap-3 mb-4">
-                      {/* Icon City */}
-                      <div className="relative w-6 h-6 flex-shrink-0">
-                        <Image src="/images/icons/city-green.svg" alt="City" fill className="object-contain" />
+                  <ScrollReveal animation="slideRight" duration={800} delay={100}>
+                    <div className="bg-[#F9F9F0] p-8 rounded-2xl">
+                      <div className="flex items-center gap-3 mb-4">
+                        {/* Icon City */}
+                        <div className="relative w-6 h-6 flex-shrink-0">
+                          <Image src="/images/icons/city-green.svg" alt="City" fill className="object-contain" />
+                        </div>
+                        <h3 className="text-lg font-serif font-bold text-[#2C2420]">{t.homepage.location.cardTitle.item3}</h3>
                       </div>
-                      <h3 className="text-lg font-serif font-bold text-[#2C2420]">{t.homepage.location.cardTitle.item3}</h3>
+                      <p className="text-[#5C5C5C] text-sm leading-relaxed">
+                        {t.homepage.location.cardDesc.item3}
+                      </p>
                     </div>
-                    <p className="text-[#5C5C5C] text-sm leading-relaxed">
-                      {t.homepage.location.cardDesc.item3}
-                    </p>
-                  </div>
+                  </ScrollReveal>
                 </div>
         
                 {/* 4. Transportation Options Block */}
-                <div className="bg-[#F9F9F0] p-8 rounded-2xl">
-                  <div className="flex items-center gap-3 mb-6">
-                    {/* Header Icon Car */}
-                    <div className="relative w-6 h-6 flex-shrink-0">
-                      <Image src="/images/icons/car-green.svg" alt="Transport" fill className="object-contain" />
+                <ScrollReveal animation="slideLeft" duration={800} delay={200}>
+                  <div className="bg-[#F9F9F0] p-8 rounded-2xl">
+                    <div className="flex items-center gap-3 mb-6">
+                      {/* Header Icon Car */}
+                      <div className="relative w-6 h-6 flex-shrink-0">
+                        <Image src="/images/icons/car-green.svg" alt="Transport" fill className="object-contain" />
+                      </div>
+                      <h3 className="text-xl font-serif font-bold text-[#2C2420]">{t.homepage.location.transport.title}</h3>
                     </div>
-                    <h3 className="text-xl font-serif font-bold text-[#2C2420]">{t.homepage.location.transport.title}</h3>
+                    
+                    <ul className="space-y-4">
+                      {/* List Item 1: Taxi */}
+                      <li className="flex items-start gap-3">
+                        <div className="relative w-5 h-5 flex-shrink-0 mt-0.5">
+                          <Image src="/images/icons/taxi-green.svg" alt="Taxi" fill className="object-contain" />
+                        </div>
+                        <span className="text-[#5C5C5C]">{t.homepage.location.transport.item1}</span>
+                      </li>
+          
+                      {/* List Item 2: Bus */}
+                      <li className="flex items-start gap-3">
+                        <div className="relative w-5 h-5 flex-shrink-0 mt-0.5">
+                          <Image src="/images/icons/bus-green.svg" alt="Bus" fill className="object-contain" />
+                        </div>
+                        <span className="text-[#5C5C5C]">{t.homepage.location.transport.item2}</span>
+                      </li>
+          
+                      {/* List Item 3: Parking */}
+                      <li className="flex items-start gap-3">
+                        <div className="relative w-5 h-5 flex-shrink-0 mt-0.5">
+                          <Image src="/images/icons/parking-green.svg" alt="Parking" fill className="object-contain" />
+                        </div>
+                        <span className="text-[#5C5C5C]">{t.homepage.location.transport.item3}</span>
+                      </li>
+                    </ul>
                   </div>
-                  
-                  <ul className="space-y-4">
-                    {/* List Item 1: Taxi */}
-                    <li className="flex items-start gap-3">
-                      <div className="relative w-5 h-5 flex-shrink-0 mt-0.5">
-                        <Image src="/images/icons/taxi-green.svg" alt="Taxi" fill className="object-contain" />
-                      </div>
-                      <span className="text-[#5C5C5C]">{t.homepage.location.transport.item1}</span>
-                    </li>
-        
-                    {/* List Item 2: Bus */}
-                    <li className="flex items-start gap-3">
-                      <div className="relative w-5 h-5 flex-shrink-0 mt-0.5">
-                        <Image src="/images/icons/bus-green.svg" alt="Bus" fill className="object-contain" />
-                      </div>
-                      <span className="text-[#5C5C5C]">{t.homepage.location.transport.item2}</span>
-                    </li>
-        
-                    {/* List Item 3: Parking */}
-                    <li className="flex items-start gap-3">
-                      <div className="relative w-5 h-5 flex-shrink-0 mt-0.5">
-                        <Image src="/images/icons/parking-green.svg" alt="Parking" fill className="object-contain" />
-                      </div>
-                      <span className="text-[#5C5C5C]">{t.homepage.location.transport.item3}</span>
-                    </li>
-                  </ul>
-                </div>
+                </ScrollReveal>
         
               </div>
         
         
               {/* --- RIGHT COLUMN: DYNAMIC IMAGE --- */}
-              <div className="relative h-[500px] lg:h-full min-h-[500px] rounded-2xl overflow-hidden shadow-lg bg-gray-100">
-                <iframe
-                  title="Location Map"
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3952.2385536997226!2d110.35363067455535!3d-7.870087878251126!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7a560cf1551d0b%3A0x1db36094db031949!2sTembi%20-%20Historical%20Home!5e0!3m2!1sid!2sid!4v1764903906866!5m2!1sid!2sid"
-                  width="100%"
-                  height="100%"
-                  style={{ border: 0 }}
-                  allowFullScreen
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                  className="absolute inset-0 w-full h-full"
-                />
-  
-                {/* Optional: Overlay agar map tidak 'menelan' scroll mouse saat user hanya ingin scroll halaman */}
-                <div className="absolute top-0 left-0 w-full h-12 pointer-events-none bg-gradient-to-b from-black/10 to-transparent" />
-              </div>
+              <ScrollReveal animation="slideRight" duration={800}>
+                <div className="relative h-[500px] lg:h-full min-h-[500px] rounded-2xl overflow-hidden shadow-lg bg-gray-100">
+                  <iframe
+                    title="Location Map"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3952.2385536997226!2d110.35363067455535!3d-7.870087878251126!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7a560cf1551d0b%3A0x1db36094db031949!2sTembi%20-%20Historical%20Home!5e0!3m2!1sid!2sid!4v1764903906866!5m2!1sid!2sid"
+                    width="100%"
+                    height="100%"
+                    style={{ border: 0 }}
+                    allowFullScreen
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                    className="absolute inset-0 w-full h-full"
+                  />
+          
+                  {/* Optional: Overlay agar map tidak 'menelan' scroll mouse saat user hanya ingin scroll halaman */}
+                  <div className="absolute top-0 left-0 w-full h-12 pointer-events-none bg-gradient-to-b from-black/10 to-transparent" />
+                </div>
+              </ScrollReveal>
         
             </div>
           </div>

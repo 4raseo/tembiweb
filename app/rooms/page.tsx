@@ -3,6 +3,7 @@ import { StandardRoomCard } from "@/components/StandardRoomCard";
 import { roomData } from "@/data/roomData";
 import Image from 'next/image';
 import { AmenitiesSection } from "@/components/AmenitiesSection";
+import ScrollReveal from "@/components/ScrollReveal";
 
 export default function Catalog() {
   const featuredRooms = roomData.filter((room) => room.layoutType === 'featured');
@@ -101,27 +102,33 @@ export default function Catalog() {
 
         <div className="container mx-auto px-16 pb-20">
           {/* --- BAGIAN BARU: COLLECTION HEADER --- */}
-          <div className="text-center max-w-3xl mx-auto mb-16">
-              <h2 className="text-4xl font-serif font-bold text-gray-800 mb-4">
-                  Our Accommodation Collection
-              </h2>
-              <p className="text-gray-600">
-                  Discover our carefully curated selection of rooms and suites, each designed to offer a unique blend of traditional Indonesian culture and modern luxury amenities.
-              </p>
-          </div>
+          <ScrollReveal animation="fadeUp" duration={800}>
+            <div className="text-center max-w-3xl mx-auto mb-16">
+                <h2 className="text-4xl font-serif font-bold text-gray-800 mb-4">
+                    Our Accommodation Collection
+                </h2>
+                <p className="text-gray-600">
+                    Discover our carefully curated selection of rooms and suites, each designed to offer a unique blend of traditional Indonesian culture and modern luxury amenities.
+                </p>
+            </div>
+          </ScrollReveal>
           {/* -------------------------------------- */}
 
           {/* Featured Rooms */}
           <div className="space-y-12 mb-20">
-          {featuredRooms.map((room) => (
-              <FeaturedRoomCard key={room.id} room={room} />
+          {featuredRooms.map((room, idx) => (
+              <ScrollReveal key={room.id} animation="fadeUp" delay={idx * 150} duration={800}>
+                <FeaturedRoomCard room={room} />
+              </ScrollReveal>
           ))}
           </div>
           
           {/* Standard Rooms */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {standardRooms.map((room) => (
-              <StandardRoomCard key={room.id} room={room} />
+          {standardRooms.map((room, idx) => (
+              <ScrollReveal key={room.id} animation="fadeUp" delay={idx * 150} duration={800}>
+                <StandardRoomCard room={room} />
+              </ScrollReveal>
           ))}
           </div>
         </div>

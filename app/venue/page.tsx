@@ -4,6 +4,7 @@ import VenueCard from '@/components//VenueCard';
 import { venueData } from '@/data/venueData';
 import VenueGallery from '@/components/VenueGallery';
 import Link from 'next/link';
+import ScrollReveal from '@/components/ScrollReveal';
 
 
 const VenuePage = () => {
@@ -84,39 +85,47 @@ const VenuePage = () => {
       <section className="py-24 bg-[#F9F9F0]">
         <div className="container mx-auto px-6">
           
-          <div className="text-center mb-16 space-y-4">
-            <h2 className="text-4xl md:text-5xl font-serif text-[#2C2420]">
-              Choose Your Perfect Venue
-            </h2>
-            <p className="text-[#5C5C5C] max-w-2xl mx-auto text-lg leading-relaxed">
-              From traditional Pendopo to intimate garden spaces, each venue at Tembi Historical Home
-              offers unique charm and complete facilities for your special occasion.
-            </p>
-          </div>
+          <ScrollReveal animation="fadeUp" duration={800}>
+            <div className="text-center mb-16 space-y-4">
+              <h2 className="text-4xl md:text-5xl font-serif text-[#2C2420]">
+                Choose Your Perfect Venue
+              </h2>
+              <p className="text-[#5C5C5C] max-w-2xl mx-auto text-lg leading-relaxed">
+                From traditional Pendopo to intimate garden spaces, each venue at Tembi Historical Home
+                offers unique charm and complete facilities for your special occasion.
+              </p>
+            </div>
+          </ScrollReveal>
 
           {/* Cards Grid */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             
             {/* Card 1 */}
-            <FeatureCard 
-              iconSrc="/images/icons/build-white.svg" // Ganti dengan nama file gambar Anda
-              title="Traditional Architecture"
-              description="Authentic Javanese design with modern amenities"
-            />
+            <ScrollReveal animation="fadeUp" delay={0} duration={800}>
+              <FeatureCard 
+                iconSrc="/images/icons/build-white.svg"
+                title="Traditional Architecture"
+                description="Authentic Javanese design with modern amenities"
+              />
+            </ScrollReveal>
 
             {/* Card 2 */}
-            <FeatureCard 
-              iconSrc="/images/icons/group-white.svg" // Ganti dengan nama file gambar Anda
-              title="Flexible Capacity"
-              description="From intimate 20-person to grand 150-person events"
-            />
+            <ScrollReveal animation="fadeUp" delay={150} duration={800}>
+              <FeatureCard 
+                iconSrc="/images/icons/group-white.svg"
+                title="Flexible Capacity"
+                description="From intimate 20-person to grand 150-person events"
+              />
+            </ScrollReveal>
 
             {/* Card 3 */}
-            <FeatureCard 
-              iconSrc="/images/icons/leaf-white.svg" // Ganti dengan nama file gambar Anda
-              title="Natural Setting"
-              description="Beautiful gardens and open-air venues"
-            />
+            <ScrollReveal animation="fadeUp" delay={300} duration={800}>
+              <FeatureCard 
+                iconSrc="/images/icons/leaf-white.svg"
+                title="Natural Setting"
+                description="Beautiful gardens and open-air venues"
+              />
+            </ScrollReveal>
 
           </div>
         </div>
@@ -125,28 +134,32 @@ const VenuePage = () => {
       <section className="py-20 bg-[#FFFDF5]">
       <div className="container mx-auto px-6">
         
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-serif text-[#2C2420] mb-4">
-            Our Venue Collection
-          </h2>
-          <p className="text-[#5C5C5C] max-w-2xl mx-auto">
-            Discover the perfect space for your event from our curated selection of
-            traditional and elegant venues.
-          </p>
-        </div>
+        <ScrollReveal animation="fadeUp" duration={800}>
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-serif text-[#2C2420] mb-4">
+              Our Venue Collection
+            </h2>
+            <p className="text-[#5C5C5C] max-w-2xl mx-auto">
+              Discover the perfect space for your event from our curated selection of
+              traditional and elegant venues.
+            </p>
+          </div>
+        </ScrollReveal>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
-          {venueData.map((venue) => (
+          {venueData.map((venue, idx) => (
             // Bungkus Card dengan Link menuju slug masing-masing
-            <Link key={venue.slug} href={`/venue/${venue.slug}`} className="group block h-full">
-              <VenueCard 
-                imageSrc={venue.heroImage}
-                title={venue.title}
-                description={venue.shortDescription}
-                capacity={venue.capacity}
-                facilities={venue.facilities}
-              />
-            </Link>
+            <ScrollReveal key={venue.slug} animation="fadeUp" delay={idx * 150} duration={800}>
+              <Link href={`/venue/${venue.slug}`} className="group block h-full">
+                <VenueCard 
+                  imageSrc={venue.heroImage}
+                  title={venue.title}
+                  description={venue.shortDescription}
+                  capacity={venue.capacity}
+                  facilities={venue.facilities}
+                />
+              </Link>
+            </ScrollReveal>
           ))}
         </div>
 
