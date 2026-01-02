@@ -1,13 +1,25 @@
-// File: tembiweb-smallfile/app/api/admin/invoices/route.ts
-
+// app/api/admin/invoices/route.ts
 import { NextResponse } from 'next/server';
 import { PrismaClient } from '@prisma/client';
+import { cookies } from 'next/headers'; //
 
 const prisma = new PrismaClient();
 
 export async function GET() {
   try {
-    // Ambil semua data booking, urutkan dari yang terbaru
+    // 1. SECURITY CHECK: Verify Admin Session
+    const cookieStore = await cookies();
+    const session = cookieStore.get(process.env.COOKIE_NAME || 'admin_session_tembi');
+
+    // If no cookie or value is not 'true', block access
+    if (!session || session.value !== 'true') {
+      return NextResponse.json(
+        { success: false, message: 'Unauthorized access' },
+        { status: 401 }
+      );
+    }
+
+    // 2. Fetch Data (Only if authorized)
     const bookings = await prisma.booking.findMany({
       orderBy: {
         createdAt: 'desc',

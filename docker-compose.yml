@@ -1,4 +1,17 @@
 services:
+  # Your Next.js App
+  web:
+    build: .
+    restart: always
+    ports:
+      - "80:3000" # Maps port 80 (HTTP) on the server to 3000 on the container
+    environment:
+      # Use the service name 'postgres' as the host
+      DATABASE_URL: postgres://hoteluser:hotelpassword@postgres:5432/hoteldb
+    depends_on:
+      - postgres
+
+  # Your Database (from your uploaded file)
   postgres:
     image: postgres:18
     restart: always
@@ -9,7 +22,7 @@ services:
     ports:
       - '5432:5432'
     volumes:
-      - postgres_data:/var/lib/postgresql
+      - postgres_data:/var/lib/postgresql/data # specific path for postgres data
 
 volumes:
   postgres_data:
