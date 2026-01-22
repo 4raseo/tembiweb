@@ -83,8 +83,9 @@ export async function POST(request: Request) {
         adults: adults || 1,
         children: children || 0,
         
-        breakfast: breakfastCount,
-        extraBed: extraBedCount,
+        // TODO: Uncomment when Prisma types are properly regenerated
+        // breakfast: breakfastCount,
+        // extraBed: extraBedCount,
 
         customerName: booker.name,
         customerEmail: booker.email,
@@ -149,14 +150,14 @@ export async function POST(request: Request) {
           payerEmail: booker.email,
           description: `Booking ${room.name} at Tembi Cultural House`,
           customer: {
-            given_names: booker.name,
+            givenNames: booker.name,
             email: booker.email,
-            mobile_number: booker.phone,
+            mobileNumber: booker.phone,
             addresses: booker.address ? [{
                 city: booker.city || '',
                 country: 'Indonesia',
-                postal_code: booker.postalCode || '',
-                street_line1: booker.address,
+                postalCode: booker.postalCode || '',
+                streetLine1: booker.address,
             }] : undefined,
           },
           items: invoiceItems,
@@ -183,15 +184,17 @@ export async function POST(request: Request) {
         message: 'Payment initiated successfully.'
       });
 
-    } catch (xenditError: any) {
+    } catch (xenditError: Error | unknown) {
       await prisma.booking.delete({ where: { id: booking.id } });
+      const errorMsg = xenditError instanceof Error ? xenditError.message : String(xenditError);
       console.error('Xendit Error:', xenditError);
-      return NextResponse.json({ message: 'Failed to create payment invoice', error: xenditError.message }, { status: 500 });
+      return NextResponse.json({ message: 'Failed to create payment invoice', error: errorMsg }, { status: 500 });
     }
 
-  } catch (error: any) {
+  } catch (error: Error | unknown) {
+    const errorMsg = error instanceof Error ? error.message : String(error);
     console.error('Payment API Error:', error);
-    return NextResponse.json({ message: 'Internal Server Error', error: error.message }, { status: 500 });
+    return NextResponse.json({ message: 'Internal Server Error', error: errorMsg }, { status: 500 });
   }
 }
 
@@ -221,8 +224,6 @@ export async function GET(request: Request) {
         duration: true,
         adults: true,
         children: true,
-        breakfast: true, // Ambil data breakfast
-        extraBed: true,  // Ambil data extraBed
         status: true,
         customerName: true,
         customerEmail: true,
@@ -240,8 +241,9 @@ export async function GET(request: Request) {
 
     return NextResponse.json({ success: true, booking });
 
-  } catch (error: any) {
+  } catch (error: Error | unknown) {
+    const errorMsg = error instanceof Error ? error.message : String(error);
     console.error('Failed to fetch booking:', error);
-    return NextResponse.json({ message: 'Internal Server Error', error: error.message }, { status: 500 });
+    return NextResponse.json({ message: 'Internal Server Error', error: errorMsg }, { status: 500 });
   }
 }

@@ -1,6 +1,8 @@
 // app/context/LanguageContext.tsx
 'use client';
 
+import { sub } from 'date-fns';
+import { title } from 'node:process';
 import { createContext, useContext, useState, ReactNode } from 'react';
 
 // 1. Definisikan Tipe Data
@@ -417,8 +419,12 @@ const translations = {
     catering:{
       hero: {
         label: 'Premium Catering Service',
-        title: 'Buffet Catering Packages',
-        desc: 'Authentic Javanese dishes for gatherings and celebrations, carefully crafted with traditional recipes passed down through generations.',
+        titleBuffet: 'Buffet Catering Packages',
+        descBuffet: 'Authentic Javanese dishes for gatherings and celebrations, carefully crafted with traditional recipes passed down through generations.',
+        titleSnack: 'Snack Box Packages',
+        descSnack: 'Delightful Javanese treats for every moment. Celebrate the flavors of tradition through our handcrafted snack boxes freshly made each morning using time-honored recipes passed through generations. Perfect for meetings, gatherings, or cultural events.',
+        titleRice: 'Rice Box Packages',
+        descRice: 'Authentic Javanese meals packed with warmth and care. Experience the comforting flavors of home-cooked Javanese dishes, thoughtfully prepared and beautifully packed for your events. Perfect for meetings, community gatherings, or family celebrations.',
         pax: 'Minimum 35 Pax',
         hour: '4-6 Hours Service',
         buttonText: 'View Packages'
@@ -849,6 +855,1166 @@ const translations = {
         whatsapp: 'WhatsApp Now',
         call: 'Call Now'
       }
+    },
+    collection: {
+      hero: {
+        badge: 'Cultural Heritage Collection',
+        title: ['Tembi Historical', 'Collections',],
+        desc: [
+          "Preserving Indonesia's cultural heritage through timeless artifacts. Discover the rich tapestry of Javanese culture through our carefully curated collection of traditional items.",
+          "Tembi Historical Home is home to a rich collection of traditional Javanese artifacts, tools, and crafts that tell the story of Indonesia's cultural journey. Each item reflects the craftsmanship, philosophy, and artistry of the local people across generations."
+        ],
+        buttonText: 'Explore Collections'
+      },
+      stats: {
+        item:[
+          {
+            id: 1,
+            iconUrl: '/images/icons/diamond-green.svg', 
+            alt: 'Artifacts Icon',
+            value: '250+',
+            label: 'Collection',
+          },
+          {
+            id: 2,
+            iconUrl: '/images/icons/calendar-green.svg', 
+            alt: 'Origins Icon',
+            value: '18th',
+            label: 'Century Origins',
+          },
+          {
+            id: 3,
+            iconUrl: '/images/icons/group-green.svg', 
+            alt: 'Visitors Icon',
+            value: '5K',
+            label: 'Annual Visitors',
+          },
+        ]
+      },
+      items: [
+        {
+          title: "Cundrik Collection",
+          items: [
+            {
+              id: 1,
+              imageUrl: "/images/collection/cundrik/GPT0541.svg", // Pastikan gambar ada
+              category: "Cundrik",
+              title: "GPT0541",
+              description: "A small Javanese cundrik carried as a personal talisman. It represents alertness and protection, shaped with the fine coastal character of Cirebon craftsmanship."
+            },
+            {
+              id: 2,
+              imageUrl: "/images/collection/cundrik/GPT0540.svg",
+              category: "Cundrik",
+              title: "GPT0540",
+              description: "A longer cundrik forged with sanak patterns. Its flowing lines reflect Majapahit era techniques and symbolize resilience and personal strength."
+            },
+            {
+              id: 3,
+              imageUrl: "/images/collection/cundrik/GPT0539.svg",
+              category: "Cundrik",
+              title: "GPT0539",
+              description: "A slender cundrik used in household traditions and ceremonies. Its light form and Segaluh forging style highlight practicality and cultural identity."
+            },
+            {
+              id: 4,
+              imageUrl: "/images/collection/cundrik/GPT0538.svg", // Pastikan gambar ada
+              category: "Cundrik",
+              title: "GPT0538",
+              description: ""
+            },
+            {
+              id: 5,
+              imageUrl: "/images/collection/cundrik/GPT0537.svg",
+              category: "Cundrik",
+              title: "GPT0537",
+              description: ""
+            },
+            {
+              id: 6,
+              imageUrl: "/images/collection/cundrik/GPT0536.svg",
+              category: "Cundrik",
+              title: "GPT0536",
+              description: ""
+            },
+            {
+              id: 7,
+              imageUrl: "/images/collection/cundrik/GPT0535.svg", // Pastikan gambar ada
+              category: "Cundrik",
+              title: "GPT0535",
+              description: ""
+            },
+            {
+              id: 8,
+              imageUrl: "/images/collection/cundrik/GPT0534.svg",
+              category: "Cundrik",
+              title: "GPT0534",
+              description: ""
+            },
+            {
+              id: 9,
+              imageUrl: "/images/collection/cundrik/GPT0533.svg",
+              category: "Cundrik",
+              title: "GPT0533",
+              description: ""
+            }
+          ]
+        },
+        {
+          title: "Sword Collection",
+          items: [
+            {
+              id: 10,
+              imageUrl: "/images/collection/sword/GPT0548.svg",
+              category: "Sword",
+              title: "GPT0548",
+              description: "A traditional single-edged blade with a hooked profile and a carved wooden handle. The form resembles regional utility and ceremonial weapons found in parts of Java."
+            },
+            {
+              id: 11,
+              imageUrl: "/images/collection/sword/GPT0576.svg",
+              category: "Sword",
+              title: "GPT0576",
+              description: "A slender Javanese sword with a longer blade and visible forging patterns. It reflects Majapahit metalwork and represents firmness."
+            },
+            {
+              id: 12,
+              imageUrl: "/images/collection/sword/GPT0575.svg",
+              category: "Sword",
+              title: "GPT0575",
+              description: "A light Javanese sword with a narrow blade and a simple wooden hilt. It follows the segaluh forging style and symbolizes cultural identity."
+            },
+            {
+              id: 13,
+              imageUrl: "/images/collection/sword/GPT0571.svg", // Pastikan gambar ada
+              category: "Sword",
+              title: "GPT0571",
+              description: ""
+            },
+            {
+              id: 14,
+              imageUrl: "/images/collection/sword/GPT0574.svg",
+              category: "Sword",
+              title: "GPT0574",
+              description: ""
+            },
+            {
+              id: 15,
+              imageUrl: "/images/collection/sword/GPT0568.svg",
+              category: "Sword",
+              title: "GPT0568",
+              description: ""
+            },
+            {
+              id: 16,
+              imageUrl: "/images/collection/sword/GPT0571.svg", // Pastikan gambar ada
+              category: "Sword",
+              title: "GPT0571",
+              description: ""
+            },
+            {
+              id: 17,
+              imageUrl: "/images/collection/sword/GPT0570.svg",
+              category: "Sword",
+              title: "GPT0570",
+              description: ""
+            },
+            {
+              id: 18,
+              imageUrl: "/images/collection/sword/GPT0568.svg",
+              category: "Sword",
+              title: "GPT0568",
+              description: ""
+            }
+          ]
+        },
+        {
+          title: "Sken Collection",
+          items: [
+            {
+              id: 19,
+              imageUrl: "/images/collection/sken/GPT0518.svg",
+              category: "Sken",
+              title: "GPT0518",
+              description: "A small traditional Javanese dagger with a wooden handle and sheath. The Cekel Bahuluk symbolizes protection and practicality, often carried as a personal tool during the Majapahit era."
+            },
+            {
+              id: 20,
+              imageUrl: "/images/collection/sken/GPT0521.svg",
+              category: "Sken",
+              title: "GPT0521",
+              description: "A long, leaf-shaped traditional blade with a wooden hilt and sheath. The Kujang Malang represents courage and authority, used in both ceremonial and martial contexts during the Mataram Amangkurat period."
+            },
+            {
+              id: 21,
+              imageUrl: "/images/collection/sken/GPT0516.svg",
+              category: "Sken",
+              title: "GPT0516",
+              description: "A ceremonial dagger with a broad, leaf shaped blade and finely carved wooden handle and sheath. The Godong Suruh, meaning “betel leaf,” symbolizes sincerity, purity, and harmony in Javanese culture."
+            },
+            {
+              id: 22,
+              imageUrl: "/images/collection/sken/GPT0517.svg", 
+              category: "Sken",
+              title: "GPT0517",
+              description: "" 
+            },
+            {
+              id: 23,
+              imageUrl: "/images/collection/sken/GPT0519.svg",
+              category: "Sken",
+              title: "GPT0519",
+              description: "" 
+            },
+            {
+              id: 24,
+              imageUrl: "/images/collection/sken/GPT0520.svg",
+              category: "Sken",
+              title: "GPT0520",
+              description: "" 
+            }
+          ]
+        },
+        {
+          title: "Spear Collection",
+          items: [
+            {
+              id: 25,
+              imageUrl: "/images/collection/spear/GPT407.svg",
+              category: "Spear",
+              title: "GPT407",
+              description: "A traditional Javanese dagger with a long, narrow blade and a simple wooden hilt and sheath. The minimalist design reflects the utilitarian craftsmanship of Javanese blacksmiths, emphasizing balance and functionality rather than ornamentation."
+            },
+            {
+              id: 26,
+              imageUrl: "/images/collection/spear/GPT408.svg",
+              category: "Spear",
+              title: "GPT408",
+              description: "A traditional dagger featuring a distinctive patterned (pamor) blade and a dark wooden handle. The pamor markings are created through layered forging, symbolizing spiritual harmony and inner strength in Javanese culture."
+            },
+            {
+              id: 27,
+              imageUrl: "/images/collection/spear/GPT409.svg",
+              category: "Spear",
+              title: "GPT409",
+              description: "A short Javanese blade with a plain wooden sheath and handle, measuring 25.5 cm in blade length and 49 cm overall."
+            },
+            {
+              id: 28,
+              imageUrl: "/images/collection/spear/GPT410.svg",
+              category: "Spear",
+              title: "GPT410",
+              description: "" 
+            },
+            {
+              id: 29,
+              imageUrl: "/images/collection/spear/GPT412.svg",
+              category: "Spear",
+              title: "GPT412",
+              description: "" 
+            },
+            {
+              id: 30,
+              imageUrl: "/images/collection/spear/GPT416.svg",
+              category: "Spear",
+              title: "GPT416",
+              description: "" 
+            },
+            {
+              id: 31,
+              imageUrl: "/images/collection/spear/GPT507.svg",
+              category: "Spear",
+              title: "GPT507",
+              description: "" 
+            },
+            {
+              id: 32,
+              imageUrl: "/images/collection/spear/GPT411.svg",
+              category: "Spear",
+              title: "GPT411",
+              description: "" 
+            },
+            {
+              id: 33,
+              imageUrl: "/images/collection/spear/GPT413.svg",
+              category: "Spear",
+              title: "GPT413",
+              description: "" 
+            }
+          ]
+        },
+        {
+          title: "Wayang Collection",
+          items: [
+            {
+              id: 34,
+              imageUrl: "/images/collection/wayang/drona.svg",
+              category: "Wayang",
+              title: "Drona",
+              description: "A Javanese shadow puppet representing an elder adviser figure. The calm posture and patterned costume reflect wisdom, discipline, and high social status."
+            },
+            {
+              id: 35,
+              imageUrl: "/images/collection/wayang/gareng.svg",
+              category: "Wayang",
+              title: "Gareng",
+              description: "A comedic Javanese shadow puppet known for expressive gestures and humorous roles. The rounded body and playful stance show his role as a loyal companion who brings lightness to the story."
+            },
+            {
+              id: 36,
+              imageUrl: "/images/collection/wayang/citraksa.svg",
+              category: "Wayang",
+              title: "Citraksa",
+              description: "A traditional Javanese shadow puppet showing a noble warrior figure. The detailed carving and bright colors highlight strength, authority, and refined movement."
+            },
+            {
+              id: 37,
+              imageUrl: "/images/collection/wayang/bima.svg",
+              category: "Wayang",
+              title: "Bima",
+              description: "" 
+            },
+            {
+              id: 38,
+              imageUrl: "/images/collection/wayang/aswatama.svg",
+              category: "Wayang",
+              title: "Aswatama",
+              description: "" 
+            },
+            {
+              id: 39,
+              imageUrl: "/images/collection/wayang/bagong.svg",
+              category: "Wayang",
+              title: "Bagong",
+              description: "" 
+            },
+            {
+              id: 40,
+              imageUrl: "/images/collection/wayang/abilawa.svg",
+              category: "Wayang",
+              title: "Abilawa",
+              description: "" 
+            },
+            {
+              id: 41,
+              imageUrl: "/images/collection/wayang/arimbi.svg",
+              category: "Wayang",
+              title: "Arimbi",
+              description: "" 
+            },
+            {
+              id: 42,
+              imageUrl: "/images/collection/wayang/nakula.svg",
+              category: "Wayang",
+              title: "Nakula",
+              description: "" 
+            }
+          ]
+        },
+        {
+          title: "Keris Collection",
+          items: [
+            {
+              id: 43,
+              imageUrl: "/images/collection/keris/K.A 001.svg",
+              category: "Keris",
+              title: "K.A 001",
+              description: "A Javanese shadow puppet representing an elder adviser figure. The calm posture and patterned costume reflect wisdom, discipline, and high social status."
+            },
+            {
+              id: 44,
+              imageUrl: "/images/collection/keris/K.A 002.svg",
+              category: "Keris",
+              title: "K.A 002",
+              description: "A keris with five curves and a strong pamor pattern along the blade. The Surakarta style hilt and decorated metal scabbard reflect the cultural role of this weapon in ceremonies and heritage."
+            },
+            {
+              id: 45,
+              imageUrl: "/images/collection/keris/K.A 003.svg",
+              category: "Keris",
+              title: "K.A 003",
+              description: "A traditional Javanese keris with a curved pamor pattern and a wooden hilt. The scabbard uses a metal covering that indicates later preservation work. This piece represents a personal heirloom used for protection and identity."
+            },
+            {
+              id: 46,
+              imageUrl: "/images/collection/keris/K.A 004.svg",
+              category: "Keris",
+              title: "K.A 004",
+              description: "" 
+            },
+            {
+              id: 47,
+              imageUrl: "/images/collection/keris/K.A 005.svg",
+              category: "Keris",
+              title: "K.A 005",
+              description: "" 
+            },
+            {
+              id: 48,
+              imageUrl: "/images/collection/keris/K.A 006.svg",
+              category: "Keris",
+              title: "K.A 006",
+              description: "" 
+            },
+            {
+              id: 49,
+              imageUrl: "/images/collection/keris/K.A 007.svg",
+              category: "Keris",
+              title: "K.A 007",
+              description: "" 
+            },
+            {
+              id: 50,
+              imageUrl: "/images/collection/keris/K.A 008.svg",
+              category: "Keris",
+              title: "K.A 008",
+              description: "" 
+            },
+            {
+              id: 51,
+              imageUrl: "/images/collection/keris/K.A 009.svg",
+              category: "Keris",
+              title: "K.A 009",
+              description: "" 
+            }
+          ]
+        },
+        {
+          title: "Other Collection",
+          items: [
+            {
+              id: 52,
+              imageUrl: "/images/collection/lainnya/Command Staff.svg",
+              category: "Other",
+              title: "Command Staff",
+              description: "A carved wooden staff featuring a pointed end and decorative top section. Objects of this form are often associated with leadership roles or ceremonial use. The material and finish suggest a relatively recent production."
+            },
+            {
+              id: 53,
+              imageUrl: "/images/collection/lainnya/VOC Flintlock Pistol.svg",
+              category: "Other",
+              title: "VOC Flintlock Pistol",
+              description: "A single-shot flintlock pistol associated with the VOC period in the Indonesian archipelago (17th–19th century). Flintlock pistols were commonly carried by military personnel and officers as short-range weapons and status symbols. "
+            },
+            {
+              id: 54,
+              imageUrl: "/images/collection/lainnya/Triple-Bladed Weapon.svg",
+              category: "Other",
+              title: "Triple-Bladed Weapon",
+              description: "A three-pronged blade consisting of a central spear-like point flanked by two curved projections. The weapon is fitted with a wooden handle and sheath. Its form suggests use in close-quarter combat or ceremonial contexts, depending on historical setting and tradition."
+            },
+          ]
+        }
+      ]
+    },
+    venue:{
+      hero: {
+        title: ['Venue Rental at', 'Tembi Historical Home'],
+        subtitle: 'Elegant spaces for unforgettable moments',
+        quote: 'Easy booking, smooth event, warm atmosphere',
+        desc: 'Tembi Historical Home offers a collection of traditional Javanese venues designed for various events — from intimate gatherings to grand celebrations. Enjoy a calm atmosphere, complete facilities, and the authentic warmth of Javanese culture.',
+        buttonText: 'Book Now'
+      },
+      features: {
+        title: 'Choose Your Perfect Venue',
+        desc: 'From traditional Pendopo to intimate garden spaces, each venue at Tembi Historical Home offers unique charm and complete facilities for your special occasion.',
+        item: [
+          {
+            title: 'Traditional Architecture',
+            description: 'Authentic Javanese design with modern amenities'
+          },
+          {
+            title: 'Flexible Capacity',
+            description: 'From intimate 20-person to grand 150-person events'
+          },
+          {
+            title: 'Natural Setting',
+            description: 'Beautiful gardens and open-air venues'
+          }
+        ]
+      },
+      gallery: {
+        title: 'Venue Gallery',
+        desc: 'Discover the perfect space for your event from our curated selection of traditional and elegant venues.'
+      },
+      contact: {
+        title: [
+          'Ready to host your event at',
+          'Tembi Rumah Budaya?'
+        ],
+        desc: 'We\'ll help you choose the perfect venue for your special occasion. Our experienced team is ready to assist you in ensuring your event runs smoothly and is full of memories in a charming traditional space.',
+        button: 'Contact Our Team',
+        item: [
+          { title: 'quick response', desc: 'Fast response within 2 hours' },
+          { title: 'Personal Service', desc: 'Personal assistance from the event coordinator' },
+          { title: 'Guaranteed Quality', desc: '100 percent guaranteed service quality' }
+        ]
+      },
+      items: [
+        {
+          slug: "pendopo-yudonegaran",
+          title: "Pendopo Yudonegaran",
+          heroDescription: [
+            "The Pendopo Yudonegaran is the heart of Tembi Historical Home, a magnificent Javanese pavilion crafted entirely from solid teak wood, representing the beauty and wisdom of traditional architecture.", 
+            "With its open design, grand pillars, and high ceiling, this venue embodies  both elegance and warmth, making it an ideal setting for memorable gatherings.",
+          ],
+          shortDescription: "Our flagship venue featuring traditional Javanese architecture with soaring ceilings and elegant wooden columns.",
+          longDescription: [
+            "The Pendopo Yudonegaran is a grand traditional Javanese pavilion made of teak wood, offering an open and serene atmosphere for your events. Perfect for weddings, corporate gatherings, or cultural performances, this venue blends classic architecture with modern comfort.",
+            "With its soaring wooden pillars and traditional joglo roof, this space creates an authentic Javanese ambiance while providing all the amenities needed for contemporary events. The natural ventilation and open design make it ideal for both intimate gatherings and larger celebrations."
+          ],
+          heroImage: "/images/venue/pendopo/pendopo1.png", // Pastikan gambar ini ada
+          galleryImages: [
+            "/images/venue/pendopo/pendopo2.png", 
+            "/images/venue/pendopo/pendopo3.png", 
+            "/images/venue/pendopo/pendopo1.png"
+          ],
+          eventGalleryImages: [
+            "/images/venue/pendopo/pendopo4.png",
+            "/images/venue/pendopo/pendopo5.png",
+            "/images/venue/pendopo/pendopo6.png",
+            "/images/venue/pendopo/pendopo7.png",
+            "/images/venue/pendopo/pendopo1.png",
+            "/images/venue/pendopo/pendopo2.png",
+          ],
+          basePrice: 1800000,
+          basePriceString: "Rp 1.800.000",
+          priceDetail: "(2 hours)",
+          extraPriceString: "Rp 875.000",
+          capacity: "Up to 150 guests",
+          facilities: ["80 Chairs", "Sound System", "Toilet", "Parking", "Cleaning"],
+          bestFor: "Weddings, Gatherings"
+        },
+        {
+          slug: "amphiteater-notoprajan",
+          title: "Amphiteater Notoprajan",
+          heroDescription: [
+            "The Amphitheater Notoprajan offers an open-air setting surrounded by lush greenery, perfect for performances, gatherings, and creative showcases. Its semi-circular design creates a natural stage ambiance that enhances the audience’s connection to every event.", 
+          ],
+          shortDescription: "Natural amphiteater setting perfect for performances, presentations, and outdoor celebrations.",
+          longDescription: [
+            "The Amphitheater Notoprajan offers an open-air setting surrounded by lush greenery. perfect for performances, gatherings, and creative showcases. Its semi-circular design creates a natural stage ambiance that enhances the audience’s connection to every event.",
+            "With its soaring wooden pillars and traditional joglo roof, this space creates an authentic Javanese ambiance while providing all the amenities needed for contemporary events. The natural ventilation and open design make it ideal for both intimate gatherings and larger celebrations."
+          ],
+          heroImage: "/images/venue/amphiteater/amphiteater1.png",
+          galleryImages: ["/images/venue/amphiteater/amphiteater2.png", "/images/venue/amphiteater/amphiteater3.png", "/images/venue/amphiteater/amphiteater4.png"],
+          eventGalleryImages: [
+            "/images/venue/amphiteater/amphiteater5.png",
+            "/images/venue/amphiteater/amphiteater6.png",
+            "/images/venue/amphiteater/amphiteater7.png",
+            "/images/venue/amphiteater/amphiteater8.png",
+            "/images/venue/amphiteater/amphiteater9.png",
+            "/images/venue/amphiteater/amphiteater10.png",
+          ],
+          basePrice: 1500000,
+          basePriceString: "Rp 1.500.000",
+          priceDetail: "(2 hours)",
+          extraPriceString: "Rp 700.000",
+          capacity: "Up to 100 guests",
+          facilities: ["50 Chairs", "Sound System", "Toilet", "Parking", "Cleaning"],
+          bestFor: "Weddings, Gatherings"
+        },
+        {
+          slug: "bale-madyosuro",
+          title: "Bale Madyosuro",
+          heroDescription: [
+            "Bale Madyosuro features a classic Javanese interior with elegant wood carvings and patterned tiles, offering a warm yet formal atmosphere for meetings, workshops, or intimate gatherings.", 
+          ],
+          shortDescription: "Charming traditional pavilion ideal for medium-sized gatherings with authentic Javanese ambiance.",
+          longDescription: [
+            "Bale Madyosuro features a classic Javanese interior with elegant wood carvings and patterned tiles, offering a warm yet formal atmosphere for meetings, workshops, or intimate gatherings. This venue blends tradition and modern  unctionality, creating a sophisticated ambiance for any event.",
+            "With its soaring wooden pillars and traditional joglo roof, this space creates an authentic Javanese ambiance while providing all the amenities needed for contemporary events. The natural ventilation and open design make it ideal for both intimate gatherings and larger celebrations."
+          ],
+          heroImage: "/images/venue/madyosuro/madyosuro1.png",
+          galleryImages: ["/images/venue/madyosuro/madyosuro2.png", "/images/venue/madyosuro/madyosuro3.png", "/images/venue/madyosuro/madyosuro4.png"],
+          eventGalleryImages: [
+            "/images/venue/madyosuro/madyosuro5.png",
+            "/images/venue/madyosuro/madyosuro6.png",
+            "/images/venue/madyosuro/madyosuro7.png",
+            "/images/venue/madyosuro/madyosuro8.png",
+            "/images/venue/madyosuro/madyosuro9.png",
+            "/images/venue/madyosuro/madyosuro10.png",
+          ],
+          basePrice: 750000,
+          basePriceString: "Rp 750.000",
+          priceDetail: "(2 hours)",
+          extraPriceString: "Rp 350.000",
+          capacity: "Up to 80 guests",
+          facilities: ["50 Chairs", "Sound System", "Toilet", "Parking", "Cleaning"],
+          bestFor: "Weddings, Gatherings"
+        },
+        {
+          slug: "bale-mrican",
+          title: "Bale Mrican",
+          heroDescription: [
+            "Bale Mrican provides a cozy indoor space with a calm and comfortable atmosphere, suitable for meetings, workshops, or small private events. The minimalist interior and open layout allow flexible arrangements for both casual and formal setups.", 
+          ],
+          shortDescription: "Intimate pavilion perfect for smaller gatherings, workshops, and personal celebrations.",
+          longDescription: [
+            "Bale Mrican provides a cozy indoor space with a calm and comfortable atmosphere, suitable for meetings, workshops, or small private events. The minimalist interior and open layout allow flexible arrangements for both casual and formal setups.",
+            "With its soaring wooden pillars and traditional joglo roof, this space creates an authentic Javanese ambiance while providing all the amenities needed for contemporary events. The natural ventilation and open design make it ideal for both intimate gatherings and larger celebrations."
+          ],
+          heroImage: "/images/venue/mrican/mrican1.png",
+          galleryImages: ["/images/venue/mrican/mrican2.png", "/images/venue/mrican/mrican3.png", "/images/venue/mrican/mrican4.png"],
+          eventGalleryImages: [
+            "/images/venue/mrican/mrican5.png",
+            "/images/venue/mrican/mrican6.png",
+            "/images/venue/mrican/mrican7.png",
+            "/images/venue/mrican/mrican8.png",
+            "/images/venue/mrican/mrican9.png",
+            "/images/venue/mrican/mrican10.png",
+          ],
+          basePrice: 600000,
+          basePriceString: "Rp 600.000",
+          priceDetail: "(2 hours)",
+          extraPriceString: "Rp 250.000",
+          capacity: "Up to 50 guests",
+          facilities: ["25 Chairs", "Sound System", "Toilet", "Parking", "Cleaning"],
+          bestFor: "Weddings, Gatherings"
+        },
+        {
+          slug: "bale-sagan",
+          title: "Bale Sagan",
+          heroDescription: [
+            "Bale Sagan is an intimate open hall ideal for small gatherings, group discussions, or art workshops. With its simple yet authentic Javanese design, this space provides a tranquil setting surrounded by natural light and fresh air.", 
+          ],
+          shortDescription: "Our most intimate venue, perfect for private meetings, small family gatherings, and exclusive events.",
+          longDescription: [
+            "Bale Sagan is an intimate open hall ideal for small gatherings, group discussions, or art workshops. With its simple yet authentic Javanese design, this space provides a tranquil setting surrounded by natural light and fresh air.",
+            "With its soaring wooden pillars and traditional joglo roof, this space creates an authentic Javanese ambiance while providing all the amenities needed for contemporary events. The natural ventilation and open design make it ideal for both intimate gatherings and larger celebrations."
+          ],
+          heroImage: "/images/venue/sagan/sagan1.png",
+          galleryImages: ["/images/venue/sagan/sagan2.png", "/images/venue/sagan/sagan3.png", "/images/venue/sagan/sagan4.png"],
+          eventGalleryImages: [
+            "/images/venue/sagan/sagan5.png",
+            "/images/venue/sagan/sagan6.png",
+            "/images/venue/sagan/sagan7.png",
+            "/images/venue/sagan/sagan8.png",
+            "/images/venue/sagan/sagan9.png",
+            "/images/venue/sagan/sagan10.png",
+          ],
+          basePrice: 350000,
+          basePriceString: "Rp 350.000",
+          priceDetail: "(2 hours)",
+          extraPriceString: "Rp 150.000",
+          capacity: "Up to 20 guests",
+          facilities: ["15 Chairs", "Sound System", "Toilet", "Parking", "Cleaning"],
+          bestFor: "Weddings, Gatherings"
+        },
+        {
+          slug: "taman-bulus",
+          title: "Taman Bulus (Outdoor Area)",
+          heroDescription: [
+            "Taman Bulus offers a lush outdoor garden venue surrounded by traditional architecture — a perfect backdrop for outdoor weddings, private gatherings, and creative events. The serene landscape brings together nature and culture in one beautiful setting.", 
+          ],
+          shortDescription: "Stunning outdoor garden venue combining Bale Inap & Sentolo areas, perfect for nature-loving celebrations.",
+          longDescription: [
+            "Taman Bulus offers a lush outdoor garden venue surrounded by traditional architecture a perfect backdrop for outdoor weddings, private gatherings, and creative events. The serene landscape brings together nature and culture in one beautiful setting.",
+            "With its soaring wooden pillars and traditional joglo roof, this space creates an authentic Javanese ambiance while providing all the amenities needed for contemporary events. The natural ventilation and open design make it ideal for both intimate gatherings and larger celebrations."
+          ],
+          heroImage: "/images/venue/bulus/bulus1.png",
+          galleryImages: ["/images/venue/bulus/bulus2.png", "/images/venue/bulus/bulus3.png", "/images/venue/bulus/bulus4.png"],
+          eventGalleryImages: [
+            "/images/venue/bulus/bulus5.png",
+            "/images/venue/bulus/bulus6.png",
+            "/images/venue/bulus/bulus7.png",
+            "/images/venue/bulus/bulus8.png",
+            "/images/venue/bulus/bulus9.png",
+            "/images/venue/bulus/bulus10.png",
+          ],
+          basePrice: 1200000,
+          basePriceString: "Rp 1.200.000",
+          priceDetail: "(2 hours)",
+          extraPriceString: "Rp 550.000",
+          capacity: "Up to 50 guests",
+          facilities: ["25 Chairs", "Sound System", "Toilet", "Parking", "Cleaning"],
+          bestFor: "Weddings, Gatherings"
+        },
+      ]
+    },
+    detailVenue:{
+      intro: {
+        title: 'About This Venue',
+        cardTitle: 'Key Information',
+        item1: 'Capacity',
+        item2: 'Best For',
+      },
+      features: {
+        title: 'Facilities Included',
+        subtitle: 'Everything you need for a memorable event',
+        item: [
+          {
+            title: 'Venue Space',
+            desc: 'Traditional Javanese pavilion with authentic teak wood architecture'
+          },
+          {
+            title: 'Free Chairs',
+            desc: 'Complimentary seating for up to 80 guests included'
+          },
+          {
+            title: 'Sound System',
+            desc: 'Portable sound system for speeches and announcements'
+          },
+          {
+            title: 'Toilet Facilities',
+            desc: 'Clean and well-maintained restroom facilities'
+          },
+          {
+            title: 'Cleaning Service',
+            desc: 'Professional cleaning before and after your event'
+          },
+          {
+            title: 'Parking Space',
+            desc: 'Ample parking space for guest\'s vehicles'
+          }
+        ],
+        addons: {
+          title: 'Optional Add-ons',
+          item: [
+            'Projector & Screen',
+            'Enhanced Sound System',
+            'Catering Services',
+            'Decoration Setup'
+          ]
+        }
+      },
+      gallery: {
+        title: 'Event Gallery',
+        subtitle: 'See how beautiful events come to life at'
+      },
+      service: {
+        title: 'Additional Services & Equipment',
+        subtitle: 'Enhance your event with our premium add-on services',
+        table: {
+          col1: 'Service',
+          col2: 'Description',
+          item: [
+            {
+              name: "Sound System Non-Portable",
+              description: "Professional grade fixed sound system with multiple microphones",
+            },
+            {
+              name: "Wedding Sound Package",
+              description: "Complete audio setup for wedding ceremonies and receptions",
+            },
+            {
+              name: "Projector + Screen",
+              description: "HD projector with large screen for presentations",
+            },
+            {
+              name: "Additional Chair",
+              description: "Extra seating beyond the included 80 chairs",
+            },
+            {
+              name: "Lighting Enhancement",
+              description: "Professional lighting setup for evening events",
+            },
+            {
+              name: "Photography Package",
+              description: "Professional event photography services",
+            }
+          ],
+          note: {
+            title: 'Important Notes:',
+            item: [
+              'Catering and decoration services available upon request',
+              'Food from outside vendors may incur an additional charge',
+              'All prices are subject to change and do not include tax',
+              'Booking confirmation required 48 hours in advance'
+            ]
+          }
+        }
+      }
+    },
+    house: {
+      hero: {
+        back: 'Back to Collection',
+        address: [
+          'Home', 'Rooms & Accommodation'
+        ],
+        title: 'Rooms & Accommodation',
+        desc: 'Immerse yourself in the rich cultural heritage of Java while enjoying modern comfort and traditional hospitality. Each room tells a story of Indonesian craftsmanship and timeless elegance.',
+        buttonText: 'Explore Rooms',
+        stats: [
+          {num: '9', desc: 'Room Categories'},
+          {num: '98%', desc: 'Guest Satisfaction'},
+          {num: '24/7', desc: 'Cultural Experience'}
+        ]
+      },
+      room: {
+        title: 'Our Accommodation Collection',
+        desc: 'Discover our carefully curated selection of rooms and suites, each designed to offer a unique blend of traditional Indonesian culture and modern luxury amenities.'
+      },
+      amenities: {
+        title: 'Amenities & Services',
+        desc: 'Every room provides comfort and convenience, enriched by authentic Indonesian cultural atmosphere and heartfelt hospitality.',
+        item: [
+          {
+            title: "Room Comfort",
+            icon: "/images/icons/bed-green.svg",
+            items: [
+              "Air conditioning",
+              "Traditional furnishing",
+              "Living Room",
+              "Traditional bedding",
+              "Private bathroom",
+              "Complimentary toiletries",
+            ],
+          },
+          {
+            title: "Technology",
+            icon: "/images/icons/wifi-green.svg",
+            items: [
+              "Free Wifi",
+              "Charging Ports",
+            ],
+          },
+          {
+            title: "Cultural Services",
+            icon: "/images/icons/paint-green.svg",
+            items: [
+              "Traditional Activities",
+              "Seasonal Traditional Performance",
+              "Art Gallery",
+              "Private Collection",
+              "Private Tour Tembi",
+              "Several Music Instrument",
+              "Several Traditional Course",
+            ],
+          },
+          {
+            title: "Dining & Wellness",
+            icon: "/images/icons/food-green.svg",
+            items: [
+              "Traditional Cuisine",
+              "Room Service",
+              "Traditional Massage",
+              "Traditional Javanese Dance",
+            ],
+          },
+        ]
+      },
+      additional: {
+        title: 'Additional House Amenities',
+        item: [
+          { name: "Swimming Pool", icon: "/images/icons/swim-green.svg" },
+          { name: "Spa & Wellness", icon: "/images/icons/flower-green.svg"},
+          { name: "Garden Tours", icon: "/images/icons/tree-green.svg" },
+        ]
+      },
+      featuredCard: {
+        features: {
+          wifi: "Free WiFi",
+          guest: ['Up to ', 'guests']
+        },
+        buttonText: 'View Details'
+      },
+      standardCard: {
+        features: {
+          wifi: "Free WiFi",
+          guest: 'guests'
+        },
+        buttonText: 'View Details'
+      },
+      item: [
+        {
+          id: 1,
+          badge: "Premium",
+          slug: "ngadirojo-house",
+          name: "Ngadirojo House",
+          tagline: "A Javanese Limasan with Pool and Rice Field Views",
+          price: 547000,
+          description: "Enjoy a meaningful Javanese stay in our suite, complete with traditional joglo architecture, a private garden terrace, and cultural concierge support.",
+          longDescription:[ 
+            "Ngadirojo House is a traditional Javanese limasan built in 1946 and relocated from Bawak Village, Cawas, Klaten, Central Java, to Tembi in 2007. Combining Javanese architecture with natural tranquility, it is an ideal choice for guests seeking peace and culture.",
+            "With 43.2 square meters, the house includes free Wi-Fi, air conditioning, a minibar, and a private bathroom. Its highlight is the view: the front terrace overlooks a lush garden, while the back terrace opens directly to the swimming pool and expansive rice fields.",
+            "The name “Ngadirojo” comes from a region in Wonogiri, Central Java, where Mr. F. W. Santopratiknya lived between 1944 and 1946. The house symbolizes the harmony of comfort, natural beauty, and family history."
+          ],
+          imageUrl: "/images/rooms/ngadirojo/ngadirojo1.png",
+          galleryImages: [
+            "/images/rooms/ngadirojo/ngadirojo2.png",
+            "/images/rooms/ngadirojo/ngadirojo3.png",
+            "/images/rooms/ngadirojo/ngadirojo4.png",
+            "/images/rooms/ngadirojo/ngadirojo.png",
+            "/images/rooms/ngadirojo/ngadirojo5.png",
+          ],
+          details: { bed: "King Size Bed", guests: 2, size: "43,2 m²", view: "Pool View" },
+          detailsIcons:"/images/icons/swim-white.svg",
+          amenities: ["Free WiFi", "Air Conditioning", "Private Bathroom", "Pool View", "Minibar", "Terrace"],
+          amenitiesIcons:"/images/icons/swim-white.svg",
+          policies: { checkIn: "03:00 PM",  checkOut: "12:00 PM", 
+          cancellation: ["Free cancellation 48h before", "50% refund 24h before", "No refund same day"] 
+          },
+          houseRules: { smoking: false, pets: true, quietHours: "10 PM" },
+          rating: 4.9, 
+          layoutType: 'featured'
+        },
+        {
+          id: 2,
+          badge: "Premium",
+          slug: "polaman-house",
+          name: "Polaman House",
+          tagline: "A Spacious Javanese Limasan with Pool and Rice Field Views",
+          price: 700000,
+          description: "Experience a peaceful Javanese stay in our suite, featuring traditional joglo architecture, a private garden terrace, pool view, and personalized cultural concierge service.",
+          longDescription:[ 
+            "Polaman House is a traditional Javanese limasan built in 1948 and relocated from Bawak Village, Cawas, Klaten, to Tembi in 2007. It combines the warmth of Javanese architecture with natural landscapes, making it perfect for an authentic and peaceful stay.",
+            "With 63.13 square meters, the house provides free Wi-Fi, air conditioning, a minibar, a private bathroom, and a cozy terrace. The front terrace faces a shaded garden, while the back terrace overlooks the swimming pool and rice fields, offering a calming natural retreat.",
+            "The name “Polaman” comes from an area in Sedayu, Bantul, where Mr. F. W. Santopratiknya lived between 1929 and 1931. The house embodies family history, blending cultural heritage with modern comfort.",
+          ],
+          imageUrl: "/images/rooms/polaman/polaman1.png",
+          galleryImages: [
+            "/images/rooms/polaman/polaman2.png",
+            "/images/rooms/polaman/polaman.png",
+            "/images/rooms/polaman/polaman3.png",
+            "/images/rooms/polaman/polaman4.png",
+            "/images/rooms/polaman/polaman5.png",
+          ],
+          details: { bed: "King Size Bed", guests: 2, size: "63,13 m²", view: "Pool View" },
+          detailsIcons:"/images/icons/swim-white.svg",
+          amenities: ["Free WiFi", "Air Conditioning", "Private Bathroom", "Pool View", "Minibar", "Terrace"],
+          amenitiesIcons:"/images/icons/swim-green.svg",
+          policies: { checkIn: "03:00 PM", checkOut: "12:00 PM", cancellation: ["Free cancellation 48h before"] },
+          houseRules: { smoking: false, pets: true, quietHours: "10 PM" },
+          rating: 4.9, 
+          layoutType: 'featured'
+        },
+        {
+          id: 3,
+          badge: "Premium",
+          slug: "adikarto-house",
+          name: "Adikarto House",
+          tagline: "The Serenity of a Classic Javanese Limasan Home",
+          price: 430000,
+          description: "Enjoy a meaningful Javanese stay with joglo-inspired architecture, a private garden terrace, relaxing garden view, and cultural concierge support.",
+          longDescription:[ 
+            "Adikarto House is a traditional Javanese limasan house that brings coolness and comfort in a natural atmosphere. Built in 1960 in Ngadirejo, Tepus, Gunung Kidul Regency, it was relocated to Tembi in 2007 as part of cultural preservation efforts.",
+            "With 51.6 square meters of space, the house is equipped with free Wi-Fi, air conditioning, a minibar, a private bathroom, and a personal terrace facing the garden. The peaceful surroundings make it the perfect choice for guests seeking tranquility with a touch of tradition.",
+            "The name “Adikarto” comes from an area in Kulon Progo Regency, better known as Wates, where Mr. F. W. Santopratiknya lived between 1931–1942 and 1949–1955. This house not only offers comfort but also preserves family history and cultural heritage.",
+          ],
+          imageUrl: "/images/rooms/adikarto/adikarto1.png",
+          galleryImages: [
+            "/images/rooms/adikarto/adikarto2.png",
+            "/images/rooms/adikarto/adikarto.png",
+            "/images/rooms/adikarto/adikarto3.png",
+            "/images/rooms/adikarto/adikarto4.png",
+            "/images/rooms/adikarto/adikarto5.png",
+          ],
+          details: { bed: "King Size Bed", guests: 2, size: "51,6 m²", view: "Garden View" },
+          detailsIcons:"/images/icons/leaf-gray.svg",
+          amenities: ["Free WiFi", "Air Conditioning", "Private Bathroom", "Garden View", "Minibar", "Terrace"],
+          amenitiesIcons:"/images/icons/leaf-green.svg",
+          policies: { checkIn: "03:00 PM", checkOut: "12:00 PM", cancellation: ["Free cancellation 48h before"] },
+          houseRules: { smoking: false, pets: true, quietHours: "10 PM" },
+          rating: 4.9, 
+          layoutType: 'featured'
+        },
+        {
+          id: 4,
+          badge: "Premium",
+          slug: "ganjuran-house",
+          name: "Ganjuran House",
+          tagline: "Harmony of Javanese Tradition and Nature",
+          price: 682000,
+          description: "Ganjuran House is a traditional limasan built in 1939 and relocated from Jepitu Hamlet, Tepus, Gunung Kidul, to Tembi in 2007. With its authentic Javanese architecture, it offers a serene stay deeply connected to cultural heritage.",
+          longDescription:[ 
+            "Ganjuran House is a traditional limasan built in 1939 and relocated from Jepitu Hamlet, Tepus, Gunung Kidul, to Tembi in 2007. With its authentic Javanese architecture, it offers a serene stay deeply connected to cultural heritage.",
+            "Spanning 68.15 square meters, the house is equipped with free Wi-Fi, air conditioning, a minibar, a private bathroom, and a personal terrace overlooking the garden. The balance of modern comfort and natural atmosphere makes it ideal for relaxation or spending quality time with loved ones.",
+            "The name “Ganjuran” is taken from an area in Bantul Regency, where Mr. F. W. Santopratiknya lived around 1929. Beyond comfort, the house carries historical and emotional connections to family heritage.",
+          ],
+          imageUrl: "/images/rooms/ganjuran/ganjuran1.png",
+          galleryImages: [
+            "/images/rooms/ganjuran/ganjuran2.png",
+            "/images/rooms/ganjuran/ganjuran3.png",
+            "/images/rooms/ganjuran/ganjuran4.png",
+            "/images/rooms/ganjuran/ganjuran5.png",
+            "/images/rooms/ganjuran/ganjuran6.png",
+          ],
+          details: { bed: "King Size Bed", guests: 3, size: "68,15 m²", view: "Garden View" },
+          detailsIcons:"/images/icons/leaf-green.svg",
+          amenities: ["Free WiFi", "Air Conditioning", "Private Bathroom", "Garden View", "Minibar", "Terrace"],
+          amenitiesIcons:"/images/icons/leaf-green.svg",
+          policies: { checkIn: "03:00 PM", checkOut: "12:00 PM", cancellation: ["Free cancellation 48h before"] },
+          houseRules: { smoking: false, pets: true, quietHours: "10 PM" },
+          rating: 4.9, 
+          layoutType: 'standard'
+        },
+        {
+          id: 5,
+          badge: "Best Value",
+          slug: "badegan-house",
+          name: "Badegan House",
+          tagline: "A Touch of Sundanese Tradition in Yogyakarta’s Nature",
+          price: 430000,
+          description: "Staying at Badegan House is more than just resting—it is about experiencing the warmth of a traditional Sundanese wooden house rich in meaning. Built in 1954 in Sumedang, West Java, this stilt house was relocated to Tembi in 2006.",
+          longDescription:[ 
+            "Staying at Badegan House is more than just resting—it is about experiencing the warmth of a traditional Sundanese wooden house rich in meaning. Built in 1954 in Sumedang, West Java, this stilt house was relocated to Tembi in 2006.",
+            "Covering 46 square meters, Badegan House offers modern comforts such as free Wi-Fi, air conditioning, a minibar, and a private bathroom. Guests can also enjoy relaxing moments on the terrace overlooking a lush garden, a tranquil setting perfect for unwinding in harmony with nature.",
+            "The name “Badegan” comes from a village in Bantul Regency, where Mr. F. W. Santopratiknya—the father of Mr. P. Swantoro—resided from 1958. Every corner of this house carries stories and cultural values, making it more than just a place to stay.",
+          ],
+          imageUrl: "/images/rooms/badegan/badegan1.png",
+          galleryImages: [
+            "/images/rooms/badegan/badegan2.png",
+            "/images/rooms/badegan/badegan3.png",
+            "/images/rooms/badegan/badegan4.png",
+            "/images/rooms/badegan/badegan5.png",
+            "/images/rooms/badegan/badegan6.png",
+          ],
+          details: { bed: "King Size Bed", guests: 4, size: "46 m²", view: "Garden View" },
+          detailsIcons:"/images/icons/leaf-green.svg",
+          amenities: ["Free WiFi", "Air Conditioning", "Private Bathroom", "Garden View", "Minibar", "Terrace"],
+          amenitiesIcons:"/images/icons/leaf-green.svg",
+          policies: { checkIn: "03:00 PM", checkOut: "12:00 PM", cancellation: ["Free cancellation 48h before"] },
+          houseRules: { smoking: false, pets: true, quietHours: "10 PM" },
+          rating: 4.9, 
+          layoutType: 'standard'
+        },
+        {
+          id: 6,
+          badge: "Best Value",
+          slug: "wuryantoro-house",
+          name: "Wuryantoro House",
+          tagline: "A Javanese Limasan Home Amidst Nature’s Calm",
+          price: 430000,
+          description: "Wuryantoro House is a traditional Javanese limasan home that blends heritage with modern comfort. Built in 1960 in Ngadirejo, Tepus, Gunung Kidul, it was relocated to Tembi in 2007.",
+          longDescription:[ 
+            "Wuryantoro House is a traditional Javanese limasan home that blends heritage with modern comfort. Built in 1960 in Ngadirejo, Tepus, Gunung Kidul, it was relocated to Tembi in 2007.",
+            "With 40.5 square meters, the house features free Wi-Fi, air conditioning, a minibar, a private bathroom, and a terrace facing the garden. Its peaceful surroundings and greenery create the perfect setting for relaxation while embracing local culture.",
+            "The name “Wuryantoro” comes from a region in Wonogiri, Central Java, where Mr. F. W. Santopratiknya lived between 1946 and 1948. Every element of this house reflects history and cultural roots, making it more than just accommodation.",
+          ],
+          imageUrl: "/images/rooms/wuryantoro/wuryantoro1.png",
+          galleryImages: [
+            "/images/rooms/wuryantoro/wuryantoro2.png",
+            "/images/rooms/wuryantoro/wuryantoro3.png",
+            "/images/rooms/wuryantoro/wuryantoro4.png",
+            "/images/rooms/wuryantoro/wuryantoro5.png",
+            "/images/rooms/wuryantoro/wuryantoro6.png",
+          ],
+          details: { bed: "King Size Bed", guests: 3, size: "40,5 m²", view: "Garden View" },
+          detailsIcons:"/images/icons/leaf-green.svg",
+          amenities: ["Free WiFi", "Air Conditioning", "Private Bathroom", "Garden View", "Minibar", "Terrace"],
+          amenitiesIcons:"/images/icons/leaf-green.svg",
+          policies: { checkIn: "03:00 PM", checkOut: "12:00 PM", cancellation: ["Free cancellation 48h before"] },
+          houseRules: { smoking: false, pets: true, quietHours: "10 PM" },
+          rating: 4.9, 
+          layoutType: 'standard'
+        },
+        {
+          id: 7,
+          badge: "Premium",
+          slug: "morangan-house",
+          name: "Morangan House",
+          tagline: "Three Levels of Comfort in Traditional Architecture",
+          price: 970000,
+          description: "Morangan House is a unique three-story accommodation created from three traditional Javanese houses originating from Tambak, Klaten (1936), Jepitu, Gunung Kidul (1939), and Majasto, Sukoharjo (1952). They were relocated and unified in Tembi in 2007, combining heritage with modern living.",
+          longDescription:[ 
+            "Morangan House is a unique three-story accommodation created from three traditional Javanese houses originating from Tambak, Klaten (1936), Jepitu, Gunung Kidul (1939), and Majasto, Sukoharjo (1952). They were relocated and unified in Tembi in 2007, combining heritage with modern living.",
+            "With 70.7 square meters, Morangan House has two bedrooms, each with a private bathroom. The first floor includes a spacious living area and a bathtub for relaxation, while the rooftop offers open-air views. The house faces a garden at the front, rice fields at the back, and a swimming pool on the side—providing a refreshing atmosphere from every angle. Both front and back terraces enhance the experience of connecting with nature.",
+            "The name “Morangan” comes from a village in Sleman, Yogyakarta, where Mr. F. W. Santopratiknya lived between 1942 and 1944. This house symbolizes family heritage brought to life in a modern stay with traditional soul.",
+          ],
+          imageUrl: "/images/rooms/morangan/morangan1.png",
+          galleryImages: [
+            "/images/rooms/morangan/morangan2.png",
+            "/images/rooms/morangan/morangan3.png",
+            "/images/rooms/morangan/morangan4.png",
+            "/images/rooms/morangan/morangan5.png",
+            "/images/rooms/morangan/morangan6.png",
+          ],
+          details: { bed: "King Size Bed", guests: 4, size: "70,7 m²", view: "Pool View" },
+          detailsIcons:"/images/icons/swim-green.svg",
+          amenities: ["Free WiFi", "Air Conditioning", "Private Bathroom", "Pool View", "Minibar", "Terrace"],
+          amenitiesIcons:"/images/icons/swim-green.svg",
+          policies: { checkIn: "03:00 PM", checkOut: "12:00 PM", cancellation: ["Free cancellation 48h before"] },
+          houseRules: { smoking: false, pets: true, quietHours: "10 PM" },
+          rating: 4.9, 
+          layoutType: 'standard'
+        },
+        {
+          id: 8,
+          badge: "Premium",
+          slug: "kriyan-lor-house",
+          name: "Kriyan Lor House",
+          tagline: "An Intimate Limasan House with Traditional Javanese Character",
+          price: 430000,
+          description: "Rumah Kriyan is a traditional 1940s limasan house relocated to Tembi in 2009, offering two intimate mirrored units with modern comforts, a private garden terrace, and a strong connection to Javanese history and culture.",
+          longDescription:[ 
+            "Kriyan house is a traditional limasan house built around the 1940s and relocated from Paliyan Village, Wonosari, Gunung Kidul, to the Tembi area in 2009. Originally one complete house, it was later adapted and divided into two symmetrical units, Kriyan Lor and Kriyan Kidul. Both units share the same layout with mirrored orientation. Each house measures 24 square meters and offers an intimate setting for couples or guests seeking a quiet and private stay.",
+            "The house is equipped with modern facilities including complimentary Wi-Fi, air conditioning, a minibar, and a private bathroom. Rumah Kriyan blends traditional simplicity with present day comfort. A private terrace facing a lush garden creates a calm atmosphere for relaxation within a Javanese rural setting.",
+            "The name Kriyan comes from an area in Keputran Jeron Beteng, Yogyakarta Palace. It was the residence of Mr. R. M. Koesbandarum Sasmi, the father of Mrs. R. A. Koeswardiyah Swantoro, from around 1940 to 1960. This house reflects a close family connection to Javanese history and culture.",
+          ],
+          imageUrl: "/images/rooms/kriyan/kriyan2.svg",
+          galleryImages: [
+            "/images/rooms/kriyan/kriyan1.svg",
+            "/images/rooms/kriyan/kriyan3.svg",
+            "/images/rooms/kriyan/kriyan4.svg",
+            "/images/rooms/kriyan/kriyan5.svg",
+            "/images/rooms/kriyan/kriyan6.svg",
+          ],
+          details: { bed: "King Size Bed", guests: 2, size: "24 m²", view: "Rice Field View" },
+          detailsIcons:"/images/icons/leaf-green.svg",
+          amenities: ["Free WiFi", "Air Conditioning", "Private Bathroom", "Rice Field View", "Minibar", "Terrace"],
+          amenitiesIcons:"/images/icons/leaf-green.svg",
+          policies: { checkIn: "03:00 PM", checkOut: "12:00 PM", cancellation: ["Free cancellation 48h before"] },
+          houseRules: { smoking: false, pets: true, quietHours: "10 PM" },
+          rating: 4.9, 
+          layoutType: 'standard'
+        },
+        {
+          id: 9,
+          badge: "Premium",
+          slug: "kriyan-kidul-house",
+          name: "Kriyan Kidul House",
+          tagline: "An Intimate Limasan House with Traditional Javanese Character",
+          price: 430000,
+          description: "Rumah Kriyan is a traditional 1940s limasan house relocated to Tembi in 2009, offering two intimate mirrored units with modern comforts, a private garden terrace, and a strong connection to Javanese history and culture.",
+          longDescription:[ 
+            "Kriyan house is a traditional limasan house built around the 1940s and relocated from Paliyan Village, Wonosari, Gunung Kidul, to the Tembi area in 2009. Originally one complete house, it was later adapted and divided into two symmetrical units, Kriyan Lor and Kriyan Kidul. Both units share the same layout with mirrored orientation. Each house measures 24 square meters and offers an intimate setting for couples or guests seeking a quiet and private stay.",
+            "The house is equipped with modern facilities including complimentary Wi-Fi, air conditioning, a minibar, and a private bathroom. Rumah Kriyan blends traditional simplicity with present day comfort. A private terrace facing a lush garden creates a calm atmosphere for relaxation within a Javanese rural setting.",
+            "The name Kriyan comes from an area in Keputran Jeron Beteng, Yogyakarta Palace. It was the residence of Mr. R. M. Koesbandarum Sasmi, the father of Mrs. R. A. Koeswardiyah Swantoro, from around 1940 to 1960. This house reflects a close family connection to Javanese history and culture.",
+          ],
+          imageUrl: "/images/rooms/kriyan/kriyan1.svg",
+          galleryImages: [
+            "/images/rooms/kriyan/kriyan2.svg",
+            "/images/rooms/kriyan/kriyan3.svg",
+            "/images/rooms/kriyan/kriyan4.svg",
+            "/images/rooms/kriyan/kriyan5.svg",
+            "/images/rooms/kriyan/kriyan6.svg",
+          ],
+          details: { bed: "King Size Bed", guests: 2, size: "24 m²", view: "Rice Field View" },
+          detailsIcons:"/images/icons/leaf-green.svg",
+          amenities: ["Free WiFi", "Air Conditioning", "Private Bathroom", "Rice Field View", "Minibar", "Terrace"],
+          amenitiesIcons:"/images/icons/leaf-green.svg",
+          policies: { checkIn: "03:00 PM", checkOut: "12:00 PM", cancellation: ["Free cancellation 48h before"] },
+          houseRules: { smoking: false, pets: true, quietHours: "10 PM" },
+          rating: 4.9, 
+          layoutType: 'standard'
+        },
+      ]
+    },
+    houseDetail:{
+      back: 'Back to Collection',
+      guest: 'Guests',
+      night: 'per night',
+      facilities: 'Cultural Amenities & Facilities',
+      gallery: 'Room Gallery',
+      viewall: 'View All Photos',
+      booking: 'Booking Now',
+      policy: {
+        title: 'Room Policies & Information',
+        id: 'Valid ID required',
+        cancelPolicy: 'Cancellation Policy',
+        cancel: 'Free cancellation 48h before',
+        refund: '50% refund 24h before',
+        sameday: 'No refund same day',
+      },
+      houseRules: {
+        title: 'House Rules',
+        smokingtrue: 'Smoking allowed',
+        smokingfalse: 'No smoking',
+        petstrue: 'Pets Allowed',
+        petsfalse: 'No pets allowed',
+        quiet: 'Quiet hours 10 PM',
+      }
     }
   },
   id: {
@@ -1261,8 +2427,12 @@ const translations = {
     catering:{
       hero: {
         label: 'Layanan Katering Premium',
-        title: 'Paket Catering Buffet',
-        desc: 'Hidangan Jawa autentik untuk acara kumpul dan perayaan. Semua menu disiapkan dengan resep turun-temurun yang menjaga rasa tradisi tetap hidup.',
+        titleBuffet: 'Paket Catering Buffet',
+        descBuffet: 'Hidangan Jawa autentik untuk acara kumpul dan perayaan. Semua menu disiapkan dengan resep turun-temurun yang menjaga rasa tradisi tetap hidup.',
+        titleSnack: 'Paket Snack Box',
+        descSnack: 'Kudapan Jawa untuk setiap momen. Rasakan cita rasa tradisi lewat snack box buatan tangan. Dibuat segar setiap pagi dengan resep turun temurun. Cocok untuk rapat, kumpul keluarga, atau acara budaya.',
+        titleRice: 'Paket Nasi Box',
+        descRice: 'Authentic Javanese meals packed with warmth and care. Experience the comforting flavors of home-cooked Javanese dishes, thoughtfully prepared and beautifully packed for your events. Perfect for meetings, community gatherings, or family celebrations.',
         pax: 'Minimum 35 Pax',
         hour: '4-6 Jam Servis',
         buttonText: 'Lihat Paket'
@@ -1510,7 +2680,7 @@ const translations = {
         card3: {
           name: "Buffet Exclusive",
           minPax: "100 Pax", // Sesuai gambar English version
-          description: "Ultimate traditional experience",
+          description: "Pengalaman tradisional yang menyeluruh",
           theme: "exclusive",
           iconSrc: "/images/icons/diamond-white.svg", 
           items: [
@@ -1698,7 +2868,7 @@ const translations = {
         item: [
           { title: 'Respon Cepat', desc: '+62 274 368 000' }, //
           { title: 'WhatsApp', desc: '+62 822 2514 2729' }, //
-          { title: 'Email us', desc: 'catering@tembihistoricalhome.com' } //
+          { title: 'Email Us', desc: 'catering@tembihistoricalhome.com' } //
         ],
         whatsapp: 'WhatsApp Sekarang', //
         call: 'Telepon Sekarang' //
@@ -1706,10 +2876,1116 @@ const translations = {
     },
     collection: {
       hero: {
-        badge: 'Cultural Heritage Collection',
-        title: ['Tembi Historical', 'Collections',],
-        
-
+        badge: 'Koleksi Warisan Budaya',
+        title: ['Koleksi Sejarah', 'Tembi',],
+        desc: [
+          "Pelestarian warisan budaya Indonesia melalui artefak bernilai sejarah. Kamu bisa menemukan kekayaan budaya Jawa lewat koleksi yang tersusun dengan cermat.",
+          "Tembi Historical Home menyimpan beragam benda tradisional Jawa. Mulai dari alat sehari hari hingga karya kerajinan yang menggambarkan perjalanan budaya Indonesia.Setiap benda menghadirkan filosofi dan keterampilan masyarakat setempat yang diwariskan lintas generasi."
+        ],
+        buttonText: 'Lihat Koleksi'
+      },
+      stats: {
+        item:[
+          {
+            id: 1,
+            iconUrl: '/images/icons/diamond-green.svg', 
+            alt: 'Artifacts Icon',
+            value: '250+',
+            label: 'Koleksi',
+          },
+          {
+            id: 2,
+            iconUrl: '/images/icons/calendar-green.svg', 
+            alt: 'Origins Icon',
+            value: '18th',
+            label: 'Asal-Usul Abad',
+          },
+          {
+            id: 3,
+            iconUrl: '/images/icons/group-green.svg', 
+            alt: 'Visitors Icon',
+            value: '5K',
+            label: 'Pengunjung Tahunan',
+          },
+        ]
+      },
+      items: [
+        {
+          title: "Koleksi Cundrik",
+          items: [
+            {
+              id: 1,
+              imageUrl: "/images/collection/cundrik/GPT0541.svg", // Pastikan gambar ada
+              category: "Cundrik",
+              title: "GPT0541",
+              description: "Cundrik kecil yang dahulu dibawa sebagai jimat pribadi. Melambangkan kewaspadaan dan perlindungan, dengan bentuk yang mencerminkan karakter tegas dari kerajinan pesisir Cirebon."
+            },
+            {
+              id: 2,
+              imageUrl: "/images/collection/cundrik/GPT0540.svg",
+              category: "Cundrik",
+              title: "GPT0540",
+              description: "Cundrik berukuran panjang dengan pola sanak. Lekukannya menampilkan teknik masa Majapahit dan melambangkan keteguhan serta kekuatan pribadi."
+            },
+            {
+              id: 3,
+              imageUrl: "/images/collection/cundrik/GPT0539.svg",
+              category: "Cundrik",
+              title: "GPT0539",
+              description: "Cundrik ramping yang digunakan dalam tradisi rumah tangga dan upacara. Bentuknya yang ringan dan gaya tempa Segaluh menonjolkan fungsi praktis serta identitas budaya."
+            },
+            {
+              id: 4,
+              imageUrl: "/images/collection/cundrik/GPT0538.svg", // Pastikan gambar ada
+              category: "Cundrik",
+              title: "GPT0538",
+              description: ""
+            },
+            {
+              id: 5,
+              imageUrl: "/images/collection/cundrik/GPT0537.svg",
+              category: "Cundrik",
+              title: "GPT0537",
+              description: ""
+            },
+            {
+              id: 6,
+              imageUrl: "/images/collection/cundrik/GPT0536.svg",
+              category: "Cundrik",
+              title: "GPT0536",
+              description: ""
+            },
+            {
+              id: 7,
+              imageUrl: "/images/collection/cundrik/GPT0535.svg", // Pastikan gambar ada
+              category: "Cundrik",
+              title: "GPT0535",
+              description: ""
+            },
+            {
+              id: 8,
+              imageUrl: "/images/collection/cundrik/GPT0534.svg",
+              category: "Cundrik",
+              title: "GPT0534",
+              description: ""
+            },
+            {
+              id: 9,
+              imageUrl: "/images/collection/cundrik/GPT0533.svg",
+              category: "Cundrik",
+              title: "GPT0533",
+              description: ""
+            }
+          ]
+        },
+        {
+          title: "Koleksi Pedang",
+          items: [
+            {
+              id: 10,
+              imageUrl: "/images/collection/sword/GPT0548.svg",
+              category: "Pedang",
+              title: "GPT0548",
+              description: "Sebilah senjata tradisional bermata satu dengan profil melengkung dan gagang kayu berukir. Bentuknya menyerupai senjata utilitas dan upacara yang ditemukan di beberapa wilayah di Jawa."
+            },
+            {
+              id: 11,
+              imageUrl: "/images/collection/sword/GPT0576.svg",
+              category: "Pedang",
+              title: "GPT0576",
+              description: "Pedang ramping dengan bilah panjang dan pola tempa yang terlihat jelas. Mencerminkan teknik logam masa Majapahit serta melambangkan keteguhan dan disiplin diri."
+            },
+            {
+              id: 12,
+              imageUrl: "/images/collection/sword/GPT0575.svg",
+              category: "Pedang",
+              title: "GPT0575",
+              description: "Pedang ringan dengan bilah sempit dan gagang kayu sederhana. Mengikuti gaya tempa Segaluh, pedang ini melambangkan identitas budaya dan perlindungan pribadi."
+            },
+            {
+              id: 13,
+              imageUrl: "/images/collection/sword/GPT0549.svg", // Pastikan gambar ada
+              category: "Pedang",
+              title: "GPT0549",
+              description: ""
+            },
+            {
+              id: 14,
+              imageUrl: "/images/collection/sword/GPT0574.svg",
+              category: "Pedang",
+              title: "GPT0574",
+              description: ""
+            },
+            {
+              id: 15,
+              imageUrl: "/images/collection/sword/GPT0550.svg",
+              category: "Pedang",
+              title: "GPT0550",
+              description: ""
+            },
+            {
+              id: 16,
+              imageUrl: "/images/collection/sword/GPT0571.svg", // Pastikan gambar ada
+              category: "Pedang",
+              title: "GPT0571",
+              description: ""
+            },
+            {
+              id: 17,
+              imageUrl: "/images/collection/sword/GPT0570.svg",
+              category: "Pedang",
+              title: "GPT0570",
+              description: ""
+            },
+            {
+              id: 18,
+              imageUrl: "/images/collection/sword/GPT0568.svg",
+              category: "Pedang",
+              title: "GPT0568",
+              description: ""
+            }
+          ]
+        },
+        {
+          title: "Koleksi Sken",
+          items: [
+            {
+              id: 19,
+              imageUrl: "/images/collection/sken/GPT0518.svg",
+              category: "Sken",
+              title: "GPT0518",
+              description: "Belati kecil tradisional dengan gagang dan sarung kayu. Desain Cekel Bahuluk melambangkan perlindungan dan fungsi praktis, dan dahulu sering dibawa sebagai alat pribadi pada masa Majapahit."
+            },
+            {
+              id: 20,
+              imageUrl: "/images/collection/sken/GPT0521.svg",
+              category: "Sken",
+              title: "GPT0521",
+              description: "Bilah tradisional panjang berbentuk daun dengan gagang dan sarung kayu. Desain Kujang Malang melambangkan keberanian dan kewibawaan, dan digunakan dalam konteks upacara maupun pertahanan pada masa Mataram Amangkurat."
+            },
+            {
+              id: 21,
+              imageUrl: "/images/collection/sken/GPT0516.svg",
+              category: "Sken",
+              title: "GPT0516",
+              description: "Belati upacara dengan bilah lebar berbentuk daun serta gagang dan sarung kayu ukir halus. Godong Suruh, yang berarti “daun sirih,” melambangkan ketulusan, kesucian, dan harmoni."
+            },
+            {
+              id: 22,
+              imageUrl: "/images/collection/sken/GPT0517.svg", 
+              category: "Sken",
+              title: "GPT0517",
+              description: "" 
+            },
+            {
+              id: 23,
+              imageUrl: "/images/collection/sken/GPT0519.svg",
+              category: "Sken",
+              title: "GPT0519",
+              description: "" 
+            },
+            {
+              id: 24,
+              imageUrl: "/images/collection/sken/GPT0520.svg",
+              category: "Sken",
+              title: "GPT0520",
+              description: "" 
+            }
+          ]
+        },
+        {
+          title: "Koleksi Tombak",
+          items: [
+            {
+              id: 25,
+              imageUrl: "/images/collection/spear/GPT407.svg",
+              category: "Tombak",
+              title: "GPT407",
+              description: "Belati tradisional dengan bilah panjang dan ramping serta gagang dan sarung kayu sederhana. Desainnya yang minimalis mencerminkan kerajinan fungsional yang menekankan keseimbangan dan kegunaan daripada hiasan."
+            },
+            {
+              id: 26,
+              imageUrl: "/images/collection/spear/GPT408.svg",
+              category: "Tombak",
+              title: "GPT408",
+              description: "Belati tradisional dengan bilah bermotif pamor dan gagang kayu berwarna gelap. Motif pamor terbentuk melalui teknik tempa berlapis dan melambangkan kekuatan batin serta keseimbangan."
+            },
+            {
+              id: 27,
+              imageUrl: "/images/collection/spear/GPT409.svg",
+              category: "Tombak",
+              title: "GPT409",
+              description: "Bilah pendek dengan gagang dan sarung kayu polos. Memiliki panjang bilah 25,5 cm dan panjang keseluruhan 49 cm, mencerminkan fungsi praktis untuk penggunaan sehari-hari."
+            },
+            {
+              id: 28,
+              imageUrl: "/images/collection/spear/GPT410.svg",
+              category: "Tombak",
+              title: "GPT410",
+              description: "" 
+            },
+            {
+              id: 29,
+              imageUrl: "/images/collection/spear/GPT412.svg",
+              category: "Tombak",
+              title: "GPT412",
+              description: "" 
+            },
+            {
+              id: 30,
+              imageUrl: "/images/collection/spear/GPT416.svg",
+              category: "Tombak",
+              title: "GPT416",
+              description: "" 
+            },
+            {
+              id: 31,
+              imageUrl: "/images/collection/spear/GPT507.svg",
+              category: "Tombak",
+              title: "GPT507",
+              description: "" 
+            },
+            {
+              id: 32,
+              imageUrl: "/images/collection/spear/GPT411.svg",
+              category: "Tombak",
+              title: "GPT411",
+              description: "" 
+            },
+            {
+              id: 33,
+              imageUrl: "/images/collection/spear/GPT413.svg",
+              category: "Tombak",
+              title: "GPT413",
+              description: "" 
+            }
+          ]
+        },
+        {
+          title: "Koleksi Wayang",
+          items: [
+            {
+              id: 34,
+              imageUrl: "/images/collection/wayang/drona.svg",
+              category: "Wayang",
+              title: "Drona",
+              description: "Wayang yang menggambarkan sosok penasihat tua. Postur yang tenang dan kostum penuh detail mencerminkan kebijaksanaan, disiplin, dan kedudukanyang terhormat."
+            },
+            {
+              id: 35,
+              imageUrl: "/images/collection/wayang/gareng.svg",
+              category: "Wayang",
+              title: "Gareng",
+              description: "Wayang berperan komedi dengan gerak ekspresif dan karakter humoris. Bentuk tubuh yang membulat dan sikap yang ceria menunjukkan perannya sebagai sahabat setia yang membawa keceriaan dalam cerita."
+            },
+            {
+              id: 36,
+              imageUrl: "/images/collection/wayang/citraksa.svg",
+              category: "Wayang",
+              title: "Citraksa",
+              description: "Wayang yang menggambarkan sosok pejuang bangsawan. Pahatan detail dan warna cerah menonjolkan kekuatan, otoritas, dan gerakan yang halus."
+            },
+            {
+              id: 37,
+              imageUrl: "/images/collection/wayang/bima.svg",
+              category: "Wayang",
+              title: "Bima",
+              description: "" 
+            },
+            {
+              id: 38,
+              imageUrl: "/images/collection/wayang/aswatama.svg",
+              category: "Wayang",
+              title: "Aswatama",
+              description: "" 
+            },
+            {
+              id: 39,
+              imageUrl: "/images/collection/wayang/bagong.svg",
+              category: "Wayang",
+              title: "Bagong",
+              description: "" 
+            },
+            {
+              id: 40,
+              imageUrl: "/images/collection/wayang/abilawa.svg",
+              category: "Wayang",
+              title: "Abilawa",
+              description: "" 
+            },
+            {
+              id: 41,
+              imageUrl: "/images/collection/wayang/arimbi.svg",
+              category: "Wayang",
+              title: "Arimbi",
+              description: "" 
+            },
+            {
+              id: 42,
+              imageUrl: "/images/collection/wayang/nakula.svg",
+              category: "Wayang",
+              title: "Nakula",
+              description: "" 
+            }
+          ]
+        },
+        {
+          title: "Koleksi Keris",
+          items: [
+            {
+              id: 43,
+              imageUrl: "/images/collection/keris/K.A 001.svg",
+              category: "Keris",
+              title: "K.A 001",
+              description: "Sebilah keris dari tradisi Surakarta dengan bilah lurus. Pamornya menampilkan susunan berlapis yang jelas, menunjukkan teknik tempa yang teliti. Hulu kayu dan warangka logam berukir mencerminkan keterampilan yang lekat dengan lingkungan bangsawan."
+            },
+            {
+              id: 44,
+              imageUrl: "/images/collection/keris/K.A 002.svg",
+              category: "Keris",
+              title: "K.A 002",
+              description: "Sebilah keris dengan lima lekukan dan pamor kuat di sepanjang bilah. Hulu bergaya Surakarta serta warangka logam berhias menunjukkan peran budaya keris dalam upacara dan warisan tradisi."
+            },
+            {
+              id: 45,
+              imageUrl: "/images/collection/keris/K.A 003.svg",
+              category: "Keris",
+              title: "K.A 003",
+              description: "Sebuah keris Jawa tradisional dengan pamor berlekuk dan hulu kayu. Warangka berlapis logam menandakan proses pelestarian pada masa berikutnya. Benda ini merepresentasikan pusaka pribadi yang digunakan sebagai simbol perlindungan dan jati diri."
+            },
+            {
+              id: 46,
+              imageUrl: "/images/collection/keris/K.A 004.svg",
+              category: "Keris",
+              title: "K.A 004",
+              description: "" 
+            },
+            {
+              id: 47,
+              imageUrl: "/images/collection/keris/K.A 005.svg",
+              category: "Keris",
+              title: "K.A 005",
+              description: "" 
+            },
+            {
+              id: 48,
+              imageUrl: "/images/collection/keris/K.A 006.svg",
+              category: "Keris",
+              title: "K.A 006",
+              description: "" 
+            },
+            {
+              id: 49,
+              imageUrl: "/images/collection/keris/K.A 007.svg",
+              category: "Keris",
+              title: "K.A 007",
+              description: "" 
+            },
+            {
+              id: 50,
+              imageUrl: "/images/collection/keris/K.A 008.svg",
+              category: "Keris",
+              title: "K.A 008",
+              description: "" 
+            },
+            {
+              id: 51,
+              imageUrl: "/images/collection/keris/K.A 009.svg",
+              category: "Keris",
+              title: "K.A 009",
+              description: "" 
+            }
+          ]
+        },
+        {
+          title: "Koleksi Lainnya",
+          items: [
+            {
+              id: 52,
+              imageUrl: "/images/collection/lainnya/Command Staff.svg",
+              category: "Lainnya",
+              title: "Command Staff",
+              description: "Tongkat kayu berukir ini memiliki ujung runcing dan bagian atas yang dihias. Bentuknya sering dikaitkan dengan peran kepemimpinan atau penggunaan dalam upacara. Bahan dan hasil pengerjaannya menunjukkan bahwa benda ini dibuat pada periode yang relatif lebih baru."
+            },
+            {
+              id: 53,
+              imageUrl: "/images/collection/lainnya/VOC Flintlock Pistol.svg",
+              category: "Lainnya",
+              title: "VOC Flintlock Pistol",
+              description: "Pistol flintlock tembakan tunggal ini berasal dari masa VOC di wilayah Nusantara pada abad ke-17 hingga ke-19. Senjata ini umum digunakan oleh personel militer dan perwira sebagai senjata jarak dekat sekaligus penanda status."
+            },
+            {
+              id: 54,
+              imageUrl: "/images/collection/lainnya/Triple-Bladed Weapon.svg",
+              category: "Lainnya",
+              title: "Triple-Bladed Weapon",
+              description: "Senjata bermata tiga ini memiliki ujung tengah menyerupai tombak dengan dua sisi melengkung di kanan dan kiri. Dilengkapi dengan gagang dan sarung kayu. Bentuknya menunjukkan fungsi untuk pertarungan jarak dekat atau penggunaan upacara, tergantung pada konteks sejarah dan tradisi."
+            },
+          ]
+        }
+      ]
+    },
+    venue:{
+      hero: {
+        title: ['Venue Rental Di', 'Tembi Historical Home'],
+        subtitle: 'Ruang elegan untuk momen berkesan',
+        quote: 'Booking mudah, acara lancar, suasana hangat',
+        desc: 'Tembi Rumah Budaya menyediakan pilihan venue bergaya Jawa untuk berbagai acara. Mulai dari pertemuan kecil sampai perayaan besar. cKamu menikmati suasana tenang, fasilitas lengkap, dan kehangatan budaya Jawa.',
+        buttonText: 'Pesan Sekarang'
+      },
+      features: {
+        title: 'Pilih Venue yang Tepat untuk Acara Anda',
+        desc: 'Dari Pendopo tradisional sampai taman yang intim. Setiap venue di Tembi Rumah Budaya punya karakter unik dengan fasilitas lengkap untuk acara spesial Kamu.',
+        item: [
+          {
+            title: 'Arsitektur Tradisional',
+            description: 'Desain Jawa autentik dengan fasilitas modern'
+          },
+          {
+            title: 'Kapasitas Fleksibel',
+            description: 'Mulai dari 20 orang sampai 150 orang'
+          },
+          {
+            title: 'Nuansa Alam',
+            description: 'Taman indah dan area terbuka yang nyaman'
+          }
+        ]
+      },
+      gallery: {
+        title: 'Galeri Venue',
+        desc: 'Pilih ruang terbaik untuk acara Kamu dari pilihan venue bergaya Jawa yang nyaman dan lengkap di Tembi Rumah Budaya'
+      },
+      contact: {
+        title: [
+          'Siap mengadakan acara anda di',
+          'Tembi Rumah Budaya?'
+        ],
+        desc: 'Kami bantu anda memilih venue terbaik untuk momen spesial Kamu. Tim berpengalaman kami siap mendampingi agar acara Kamu berjalan lancar dan penuh kenangan di ruang tradisional yang memikat.',
+        button: 'Hubingi Tim Kami',
+        item: [
+          { title: 'Respons Cepat', desc: 'Respons cepat dalam 2 jam' },
+          { title: 'Layanan Pribadi', desc: 'Pendampingan personal dari event coordinator' },
+          { title: 'Kualitas Terjamin', desc: 'Kualitas layanan terjamin 100 persen' }
+        ]
+      },
+      items: [
+        {
+          slug: "pendopo-yudonegaran",
+          title: "Pendopo Yudonegaran",
+          heroDescription: [
+            "Pendopo Yudonegaran adalah pusat Tembi rumah budaya. Paviliun Jawa megah yang dibuat sepenuhnya dari kayu jati. Venue ini menghadirkan keindahan dan nilai arsitektur tradisional.",
+            "Desain terbuka, pilar besar, dan langit-langit tinggi memberi kesan elegan dan hangat. Pilihan tepat untuk berbagai acara yang ingin meninggalkan kesan mendalam.",
+          ],
+          shortDescription: "Pendopo utama dengan arsitektur Jawa klasik. Langit tinggi dan pilar kayu yang kokoh menciptakan suasana megah dan hangat.",
+          longDescription: [
+            "Pendopo Yudonegaran adalah paviliun tradisional Jawa yang megah berbahan kayu jati. Suasananya terbuka dan menenangkan untuk berbagai jenis acara. Cocok untuk pernikahan, acara perusahaan, atau pertunjukan budaya. Venue ini menghadirkan perpaduan arsitektur klasik dengan kenyamanan modern.",
+            "Tiang kayu yang tinggi dan atap joglo menciptakan nuansa Jawa yang kuat. Desain terbuka dan sirkulasi udara alami menjadikannya sesuai untuk acara kecil atau perayaan besar."
+          ],
+          heroImage: "/images/venue/pendopo/pendopo1.png",
+          galleryImages: ["/images/venue/pendopo/pendopo2.png", "/images/venue/pendopo/pendopo3.png", "/images/venue/pendopo/pendopo1.png"],
+          eventGalleryImages: ["/images/venue/pendopo/pendopo4.png", "/images/venue/pendopo/pendopo5.png", "/images/venue/pendopo/pendopo6.png", "/images/venue/pendopo/pendopo7.png", "/images/venue/pendopo/pendopo1.png", "/images/venue/pendopo/pendopo2.png"],
+          basePrice: 1800000,
+          basePriceString: "Rp 1.800.000",
+          priceDetail: "(2 jam)",
+          extraPriceString: "Rp 875.000/jam",
+          capacity: "Hingga 150 tamu",
+          facilities: ["80 Kursi", "Sound System", "Toilet", "Area Parkir", "Kebersihan"],
+          bestFor: "Pernikahan, Pertemuan"
+        },
+        {
+          slug: "amphiteater-notoprajan",
+          title: "Amphiteater Notoprajan",
+          heroDescription: [
+            "Amphitheater Notoprajan menghadirkan ruang terbuka yang dikelilingi taman hijau. Cocok untuk pertunjukan, pertemuan komunitas, dan acara kreatif. Desain setengah lingkaran memberi suasana panggung alami yang membuat penonton lebih terhubung dengan setiap momen acara.", 
+          ],
+          shortDescription: "Area ampiteater alami. Cocok untuk pertunjukan, presentasi, dan perayaan outdoor.",
+          longDescription: [
+            "Amphitheater Notoprajan menghadirkan suasana ruang terbuka yang dikelilingi taman hijau. Cocok untuk pertunjukan, acara komunitas, dan kegiatan kreatif. Desain setengah lingkaran memberi pengalaman panggung alami yang membuat penonton lebih terhubung dengan setiap momen acara.",
+            "Pilar kayu dan arsitektur tradisional menciptakan nuansa Jawa yang kuat. Ruang terbuka dan sirkulasi udara yang baik membuat venue ini ideal untuk acara kecil maupun perayaan skala lebih besar."
+          ],
+          heroImage: "/images/venue/amphiteater/amphiteater1.png",
+          galleryImages: ["/images/venue/amphiteater/amphiteater2.png", "/images/venue/amphiteater/amphiteater3.png", "/images/venue/amphiteater/amphiteater4.png"],
+          eventGalleryImages: ["/images/venue/amphiteater/amphiteater5.png", "/images/venue/amphiteater/amphiteater6.png", "/images/venue/amphiteater/amphiteater7.png", "/images/venue/amphiteater/amphiteater8.png", "/images/venue/amphiteater/amphiteater9.png", "/images/venue/amphiteater/amphiteater10.png"],
+          basePrice: 1500000,
+          basePriceString: "Rp 1.500.000",
+          priceDetail: "(2 jam)",
+          extraPriceString: "Rp 700.000/jam",
+          capacity: "Hingga 100 tamu",
+          facilities: ["50 Kursi", "Sound System", "Toilet", "Area Parkir", "Kebersihan"],
+          bestFor: "Pernikahan, Pertemuan"
+        },
+        {
+          slug: "bale-madyosuro",
+          title: "Bale Madyosuro",
+          heroDescription: [
+            "Bale Madyosuro menghadirkan interior Jawa klasik dengan ukiran kayu dan lantai bermotif. Suasananya hangat dan tetap formal. Cocok untuk rapat, workshop, atau acara dengan jumlah tamu menengah.", 
+          ],
+          shortDescription: "Paviliun tradisional yang nyaman. Cocok untuk acara berkapasitas menengah dengan suasana Jawa yang autentik.",
+          longDescription: [
+            "Bale Madyosuro menyuguhkan interior Jawa klasik dengan ukiran kayu dan lantai bermotif. Suasananya hangat dan tetap formal untuk rapat, workshop, atau acara yang lebih intim. Venue ini memadukan tradisi dan fungsi modern sehingga menghadirkan nuansa elegan untuk setiap momen spesial anda.",
+            "Pilar kayu yang tinggi dan atap joglo tradisional menghadirkan suasana Jawa yang autentik dengan fasilitas lengkap untuk kebutuhan acara masa kini. Sirkulasi udara alami dan desain yang terbuka membuatnya cocok untuk acara kecil maupun perayaan dalam jumlah lebih besar."
+          ],
+          heroImage: "/images/venue/madyosuro/madyosuro1.png",
+          galleryImages: ["/images/venue/madyosuro/madyosuro2.png", "/images/venue/madyosuro/madyosuro3.png", "/images/venue/madyosuro/madyosuro4.png"],
+          eventGalleryImages: ["/images/venue/madyosuro/madyosuro5.png", "/images/venue/madyosuro/madyosuro6.png", "/images/venue/madyosuro/madyosuro7.png", "/images/venue/madyosuro/madyosuro8.png", "/images/venue/madyosuro/madyosuro9.png", "/images/venue/madyosuro/madyosuro10.png"],
+          basePrice: 750000,
+          basePriceString: "Rp 750.000",
+          priceDetail: "(2 jam)",
+          extraPriceString: "Rp 350.000/jam",
+          capacity: "Hingga 80 tamu",
+          facilities: ["50 Kursi", "Sound System", "Toilet", "Area Parkir", "Kebersihan"],
+          bestFor: "Pernikahan, Pertemuan"
+        },
+        {
+          slug: "bale-mrican",
+          title: "Bale Mrican",
+          heroDescription: [
+            "Bale Mrican menghadirkan ruang indoor yang nyaman dan tenang.  Cocok untuk meeting, workshop, atau acara privat berskala kecil. Interior minimalis dan tata ruang yang terbuka memberi fleksibilitas untuk penataan acara casual maupun formal.", 
+          ],
+          shortDescription: "Paviliun yang nyaman untuk acara berkapasitas kecil. Cocok untuk workshop dan perayaan personal.",
+          longDescription: [
+            "Bale Mrican menyediakan ruang indoor yang nyaman dan tenang. Cocok untuk meeting, workshop, atau acara privat berskala kecil. Interior minimalis dan layout terbuka membuat penataan ruang lebih fleksibel untuk acara casual maupun formal.",
+            "Ruang ini menghadirkan suasana Jawa yang autentik dengan pilar kayu menjulang dan atap joglo khas. Sirkulasi udara alami dan desain terbuka membuatnya nyaman untuk acara kecil maupun perayaan yang lebih besar."
+          ],
+          heroImage: "/images/venue/mrican/mrican1.png",
+          galleryImages: ["/images/venue/mrican/mrican2.png", "/images/venue/mrican/mrican3.png", "/images/venue/mrican/mrican4.png"],
+          eventGalleryImages: ["/images/venue/mrican/mrican5.png", "/images/venue/mrican/mrican6.png", "/images/venue/mrican/mrican7.png", "/images/venue/mrican/mrican8.png", "/images/venue/mrican/mrican9.png", "/images/venue/mrican/mrican10.png"],
+          basePrice: 600000,
+          basePriceString: "Rp 600.000",
+          priceDetail: "(2 jam)",
+          extraPriceString: "Rp 250.000/jam",
+          capacity: "Hingga 50 tamu",
+          facilities: ["25 Kursi", "Sound System", "Toilet", "Area Parkir", "Kebersihan"],
+          bestFor: "Pernikahan, Pertemuan"
+        },
+        {
+          slug: "bale-sagan",
+          title: "Bale Sagan",
+          heroDescription: [
+            "Bale Sagan merupakan pendapa kecil yang cocok untuk acara dengan peserta terbatas. Kamu bisa memakainya untuk diskusi kelompok, workshop seni, atau pertemuan santai. Desain Jawa yang sederhana menghadirkan suasana tenang dengan cahaya alami dan udara segar.", 
+          ],
+          shortDescription: "Venue paling privat untuk rapat kecil, kumpul keluarga, dan acara eksklusif anda.",
+          longDescription: [
+            "Bale Sagan adalah pendapa kecil yang nyaman untuk acara dengan peserta terbatas. Kamu bisa menggunakannya untuk diskusi kelompok, workshop seni, atau pertemuan santai. Desain Jawa yang sederhana memberi suasana tenang dengan cahaya alami dan udara segar.",
+            "Pilar kayu yang menjulang dan atap joglo menjaga nuansa tradisional tetap terasa. Sirkulasi udara alami dan area terbuka membuat tempat ini nyaman untuk berbagai jenis acara, baik yang bersifat intim maupun lebih besar."
+          ],
+          heroImage: "/images/venue/sagan/sagan1.png",
+          galleryImages: ["/images/venue/sagan/sagan2.png", "/images/venue/sagan/sagan3.png", "/images/venue/sagan/sagan4.png"],
+          eventGalleryImages: ["/images/venue/sagan/sagan5.png", "/images/venue/sagan/sagan6.png", "/images/venue/sagan/sagan7.png", "/images/venue/sagan/sagan8.png", "/images/venue/sagan/sagan9.png", "/images/venue/sagan/sagan10.png"],
+          basePrice: 350000,
+          basePriceString: "Rp 350.000",
+          priceDetail: "(2 jam)",
+          extraPriceString: "Rp 150.000/jam",
+          capacity: "Hingga 20 tamu",
+          facilities: ["15 Kursi", "Sound System", "Toilet", "Area Parkir", "Kebersihan"],
+          bestFor: "Pernikahan, Pertemuan"
+        },
+        {
+          slug: "taman-bulus",
+          title: "Taman Bulus (Outdoor Area)",
+          heroDescription: [
+            "Taman Bulus menghadirkan taman luar ruang yang hijau dan dikelilingi arsitektur tradisional. Tempat ini cocok untuk pernikahan outdoor, acara keluarga, dan kegiatan kreatif. Lanskap yang tenang memadukan alam dan budaya dalam satu suasana yang indah.", 
+          ],
+          shortDescription: "Area taman luar yang menyatukan Bale Inap dan Sentolo. Cocok untuk acara dengan suasana alam yang menyegarkan.",
+          longDescription: [
+            "Taman Bulus menghadirkan taman luar ruang yang hijau dan dikelilingi bangunan tradisional. Cocok untuk pernikahan outdoor, acara keluarga, dan kegiatan kreatif. Lanskap yang tenang memadukan suasana alam dan budaya dalam satu lokasi.",
+            "Ruang terbuka dengan sirkulasi udara alami memberi kenyamanan untuk berbagai acara. Desainnya fleksibel untuk perayaan kecil maupun acara berskala lebih besar. Semua fasilitas tersedia agar Kamu bisa fokus menikmati momen bersama tamu."
+          ],
+          heroImage: "/images/venue/bulus/bulus1.png",
+          galleryImages: ["/images/venue/bulus/bulus2.png", "/images/venue/bulus/bulus3.png", "/images/venue/bulus/bulus4.png"],
+          eventGalleryImages: ["/images/venue/bulus/bulus5.png", "/images/venue/bulus/bulus6.png", "/images/venue/bulus/bulus7.png", "/images/venue/bulus/bulus8.png", "/images/venue/bulus/bulus9.png", "/images/venue/bulus/bulus10.png"],
+          basePrice: 1200000,
+          basePriceString: "Rp 1.200.000",
+          priceDetail: "(2 jam)",
+          extraPriceString: "Rp 550.000/jam",
+          capacity: "Hingga 50 tamu",
+          facilities: ["25 Kursi", "Sound System", "Toilet", "Area Parkir", "Kebersihan"],
+          bestFor: "Pernikahan, Pertemuan"
+        },
+      ]
+    },
+    detailVenue:{
+      intro: {
+        title: 'Informasi Venue',
+        cardTitle: 'Informasi Utama',
+        item1: 'Kapasitas',
+        item2: 'Cocok Untuk',
+      },
+      features: {
+        title: 'Fasilitas Termasuk',
+        subtitle: 'Semua kebutuhan acara sudah tersedia',
+        item: [
+          {
+            title: 'Ruang Acara',
+            desc: 'Bangunan tradisional bergaya Jawa dengan kayu jati asli'
+          },
+          {
+            title: 'Kursi Gratis',
+            desc: 'Kursi untuk hingga 50 tamu sudah termasuk'
+          },
+          {
+            title: 'Sound System',
+            desc: 'Peralatan suara portabel untuk pidato dan pengumuman'
+          },
+          {
+            title: 'Fasilitas Toilet',
+            desc: 'Kamar mandi bersih dan terawat'
+          },
+          {
+            title: 'Layanan Kebersihan',
+            desc: 'Tim kebersihan sebelum dan setelah acara'
+          },
+          {
+            title: 'Area Parkir',
+            desc: 'Tempat parkir luas untuk tamu'
+          }
+        ],
+        addons: {
+          title: 'Layanan Tambahan Opsional',
+          item: [
+            'Proyektor & layar',
+            'Peningkatan sistem suara',
+            'Layanan catering',
+            'Dekorasi acara'
+          ]
+        }
+      },
+      gallery: {
+        title: 'Galeri Acara',
+        subtitle: 'Lihat berbagai momen indah yang berlangsung'
+      },
+      service: {
+        title: 'Layanan dan Perlengkapan Tambahan',
+        subtitle: 'Tingkatkan kenyamanan acara Kamu dengan pilihan layanan premium',
+        table: {
+          col1: 'Layanan',
+          col2: 'Deskripsi',
+          item: [
+            {
+              name: "Sound System Non-Portable",
+              description: "Sistem audio berkualitas profesional lengkap dengan beberapa mikrofon",
+            },
+            {
+              name: "Paket Sound Pernikahan",
+              description: "Perlengkapan audio lengkap untuk akad dan resepsi",
+            },
+            {
+              name: "Proyektor dan Layar",
+              description: "Proyektor HD dengan layar besar untuk presentasi",
+            },
+            {
+              name: "Kursi Tambahan",
+              description: "Penambahan kursi di luar 80 kursi yang sudah tersedia",
+            },
+            {
+              name: "Pencahayaan Tambahan",
+              description: "Penataan lighting profesional untuk acara malam",
+            },
+            {
+              name: "Paket Fotografi",
+              description: "Layanan dokumentasi oleh fotografer profesional",
+            }
+          ],
+          note: {
+            title: 'Catatan Penting:',
+            item: [
+              'Catering dan dekorasi tersedia sesuai permintaan',
+              'Makanan dari vendor luar dapat dikenakan biaya tambahan',
+              'Harga dapat berubah dan belum termasuk pajak',
+              'Konfirmasi pemesanan minimal 48 jam sebelum acara'
+            ]
+          }
+        }
+      }
+    },
+    house: {
+      hero: {
+        back: 'Kembali ke Koleksi',
+        address: [
+          'Beranda', 'Kamar & Akomodasi'
+        ],
+        title: 'Kamar & Akomodasi',
+        desc: 'Rasakan kekayaan warisan budaya Jawa sambil menikmati kenyamanan modern dan keramahan tradisional. Setiap kamar menyimpan kisah tentang keahlian tangan Indonesia dan keanggunan yang tak lekang oleh waktu.',
+        buttonText: 'Jelajahi Kamar',
+        stats: [
+          {num: '9', desc: 'Kategori Kamar'},
+          {num: '98%', desc: 'Kepuasan Tamu'},
+          {num: '24/7', desc: 'Pengalaman Budaya'}
+        ]
+      },
+      room: {
+        title: 'Koleksi Akomodasi Kami',
+        desc: 'Temukan pilihan kamar dan suite kami yang dipilih dengan cermat, masing-masing dirancang untuk menghadirkan perpaduan unik antara budaya Indonesia dan fasilitas mewah modern.'
+      },
+      amenities: {
+        title: 'Fasilitas & Layanan',
+        desc: 'Setiap kamar menghadirkan kenyamanan dan kemudahan, diperkaya suasana budaya Indonesia yang autentik serta pelayanan hangat yang tulus.',
+        item: [
+          {
+            title: "Kenyamanan Kamar",
+            icon: "/images/icons/bed-green.svg",
+            items: [
+              "Air conditioning",
+              "Furnitur tradisional",
+              "Ruang Tamu",
+              "Tempat Tidur Tradisional",
+              "Kamar mandi pribadi",
+              "Perlengkapan mandi gratis",
+            ],
+          },
+          {
+            title: "Teknologi",
+            icon: "/images/icons/wifi-green.svg",
+            items: [
+              "WiFi Gratis",
+              "Port pengisian daya",
+            ],
+          },
+          {
+            title: "Aktivitas Budaya",
+            icon: "/images/icons/paint-green.svg",
+            items: [
+              "Aktivitas Tradisional",
+              "Pertunjukan Tradisional Musiman",
+              "Galeri Seni",
+              "Koleksi Pribadi",
+              "Tur Pribadi Tembi",
+              "Beragam Alat Musik",
+              "Beragam Kelas Tradisional",
+            ],
+          },
+          {
+            title: "Kuliner & Kebugaran",
+            icon: "/images/icons/food-green.svg",
+            items: [
+              "Kuliner Tradisional",
+              "Layanan Kamar",
+              "Pijat Tradisional",
+              "Tari Jawa Tradisional",
+            ],
+          },
+        ]
+      },
+      additional: {
+        title: 'Fasilitas Tambahan Rumah',
+        item: [
+          { name: "Kolam Renang", icon: "/images/icons/swim-green.svg" },
+          { name: "Spa & Kesehatan", icon: "/images/icons/flower-green.svg"},
+          { name: "Tur Taman", icon: "/images/icons/tree-green.svg" },
+        ]
+      },
+      featuredCard: {
+        features: {
+          wifi: "WiFi Gratis",
+          guest: ['Hingga ', 'tamu']
+        },
+        buttonText: 'Lihat Detail'
+      },
+      standardCard: {
+        features: {
+          wifi: "WiFi Gratis",
+          guest: 'tamu'
+        },
+        buttonText: 'Lihat Detail'
+      },
+      item: [
+        {
+          id: 1,
+          badge: "Premium",
+          slug: "ngadirojo-house",
+          name: "Rumah Ngadirojo",
+          tagline: "Rumah Limasan Jawa dengan pemandangan kolam renang dan sawah.",
+          price: 547000,
+          description: "Nikmati pengalaman menginap bernuansa Jawa yang bermakna di suite kami. Arsitektur joglo tradisional berpadu dengan teras taman pribadi dan layanan cultural concierge yang mendukung pengalaman budaya.",
+          longDescription:[ 
+            "Ngadirojo House adalah rumah limasan Jawa tradisional yang dibangun tahun 1946 dan dipindahkan dari Desa Bawak, Cawas, Klaten, Jawa Tengah, ke Tembi pada 2007. Rumah ini menggabungkan arsitektur Jawa dan suasana alami yang tenang. Tempat ini cocok untuk tamu yang mencari ketenangan dan budaya.",
+            "Dengan luas 43,2 meter persegi, rumah ini memiliki WiFi gratis, AC, minibar, dan kamar mandi pribadi. Bagian yang menonjol ada pada pemandangannya. Teras depan menghadap taman hijau. Teras belakang langsung terhubung dengan kolam renang dan hamparan sawah luas.",
+            "Nama Ngadirojo berasal dari sebuah daerah di Wonogiri, Jawa Tengah, tempat Bapak F. W. Santopratiknya tinggal antara tahun 1944 sampai 1946. Rumah ini melambangkan keharmonisan antara kenyamanan, keindahan alam, dan sejarah keluarga."
+          ],
+          imageUrl: "/images/rooms/ngadirojo/ngadirojo1.png",
+          galleryImages: [
+            "/images/rooms/ngadirojo/ngadirojo2.png",
+            "/images/rooms/ngadirojo/ngadirojo3.png",
+            "/images/rooms/ngadirojo/ngadirojo4.png",
+            "/images/rooms/ngadirojo/ngadirojo.png",
+            "/images/rooms/ngadirojo/ngadirojo5.png",
+          ],
+          details: { bed: "King Size Bed", guests: 2, size: "43,2 m²", view: "Pemandangan Kolam" },
+          detailsIcons:"/images/icons/swim-white.svg",
+          amenities: ["WiFi Gratis", "Air Conditioning", "Kamar Mandi Pribadi", "Pemandangan Kolam", "Bar Mini", "Teras"],
+          amenitiesIcons:"/images/icons/swim-white.svg",
+          policies: { checkIn: "15:00 WIB",  checkOut: "12:00 PM", 
+          cancellation: ["Pembatalan Gratis Hingga 48 Jam Sebelumnya", "50% refund 24h before", "No refund same day"] 
+          },
+          houseRules: { smoking: false, pets: true, quietHours: "10 Malam" },
+          rating: 4.9, 
+          layoutType: 'featured'
+        },
+        {
+          id: 2,
+          badge: "Premium",
+          slug: "polaman-house",
+          name: "Rumah Polaman",
+          tagline: "Rumah Limasan Jawa yang luas dengan pemandangan kolam renang dan sawah",
+          price: 700000,
+          description: "Rasakan ketenangan menginap bernuansa Jawa di suite dengan arsitektur joglo tradisional. Tersedia teras taman pribadi, pemandangan kolam, dan layanan cultural concierge yang personal.",
+          longDescription:[ 
+            "Polaman House adalah rumah limasan Jawa tradisional yang dibangun tahun 1948 dan dipindahkan dari Desa Bawak, Cawas, Klaten, ke Tembi pada 2007. Rumah ini memadukan kehangatan arsitektur Jawa dengan lanskap alami. Tempat ini cocok untuk pengalaman menginap yang autentik dan tenang.",
+            "Dengan luas 63,13 meter persegi, rumah ini memiliki WiFi gratis, AC, minibar, kamar mandi pribadi, dan teras yang nyaman. Teras depan menghadap taman rindang. Teras belakang menghadap kolam renang dan sawah, memberi suasana alami yang menenangkan.",
+            "Nama Polaman berasal dari sebuah daerah di Sedayu, Bantul, tempat Bapak F. W. Santopratiknya tinggal antara tahun 1929 sampai 1931. Rumah ini mencerminkan sejarah keluarga yang memadukan warisan budaya dan kenyamanan modern.",
+          ],
+          imageUrl: "/images/rooms/polaman/polaman1.png",
+          galleryImages: [
+            "/images/rooms/polaman/polaman2.png",
+            "/images/rooms/polaman/polaman.png",
+            "/images/rooms/polaman/polaman3.png",
+            "/images/rooms/polaman/polaman4.png",
+            "/images/rooms/polaman/polaman5.png",
+          ],
+          details: { bed: "King Size Bed", guests: 2, size: "63,13 m²", view: "Pemandangan Kolam" },
+          detailsIcons:"/images/icons/swim-white.svg",
+          amenities: ["WiFi Gratis", "Air Conditioning", "Kamar Mandi Pribadi", "Pemandangan Kolam", "Bar Mini", "Teras"],
+          amenitiesIcons:"/images/icons/swim-green.svg",
+          policies: { checkIn: "15:00 WIB", checkOut: "12:00 WIB", cancellation: ["Pembatalan Gratis Hingga 48 Jam Sebelumnya"] },
+          houseRules: { smoking: false, pets: true, quietHours: "10 Malam" },
+          rating: 4.9, 
+          layoutType: 'featured'
+        },
+        {
+          id: 3,
+          badge: "Premium",
+          slug: "adikarto-house",
+          name: "Rumah Adikarto",
+          tagline: "Ketenangan Rumah Limasan Jawa Klasik",
+          price: 430000,
+          description: "Nikmati suasana menginap yang tenang dengan sentuhan joglo. Suite ini dilengkapi teras taman pribadi, pemandangan taman yang menenangkan, serta dukungan cultural concierge.",
+          longDescription:[ 
+            "Adikarto House adalah rumah limasan Jawa tradisional yang menghadirkan kesejukan dan kenyamanan dalam suasana alami. Rumah ini dibangun tahun 1960 di Ngadirejo, Tepus, Gunung Kidul, lalu dipindahkan ke Tembi pada 2007 sebagai bagian dari upaya pelestarian budaya.",
+            "Dengan luas 51,6 meter persegi, rumah ini dilengkapi WiFi gratis, AC, minibar, kamar mandi pribadi, dan teras pribadi yang menghadap taman. Suasana yang tenang membuat rumah ini cocok untuk tamu yang mencari ketenangan dengan sentuhan tradisi.",
+            "Nama Adikarto berasal dari sebuah daerah di Kabupaten Kulon Progo, yang lebih dikenal sebagai Wates, tempat Bapak F. W. Santopratiknya tinggal antara tahun 1931–1942 dan 1949–1955. Rumah ini tidak hanya menawarkan kenyamanan, tetapi juga menjaga sejarah keluarga dan warisan budaya.",
+          ],
+          imageUrl: "/images/rooms/adikarto/adikarto1.png",
+          galleryImages: [
+            "/images/rooms/adikarto/adikarto2.png",
+            "/images/rooms/adikarto/adikarto.png",
+            "/images/rooms/adikarto/adikarto3.png",
+            "/images/rooms/adikarto/adikarto4.png",
+            "/images/rooms/adikarto/adikarto5.png",
+          ],
+          details: { bed: "King Size Bed", guests: 2, size: "51,6 m²", view: "Pemandangan Taman" },
+          detailsIcons:"/images/icons/leaf-gray.svg",
+          amenities: ["WiFi Gratis", "Air Conditioning", "Kamar Mandi Pribadi", "Pemandangan Taman", "Bar Mini", "Teras"],
+          amenitiesIcons:"/images/icons/leaf-green.svg",
+          policies: { checkIn: "15:00 WIB", checkOut: "12:00 WIB", cancellation: ["Pembatalan Gratis Hingga 48 Jam Sebelumnya"] },
+          houseRules: { smoking: false, pets: true, quietHours: "10 Malam" },
+          rating: 4.9, 
+          layoutType: 'featured'
+        },
+        {
+          id: 4,
+          badge: "Premium",
+          slug: "ganjuran-house",
+          name: "Rumah Ganjuran",
+          tagline: "Harmoni Tradisi Jawa dan Alam",
+          price: 682000,
+          description: "Suite luas dengan arsitektur Jawa tradisional dan pemandangan taman yang memukau. Dilengkapi furnitur jati autentik, fasilitas kamar mandi, serta fasilitas budaya premium untuk pengalaman warisan yang mendalam.",
+          longDescription:[ 
+            "Ganjuran House adalah rumah limasan tradisional yang dibangun tahun 1939 dan dipindahkan dari Dusun Jepitu, Tepus, Gunung Kidul, ke Tembi pada 2007. Dengan arsitektur Jawa yang autentik, rumah ini menawarkan pengalaman menginap yang tenang dan dekat dengan warisan budaya.",
+            "Dengan luas 68,15 meter persegi, rumah ini dilengkapi WiFi gratis, AC, minibar, kamar mandi pribadi, dan teras pribadi yang menghadap taman. Perpaduan kenyamanan modern dan suasana alami membuat tempat ini cocok untuk relaksasi atau menghabiskan waktu bersama orang terdekat.",
+            "Nama Ganjuran diambil dari sebuah daerah di Kabupaten Bantul, tempat Bapak F. W. Santopratiknya tinggal sekitar tahun 1929. Rumah ini tidak hanya menawarkan kenyamanan, tetapi juga membawa hubungan sejarah dan kedekatan emosional dengan warisan keluarga.",
+          ],
+          imageUrl: "/images/rooms/ganjuran/ganjuran1.png",
+          galleryImages: [
+            "/images/rooms/ganjuran/ganjuran2.png",
+            "/images/rooms/ganjuran/ganjuran3.png",
+            "/images/rooms/ganjuran/ganjuran4.png",
+            "/images/rooms/ganjuran/ganjuran5.png",
+            "/images/rooms/ganjuran/ganjuran6.png",
+          ],
+          details: { bed: "King Size Bed", guests: 3, size: "68,15 m²", view: "Pemandangan Taman" },
+          detailsIcons:"/images/icons/leaf-green.svg",
+          amenities: ["WiFi Gratis", "Air Conditioning", "Kamar Mandi Pribadi", "Pemandangan Taman", "Bar Mini", "Teras"],
+          amenitiesIcons:"/images/icons/leaf-green.svg",
+          policies: { checkIn: "15:00 WIB", checkOut: "12:00 WIB", cancellation: ["Pembatalan Gratis Hingga 48 Jam Sebelumnya"] },
+          houseRules: { smoking: false, pets: true, quietHours: "10 Malam" },
+          rating: 4.9, 
+          layoutType: 'standard'
+        },
+        {
+          id: 5,
+          badge: "Best Value",
+          slug: "badegan-house",
+          name: "Rumah Badegan",
+          tagline: "Sentuhan Tradisi Sunda Di Alam Yogyakarta",
+          price: 430000,
+          description: "Kamar yang nyaman dan ramah keluarga, Sempurna bagi keluarga yang ingin merasakan pengalaman budaya secara mendalam dengan tetap menikmati kenyamanan dan kemudahan modern.",
+          longDescription:[ 
+            "Menginap di Badegan House bukan sekadar beristirahat. Kamu merasakan kehangatan rumah kayu tradisional Sunda yang penuh makna. Rumah panggung ini dibangun tahun 1954 di Sumedang, Jawa Barat, lalu dipindahkan ke Tembi pada 2006.",
+            "Dengan luas 46 meter persegi, Badegan House menyediakan kenyamanan modern seperti WiFi gratis, AC, minibar, dan kamar mandi pribadi. Tamu bisa menikmati waktu santai di teras yang menghadap taman hijau. Suasananya tenang dan cocok untuk melepas penat sambil menyatu dengan alam.",
+            "Nama Badegan berasal dari sebuah desa di Kabupaten Bantul, tempat Bapak F. W. Santopratiknya, ayah dari Bapak P. Swantoro, tinggal mulai tahun 1958. Setiap sudut rumah ini menyimpan cerita dan nilai budaya sehingga rumah ini terasa lebih dari sekadar tempat menginap.",
+          ],
+          imageUrl: "/images/rooms/badegan/badegan1.png",
+          galleryImages: [
+            "/images/rooms/badegan/badegan2.png",
+            "/images/rooms/badegan/badegan3.png",
+            "/images/rooms/badegan/badegan4.png",
+            "/images/rooms/badegan/badegan5.png",
+            "/images/rooms/badegan/badegan6.png",
+          ],
+          details: { bed: "King Size Bed", guests: 4, size: "46 m²", view: "Pemandangan Taman" },
+          detailsIcons:"/images/icons/leaf-green.svg",
+          amenities: ["WiFi Gratis", "Air Conditioning", "Kamar Mandi Pribadi", "Pemandangan Taman", "Bar Mini", "Teras"],
+          amenitiesIcons:"/images/icons/leaf-green.svg",
+          policies: { checkIn: "15:00 WIB", checkOut: "12:00 WIB", cancellation: ["Pembatalan Gratis Hingga 48 Jam Sebelumnya"] },
+          houseRules: { smoking: false, pets: true, quietHours: "10 Malam" },
+          rating: 4.9, 
+          layoutType: 'standard'
+        },
+        {
+          id: 6,
+          badge: "Best Value",
+          slug: "wuryantoro-house",
+          name: "Rumah Wuryantoro",
+          tagline: "Rumah Limasan Jawa di tengah ketenangan alam",
+          price: 430000,
+          description: "Akomodasi yang sederhana namun elegan dengan sentuhan budaya autentik dan elemen desain tradisional Indonesia. Ideal bagi pengalaman budaya asli dengan nilai yang luar biasa.",
+          longDescription:[ 
+            "Wuryantoro House adalah rumah limasan Jawa tradisional yang memadukan warisan budaya dan kenyamanan modern. Rumah ini dibangun tahun 1960 di Ngadirejo, Tepus, Gunung Kidul, lalu dipindahkan ke Tembi pada 2007.",
+            "Dengan luas 40,5 meter persegi, rumah ini memiliki WiFi gratis, AC, minibar, kamar mandi pribadi, dan teras yang menghadap taman. Lingkungan yang tenang dan hijau membuat tempat ini cocok untuk relaksasi sambil menikmati budaya lokal.",
+            "Nama Wuryantoro berasal dari sebuah daerah di Wonogiri, Jawa Tengah, tempat Bapak F. W. Santopratiknya tinggal antara tahun 1946 dan 1948. Setiap elemen rumah ini mencerminkan sejarah dan akar budaya sehingga menjadikannya lebih dari sekadar tempat menginap.",
+          ],
+          imageUrl: "/images/rooms/wuryantoro/wuryantoro1.png",
+          galleryImages: [
+            "/images/rooms/wuryantoro/wuryantoro2.png",
+            "/images/rooms/wuryantoro/wuryantoro3.png",
+            "/images/rooms/wuryantoro/wuryantoro4.png",
+            "/images/rooms/wuryantoro/wuryantoro5.png",
+            "/images/rooms/wuryantoro/wuryantoro6.png",
+          ],
+          details: { bed: "King Size Bed", guests: 3, size: "40,5 m²", view: "Pemandangan Taman" },
+          detailsIcons:"/images/icons/leaf-green.svg",
+          amenities: ["WiFi Gratis", "Air Conditioning", "Kamar Mandi Pribadi", "Pemandangan Taman", "Bar Mini", "Teras"],
+          amenitiesIcons:"/images/icons/leaf-green.svg",
+          policies: { checkIn: "15:00 WIB", checkOut: "12:00 WIB", cancellation: ["Pembatalan Gratis Hingga 48 Jam Sebelumnya"] },
+          houseRules: { smoking: false, pets: true, quietHours: "10 Malam" },
+          rating: 4.9, 
+          layoutType: 'standard'
+        },
+        {
+          id: 7,
+          badge: "Premium",
+          slug: "morangan-house",
+          name: "Rumah Morangan",
+          tagline: "Tiga Tingkat Kenyamanan dalam Arsitektur Tradisional",
+          price: 970000,
+          description: "Pondok berdiri sendiri yang menawan, terletak di tengah taman tropis kami yang rimbun. Sempurna untuk para pecinta alam yang mencari ketenangan dengan keramahan khas Indonesia.",
+          longDescription:[ 
+            "Morangan House adalah akomodasi tiga lantai yang unik, disusun dari tiga rumah tradisional Jawa yang berasal dari Tambak, Klaten (1936), Jepitu, Gunung Kidul (1939), dan Majasto, Sukoharjo (1952). Ketiganya dipindahkan dan disatukan di Tembi pada 2007, memadukan warisan budaya dan modern.",
+            "Dengan luas 70,7 meter persegi, Morangan House memiliki dua kamar tidur. Masing-masing kamar memiliki kamar mandi pribadi. Lantai pertama berisi area duduk yang luas dan bathtub untuk relaksasi. Area rooftop memberi pemandangan ruang terbuka. Bagian depan rumah menghadap taman. Bagian belakang menghadap sawah. Sisi samping menghadap kolam renang.",
+            "Nama Morangan berasal dari sebuah desa di Sleman, Yogyakarta, tempat Bapak F. W. Santopratiknya tinggal antara tahun 1942 dan 1944. Rumah ini melambangkan warisan keluarga yang dihadirkan kembali dalam pengalaman menginap modern dengan jiwa tradisional.",
+          ],
+          imageUrl: "/images/rooms/morangan/morangan1.png",
+          galleryImages: [
+            "/images/rooms/morangan/morangan2.png",
+            "/images/rooms/morangan/morangan3.png",
+            "/images/rooms/morangan/morangan4.png",
+            "/images/rooms/morangan/morangan5.png",
+            "/images/rooms/morangan/morangan6.png",
+          ],
+          details: { bed: "King Size Bed", guests: 4, size: "70,7 m²", view: "Pemandangan Kolam" },
+          detailsIcons:"/images/icons/swim-green.svg",
+          amenities: ["WiFi Gratis", "Air Conditioning", "Kamar Mandi Pribadi", "Pemandangan Kolam", "Bar Mini", "Teras"],
+          amenitiesIcons:"/images/icons/swim-green.svg",
+          policies: { checkIn: "15:00 WIB", checkOut: "12:00 WIB", cancellation: ["Pembatalan Gratis Hingga 48 Jam Sebelumnya"] },
+          houseRules: { smoking: false, pets: true, quietHours: "10 Malam" },
+          rating: 4.9, 
+          layoutType: 'standard'
+        },
+        {
+          id: 8,
+          badge: "Premium",
+          slug: "kriyan-lor-house",
+          name: "Rumah Kriyan Lor",
+          tagline: "Rumah Limasan Intim Bernuansa Tradisional Jawa",
+          price: 430000,
+          description: "Rumah Kriyan adalah rumah limasan tradisional tahun 1940 yang direlokasi ke Tembi pada 2009, menghadirkan dua unit cermin yang intim dengan kenyamanan modern, teras taman pribadi.",
+          longDescription:[ 
+            "Rumah Kriyan adalah rumah limasan tradisional yang dibangun pada sekitar tahun 1940 dan direlokasi dari Desa Paliyan, Wonosari, Gunung Kidul, ke kawasan Tembi pada tahun 2009. Awalnya merupakan satu rumah utuh, kemudian dimodifikasi dan dibagi menjadi dua bagian simetris—Kriyan Lor dan Kriyan Kidul—sehingga menghadirkan dua unit kamar dengan tata ruang yang sama namun berorientasi mirror. Setiap rumah memiliki luas 24 m², dirancang intim dan nyaman untuk pasangan ataupun tamu yang mencari suasana tenang dan privat.",
+            "Dilengkapi fasilitas modern seperti Wi-Fi gratis, AC, minibar, dan kamar mandi pribadi, Rumah Kriyan memadukan kesederhanaan tradisional dengan kenyamanan masa kini. Teras pribadi menghadap taman hijau yang sejuk, menciptakan suasana damai untuk bersantai di tengah nuansa pedesaan Jawa.",
+            "Nama “Kriyan” berasal dari sebuah daerah di Keputran Jeron Beteng, Kraton Yogyakarta—tempat tinggal Bapak R. M. Koesbandarum Sasmi, ayahanda Ibu R. A. Koeswardiyah Swantoro, pada sekitar tahun 1940 hingga 1960. Rumah ini menjadi simbol kedekatan keluarga dengan sejarah dan budaya Jawa.",
+          ],
+          imageUrl: "/images/rooms/kriyan/kriyan2.svg",
+          galleryImages: [
+            "/images/rooms/kriyan/kriyan1.svg",
+            "/images/rooms/kriyan/kriyan3.svg",
+            "/images/rooms/kriyan/kriyan4.svg",
+            "/images/rooms/kriyan/kriyan5.svg",
+            "/images/rooms/kriyan/kriyan6.svg",
+          ],
+          details: { bed: "King Size Bed", guests: 2, size: "24 m²", view: "Pemandangan Sawah" },
+          detailsIcons:"/images/icons/leaf-green.svg",
+          amenities: ["WiFi Gratis", "Air Conditioning", "Kamar Mandi Pribadi", "Pemandangan Sawah", "Bar Mini", "Teras"],
+          amenitiesIcons:"/images/icons/leaf-green.svg",
+          policies: { checkIn: "15:00 WIB", checkOut: "12:00 WIB", cancellation: ["Pembatalan Gratis Hingga 48 Jam Sebelumnya"] },
+          houseRules: { smoking: false, pets: true, quietHours: "10 Malam" },
+          rating: 4.9, 
+          layoutType: 'standard'
+        },
+        {
+          id: 9,
+          badge: "Premium",
+          slug: "kriyan-kidul-house",
+          name: "Rumah Kriyan Kidul",
+          tagline: "Rumah Limasan Intim Bernuansa Tradisional Jawa",
+          price: 430000,
+          description: "Rumah Kriyan adalah rumah limasan tradisional tahun 1940 yang direlokasi ke Tembi pada 2009, menghadirkan dua unit cermin yang intim dengan kenyamanan modern, teras taman pribadi.",
+          longDescription:[ 
+            "Rumah Kriyan adalah rumah limasan tradisional yang dibangun pada sekitar tahun 1940 dan direlokasi dari Desa Paliyan, Wonosari, Gunung Kidul, ke kawasan Tembi pada tahun 2009. Awalnya merupakan satu rumah utuh, kemudian dimodifikasi dan dibagi menjadi dua bagian simetris—Kriyan Lor dan Kriyan Kidul—sehingga menghadirkan dua unit kamar dengan tata ruang yang sama namun berorientasi mirror. Setiap rumah memiliki luas 24 m², dirancang intim dan nyaman untuk pasangan ataupun tamu yang mencari suasana tenang dan privat.",
+            "Dilengkapi fasilitas modern seperti Wi-Fi gratis, AC, minibar, dan kamar mandi pribadi, Rumah Kriyan memadukan kesederhanaan tradisional dengan kenyamanan masa kini. Teras pribadi menghadap taman hijau yang sejuk, menciptakan suasana damai untuk bersantai di tengah nuansa pedesaan Jawa.",
+            "Nama “Kriyan” berasal dari sebuah daerah di Keputran Jeron Beteng, Kraton Yogyakarta—tempat tinggal Bapak R. M. Koesbandarum Sasmi, ayahanda Ibu R. A. Koeswardiyah Swantoro, pada sekitar tahun 1940 hingga 1960. Rumah ini menjadi simbol kedekatan keluarga dengan sejarah dan budaya Jawa.",
+          ],
+          imageUrl: "/images/rooms/kriyan/kriyan1.svg",
+          galleryImages: [
+            "/images/rooms/kriyan/kriyan2.svg",
+            "/images/rooms/kriyan/kriyan3.svg",
+            "/images/rooms/kriyan/kriyan4.svg",
+            "/images/rooms/kriyan/kriyan5.svg",
+            "/images/rooms/kriyan/kriyan6.svg",
+          ],
+          details: { bed: "King Size Bed", guests: 2, size: "24 m²", view: "Pemandangan Sawah" },
+          detailsIcons:"/images/icons/leaf-green.svg",
+          amenities: ["WiFi Gratis", "Air Conditioning", "Kamar Mandi Pribadi", "Pemandangan Sawah", "Bar Mini", "Teras"],
+          amenitiesIcons:"/images/icons/leaf-green.svg",
+          policies: { checkIn: "15:00 WIB", checkOut: "12:00 WIB", cancellation: ["Pembatalan Gratis Hingga 48 Jam Sebelumnya"] },
+          houseRules: { smoking: false, pets: true, quietHours: "10 Malam" },
+          rating: 4.9, 
+          layoutType: 'standard'
+        },
+      ]
+    },
+    houseDetail:{
+      back: 'Kembali ke Koleksi',
+      guest: 'Tamu',
+      night: 'per malam',
+      facilities: 'Fasilitas dan Sarana',
+      gallery: 'Galeri Ruangan',
+      viewall: 'Lihat semua foto',
+      booking: 'Pesan Sekarang',
+      policy: {
+        title: 'Kebijakan & Informasi Kamar',
+        id: 'Identitas yang sah',
+        cancelPolicy: 'Kebijakan Pembatalan',
+        cancel: 'Pembatalan gratis 48 jam sebelumnya',
+        refund: 'Pengembalian dana 50% 24 jam sebelumnya',
+        sameday: 'Tidak ada pengembalian dana di hari yang sama.',
+      },
+      houseRules: {
+        title: 'Peraturan Rumah',
+        smokingtrue: 'Merokok diperbolehkan',
+        smokingfalse: 'Merokok tidak diperbolehkan',
+        petstrue: 'Hewan peliharaan diperbolehkan',
+        petsfalse: 'Hewan peliharaan tidak diperbolehkan',
+        quiet: 'Jam tenang pukul 10 malam',
       }
     }
   },

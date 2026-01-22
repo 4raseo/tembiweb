@@ -1,14 +1,38 @@
-import Image from "next/image";
-import type { Room } from "@/data/roomData";
-import Link from "next/link";
+'use client';
 
-interface FeaturedRoomCardProps {
-  room: Room;
+import React from 'react';
+import Image from "next/image";
+import Link from "next/link";
+import { useLanguage } from "@/app/context/LanguageContext";
+
+
+// 1. Definisi Tipe Data Props
+export interface FeaturedRoomCardProps {
+  slug: string;
+  name: string;
+  description: string;
+  imageUrl: string;
+  size: string;
+  guests: number;
+  view: string;
+  detailsIcon: string;
+  recommendationText: string; // Text "Recommendation" dari bahasa aktif
 }
 
-export function FeaturedRoomCard({ room }: FeaturedRoomCardProps) {
+const FeaturedRoomCard: React.FC<FeaturedRoomCardProps> = ({
+  slug,
+  name,
+  description,
+  imageUrl,
+  size,
+  guests,
+  view,
+  detailsIcon,
+  recommendationText,
+}) => {
+  const { t } = useLanguage();
   return (
-    <Link href={`/rooms/${room.slug}`} className="block group">
+    <Link href={`/rooms/${slug}`} className="block group">
       <div className="flex flex-col md:flex-row bg-tembi rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300">
         
         {/* Bagian Kiri: Konten Teks */}
@@ -17,84 +41,68 @@ export function FeaturedRoomCard({ room }: FeaturedRoomCardProps) {
             {/* Badge Recommendation */}
             <div className="mb-6">
               <span className="inline-flex items-center gap-2 px-4 py-1.5 bg-white/20 backdrop-blur-sm rounded-full text-xs font-medium text-yellow-100 border border-white/10">
-                {/* Icon Crown Lokal */}
-                <div className="relative w-4 h-4"> {/* Wrapper untuk Image icon */}
+                <div className="relative w-4 h-4">
                   <Image 
-                    src="/images/icons/crown.svg" // Ganti path sesuai lokasi icon Anda
+                    src="/images/icons/crown.svg" 
                     alt="Crown Icon"
                     fill
                     className="object-contain"
                   />
                 </div>
-                Recommendation
+                {recommendationText}
               </span>
             </div>
 
             {/* Judul */}
             <h2 className="text-4xl font-serif font-bold mb-4 tracking-wide">
-              {room.name}
+              {name}
             </h2>
 
             {/* Deskripsi */}
             <p className="text-gray-100/90 mb-8 text-sm leading-relaxed font-light opacity-90">
-              {room.description}
+              {description}
             </p>
             
-            {/* Info Detail (Icons Lokal) */}
+            {/* Info Detail */}
             <div className="flex flex-wrap items-center gap-6 mb-10 text-sm font-medium text-gray-100">
               
-              {/* Luas Ruangan */}
+              {/* Size */}
               <div className="flex items-center gap-2">
-                <div className="relative w-4 h-4 opacity-80"> {/* Wrapper untuk Image icon */}
-                    <Image 
-                        src="/images/icons/size-gray.svg" // Ganti path sesuai lokasi icon Anda
-                        alt="Size Icon"
-                        fill
-                        className="object-contain"
-                    />
+                <div className="relative w-4 h-4 opacity-80"> 
+                    <Image src="/images/icons/size-gray.svg" alt="Size" fill className="object-contain" />
                 </div>
-                <span>{room.details.size || "45 m²"}</span> 
+                <span>{size || "45 m²"}</span> 
               </div>
 
-              {/* Kapasitas Tamu */}
+              {/* Guests */}
               <div className="flex items-center gap-2">
-                <div className="relative w-4 h-4 opacity-80"> {/* Wrapper untuk Image icon */}
-                    <Image 
-                        src="/images/icons/group-gray.svg" // Ganti path sesuai lokasi icon Anda
-                        alt="Guests Icon"
-                        fill
-                        className="object-contain"
-                    />
+                <div className="relative w-4 h-4 opacity-80"> 
+                    <Image src="/images/icons/group-gray.svg" alt="Guests" fill className="object-contain" />
                 </div>
-                <span>Up to {room.details.guests} guests</span>
+                <span>{t.house.featuredCard.features.guest[0]} {guests} {t.house.featuredCard.features.guest[1]}</span>
               </div>
 
-              {/* Pemandangan */}
+              {/* View */}
               <div className="flex items-center gap-2">
-                <div className="relative w-4 h-4 opacity-80"> {/* Wrapper untuk Image icon */}
-                    <Image 
-                        src={room.detailsIcons} // Ganti path sesuai lokasi icon Anda
-                        alt="View Icon"
-                        fill
-                        className="object-contain"
-                    />
+                <div className="relative w-4 h-4 opacity-80"> 
+                    <Image src={detailsIcon} alt="View" fill className="object-contain" />
                 </div>
-                <span>{room.details.view}</span>
+                <span>{view}</span>
               </div>
 
             </div>
 
             {/* Tombol */}
             <div className="bg-white text-tembi font-bold py-3 px-8 rounded hover:bg-gray-100 transition-colors w-fit text-sm tracking-wide">
-              View Details
+              {t.house.featuredCard.buttonText}
             </div>
         </div>
 
-        {/* Bagian Kanan: Gambar Ruangan */}
+        {/* Bagian Kanan: Gambar */}
         <div className="md:w-1/2 h-[350px] md:h-auto relative">
             <Image
-              src={room.imageUrl}
-              alt={`View of ${room.name}`}
+              src={imageUrl}
+              alt={`View of ${name}`}
               fill
               className="object-cover"
             />
@@ -102,4 +110,6 @@ export function FeaturedRoomCard({ room }: FeaturedRoomCardProps) {
       </div>
     </Link>
   );
-}
+};
+
+export default FeaturedRoomCard;

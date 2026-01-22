@@ -3,22 +3,22 @@
 
 import { useEffect, useState } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
-import { CheckCircle, Calendar, User, Mail, Phone, Download, Home } from 'lucide-react';
+import { Check, Calendar, User, Mail, Phone, Home, Bed, Users, CreditCard, Download } from 'lucide-react';
 import { format } from 'date-fns';
 
-// Format currency
+// Format currency helper
 const formatCurrency = (amount: number) => {
   return new Intl.NumberFormat('id-ID', {
     style: 'currency',
     currency: 'IDR',
     minimumFractionDigits: 0,
+    maximumFractionDigits: 0,
   }).format(amount);
 };
 
 interface BookingDetails {
   id: string;
   roomName: string;
-  roomSlug: string;
   totalPrice: number;
   basePrice: number;
   serviceFee: number;
@@ -31,8 +31,6 @@ interface BookingDetails {
   customerName: string;
   customerEmail: string;
   customerPhone: string;
-  status: string;
-  createdAt: string;
 }
 
 export default function BookingSuccessPage() {
@@ -50,7 +48,6 @@ export default function BookingSuccessPage() {
       setLoading(false);
       return;
     }
-
     fetchBookingDetails();
   }, [bookingId]);
 
@@ -59,10 +56,8 @@ export default function BookingSuccessPage() {
       const response = await fetch(`/api/payment?bookingId=${bookingId}`);
       const data = await response.json();
 
-      if (!response.ok) {
-        throw new Error(data.message || 'Failed to fetch booking details');
-      }
-
+      if (!response.ok) throw new Error(data.message || 'Failed to fetch booking details');
+      
       setBooking(data.booking);
     } catch (err: any) {
       setError(err.message);
@@ -73,26 +68,20 @@ export default function BookingSuccessPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-green-700 mx-auto"></div>
-          <p className="mt-4 text-gray-600">Loading booking details...</p>
-        </div>
+      <div className="min-h-screen flex items-center justify-center bg-[#F9F9F9]">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#8CA873]"></div>
       </div>
     );
   }
 
   if (error || !booking) {
     return (
-      <div className="min-h-screen flex items-center justify-center px-4">
-        <div className="text-center max-w-md">
-          <div className="text-red-500 text-6xl mb-4">⚠️</div>
-          <h1 className="text-2xl font-bold text-gray-800 mb-2">Booking Not Found</h1>
+      <div className="min-h-screen flex items-center justify-center px-4 bg-[#F9F9F9]">
+        <div className="text-center max-w-md bg-white p-8 rounded-xl shadow-lg">
+          <div className="text-red-500 text-5xl mb-4 mx-auto w-fit">⚠️</div>
+          <h1 className="text-2xl font-serif font-bold text-gray-800 mb-2">Booking Not Found</h1>
           <p className="text-gray-600 mb-6">{error || 'Unable to retrieve booking information'}</p>
-          <button
-            onClick={() => router.push('/')}
-            className="bg-green-800 text-white px-6 py-3 rounded-lg hover:bg-green-900"
-          >
+          <button onClick={() => router.push('/')} className="bg-[#8CA873] text-white px-6 py-2 rounded-lg hover:bg-[#7A9462]">
             Return to Home
           </button>
         </div>
@@ -101,179 +90,232 @@ export default function BookingSuccessPage() {
   }
 
   return (
-    <main className="min-h-screen bg-gradient-to-b from-green-50 to-white py-12 px-4">
-      <div className="container mx-auto max-w-3xl">
+    <main className="min-h-screen bg-[#FCFCFA] pb-20 font-sans">
+      
+      {/* --- TOP SECTION (Green Background) --- */}
+      <div className="bg-[#93A576] pt-12 pb-24 px-4 text-center text-white relative">
+        <div className="flex justify-center mb-6">
+          <div className="w-16 h-16 bg-[#2ed16f] rounded-full flex items-center justify-center shadow-lg">
+            <Check className="w-8 h-8 text-white stroke-[3]" />
+          </div>
+        </div>
+        <h1 className="text-4xl font-serif font-bold mb-2 tracking-wide">Payment Successful!</h1>
+        <p className="text-green-50 text-lg font-light">Your stay at Tembi Cultural House is confirmed</p>
         
-        {/* Success Header */}
-        <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center w-20 h-20 bg-green-100 rounded-full mb-4">
-            <CheckCircle className="w-12 h-12 text-green-600" />
-          </div>
-          <h1 className="text-4xl font-bold text-gray-800 mb-2">Payment Successful!</h1>
-          <p className="text-lg text-gray-600">
-            Your booking has been confirmed. We\'ve sent a confirmation email to <strong>{booking.customerEmail}</strong>
-          </p>
+        <div className="mt-8 inline-block bg-[#A3B488] bg-opacity-40 px-6 py-3 rounded-lg border border-[#B5C49D] text-sm text-green-50">
+          Thank you for choosing our traditional Indonesian heritage experience
         </div>
+      </div>
 
-        {/* Booking Details Card */}
-        <div className="bg-white rounded-xl shadow-lg overflow-hidden mb-6">
-          
-          {/* Header */}
-          <div className="bg-green-800 text-white p-6">
-            <div className="flex justify-between items-start">
-              <div>
-                <h2 className="text-2xl font-bold mb-1">Booking Confirmation</h2>
-                <p className="text-green-100">Booking ID: {booking.id}</p>
-              </div>
-              <span className="bg-green-600 px-3 py-1 rounded-full text-sm font-semibold">
-                CONFIRMED
-              </span>
+      {/* --- STEPS INDICATOR (Visual Only) --- */}
+      <div className="bg-white border-b border-gray-100 py-4 shadow-sm relative z-0">
+        <div className="container mx-auto max-w-3xl px-4 flex justify-center items-center text-xs sm:text-sm text-gray-400 font-medium tracking-wider">
+            <div className="flex items-center gap-2">
+                <div className="w-5 h-5 rounded-full bg-[#93A576] flex items-center justify-center text-white text-[10px]">✓</div>
+                <span>Booking Details</span>
+            </div>
+            <div className="w-12 h-[1px] bg-[#93A576] mx-4"></div>
+            <div className="flex items-center gap-2">
+                <div className="w-5 h-5 rounded-full bg-[#93A576] flex items-center justify-center text-white text-[10px]">✓</div>
+                <span>Payment</span>
+            </div>
+            <div className="w-12 h-[1px] bg-[#93A576] mx-4"></div>
+            <div className="flex items-center gap-2 text-[#93A576] font-bold">
+                <div className="w-5 h-5 rounded-full bg-[#93A576] text-white flex items-center justify-center text-[10px]">3</div>
+                <span>Confirmation</span>
+            </div>
+        </div>
+      </div>
+
+      {/* --- MAIN CONTENT CONTAINER --- */}
+      <div className="container mx-auto max-w-[900px] px-4 -mt-16 relative z-10">
+        
+        {/* === BOOKING CONFIRMED CARD === */}
+        <div className="bg-white rounded-xl shadow-xl overflow-hidden mb-12 border border-gray-100">
+          {/* Card Header */}
+          <div className="bg-[#9BAF7D] p-5 flex justify-between items-center text-white">
+            <div>
+                <h2 className="text-2xl font-serif font-bold flex items-center gap-2">
+                    Booking Confirmed
+                </h2>
+                <p className="text-green-50 text-sm opacity-90 mt-1">Your traditional Indonesian experience awaits</p>
+            </div>
+            <div className="bg-white/20 p-2 rounded-lg backdrop-blur-sm">
+                <Calendar className="w-6 h-6 text-white" />
             </div>
           </div>
 
-          {/* Content */}
-          <div className="p-6 space-y-6">
+          {/* Card Body */}
+          <div className="p-8 grid md:grid-cols-2 gap-8 md:gap-12">
             
-            {/* Room Info */}
-            <div>
-              <h3 className="text-lg font-bold text-gray-800 mb-3 flex items-center gap-2">
-                <Home size={20} className="text-green-700" />
-                Accommodation Details
-              </h3>
-              <div className="bg-gray-50 p-4 rounded-lg">
-                <p className="text-xl font-bold text-gray-800">{booking.roomName}</p>
-                <p className="text-sm text-gray-600 mt-1">Tembi Cultural House</p>
-              </div>
+            {/* Left Column: Guest & Room Info */}
+            <div className="space-y-8">
+                {/* Guest Name */}
+                <div className="flex gap-4">
+                    <div className="w-10 h-10 rounded-full bg-[#F3F6EC] flex items-center justify-center flex-shrink-0">
+                        <User className="w-5 h-5 text-[#8CA873]" />
+                    </div>
+                    <div>
+                        <p className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1">Guest Name</p>
+                        <p className="text-lg font-bold text-gray-800">{booking.customerName}</p>
+                    </div>
+                </div>
+
+                {/* Accommodation */}
+                <div className="flex gap-4">
+                    <div className="w-10 h-10 rounded-full bg-[#F3F6EC] flex items-center justify-center flex-shrink-0">
+                        <Bed className="w-5 h-5 text-[#8CA873]" />
+                    </div>
+                    <div>
+                        <p className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1">Accommodation</p>
+                        <p className="text-lg font-bold text-gray-800 leading-tight">{booking.roomName}</p>
+                        <p className="text-xs text-gray-500 mt-1">Authentic wooden architecture</p>
+                    </div>
+                </div>
+
+                {/* Guests Count */}
+                <div className="flex gap-4">
+                    <div className="w-10 h-10 rounded-full bg-[#F3F6EC] flex items-center justify-center flex-shrink-0">
+                        <Users className="w-5 h-5 text-[#8CA873]" />
+                    </div>
+                    <div>
+                        <p className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1">Guests</p>
+                        <p className="text-lg font-bold text-gray-800">
+                            {booking.adults} Adults {booking.children > 0 && `, ${booking.children} Children`}
+                        </p>
+                    </div>
+                </div>
             </div>
 
-            {/* Stay Details */}
-            <div>
-              <h3 className="text-lg font-bold text-gray-800 mb-3 flex items-center gap-2">
-                <Calendar size={20} className="text-green-700" />
-                Stay Details
-              </h3>
-              <div className="grid grid-cols-2 gap-4">
-                <div className="bg-gray-50 p-4 rounded-lg">
-                  <p className="text-sm text-gray-600 mb-1">Check-in</p>
-                  <p className="font-bold text-gray-800">
-                    {format(new Date(booking.checkInDate), 'EEE, MMM dd, yyyy')}
-                  </p>
-                  <p className="text-xs text-gray-500 mt-1">After 2:00 PM</p>
+            {/* Right Column: Stay Details (Beige Box) */}
+            <div className="bg-[#F7F7F5] rounded-xl p-6 border border-gray-100 h-full flex flex-col justify-between">
+                <div>
+                    <h3 className="font-serif font-bold text-xl text-gray-800 mb-6 flex items-center gap-2">
+                        Stay Details
+                        <Calendar className="w-4 h-4 text-gray-400" />
+                    </h3>
+                    
+                    <div className="flex justify-between mb-6 relative">
+                        {/* Vertical line connector */}
+                        <div className="absolute left-[50%] top-2 bottom-2 w-[1px] bg-gray-200 -translate-x-1/2"></div>
+
+                        <div className="text-left pr-4">
+                            <p className="text-xs text-gray-500 mb-1">Check-in</p>
+                            <p className="font-bold text-gray-800 text-sm">{format(new Date(booking.checkInDate), 'EEE, MMM dd')}</p>
+                            <p className="font-serif text-gray-800 text-lg">{format(new Date(booking.checkInDate), 'yyyy')}</p>
+                            <p className="text-[10px] text-gray-400 mt-1">After 2:00 PM</p>
+                        </div>
+
+                        <div className="text-right pl-4">
+                            <p className="text-xs text-gray-500 mb-1">Check-out</p>
+                            <p className="font-bold text-gray-800 text-sm">{format(new Date(booking.checkOutDate), 'EEE, MMM dd')}</p>
+                            <p className="font-serif text-gray-800 text-lg">{format(new Date(booking.checkOutDate), 'yyyy')}</p>
+                            <p className="text-[10px] text-gray-400 mt-1">Before 12:00 PM</p>
+                        </div>
+                    </div>
+
+                    <div className="flex justify-between items-center border-t border-gray-200 pt-4 mb-6">
+                        <span className="text-sm text-gray-500">Duration</span>
+                        <span className="font-bold text-gray-800">{booking.duration} Nights</span>
+                    </div>
                 </div>
-                <div className="bg-gray-50 p-4 rounded-lg">
-                  <p className="text-sm text-gray-600 mb-1">Check-out</p>
-                  <p className="font-bold text-gray-800">
-                    {format(new Date(booking.checkOutDate), 'EEE, MMM dd, yyyy')}
-                  </p>
-                  <p className="text-xs text-gray-500 mt-1">Before 12:00 PM</p>
+
+                {/* Booking Reference Box */}
+                <div className="bg-white p-4 rounded-lg border border-dashed border-gray-300 text-center shadow-sm">
+                    <p className="text-xs text-gray-500 mb-1">Booking Reference</p>
+                    <p className="font-serif font-bold text-xl text-[#7A9462] tracking-wider select-all">
+                        {booking.id.toUpperCase().slice(0, 12)}...
+                    </p>
+                    <p className="text-[10px] text-gray-400 mt-1">Please keep this for your records</p>
                 </div>
-              </div>
-              <div className="bg-gray-50 p-4 rounded-lg mt-4">
-                <div className="flex justify-between">
-                  <span className="text-gray-600">Duration</span>
-                  <span className="font-semibold">{booking.duration} nights</span>
-                </div>
-                <div className="flex justify-between mt-2">
-                  <span className="text-gray-600">Guests</span>
-                  <span className="font-semibold">
-                    {booking.adults} Adults{booking.children > 0 ? `, ${booking.children} Children` : ''}
-                  </span>
-                </div>
-              </div>
             </div>
 
-            {/* Guest Info */}
-            <div>
-              <h3 className="text-lg font-bold text-gray-800 mb-3 flex items-center gap-2">
-                <User size={20} className="text-green-700" />
-                Guest Information
-              </h3>
-              <div className="bg-gray-50 p-4 rounded-lg space-y-2">
-                <div className="flex items-center gap-2">
-                  <User size={16} className="text-gray-500" />
-                  <span className="text-gray-800">{booking.customerName}</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Mail size={16} className="text-gray-500" />
-                  <span className="text-gray-800">{booking.customerEmail}</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Phone size={16} className="text-gray-500" />
-                  <span className="text-gray-800">{booking.customerPhone}</span>
-                </div>
-              </div>
-            </div>
-
-            {/* Payment Summary */}
-            <div>
-              <h3 className="text-lg font-bold text-gray-800 mb-3">Payment Summary</h3>
-              <div className="space-y-2 text-sm">
-                <div className="flex justify-between">
-                  <span className="text-gray-600">Room price ({booking.duration} nights)</span>
-                  <span className="text-gray-800">{formatCurrency(booking.basePrice)}</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-gray-600">Service fee</span>
-                  <span className="text-gray-800">{formatCurrency(booking.serviceFee)}</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-gray-600">Tourism tax</span>
-                  <span className="text-gray-800">{formatCurrency(booking.tourismTax)}</span>
-                </div>
-                <div className="border-t pt-2 mt-2">
-                  <div className="flex justify-between items-center">
-                    <span className="font-bold text-gray-800">Total Paid</span>
-                    <span className="font-bold text-xl text-green-800">
-                      {formatCurrency(booking.totalPrice)}
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
 
-        {/* Action Buttons */}
-        <div className="flex flex-col sm:flex-row gap-4">
-          <button
-            onClick={() => window.print()}
-            className="flex-1 bg-white border-2 border-green-800 text-green-800 py-3 rounded-lg font-semibold hover:bg-green-50 flex items-center justify-center gap-2"
-          >
-            <Download size={20} />
-            Print Confirmation
-          </button>
-          <button
-            onClick={() => router.push('/')}
-            className="flex-1 bg-green-800 text-white py-3 rounded-lg font-semibold hover:bg-green-900"
-          >
-            Return to Home
-          </button>
+        {/* === PAYMENT SUMMARY SECTION === */}
+        <div className="text-center mb-6">
+            <h2 className="font-serif text-3xl font-bold text-gray-800">Payment Summary</h2>
+            <p className="text-gray-500 text-sm mt-1">Complete breakdown of your booking charges</p>
         </div>
 
-        {/* Additional Info */}
-        <div className="mt-8 bg-blue-50 border border-blue-200 rounded-lg p-6">
-          <h4 className="font-bold text-blue-900 mb-2">Important Information</h4>
-          <ul className="space-y-2 text-sm text-blue-800">
-            <li>• A confirmation email has been sent to your email address</li>
-            <li>• Please bring a valid ID for check-in</li>
-            <li>• Check-in time: 2:00 PM | Check-out time: 12:00 PM</li>
-            <li>• For any changes or inquiries, contact us at info@tembiculturalhouse.com</li>
-            <li>• Free cancellation up to 48 hours before check-in</li>
-          </ul>
+        <div className="bg-white rounded-xl shadow-lg p-8 mb-8 border border-gray-50">
+            <div className="grid md:grid-cols-2 gap-12">
+                {/* Accommodation Charges List */}
+                <div className="space-y-4">
+                    <h3 className="font-serif font-bold text-xl text-gray-800 mb-4">Accommodation Charges</h3>
+                    
+                    <div className="flex justify-between items-start">
+                        <div>
+                            <p className="font-bold text-gray-800">{booking.roomName}</p>
+                            <p className="text-xs text-gray-500">{formatCurrency(booking.basePrice / booking.duration)} × {booking.duration} nights</p>
+                        </div>
+                        <span className="font-medium text-gray-700">{formatCurrency(booking.basePrice)}</span>
+                    </div>
+
+                    <div className="flex justify-between items-start">
+                        <div>
+                            <p className="font-bold text-gray-800">Cultural Experience Package</p>
+                            <p className="text-xs text-gray-500">Traditional activities included</p>
+                        </div>
+                        <span className="font-medium text-gray-700">Included</span>
+                    </div>
+
+                    <div className="flex justify-between items-start">
+                        <p className="font-medium text-gray-600">Service Fee</p>
+                        <span className="font-medium text-gray-700">{formatCurrency(booking.serviceFee)}</span>
+                    </div>
+
+                    <div className="flex justify-between items-start">
+                        <p className="font-medium text-gray-600">Taxes & Fees</p>
+                        <span className="font-medium text-gray-700">{formatCurrency(booking.tourismTax)}</span>
+                    </div>
+                </div>
+
+                {/* Payment Totals Right Side */}
+                <div className="bg-[#FAFAFA] rounded-xl p-6 flex flex-col justify-center">
+                    <h3 className="font-serif font-bold text-xl text-gray-800 mb-4">Payment Details</h3>
+                    
+                    <div className="space-y-3 pb-4 border-b border-gray-200">
+                        <div className="flex justify-between text-sm">
+                            <span className="text-gray-500">Subtotal</span>
+                            <span className="font-bold text-gray-800">{formatCurrency(booking.basePrice + booking.serviceFee + booking.tourismTax)}</span>
+                        </div>
+                        {/* Placeholder for discount if logic exists */}
+                        <div className="flex justify-between text-sm">
+                            <span className="text-gray-500">Early Bird Discount</span>
+                            <span className="font-bold text-green-600">-Rp 0</span>
+                        </div>
+                    </div>
+
+                    <div className="pt-4 flex justify-between items-center mb-6">
+                        <span className="font-bold text-lg text-gray-800">Total Paid</span>
+                        <span className="font-serif font-bold text-3xl text-[#7A9462]">{formatCurrency(booking.totalPrice)}</span>
+                    </div>
+
+                    {/* Payment Method Card */}
+                    <div className="bg-[#ECFdf5] border border-[#D1FAE5] rounded-lg p-3 flex items-center gap-3">
+                        <CreditCard className="w-5 h-5 text-green-600" />
+                        <div>
+                            <p className="text-xs text-green-800 font-bold uppercase">Payment Method</p>
+                            <p className="text-xs text-green-700">Online Payment via Midtrans</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        {/* Contact Card */}
-        <div className="mt-6 text-center text-gray-600">
-          <p className="mb-2">Need help? Contact us:</p>
-          <div className="flex flex-col sm:flex-row justify-center gap-4 text-sm">
-            <a href="mailto:info@tembiculturalhouse.com" className="text-green-700 hover:underline">
-              📧 info@tembiculturalhouse.com
-            </a>
-            <a href="tel:+62274896602" className="text-green-700 hover:underline">
-              📞 +62 274 896 602
-            </a>
-          </div>
+        {/* Buttons */}
+        <div className="flex flex-col sm:flex-row gap-4 justify-center pb-8">
+            <button onClick={() => window.print()} className="flex items-center justify-center gap-2 px-6 py-3 border-2 border-[#8CA873] text-[#8CA873] font-bold rounded-lg hover:bg-green-50 transition-colors">
+                <Download className="w-4 h-4" />
+                Print Confirmation
+            </button>
+            <button onClick={() => router.push('/')} className="px-8 py-3 bg-[#8CA873] text-white font-bold rounded-lg hover:bg-[#7A9462] transition-colors shadow-lg shadow-green-100">
+                Back to Home
+            </button>
         </div>
+
       </div>
     </main>
   );

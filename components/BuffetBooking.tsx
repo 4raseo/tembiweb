@@ -2,31 +2,20 @@
 
 import React from 'react';
 import Image from 'next/image';
+import { useLanguage } from '@/app/context/LanguageContext';
 
 const BuffetBooking = () => {
+  const { t } = useLanguage();
 
-  // Data Alur Pemesanan
-  const steps = [
-    {
-      num: "1",
-      title: "Choose Package",
-      desc: "Select your preferred buffet package or request a custom quote for your specific needs."
-    },
-    {
-      num: "2",
-      title: "Book & Confirm",
-      desc: "Contact us with your event details. We'll confirm availability and finalize your booking."
-    },
-    {
-      num: "3",
-      title: "Menu Planning",
-      desc: "Our team will work with you to customize the menu and discuss any special requirements."
-    },
-    {
-      num: "4",
-      title: "Enjoy Your Event",
-      desc: "Sit back and enjoy your event while we handle all the food service and cleanup."
-    }
+  // Mengambil Data Steps dari Context
+  const steps = t.catering.booking.steps;
+
+  // Icon untuk Contact List (Urutan: Phone, WhatsApp, Email)
+  // Harus sesuai urutan array di t.catering.contact.item
+  const contactIcons = [
+    "/images/icons/phone-green.svg",
+    "/images/icons/whatsapp-green.svg",
+    "/images/icons/mail-green.svg"
   ];
 
   return (
@@ -38,10 +27,10 @@ const BuffetBooking = () => {
            ========================================= */}
         <div className="mb-24 text-center">
           <span className="mb-3 block text-sm font-bold uppercase tracking-widest text-[#96A66D]">
-            How It Works
+            {t.catering.booking.label}
           </span>
           <h2 className="mb-16 font-serif text-4xl font-bold text-[#4A3B32] lg:text-5xl">
-            Simple Booking Process
+            {t.catering.booking.title}
           </h2>
 
           <div className="relative">
@@ -67,7 +56,7 @@ const BuffetBooking = () => {
         </div>
 
         {/* =========================================
-            PART 2: BOOK YOUR EVENT CTA (Icons Updated)
+            PART 2: BOOK YOUR EVENT CTA
            ========================================= */}
         <div className="overflow-hidden rounded-3xl bg-[#F9F7F2]">
           <div className="grid grid-cols-1 lg:grid-cols-2">
@@ -75,87 +64,51 @@ const BuffetBooking = () => {
             {/* Left Column: Text & Contacts */}
             <div className="p-8 md:p-12 lg:p-16 flex flex-col justify-center">
               <h2 className="mb-6 font-serif text-3xl font-bold text-[#4A3B32] md:text-4xl">
-                Book Your Event Today
+                {t.catering.contact.title}
               </h2>
               
               <p className="mb-8 text-gray-600 leading-relaxed">
-                Ready to bring authentic Javanese flavors to your next event? 
-                Our booking calendar fills up quickly, especially during peak seasons. 
-                Contact us today to secure your preferred date.
+                {t.catering.contact.desc}
               </p>
 
-              {/* Contact List (Gunakan Icon berwarna HIJAU/GELAP di sini) */}
+              {/* Contact List Dynamic */}
               <div className="mb-10 space-y-6">
                 
-                {/* Phone */}
-                <div className="flex items-start gap-4">
-                  <div className="mt-1 relative w-5 h-5">
-                    <Image 
-                      src="/images/icons/phone-green.svg" // Ganti dengan path icon telepon hijau Anda
-                      alt="Phone"
-                      width={20}
-                      height={20}
-                      className="object-contain"
-                    />
+                {t.catering.contact.item.map((item, idx) => (
+                  <div key={idx} className="flex items-start gap-4">
+                    <div className="mt-1 relative w-5 h-5">
+                      <Image 
+                        src={contactIcons[idx]} 
+                        alt={item.title}
+                        width={20}
+                        height={20}
+                        className="object-contain"
+                      />
+                    </div>
+                    <div>
+                      <p className="text-sm font-semibold text-[#4A3B32]">{item.title}</p>
+                      <p className="text-gray-600">{item.desc}</p>
+                    </div>
                   </div>
-                  <div>
-                    <p className="text-sm font-semibold text-[#4A3B32]">Call us directly</p>
-                    <p className="text-gray-600">+62 274 368 000</p>
-                  </div>
-                </div>
+                ))}
 
-                {/* WhatsApp */}
-                <div className="flex items-start gap-4">
-                  <div className="mt-1 relative w-5 h-5">
-                    <Image 
-                      src="/images/icons/whatsapp-green.svg" // Ganti dengan path icon WA hijau Anda
-                      alt="WhatsApp"
-                      width={20}
-                      height={20}
-                      className="object-contain"
-                    />
-                  </div>
-                  <div>
-                    <p className="text-sm font-semibold text-[#4A3B32]">WhatsApp</p>
-                    <p className="text-gray-600">+62 822 2514 2729</p>
-                  </div>
-                </div>
-
-                {/* Email */}
-                <div className="flex items-start gap-4">
-                  <div className="mt-1 relative w-5 h-5">
-                    <Image 
-                      src="/images/icons/mail-green.svg" // Ganti dengan path icon email hijau Anda
-                      alt="Email"
-                      width={20}
-                      height={20}
-                      className="object-contain"
-                    />
-                  </div>
-                  <div>
-                    <p className="text-sm font-semibold text-[#4A3B32]">Email us</p>
-                    <p className="text-gray-600">catering@tembihistoricalhome.com</p>
-                  </div>
-                </div>
               </div>
 
               {/* Action Buttons */}
               <div className="flex flex-col gap-4 sm:flex-row">
-                {/* Tombol WA (Gunakan Icon berwarna PUTIH karena background tombol hijau) */}
+                {/* Tombol WA */}
                 <button className="inline-flex items-center justify-center gap-2 rounded-full bg-[#8B9D61] px-8 py-3 font-semibold text-white transition-colors hover:bg-[#768652]">
                   <Image 
-                    src="/images/icons/whatsapp-white.svg" // Pastikan icon ini berwarna PUTIH
+                    src="/images/icons/whatsapp-white.svg"
                     alt="WA"
                     width={20}
                     height={20}
                   />
-                  WhatsApp Now
+                  {t.catering.contact.whatsapp}
                 </button>
 
                 <button className="inline-flex items-center justify-center gap-2 rounded-full border border-[#8B9D61] bg-transparent px-8 py-3 font-semibold text-[#8B9D61] transition-colors hover:bg-[#8B9D61] hover:text-white group">
-                   {/* Tombol Call (Icon Hijau, bisa berubah putih saat hover lewat CSS group-hover jika pakai SVG/filter, 
-                       tapi untuk Image PNG statis, gunakan warna hijau saja) */}
-                   Call Now
+                   {t.catering.contact.call}
                 </button>
               </div>
             </div>

@@ -47,7 +47,7 @@ export default function HouseCard({ house }: HouseProps) {
     // Ganti gambar setiap 1.5 detik (ubah angka 1500 sesuai kebutuhan)
     timerRef.current = setInterval(() => {
       nextSlide();
-    }, 1500);
+    }, 1000);
   };
 
   const stopAutoSlide = () => {

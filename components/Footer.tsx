@@ -46,27 +46,7 @@ export default function Footer() {
           </div>
         </div>
         
-        {/* Column 2: Quick Links */}
-        <div>
-          <h4 className="text-lg font-semibold text-white mb-6">Quick Links</h4>
-          <ul className="space-y-3 text-sm text-gray-400">
-            <li><a href="#" className="hover:text-tembi transition-colors">Accommodation</a></li>
-            <li><a href="#" className="hover:text-tembi transition-colors">Restaurant</a></li>
-            <li><a href="#" className="hover:text-tembi transition-colors">Events</a></li>
-            <li><a href="#" className="hover:text-tembi transition-colors">Collection</a></li>
-          </ul>
-        </div>
-
-        {/* Column 3: Services */}
-        <div>
-          <h4 className="text-lg font-semibold text-white mb-6">Services</h4>
-          <ul className="space-y-3 text-sm text-gray-400">
-            <li><a href="#" className="hover:text-tembi transition-colors">Wedding Planning</a></li>
-            <li><a href="#" className="hover:text-tembi transition-colors">Cultural Tours</a></li>
-            <li><a href="#" className="hover:text-tembi transition-colors">Spa Services</a></li>
-            <li><a href="#" className="hover:text-tembi transition-colors">Airport Transfer</a></li>
-          </ul>
-        </div>
+        
 
         {/* Column 4: Contact Info */}
         <div>

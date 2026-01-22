@@ -1,18 +1,11 @@
-import React from 'react';
+'use client';
+
+import React, { use } from 'react';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
-import { roomData } from '@/data/roomData';
-import { 
-  Star, ArrowLeft 
-} from 'lucide-react';
+import { ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
-
-// 1. Generate Static Params
-export async function generateStaticParams() {
-  return roomData.map((room) => ({
-    slug: room.slug,
-  }));
-}
+import { useLanguage } from "@/app/context/LanguageContext";
 
 // 2. Helper Function Format Rupiah
 const formatRupiah = (price: number) => {
@@ -33,11 +26,11 @@ const getAmenityIcon = (amenity: string) => {
   // Logika mapping icon
   if (lower.includes('wifi')) iconPath = '/images/icons/wifi-green.svg';
   else if (lower.includes('air') || lower.includes('snow')) iconPath = '/images/icons/snow-green.svg';
-  else if (lower.includes('bath') || lower.includes('toilet')) iconPath = '/images/icons/bathub-green.svg';
-  else if (lower.includes('rice') || lower.includes('garden')) iconPath = '/images/icons/leaf-green.svg';
+  else if (lower.includes('bath') || lower.includes('mandi')) iconPath = '/images/icons/bathub-green.svg';
+  else if (lower.includes('rice') || lower.includes('taman') || lower.includes('garden') || lower.includes('sawah')) iconPath = '/images/icons/leaf-green.svg';
   else if (lower.includes('bar') || lower.includes('mini')) iconPath = '/images/icons/minibar-green.svg';
-  else if (lower.includes('terrace') || lower.includes('terace')) iconPath = '/images/icons/terrace-green.svg';
-  else if (lower.includes('pool') || lower.includes('swim')) iconPath = '/images/icons/swim-green.svg';
+  else if (lower.includes('terrace') || lower.includes('teras')) iconPath = '/images/icons/terrace-green.svg';
+  else if (lower.includes('pool') || lower.includes('kolam')) iconPath = '/images/icons/swim-green.svg';
   
   // Return komponen Image Next.js
   return (
@@ -51,12 +44,13 @@ const getAmenityIcon = (amenity: string) => {
   );
 };
 
-interface RoomDetailProps {
-  params: { slug: string };
-}
+export default function RoomDetail({ params }: { params: Promise<{ slug: string }> }) {
+  const { t } = useLanguage();
+  const { slug } = use(params);
+  
+  const room = t.house.item.find((v) => v.slug === slug);
 
-export default function RoomDetail({ params }: RoomDetailProps) {
-  const room = roomData.find((r) => r.slug === params.slug);
+  // const room = roomData.find((r) => r.slug === params.slug);
 
   if (!room) {
     return notFound();
@@ -85,7 +79,7 @@ export default function RoomDetail({ params }: RoomDetailProps) {
 
         {/* Back Button */}
         <Link href="/rooms" className="absolute top-24 left-6 z-20 text-white hover:text-gray-200 flex items-center gap-2 transition-colors">
-            <ArrowLeft size={24} /> <span className="font-medium">Back to Collection</span>
+            <ArrowLeft size={24} /> <span className="font-medium">{t.houseDetail.back}</span>
         </Link>
 
         {/* Hero Content (Judul Putih di Bawah Gambar) */}
@@ -97,12 +91,6 @@ export default function RoomDetail({ params }: RoomDetailProps) {
               <span className="bg-[#8B9D68] text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
                 Recommendation
               </span>
-              <div className="flex items-center gap-1 text-yellow-400">
-                 {[...Array(5)].map((_, i) => (
-                  <Star key={i} size={16} fill="currentColor" className={i < Math.floor(room.rating || 5) ? "text-yellow-400" : "text-gray-400"} />
-                ))}
-                <span className="text-gray-300 text-sm ml-2 font-medium">({room.rating || 4.9}/5)</span>
-              </div>
             </div>
 
             {/* Title & Tagline */}
@@ -156,7 +144,7 @@ export default function RoomDetail({ params }: RoomDetailProps) {
                     className="object-contain"
                   />
                 </div>
-                <span>{room.details.guests} Guests</span>
+                <span>{room.details.guests} {t.houseDetail.guest}</span>
               </div>
 
               {/* Size Icon */}
@@ -180,7 +168,7 @@ export default function RoomDetail({ params }: RoomDetailProps) {
               <div className="text-3xl font-bold text-[#8B9D68]">
                 {formatRupiah(room.price)}
               </div>
-              <p className="text-gray-400 text-sm mt-1">per night</p>
+              <p className="text-gray-400 text-sm mt-1">{t.houseDetail.night}</p>
             </div>
           </div>
 
@@ -197,7 +185,7 @@ export default function RoomDetail({ params }: RoomDetailProps) {
           {/* AMENITIES GRID */}
           <div>
             <h3 className="text-xl font-bold text-gray-800 mb-6 font-serif">
-              Cultural Amenities & Facilities
+              {t.houseDetail.facilities}
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {room.amenities.map((amenity, index) => (
@@ -215,9 +203,9 @@ export default function RoomDetail({ params }: RoomDetailProps) {
         {/* === SECTION 3: GALLERY === */}
         <section className="bg-white rounded-xl shadow-sm border border-gray-200 p-8 md:p-10">
           <div className="flex justify-between items-end mb-8">
-            <h3 className="text-2xl font-bold text-gray-800 font-serif">Room Gallery</h3>
+            <h3 className="text-2xl font-bold text-gray-800 font-serif">{t.houseDetail.gallery}</h3>
             <button className="text-[#8B9D68] font-semibold hover:underline cursor-pointer text-sm">
-              View All Photos
+              {t.houseDetail.viewall}
             </button>
           </div>
           
@@ -251,7 +239,7 @@ export default function RoomDetail({ params }: RoomDetailProps) {
         {/* === SECTION 4: ROOM POLICIES & INFORMATION === */}
         <section className="bg-white rounded-xl shadow-sm border border-gray-200 p-8 md:p-10">
           <h3 className="text-2xl font-bold text-gray-800 mb-8 font-serif">
-            Room Policies & Information
+            {t.houseDetail.policy.title}
           </h3>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mb-10">
@@ -276,32 +264,32 @@ export default function RoomDetail({ params }: RoomDetailProps) {
                    <div className="relative w-4 h-4 opacity-70">
                       <Image src="/images/icons/id-green.svg" alt="id" fill className="object-contain" />
                    </div>
-                   <span>Valid ID required</span>
+                   <span>{t.houseDetail.policy.id}</span>
                 </li>
               </ul>
             </div>
 
             {/* Column 2: Cancellation Policy */}
             <div>
-              <h4 className="font-bold text-gray-800 mb-4 text-sm">Cancellation Policy</h4>
+              <h4 className="font-bold text-gray-800 mb-4 text-sm">{t.houseDetail.policy.cancelPolicy}</h4>
               <ul className="space-y-4 text-gray-600 text-sm">
                 <li className="flex items-center gap-3">
                    <div className="relative w-4 h-4">
                       <Image src="/images/icons/check.svg" alt="check" fill className="object-contain" />
                    </div>
-                   <span>Free cancellation 48h before</span>
+                   <span>{t.houseDetail.policy.cancel}</span>
                 </li>
                 <li className="flex items-center gap-3">
                    <div className="relative w-4 h-4">
                       <Image src="/images/icons/info.svg" alt="info" fill className="object-contain" />
                    </div>
-                   <span>50% refund 24h before</span>
+                   <span>{t.houseDetail.policy.refund}</span>
                 </li>
                 <li className="flex items-center gap-3">
                    <div className="relative w-4 h-4">
                       <Image src="/images/icons/warning.svg" alt="warning" fill className="object-contain" />
                    </div>
-                   <span>No refund same day</span>
+                   <span>{t.houseDetail.policy.sameday}</span>
                 </li>
               </ul>
             </div>
@@ -312,7 +300,7 @@ export default function RoomDetail({ params }: RoomDetailProps) {
 
           {/* Bottom Row: House Rules */}
           <div>
-            <h4 className="font-bold text-gray-800 mb-4 text-sm">House Rules</h4>
+            <h4 className="font-bold text-gray-800 mb-4 text-sm">{t.houseDetail.houseRules.title}</h4>
             <div className="flex flex-wrap gap-8 text-gray-600 text-sm">
               
               {/* Rule 1: Smoking */}
@@ -320,7 +308,7 @@ export default function RoomDetail({ params }: RoomDetailProps) {
                  <div className="relative w-4 h-4 opacity-60">
                     <Image src="/images/icons/no-smoking.svg" alt="smoking" fill className="object-contain" />
                  </div>
-                 <span>{room.houseRules.smoking ? "Smoking allowed" : "No smoking"}</span>
+                 <span>{room.houseRules.smoking ? t.houseDetail.houseRules.smokingtrue : t.houseDetail.houseRules.smokingfalse}</span>
               </div>
 
               {/* Rule 2: Pets */}
@@ -328,7 +316,7 @@ export default function RoomDetail({ params }: RoomDetailProps) {
                  <div className="relative w-4 h-4 opacity-60">
                     <Image src="/images/icons/pet-green.svg" alt="pets" fill className="object-contain" />
                  </div>
-                 <span>{room.houseRules.pets ? "Pets allowed" : "No pets allowed"}</span>
+                 <span>{room.houseRules.pets ? t.houseDetail.houseRules.petstrue : t.houseDetail.houseRules.petsfalse}</span>
               </div>
 
               {/* Rule 3: Quiet Hours */}
@@ -336,7 +324,7 @@ export default function RoomDetail({ params }: RoomDetailProps) {
                  <div className="relative w-4 h-4 opacity-60">
                     <Image src="/images/icons/sound-green.svg" alt="quiet" fill className="object-contain" />
                  </div>
-                 <span>Quiet hours {room.houseRules.quietHours}</span>
+                 <span>{t.houseDetail.houseRules.quiet}</span>
               </div>
 
             </div>
@@ -353,7 +341,7 @@ export default function RoomDetail({ params }: RoomDetailProps) {
                 <div className="text-3xl font-bold text-[#8B9D68]">
                   {formatRupiah(room.price)}
                 </div>
-                <p className="text-gray-400 text-sm mt-1">per night</p>
+                <p className="text-gray-400 text-sm mt-1">{t.houseDetail.night}</p>
               </div>
            </div>
            
@@ -361,7 +349,7 @@ export default function RoomDetail({ params }: RoomDetailProps) {
              href="/booking" 
              className="block w-full bg-[#8B9D68] hover:bg-[#738354] text-white text-lg font-bold py-4 rounded-lg shadow-sm transition-all duration-300 text-center"
            >
-             Booking Now
+             {t.houseDetail.booking}
            </Link>
         </section>
 

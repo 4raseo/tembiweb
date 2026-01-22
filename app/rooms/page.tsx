@@ -1,13 +1,34 @@
-import { FeaturedRoomCard } from "@/components/FeaturedRoomCard";
-import { StandardRoomCard } from "@/components/StandardRoomCard";
-import { roomData } from "@/data/roomData";
+'use client';
+
+import FeaturedRoomCard from "@/components/FeaturedRoomCard";
+import StandardRoomCard from "@/components/StandardRoomCard";
+import { useLanguage } from "@/app/context/LanguageContext";
 import Image from 'next/image';
 import { AmenitiesSection } from "@/components/AmenitiesSection";
 import ScrollReveal from "@/components/ScrollReveal";
 
+interface RoomItem {
+  id: number;
+  badge: string;
+  slug: string;
+  name: string;
+  description: string;
+  imageUrl: string;
+  details: {
+    guests: number;
+    size: string;
+    view: string;
+  };
+  detailsIcons: string;
+  layoutType: string;
+}
+
 export default function Catalog() {
-  const featuredRooms = roomData.filter((room) => room.layoutType === 'featured');
-  const standardRooms = roomData.filter((room) => room.layoutType === 'standard');
+  const { t } = useLanguage();
+
+  const rooms = t.house.item as unknown as RoomItem[];
+  const featuredRooms = rooms.filter((room) => room.layoutType === 'featured');
+  const standardRooms = rooms.filter((room) => room.layoutType === 'standard');
 
   return (
     <main className="bg-white">
@@ -33,19 +54,17 @@ export default function Catalog() {
 
             {/* Breadcrumbs */}
             <div className="text-sm text-gray-200 mb-4 font-medium">
-                Home &gt; Rooms & Accommodation
+                {t.house.hero.address[0]} &gt; {t.house.hero.address[1]}
             </div>
 
             {/* Title */}
             <h1 className="text-5xl md:text-6xl font-serif font-bold text-white mb-6 leading-tight">
-                Rooms <span className="font-light italic">&amp;</span> Accommodation
+                {t.house.hero.title}
             </h1>
 
             {/* Description */}
             <p className="max-w-2xl text-lg text-gray-100 mb-8 leading-relaxed">
-                Immerse yourself in the rich cultural heritage of Java while enjoying
-                modern comfort and traditional hospitality. Each room tells a story of
-                Indonesian craftsmanship and timeless elegance.
+                {t.house.hero.desc}
             </p>
 
             {/* Button */}
@@ -62,7 +81,7 @@ export default function Catalog() {
                    />
                 </div>
                 {/* ------------------------------------------ */}
-                Explore Rooms
+                {t.house.hero.buttonText}
               </button>
             </div>
           </div>
@@ -75,20 +94,20 @@ export default function Catalog() {
 
                   {/* Stat 1 */}
                   <div className="flex flex-col items-center justify-center space-y-0">
-                    <span className="text-2xl font-bold text-[#8B9D68]">7</span>
-                    <span className="text-gray-500 text-xs uppercase tracking-wide">Room Categories</span>
+                    <span className="text-2xl font-bold text-[#8B9D68]">{t.house.hero.stats[0].num}</span>
+                    <span className="text-gray-500 text-xs uppercase tracking-wide">{t.house.hero.stats[0].desc}</span>
                   </div>
 
                   {/* Stat 2 */}
                   <div className="flex flex-col items-center justify-center space-y-0">
-                    <span className="text-2xl font-bold text-[#8B9D68]">98%</span>
-                    <span className="text-gray-500 text-xs uppercase tracking-wide">Guest Satisfaction</span>
+                    <span className="text-2xl font-bold text-[#8B9D68]">{t.house.hero.stats[1].num}</span>
+                    <span className="text-gray-500 text-xs uppercase tracking-wide">{t.house.hero.stats[1].desc}</span>
                   </div>
 
                   {/* Stat 3 */}
                   <div className="flex flex-col items-center justify-center space-y-0">
-                    <span className="text-2xl font-bold text-[#8B9D68]">24/7</span>
-                    <span className="text-gray-500 text-xs uppercase tracking-wide">Cultural Experience</span>
+                    <span className="text-2xl font-bold text-[#8B9D68]">{t.house.hero.stats[2].num}</span>
+                    <span className="text-gray-500 text-xs uppercase tracking-wide">{t.house.hero.stats[2].desc}</span>
                   </div>
 
                 </div>
@@ -105,10 +124,10 @@ export default function Catalog() {
           <ScrollReveal animation="fadeUp" duration={800}>
             <div className="text-center max-w-3xl mx-auto mb-16">
                 <h2 className="text-4xl font-serif font-bold text-gray-800 mb-4">
-                    Our Accommodation Collection
+                    {t.house.room.title}
                 </h2>
                 <p className="text-gray-600">
-                    Discover our carefully curated selection of rooms and suites, each designed to offer a unique blend of traditional Indonesian culture and modern luxury amenities.
+                    {t.house.room.desc}
                 </p>
             </div>
           </ScrollReveal>
@@ -116,20 +135,40 @@ export default function Catalog() {
 
           {/* Featured Rooms */}
           <div className="space-y-12 mb-20">
-          {featuredRooms.map((room, idx) => (
-              <ScrollReveal key={room.id} animation="fadeUp" delay={idx * 150} duration={800}>
-                <FeaturedRoomCard room={room} />
-              </ScrollReveal>
-          ))}
+            {featuredRooms.map((room, idx) => (
+                <ScrollReveal key={room.id} animation="fadeUp" delay={idx * 150} duration={800}>
+                  <FeaturedRoomCard 
+                    slug={room.slug}
+                    name={room.name}
+                    description={room.description}
+                    imageUrl={room.imageUrl}
+                    size={room.details.size}
+                    guests={room.details.guests}
+                    view={room.details.view}
+                    detailsIcon={room.detailsIcons}
+                    recommendationText={t.homepage.accommodation.rec}
+                  />
+                </ScrollReveal>
+            ))}
           </div>
           
           {/* Standard Rooms */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {standardRooms.map((room, idx) => (
-              <ScrollReveal key={room.id} animation="fadeUp" delay={idx * 150} duration={800}>
-                <StandardRoomCard room={room} />
-              </ScrollReveal>
-          ))}
+            {standardRooms.map((room, idx) => (
+                <ScrollReveal key={room.id} animation="fadeUp" delay={idx * 150} duration={800}>
+                  <StandardRoomCard 
+                    slug={room.slug}
+                    imageUrl={room.imageUrl}
+                    badge={room.badge}
+                    name={room.name}
+                    description={room.description}
+                    size={room.details.size}
+                    guests={room.details.guests}
+                    view={room.details.view}
+                    detailsIcon={room.detailsIcons}
+                  />
+                </ScrollReveal>
+            ))}
           </div>
         </div>
       </div>

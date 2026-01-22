@@ -139,54 +139,56 @@ export default function SejarahPage() {
           {/* --- KOLOM KIRI: FOTO 1 (Pollycarpus Swantoro) --- */}
           {/* Mengambil 3 bagian dari 12 (25%) */}
           <div className="lg:col-span-3 order-2 lg:order-1 flex justify-center lg:justify-start">
-            <div className="relative w-full max-w-[280px] aspect-square rounded-[2rem] overflow-hidden shadow-2xl rotate-[-2deg] hover:rotate-0 transition-transform duration-500">
-              <Image
-                src="/images/sejarah/sejarah2.png" // Ganti dengan foto kiri
-                alt="Pollycarpus Swantoro"
-                fill
-                className="object-cover"
-                sizes="(max-width: 768px) 100vw, 33vw"
-              />
-            </div>
+              <div className="relative w-full max-w-[280px] aspect-square rounded-[2rem] overflow-hidden shadow-2xl rotate-[-2deg] hover:rotate-0 transition-transform duration-500">
+                <Image
+                  src="/images/sejarah/sejarah2.png" // Ganti dengan foto kiri
+                  alt="Pollycarpus Swantoro"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 33vw"
+                />
+              </div>
           </div>
 
           {/* --- KOLOM TENGAH: TEKS --- */}
           {/* Mengambil 6 bagian dari 12 (50%) - Area paling lebar */}
           <div className="lg:col-span-6 order-1 lg:order-2 text-center lg:px-4">
-            {/* Tagline */}
-            <span className="block text-sm font-bold tracking-widest text-[#9CA389] uppercase mb-4">
-              {t.history.founder.head}
-            </span>
-            
-            {/* Heading */}
-            <h2 className="text-4xl md:text-5xl font-serif font-bold text-[#4A3B2A] mb-8 leading-tight">
-              {t.history.founder.title[0]} <br />
-              {t.history.founder.title[1]}
-            </h2>
+            <ScrollReveal animation="fadeUp" duration={800} delay={200}>
+              {/* Tagline */}
+              <span className="block text-sm font-bold tracking-widest text-[#9CA389] uppercase mb-4">
+                {t.history.founder.head}
+              </span>
 
-            {/* Paragraphs */}
-            <div className="text-gray-600 space-y-6 text-lg leading-relaxed font-light text-justify">
-              <p>
-                {t.history.founder.desc1[0]} <strong>{t.history.founder.desc1[1]}</strong> {t.history.founder.desc1[2]}
-              </p>
-              <p>
-                {t.history.founder.desc2[0]} <strong>{t.history.founder.desc2[1]}</strong> {t.history.founder.desc2[2]}
-              </p>
-            </div>
+              {/* Heading */}
+              <h2 className="text-4xl md:text-5xl font-serif font-bold text-[#4A3B2A] mb-8 leading-tight">
+                {t.history.founder.title[0]} <br />
+                {t.history.founder.title[1]}
+              </h2>
+
+              {/* Paragraphs */}
+              <div className="text-gray-600 space-y-6 text-lg leading-relaxed font-light text-justify">
+                <p>
+                  {t.history.founder.desc1[0]} <strong>{t.history.founder.desc1[1]}</strong> {t.history.founder.desc1[2]}
+                </p>
+                <p>
+                  {t.history.founder.desc2[0]} <strong>{t.history.founder.desc2[1]}</strong> {t.history.founder.desc2[2]}
+                </p>
+              </div>
+            </ScrollReveal>
           </div>
 
           {/* --- KOLOM KANAN: FOTO 2 (Norbertus Nuranto) --- */}
           {/* Mengambil 3 bagian dari 12 (25%) */}
           <div className="lg:col-span-3 order-3 lg:order-3 flex justify-center lg:justify-end">
-            <div className="relative w-full max-w-[280px] aspect-[3/4] rounded-[2rem] overflow-hidden shadow-2xl rotate-[2deg] hover:rotate-0 transition-transform duration-500">
-              <Image
-                src="/images/sejarah/sejarah3.png" // Ganti dengan foto kanan
-                alt="Norbertus Nuranto"
-                fill
-                className="object-cover"
-                sizes="(max-width: 768px) 100vw, 33vw"
-              />
-            </div>
+              <div className="relative w-full max-w-[280px] aspect-[3/4] rounded-[2rem] overflow-hidden shadow-2xl rotate-[2deg] hover:rotate-0 transition-transform duration-500">
+                <Image
+                  src="/images/sejarah/sejarah3.png" // Ganti dengan foto kanan
+                  alt="Norbertus Nuranto"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 33vw"
+                />
+              </div>
           </div>
         </div>
       </div>
@@ -196,46 +198,55 @@ export default function SejarahPage() {
       <div className="max-w-screen-xl mx-auto">
         
         {/* --- HEADER --- */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <span className="block text-sm font-bold tracking-widest text-[#9CA389] uppercase mb-4">
-            {t.history.living.head}
-          </span>
-          <h2 className="text-4xl md:text-5xl font-serif font-bold text-[#4A3B2A] mb-6">
-            {t.history.living.title}
-          </h2>
-          <p className="text-gray-600 text-lg font-light leading-relaxed">
-            {t.history.living.subtitle}
-          </p>
-        </div>
+        <ScrollReveal animation="fadeUp" duration={800}>
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <span className="block text-sm font-bold tracking-widest text-[#9CA389] uppercase mb-4">
+              {t.history.living.head}
+            </span>
+            <h2 className="text-4xl md:text-5xl font-serif font-bold text-[#4A3B2A] mb-6">
+              {t.history.living.title}
+            </h2>
+            <p className="text-gray-600 text-lg font-light leading-relaxed">
+              {t.history.living.subtitle}
+            </p>
+          </div>
+        </ScrollReveal>
 
         {/* --- CARDS GRID --- */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
-          <CultureCard 
-            title="Batik Artistry"
-            imageSrc="/images/sejarah/sejarah4.png"
-            desc="Learn the ancient art of batik-making from master craftsmen. Create your own masterpiece while understanding the symbolic meanings behind traditional patterns."
-            // Masukkan path icon lokal di sini
-            iconSrc="/images/icons/paint.png" 
-          />
-          <CultureCard 
-            title="Classical Dance"
-            imageSrc="/images/sejarah/sejarah5.png"
-            desc="Experience the grace and philosophy of Javanese classical dance. Our instructors share not just movements, but the spiritual essence of this ancient art form."
-            // Masukkan path icon lokal di sini
-            iconSrc="/images/icons/music.png"
-          />
-          <CultureCard 
-            title="Gamelan & Macapat"
-            imageSrc="/images/sejarah/sejarah6.png"
-            desc="Immerse yourself in the harmonious sounds of gamelan and the poetic beauty of macapat singing. These sessions connect you to the soul of Javanese expression."
-            // Masukkan path icon lokal di sini
-            iconSrc="/images/icons/drum.png"
-          />
+          <ScrollReveal animation="scaleUp" duration={700} delay={100}>
+            <CultureCard 
+              title="Batik Artistry"
+              imageSrc="/images/sejarah/sejarah4.png"
+              desc="Learn the ancient art of batik-making from master craftsmen. Create your own masterpiece while understanding the symbolic meanings behind traditional patterns."
+              // Masukkan path icon lokal di sini
+              iconSrc="/images/icons/paint.png" 
+            />
+          </ScrollReveal>
+          <ScrollReveal animation="scaleUp" duration={700} delay={200}>
+            <CultureCard 
+              title="Classical Dance"
+              imageSrc="/images/sejarah/sejarah5.png"
+              desc="Experience the grace and philosophy of Javanese classical dance. Our instructors share not just movements, but the spiritual essence of this ancient art form."
+              // Masukkan path icon lokal di sini
+              iconSrc="/images/icons/music.png"
+            />
+          </ScrollReveal>
+          <ScrollReveal animation="scaleUp" duration={700} delay={300}>
+            <CultureCard 
+              title="Gamelan & Macapat"
+              imageSrc="/images/sejarah/sejarah6.png"
+              desc="Immerse yourself in the harmonious sounds of gamelan and the poetic beauty of macapat singing. These sessions connect you to the soul of Javanese expression."
+              // Masukkan path icon lokal di sini
+              iconSrc="/images/icons/drum.png"
+            />
+          </ScrollReveal>
         </div>
 
         {/* --- PHILOSOPHY BOX --- */}
-        <div className="bg-white rounded-[2rem] p-8 md:p-12 shadow-xl">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <ScrollReveal animation="fadeUp" duration={800}>
+          <div className="bg-white rounded-[2rem] p-8 md:p-12 shadow-xl">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             
             {/* Kiri: Teks */}
             <div>
@@ -290,8 +301,10 @@ export default function SejarahPage() {
               </div>
             </div>
 
+            </div>
           </div>
-        </div>
+
+        </ScrollReveal>
 
       </div>
       </section>

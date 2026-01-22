@@ -1,44 +1,29 @@
 'use client';
+
 import React from 'react';
 import Image from 'next/image';
-// Note: Saya menggunakan Lucide untuk icon kecil di bagian Dietary agar lebih ringan. 
-// Tapi untuk 6 Icon Fitur Utama, kita tetap pakai Local Image.
+import { useLanguage } from '@/app/context/LanguageContext';
 
 const BuffetFeatures = () => {
+  const { t } = useLanguage();
 
-  // --- DATA FITUR (Bisa diedit di sini) ---
-  const features = [
-    {
-      title: "Free Delivery & Setup",
-      desc: "Complete delivery, setup, and breakdown service included with every package. Our team arrives 2 hours before your event.",
-      iconSrc: "/images/icons/truck-white.svg" // Ganti dengan path icon lokal Anda
-    },
-    {
-      title: "Professional Staff",
-      desc: "Experienced serving staff in traditional attire to maintain the authentic atmosphere throughout your event.",
-      iconSrc: "/images/icons/group-white.svg"
-    },
-    {
-      title: "Fresh Ingredients",
-      desc: "All dishes prepared fresh on the day of your event using locally sourced, organic ingredients from our trusted suppliers.",
-      iconSrc: "/images/icons/leaf-white.svg"
-    },
-    {
-      title: "Flexible Timing",
-      desc: "Available for breakfast, lunch, or dinner events. Extended service hours available for special occasions.",
-      iconSrc: "/images/icons/clock-white.svg"
-    },
-    {
-      title: "Quality Guaranteed",
-      desc: "100% satisfaction guarantee. If you're not completely satisfied, we'll work to make it right or provide a full refund.",
-      iconSrc: "/images/icons/curly-white.svg"
-    },
-    {
-      title: "Complete Equipment",
-      desc: "All serving equipment, plates, utensils, and traditional serving ware included. Eco-friendly options available.",
-      iconSrc: "/images/icons/food-white.svg"
-    }
+  // 1. Definisikan Icon secara manual karena Context hanya menyimpan teks
+  // Pastikan urutan icon ini SAMA PERSIS dengan urutan teks di LanguageContext
+  const iconPaths = [
+    "/images/icons/truck-white.svg",   // 1. Delivery
+    "/images/icons/group-white.svg",   // 2. Staff
+    "/images/icons/leaf-white.svg",    // 3. Ingredients
+    "/images/icons/clock-white.svg",   // 4. Timing
+    "/images/icons/curly-white.svg",   // 5. Quality
+    "/images/icons/food-white.svg"     // 6. Equipment
   ];
+
+  // 2. Gabungkan Teks dari Context dengan Icon
+  const features = t.catering.service.features.map((feature, index) => ({
+    title: feature.title,
+    desc: feature.desc,
+    iconSrc: iconPaths[index] || "/images/icons/circle-white.svg" // Fallback icon jika index tidak cocok
+  }));
 
   return (
     <section className="w-full bg-[#F9F8F3] py-24">
@@ -47,14 +32,13 @@ const BuffetFeatures = () => {
         {/* --- HEADER SECTION --- */}
         <div className="mx-auto mb-16 max-w-3xl text-center">
           <span className="mb-3 block text-sm font-bold uppercase tracking-widest text-[#96A66D]">
-            Why Choose Us
+            {t.catering.service.label}
           </span>
           <h2 className="mb-6 font-serif text-4xl font-bold text-[#4A3B32] lg:text-5xl">
-            Complete Catering Service
+            {t.catering.service.title}
           </h2>
           <p className="text-lg leading-relaxed text-gray-600">
-            From menu planning to cleanup, we handle every detail so you can focus on
-            enjoying your event with your guests.
+            {t.catering.service.subtitle}
           </p>
         </div>
 
@@ -73,7 +57,7 @@ const BuffetFeatures = () => {
                     alt={feature.title} 
                     fill 
                     sizes="40px"
-                    className="object-contain brightness-0 invert" // Icon jadi putih
+                    className="object-contain brightness-0 invert" 
                   />
                 </div>
               </div>

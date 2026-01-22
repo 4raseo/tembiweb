@@ -173,7 +173,7 @@ export default function HomePage() {
           </div>
           <div className="absolute inset-0 bg-black bg-opacity-40 z-10"></div>
           <div className="relative z-20 flex flex-col items-center justify-center h-full text-center text-white px-4">
-            <h2 className="text-5xl md:text-8xl font-serif font-semibold mb-8 leading-10 md:leading-[0.8] md:drop-shadow-2xl">
+            <h2 className="text-5xl md:text-8xl font-serif font-semibold mb-8 leading-10 md:leading-[1] md:drop-shadow-2xl">
               {t.homepage.hero.title[0]} <br /> {t.homepage.hero.title[1]}
             </h2>
             
@@ -256,7 +256,7 @@ export default function HomePage() {
             </ScrollReveal>
 
             {/* Cards Grid */}
-            <div className="grid md:grid-cols-3 gap-8 mb-20 mx-20 w-400">
+            <div className="grid md:grid-cols-3 gap-8 mb-20 mx-auto max-w-7xl px-4">
               {houses.map((house, index) => (                
                 <ScrollReveal key={index} animation="fadeUp" delay={index * 150} duration={700}>
                   <HouseCard house={house} />
@@ -352,7 +352,7 @@ export default function HomePage() {
             </ScrollReveal>
             
             {/* --- BAGIAN 2: FOOD AND DRINK PACKAGES --- */}
-            <div className="grid md:grid-cols-2 gap-16 items-center mx-20">
+            <div className="grid md:grid-cols-2 gap-16 items-center mx-auto max-w-7xl px-4">
 
               {/* Sisi Kiri: Teks & List */}
               <ScrollReveal animation="slideLeft" duration={800}>

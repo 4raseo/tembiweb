@@ -159,10 +159,16 @@ export default function PaymentPage() {
         }),
       });
 
-      const data = await response.json();
+      let data;
+      try {
+        data = await response.json();
+      } catch (parseError) {
+        console.error('Failed to parse response as JSON:', parseError);
+        throw new Error('Invalid server response. Please try again.');
+      }
 
       if (!response.ok) {
-        throw new Error(data.message || 'Payment processing failed');
+        throw new Error(data?.message || data?.error || 'Payment processing failed');
       }
 
       if (data.invoiceUrl) {
@@ -171,9 +177,10 @@ export default function PaymentPage() {
         throw new Error('Payment URL not received');
       }
 
-    } catch (err: any) {
+    } catch (err: Error | unknown) {
       console.error('Payment error:', err);
-      setError(err.message || 'Failed to process payment. Please try again.');
+      const message = err instanceof Error ? err.message : 'Failed to process payment. Please try again.';
+      setError(message);
       setIsProcessing(false);
     }
   };

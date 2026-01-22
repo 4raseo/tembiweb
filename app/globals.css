@@ -89,4 +89,5 @@ body {
   color: var(--foreground);
   /* This ensures Lato is the default font everywhere */
   font-family: var(--font-lato), sans-serif;
+  overflow-x: hidden;
 }

@@ -1,59 +1,15 @@
-import Image from "next/image";
+'use client';
+
 import React from "react";
+import Image from "next/image";
+import { useLanguage } from "@/app/context/LanguageContext"; 
 
 export function AmenitiesSection() {
-  // Data untuk Grid Utama (4 Kolom)
-  const mainAmenities = [
-    {
-      title: "Room Comfort",
-      icon: "/images/icons/bed-green.svg", // Ganti dengan path icon Anda
-      items: [
-        "Air conditioning",
-        "Traditional furnishing",
-        "Premium bedding",
-        "Private bathroom",
-        "Complimentary toiletries",
-      ],
-    },
-    {
-      title: "Technology",
-      icon: "/images/icons/wifi-green.svg",
-      items: [
-        "Free high-speed WiFi",
-        "USB charging ports",
-      ],
-    },
-    {
-      title: "Cultural Services",
-      icon: "/images/icons/paint-green.svg",
-      items: [
-        "Traditional Activities",
-        "Seasonal Traditional Performance",
-        "Art Gallery",
-        "Private Collection",
-        "Private Tour Tembi",
-        "Several Music Instrument",
-        "Several Traditional Course",
-      ],
-    },
-    {
-      title: "Dining & Wellness",
-      icon: "/images/icons/food-green.svg",
-      items: [
-        "Traditional Cuisine",
-        "Room Service",
-        "Traditional Massage",
-        "Traditional Javanese Dance",
-      ],
-    },
-  ];
+  const { t } = useLanguage(); 
 
-  // Data untuk Box Bawah (Additional)
-  const resortAmenities = [
-    { name: "Swimming Pool", icon: "/images/icons/swim-green.svg" },
-    { name: "Spa & Wellness", icon: "/images/icons/flower-green.svg"},
-    { name: "Garden Tours", icon: "/images/icons/tree-green.svg" },
-  ];
+  // Mengambil data dinamis dari Context
+  const mainAmenities = t.house.amenities.item;
+  const resortAmenities = t.house.additional.item;
 
   return (
     <section className="py-20 bg-white text-gray-800">
@@ -62,14 +18,14 @@ export function AmenitiesSection() {
         {/* --- HEADER --- */}
         <div className="text-center mb-16">
           <h2 className="text-4xl font-serif font-bold text-[#1A2B1E] mb-4">
-            Amenities & Services
+            {t.house.amenities.title}
           </h2>
           <p className="text-gray-600 max-w-2xl mx-auto text-lg leading-relaxed">
-            Every room provides comfort and convenience, enriched by authentic Indonesian cultural atmosphere and heartfelt hospitality.
+            {t.house.amenities.desc}
           </p>
         </div>
 
-        {/* --- MAIN GRID (4 Kolom) --- */}
+        {/* --- MAIN GRID --- */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-20">
           {mainAmenities.map((category, index) => (
             <div key={index} className="flex flex-col items-center text-center">
@@ -105,7 +61,7 @@ export function AmenitiesSection() {
         {/* --- ADDITIONAL RESORT AMENITIES BOX --- */}
         <div className="bg-[#F8F9F7] rounded-[2rem] p-10 md:p-16">
           <h3 className="text-2xl md:text-5xl font-serif font-bold text-center text-[#1A2B1E] mb-12">
-            Additional House Amenities
+            {t.house.additional.title}
           </h3>
 
           <div className="flex flex-wrap justify-center gap-8 md:gap-32 text-center">

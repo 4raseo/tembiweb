@@ -1,65 +1,41 @@
+'use client';
+
 import React from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
-import { Check } from 'lucide-react'; // Pastikan install lucide-react: npm i lucide-react
+import MenuCard from '@/components/MenuCard';
 import BuffetPricing, { PackageItem } from '@/components/BuffetPricing';
 import BuffetFeatures from '@/components/BuffetFeatures';
 import BuffetBooking from '@/components/BuffetBooking';
+import { useLanguage } from '@/app/context/LanguageContext';
 
-const myPackages: PackageItem[] = [
+
+
+export default function BuffetPage() {
+  const { t } = useLanguage();
+
+  const packages: PackageItem[] = [
     {
-      name: "Buffet Standard",
-      minPax: "35 Pax",
-      description: "Perfect for corporate events",
-      theme: "standard",
-      iconSrc: "/images/icons/food-white.svg", 
-      items: [
-        "1 Traditional Soup (Sup Ayam Jagung or Lodeh)",
-        "2 Main Dishes (Ayam Goreng Kalasan + Telur Balado)",
-        "2 Side Dishes (Tumis Tempe + Oseng Terong)",
-        "1 Traditional Dessert (Es Dawet)",
-        "2 Beverages (Es Teh + Es Jeruk)",
-        "Basic table setup & serving equipment"
-      ]
+      ...t.catering.snack.card1,
+      theme: 'standard', // Theme tetap hardcoded karena berkaitan dengan styling CSS/Logic warna
+      isPopular: false,
     },
     {
-      name: "Buffet Premium",
-      minPax: "50 Pax", // Sesuai gambar English version
-      description: "Ideal for weddings & celebrations",
-      theme: "premium",
+      ...t.catering.snack.card2,
+      theme: 'premium',
       isPopular: true,
-      iconSrc: "/images/icons/crown-white.svg", 
-      items: [
-        "2 Traditional Soups (Choice of 3 options)",
-        "3 Premium Main Dishes including Ayam Lada Hitam",
-        "3 Side Dishes with Kembung Cabe Ijo",
-        "2 Traditional Desserts + Fruit platter",
-        "3 Beverages including Wedang Jahe",
-        "Enhanced table setup with traditional decorations",
-        "Professional serving staff included"
-      ]
     },
     {
-      name: "Buffet Exclusive",
-      minPax: "100 Pax", // Sesuai gambar English version
-      description: "Ultimate traditional experience",
-      theme: "exclusive",
-      iconSrc: "/images/icons/diamond-white.svg", 
-      items: [
-        "Full traditional buffet setup with banana leaves",
-        "3 Traditional Soups in clay serving pots",
-        "5 Premium Main Dishes + Gulai Telur special",
-        "4 Traditional Side Dishes",
-        "Complete dessert station with 4 varieties",
-        "Traditional beverage station with live preparation",
-        "Full decorative service with gamelan music",
-        "Dedicated event coordinator & serving team"
-      ]
+      ...t.catering.snack.card3,
+      theme: 'exclusive',
+      isPopular: false,
     }
-];
+  ];
 
-
-export default function SnackBoxPage() {
+  const menuList = [
+    t.catering.snackMenu.menuCard1,
+    t.catering.snackMenu.menuCard2,
+    t.catering.snackMenu.menuCard3,
+  ];
   return (
     <main className="min-h-screen w-full bg-white">
       
@@ -95,17 +71,17 @@ export default function SnackBoxPage() {
                   className="object-contain brightness-0 invert" 
                 />
               </div>
-              <span>Premium Catering Service</span>
+              <span>{t.catering.hero.label}</span>
             </div>
 
             {/* Heading */}
             <h1 className="font-serif text-5xl font-bold text-white md:text-7xl drop-shadow-sm mb-6 leading-tight">
-              Buffet Catering Packages
+              {t.catering.hero.titleSnack}
             </h1>
 
             {/* Description */}
             <p className="mb-8 text-lg text-white/90 md:text-xl leading-relaxed max-w-2xl">
-              Authentic Javanese dishes for gatherings and celebrations, carefully crafted with traditional recipes passed down through generations.
+              {t.catering.hero.descSnack}
             </p>
 
             {/* Info Pills */}
@@ -114,20 +90,20 @@ export default function SnackBoxPage() {
                 <div className="relative h-5 w-5">
                   <Image src="/images/icons/group-green.svg" alt="Pax Icon" fill className="object-contain" />
                 </div>
-                <span className="font-medium">Minimum 35 Pax</span>
+                <span className="font-medium">{t.catering.hero.pax}</span>
               </div>
 
               <div className="flex items-center gap-3 rounded-full bg-white/20 px-5 py-2.5 text-white backdrop-blur-md border border-white/10 transition hover:bg-white/30">
                 <div className="relative h-5 w-5">
                   <Image src="/images/icons/clock-green.svg" alt="Time Icon" fill className="object-contain" />
                 </div>
-                <span className="font-medium">4-6 Hours Service</span>
+                <span className="font-medium">{t.catering.hero.hour}</span>
               </div>
             </div>
 
             {/* CTA Button */}
             <button className="group flex items-center gap-3 rounded-full bg-[#96A66D] px-8 py-4 text-base font-semibold text-white transition-all hover:bg-[#849260] hover:shadow-lg hover:-translate-y-0.5">
-              View Packages
+              {t.catering.hero.buttonText}
               <div className="relative h-4 w-4 transition-transform group-hover:translate-y-1">
                 <Image src="/images/icons/down-arrow-white.svg" alt="Arrow" fill className="object-contain brightness-0 invert" />
               </div>
@@ -136,40 +112,44 @@ export default function SnackBoxPage() {
         </div>
 
         {/* Scroll Indicator */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce z-20">
-          <div className="relative h-8 w-8 opacity-80">
-            <Image src="/images/icons/arrow-down-white.svg" alt="Scroll Down" fill className="object-contain brightness-0 invert" />
-          </div>
+        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20">
+          <a href="#our-story" className="animate-bounce cursor-pointer p-2 block">
+             <Image
+                src="/images/icons/down.png" // Sesuaikan path icon lokal
+                alt="Scroll Down"
+                width={16}
+                height={16}
+                className="brightness-0 invert drop-shadow-md"
+             />
+          </a>
         </div>
       </section>
       {/* ==================================================================
           2. HERITAGE SECTION (Content)
           ================================================================== */}
-      <section className="mx-auto max-w-7xl px-6 py-20 lg:px-12 lg:py-28">
+      <section id="our-story" className="mx-auto max-w-7xl px-6 py-20 lg:px-12 lg:py-28">
         <div className="grid grid-cols-1 gap-16 lg:grid-cols-2 lg:items-center">
           
           {/* Left: Text */}
           <div>
             <span className="mb-4 block text-sm font-bold uppercase tracking-widest text-[#96A66D]">
-              Our Heritage
+              {t.catering.intro.label}
             </span>
             <h2 className="mb-6 font-serif text-4xl font-bold leading-tight text-[#4A3B32] lg:text-5xl">
-              A Culinary Journey Through Javanese Tradition
+              {t.catering.intro.title}
             </h2>
             <p className="mb-8 text-lg leading-relaxed text-gray-600">
-              For over three decades, Tembi Historical Home has been preserving the
-              authentic flavors of Javanese cuisine. Our buffet catering service brings
-              the warmth of traditional hospitality to your special occasions.
+              {t.catering.intro.desc}
             </p>
 
             <div className="flex gap-16">
               <div>
-                <h3 className="font-serif text-4xl font-bold text-[#96A66D]">25+</h3>
-                <p className="mt-1 text-sm font-medium text-gray-500">Years of Experience</p>
+                <h3 className="font-serif text-4xl font-bold text-[#96A66D]">{t.catering.intro.stats1.num}</h3>
+                <p className="mt-1 text-sm font-medium text-gray-500">{t.catering.intro.stats1.desc}</p>
               </div>
               <div>
-                <h3 className="font-serif text-4xl font-bold text-[#96A66D]">100+</h3>
-                <p className="mt-1 text-sm font-medium text-gray-500">Events Catered</p>
+                <h3 className="font-serif text-4xl font-bold text-[#96A66D]">{t.catering.intro.stats2.num}</h3>
+                <p className="mt-1 text-sm font-medium text-gray-500">{t.catering.intro.stats2.desc}</p>
               </div>
             </div>
           </div>
@@ -221,165 +201,38 @@ export default function SnackBoxPage() {
           
           <div className="mx-auto mb-16 max-w-2xl text-center">
             <span className="mb-3 block text-sm font-bold uppercase tracking-widest text-[#96A66D]">
-              Our Menu
+              {t.catering.snackMenu.label}
             </span>
             <h2 className="mb-6 font-serif text-4xl font-bold text-[#4A3B32] lg:text-5xl">
-              Authentic Javanese Flavors
+              {t.catering.snackMenu.title}
             </h2>
             <p className="text-lg text-gray-600">
-              Each buffet package is carefully crafted with a perfect balance of Javanese flavors — from savory mains that warm the soul to refreshing drinks and sweet desserts that complete the experience.
+              {t.catering.snackMenu.desc}
             </p>
           </div>
 
-          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
-            {/* Card 1: Soup */}
-            <MenuCard 
-              icon="/images/icons/circle-white.svg" 
-              title="Soup" 
-              subtitle="Pilih Kuah & Sayur"
-              items={[
-                'Sup Sayur Bening', 'Sup Bakso Sosis', 'Sup Rolade',
-                'Sup Ayam Jagung', 'Sup Timlo', 'Jangan Lodeh',
-                'Jangan Asem', 'Jangan Bobor Gandol', 'Oblok Godhong Telo',
-                'Gulai Nangka Muda'
-              ]}
-            />
-
-            {/* Card 2: Main Course */}
-            <MenuCard 
-              icon="/images/icons/chicken-white.svg" 
-              title="Main Course" 
-              subtitle="Tumis & Lauk"
-              items={[
-                'Tumis Tempe Kacang Panjang', 'Tumis Tahu Tomat Ijo', 
-                'Oseng Tempe Lombok Ijo', 'Oseng Janggel Sosis', 
-                'Oseng Terong Balado', 'Oseng Labu Siam', "Ca' Buncis Tahu", 
-                "Ca' Kembang Kol Bakso", "Ca' Brokoli Jamur Kuping", 'Sapo Tahu'
-              ]}
-            />
-
-            {/* Card 3: Desserts */}
-            <MenuCard 
-              icon="/images/icons/ice-cream-white.svg" 
-              title="Desserts" 
-              subtitle="Traditional Sweets"
-              items={[
-                'Es Dawet Tradisional', 'Klepon Gula Jawa', 
-                'Onde-onde Wijen', 'Lupis Ketan'
-              ]}
-            />
-
-            {/* Card 4: Beverages */}
-            <MenuCard 
-              icon="/images/icons/drink-white.svg" 
-              title="Beverages" 
-              subtitle="Refreshing Drinks"
-              items={[
-                'Es Degan', 'Es Teh Manis', 'Es Jeruk', 'Es Setup',
-                'Es Dawet', 'Es Serut Melon', 'Es Buah', 'Es Cincau',
-                'Es Cocktail', 'Es Infuse Water'
-              ]}
-            />
-
-            {/* Card 5: Chicken */}
-            <MenuCard 
-              icon="/images/icons/circle-white.svg" 
-              title="Chicken" 
-              subtitle="Pilihan Ayam"
-              items={[
-                'Ayam Goreng Kalasan', 'Ayam Goreng Kremes', 'Ayam Lada Hitam',
-                'Ayam Daun Temuru', 'Ayam Fillet Goreng', 'Ayam Saus Mentega',
-                'Ayam Semur', "Ayam Ca' Jamur", 'Ayam Cabe Ijo', 'Chicken Katsu'
-              ]}
-            />
-
-            {/* Card 6: Egg */}
-            <MenuCard 
-              icon="/images/icons/chicken-white.svg" 
-              title="Egg" 
-              subtitle="Pilihan Telur"
-              items={[
-                'Telur Semur', 'Telur Balado', 'Telur Dadar Padang',
-                'Telur Asin', 'Telur Rebus', 'Telur Crispy',
-                'Telur Ceplok Bumbu Bali', 'Telur Goreng Cabe Ijo',
-                'Gulai Telur', 'Fuyung Hai'
-              ]}
-            />
-
-            {/* Card 7: Fish */}
-            <MenuCard 
-              icon="/images/icons/circle-white.svg" 
-              title="Fish" 
-              subtitle="Pilihan Ikan"
-              items={[
-                'Lele Goreng Kremes', 'Mangut Lele', 'Nila Sambal Matah',
-                'Nila Goreng/Bakar', 'Kembung Cabe Ijo', 'Kembung Balado',
-                'Ikan Fillet Asam Manis', 'Ikan Fillet Sambal Matah',
-                'Ikan Fillet Dabu-Dabu', 'Ikan Katsu'
-              ]}
-            />
-
-            {/* Card 8: Side Dish */}
-            <MenuCard 
-              icon="/images/icons/chicken-white.svg" 
-              title="Side Dish" 
-              subtitle="Pilihan Menu Pendamping"
-              items={[
-                'Mendoan', 'Tahu/Tempe Goreng', 'Tahu/Tempe Bacem',
-                'Perkedel Tahu', 'Tahu Susu', 'Tahu Crispy',
-                'Bakwan Sayur', 'Bakwan Jagung', 'Perkedel Kentang',
-                'Jamur Crispy'
-              ]}
-            />
+          <div className="flex flex-wrap justify-center gap-8">
+            {/* Mapping Menu Cards secara otomatis */}
+            {menuList.map((menu, index) => (
+              <div key={index} className="w-full md:w-[calc(50%-1rem)] lg:w-[calc(25%-1.5rem)] flex flex-col">
+                <MenuCard 
+                  className="h-full"
+                  icon={menu.icon} 
+                  title={menu.title} 
+                  subtitle={menu.subtitle}
+                  items={menu.items}
+                />
+              </div>
+            ))}
           </div>
         </div>
       </section>
       <BuffetPricing 
         whatsappNumber="62812345678"
-        packages={myPackages}
+        packages={packages}
        />
        <BuffetFeatures />
        <BuffetBooking />
     </main>
   );
 }
-
-// ==================================================================
-// HELPER COMPONENT (Untuk Menu Card agar kode lebih rapi)
-// ==================================================================
-type MenuCardProps = {
-  icon: string;
-  title: string;
-  subtitle: string;
-  items: string[];
-};
-
-const MenuCard = ({ icon, title, subtitle, items }: MenuCardProps) => {
-  return (
-    <div className="group rounded-2xl bg-white p-8 shadow-sm transition-all hover:-translate-y-1 hover:shadow-xl">
-      <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-[#96A66D]">
-        <div className="relative h-8 w-8">
-           <Image 
-              src={icon} 
-              alt={title} 
-              fill 
-              sizes="32px"
-              className="object-contain brightness-0 invert" 
-           />
-        </div>
-      </div>
-      <div className="mb-6 text-center">
-        <h3 className="mb-1 font-serif text-2xl font-bold text-[#4A3B32]">{title}</h3>
-        <p className="text-sm text-gray-400">{subtitle}</p>
-      </div>
-      <ul className="space-y-3">
-        {items.map((item, index) => (
-          <li key={index} className="flex items-start gap-3 text-gray-600">
-            <Check className="mt-0.5 h-4 w-4 shrink-0 text-[#96A66D]" strokeWidth={3} />
-            <span className="text-sm font-medium">{item}</span>
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
-};

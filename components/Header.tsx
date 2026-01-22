@@ -3,16 +3,14 @@
 
 import { useState } from 'react';
 import { Menu, X, Globe } from 'lucide-react';
-import { useLanguage } from '@/app/context/LanguageContext'; // Import hook
+import { useLanguage } from '@/app/context/LanguageContext';
 import Link from 'next/link';
 
 export default function Header() { 
   const [isSidebarOpen, setSidebarOpen] = useState(false);
   
-  // Ambil state bahasa dan fungsi translate dari Context
   const { language, setLanguage, t } = useLanguage();
 
-  // Gunakan data dari dictionary (t.nav)
   const navLinks = [
     { name: t.nav.home, href: '/' },
     { name: t.nav.house, href: '/rooms' },
@@ -29,7 +27,8 @@ export default function Header() {
   return (
     <>
       <header className="fixed top-0 left-0 right-0 z-40 bg-white text-black shadow-sm">
-        <div className="container mx-auto px-6 py-4 grid grid-cols-3 items-center">
+        {/* PERUBAHAN 1: py-4 diubah menjadi py-2 agar atas bawah lebih rapat */}
+        <div className="container mx-auto px-6 py-2 grid grid-cols-3 items-center">
           
           {/* Kiri: Hamburger Menu */}
           <div className="justify-self-start flex items-center gap-4">
@@ -40,7 +39,7 @@ export default function Header() {
 
           {/* Tengah: Logo */}
           <Link href="/" className="mx-auto"> 
-            <div className="text-center bg-[url(/images/logo-tembi.svg)] bg-contain bg-center bg-no-repeat h-10 w-32 cursor-pointer">
+            <div className="text-center bg-[url(/images/logo-tembi.png)] bg-contain bg-center bg-no-repeat h-12 w-48 cursor-pointer">
               <h1 className="text-xl font-bold font-serif opacity-0">Tembi</h1>
             </div>
           </Link>
@@ -53,7 +52,7 @@ export default function Header() {
             >
               {t.nav.book}
             </Link>
-            {/* Language Toggle Button */}
+            
             <button 
                 onClick={toggleLanguage} 
                 className="flex items-center gap-2 text-sm font-medium hover:text-tembi transition-colors"
@@ -67,7 +66,7 @@ export default function Header() {
         </div>
       </header>
       
-      {/* Sidebar logic sama seperti sebelumnya, tapi gunakan navLinks yang sudah diterjemahkan */}
+      {/* Sidebar & WhatsApp button tetap sama */}
       <div onClick={() => setSidebarOpen(false)} className={`fixed inset-0 bg-black bg-opacity-50 z-40 transition-opacity duration-300 ${isSidebarOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'}`} />
       <aside className={`fixed top-0 left-0 h-full w-72 bg-white text-slate-800 z-50 transform transition-transform duration-300 ease-in-out ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'}`}>
         <div className="flex justify-between items-center p-6 border-b border-gray-700">
@@ -95,7 +94,6 @@ export default function Header() {
           className="fixed bottom-6 right-6 z-50 bg-[#25D366] hover:bg-[#20bd5a] text-white p-4 rounded-full shadow-[0_4px_14px_0_rgba(0,0,0,0.39)] hover:scale-110 hover:-translate-y-1 transition-all duration-300 flex items-center justify-center"
           aria-label="Chat on WhatsApp"
         >
-          {/* Icon WhatsApp SVG */}
           <svg 
             viewBox="0 0 24 24" 
             fill="currentColor" 
@@ -105,7 +103,5 @@ export default function Header() {
           </svg>
       </Link>
     </>
-
-    
   );
 };
