@@ -19,28 +19,78 @@ function verifyWebhookSignature(
   return true; // Simplified for now
 }
 
+// export async function POST(request: Request) {
+//   try {
+//     const body = await request.text();
+//     const data = JSON.parse(body);
+    
+//     console.log('Received webhook data:', JSON.stringify(data, null, 2));
+    
+//     // Optional: Verify webhook signature in production
+//     const webhookToken = process.env.XENDIT_WEBHOOK_VERIFICATION_TOKEN;
+//     if (webhookToken) {
+//       const callbackToken = request.headers.get('x-callback-token');
+      
+//       if (callbackToken !== webhookToken) {
+//         return NextResponse.json(
+//           { message: 'Unauthorized webhook' },
+//           { status: 401 }
+//         );
+//       }
+//     }
+
+//     // Handle based on status instead of event
+//     // Xendit payment webhooks use 'status' field
+//     if (data.status) {
+//       switch (data.status) {
+//         case 'PAID':
+//           await handlePaymentPaid(data);
+//           break;
+//         case 'EXPIRED':
+//           await handlePaymentExpired(data);
+//           break;
+//         case 'PENDING':
+//           await handlePaymentPending(data);
+//           break;
+//         default:
+//           console.log('Unhandled payment status:', data.status);
+//       }
+//     } else {
+//       console.log('Webhook data missing status field');
+//     }
+
+//     return NextResponse.json({ received: true });
+
+//   } catch (error: any) {
+//     console.error('Webhook processing error:', error);
+//     return NextResponse.json(
+//       { message: 'Webhook processing failed', error: error.message },
+//       { status: 500 }
+//     );
+//   }
+// }
+
 export async function POST(request: Request) {
   try {
+    // 1. SECURITY CHECK: Verify Xendit Token
+    // Ensure this matches the variable name in your .env file
+    const webhookToken = process.env.XENDIT_WEBHOOK_TOKEN; 
+    const callbackToken = request.headers.get('x-callback-token');
+
+    // If a token is set in env, we MUST verify it
+    if (webhookToken && callbackToken !== webhookToken) {
+      console.warn('⚠️ Unauthorized webhook attempt detected');
+      return NextResponse.json(
+        { message: 'Unauthorized webhook' },
+        { status: 401 }
+      );
+    }
+
     const body = await request.text();
     const data = JSON.parse(body);
     
-    console.log('Received webhook data:', JSON.stringify(data, null, 2));
-    
-    // Optional: Verify webhook signature in production
-    const webhookToken = process.env.XENDIT_WEBHOOK_VERIFICATION_TOKEN;
-    if (webhookToken) {
-      const callbackToken = request.headers.get('x-callback-token');
-      
-      if (callbackToken !== webhookToken) {
-        return NextResponse.json(
-          { message: 'Unauthorized webhook' },
-          { status: 401 }
-        );
-      }
-    }
+    console.log(`🔔 Webhook received: ${data.status} for ${data.external_id}`);
 
-    // Handle based on status instead of event
-    // Xendit payment webhooks use 'status' field
     if (data.status) {
       switch (data.status) {
         case 'PAID':
@@ -54,9 +104,8 @@ export async function POST(request: Request) {
           break;
         default:
           console.log('Unhandled payment status:', data.status);
+        // Add other cases if needed
       }
-    } else {
-      console.log('Webhook data missing status field');
     }
 
     return NextResponse.json({ received: true });
@@ -64,7 +113,7 @@ export async function POST(request: Request) {
   } catch (error: any) {
     console.error('Webhook processing error:', error);
     return NextResponse.json(
-      { message: 'Webhook processing failed', error: error.message },
+      { message: 'Webhook processing failed' },
       { status: 500 }
     );
   }
