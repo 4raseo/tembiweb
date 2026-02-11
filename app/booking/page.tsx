@@ -1,12 +1,12 @@
 "use client";
 
 import { useState, useEffect, useMemo } from 'react';
-import { useSearchParams } from 'next/navigation';
+import { useSearchParams, useRouter } from 'next/navigation'; // Tambah useRouter
 import Image from 'next/image';
 import { roomData } from '@/data/roomData';
 import { differenceInCalendarDays, parseISO } from 'date-fns';
 import { Calendar, User, Home, Eye, Coffee, BedDouble, Plus, Minus } from 'lucide-react';
-import Link from 'next/link';
+// Hapus import Link karena kita ganti pakai useRouter
 
 // --- KONFIGURASI HARGA TAMBAHAN ---
 const ADDONS_PRICE = {
@@ -45,12 +45,13 @@ const BookingStepper = () => (
 );
 
 export default function BookingPage() {
+  const router = useRouter(); // Init Router
   const searchParams = useSearchParams();
   const initialRoomSlug = searchParams.get('room');
 
-  // --- LOGIKA DATA STATIS ---
-  const STATIC_CHECK_IN = '2025-11-20';
-  const STATIC_CHECK_OUT = '2025-11-22';
+  // --- LOGIKA DATA STATIS (Bisa diganti kosong '' nanti) ---
+  const STATIC_CHECK_IN = '2026-02-20';
+  const STATIC_CHECK_OUT = '2026-02-22';
   const STATIC_ADULTS = 2;
   const STATIC_CHILDREN = 1;
   const STATIC_ROOM_ID = 1;
@@ -67,6 +68,9 @@ export default function BookingPage() {
     breakfast: 0,
     extrabed: 0
   });
+
+  // State baru untuk loading checking
+  const [isChecking, setIsChecking] = useState(false);
 
   useEffect(() => {
     if (initialRoomSlug) {
@@ -102,13 +106,52 @@ export default function BookingPage() {
   const handleAddonUpdate = (type: 'breakfast' | 'extrabed', change: number) => {
     setAddons(prev => {
       const newValue = prev[type] + change;
-      // Validasi: Min 0, Max 5
       if (newValue < 0 || newValue > 5) return prev;
       return { ...prev, [type]: newValue };
     });
   };
 
   const isFormValid = Boolean(selectedRoom && checkIn && checkOut && numberOfNights > 0);
+
+  // --- FUNGSI BARU: Handle Check Availability ---
+  const handleCheckAndProceed = async () => {
+    if (!selectedRoom || !checkIn || !checkOut) return;
+
+    setIsChecking(true);
+
+    try {
+      // 1. Panggil API Availability
+      const res = await fetch(
+        `/api/availability?roomSlug=${selectedRoom.slug}&checkIn=${checkIn}&checkOut=${checkOut}`
+      );
+      const data = await res.json();
+
+      if (data.available) {
+        // 2. Jika Tersedia, Redirect ke Payment
+        // Kita susun query params secara manual
+        const params = new URLSearchParams({
+            room: selectedRoom.slug,
+            checkIn,
+            checkOut,
+            adults: adults.toString(),
+            children: children.toString(),
+            total: totalPrice.toString(),
+            addons: JSON.stringify(addons),
+            specialRequests
+        });
+        
+        router.push(`/payment?${params.toString()}`);
+      } else {
+        // 3. Jika Tidak Tersedia, Munculkan Alert
+        alert(`Maaf, ${data.message}`);
+      }
+    } catch (error) {
+      console.error(error);
+      alert("Terjadi kesalahan saat mengecek ketersediaan.");
+    } finally {
+      setIsChecking(false);
+    }
+  };
   
   return (
     <main className="min-h-screen bg-[#EFF1F0] font-sans text-gray-800 pb-20">
@@ -143,7 +186,10 @@ export default function BookingPage() {
         
         {/* LEFT COLUMN: Inputs */}
         <div className="lg:col-span-2 bg-white rounded-2xl shadow-lg p-6 md:p-8 border border-gray-100">
-          <div className="flex items-center gap-2 mb-6 border-b border-gray-100 pb-4">
+          {/* ... (Konten Input Date, Guest, Addons, Room List sama persis seperti sebelumnya) ... */}
+          {/* Supaya tidak terlalu panjang, saya persingkat bagian ini karena tidak ada perubahan logika */}
+          {/* Salin bagian INPUTS dari kode lama Anda ke sini */}
+           <div className="flex items-center gap-2 mb-6 border-b border-gray-100 pb-4">
             <Calendar className="w-5 h-5 text-tembi" />
             <h3 className="text-xl font-bold font-serif text-gray-900">Booking Details</h3>
           </div>
@@ -326,31 +372,28 @@ export default function BookingPage() {
         <div className="lg:col-span-1">
             <div className="bg-white rounded-2xl shadow-lg p-6 border border-gray-100 h-fit sticky top-8">
             
+            {/* ... (Konten Preview Image dan detail summary SAMA) ... */}
             <div className="flex items-center gap-2 mb-6 text-tembi border-b border-gray-100 pb-4">
                 <Eye className="w-5 h-5" />
                 <h3 className="text-lg font-serif font-bold">Room Preview</h3>
             </div>
 
-            {/* --- PREVIEW BOX (UPDATED: Menampilkan Gambar) --- */}
             <div className="relative h-48 w-full bg-gray-50 rounded-xl mb-6 overflow-hidden shadow-sm border border-gray-100">
                 {selectedRoom ? (
                     <>
                         <Image 
-                            // Gunakan imageUrl dari data, atau fallback ke placeholder jika tidak ada
                             src={selectedRoom.imageUrl || "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=1000&auto=format&fit=crop"} 
                             alt={selectedRoom.name}
                             fill
                             className="object-cover"
                             priority
                         />
-                        {/* Overlay Text di atas Gambar */}
                         <div className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/80 via-black/40 to-transparent p-4">
                             <p className="text-white font-bold text-lg leading-tight">{selectedRoom.name}</p>
                             <p className="text-gray-200 text-xs mt-1 opacity-90 line-clamp-1">{selectedRoom.tagline}</p>
                         </div>
                     </>
                 ) : (
-                    // Tampilan Placeholder jika belum ada kamar dipilih
                     <div className="flex flex-col items-center justify-center h-full text-gray-400 border-2 border-dashed border-gray-200 rounded-xl">
                         <Home className="w-8 h-8 mb-2 opacity-50" />
                         <span className="text-xs font-medium">Select a room to preview</span>
@@ -411,6 +454,7 @@ export default function BookingPage() {
                 </div>
             )}
 
+
             {/* Total Price */}
             <div className="flex justify-between items-end mb-6">
                 <div>
@@ -419,27 +463,18 @@ export default function BookingPage() {
                 </div>
             </div>
 
-            {/* CTA Button */}
-            <Link
-                href={isFormValid ? {
-                    pathname: '/payment',
-                    query: { 
-                        room: selectedRoom?.slug,
-                        checkIn, checkOut, adults, children, 
-                        total: totalPrice,
-                        addons: JSON.stringify(addons),
-                        specialRequests 
-                    },
-                } : '#'}
-                aria-disabled={!isFormValid}
+            {/* BUTTON ACTION (UPDATED: Menggunakan Button onClick) */}
+            <button
+                onClick={handleCheckAndProceed}
+                disabled={!isFormValid || isChecking}
                 className={`w-full block text-center py-4 rounded-xl font-bold text-white transition-all transform 
-                ${isFormValid 
+                ${isFormValid && !isChecking
                     ? 'bg-tembi hover:bg-darktembi shadow-lg shadow-tembi/30 active:scale-95 cursor-pointer' 
                     : 'bg-gray-300 cursor-not-allowed pointer-events-none' 
                 }`}
             >
-                Check Availability
-            </Link>
+                {isChecking ? 'Checking Availability...' : 'Book & Pay Now'}
+            </button>
 
             </div>
         </div>

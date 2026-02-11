@@ -130,32 +130,32 @@ async function handlePaymentPaid(data: any) {
   } = data;
   
   try {
-    // Update booking status to PAID using only available fields
+    // 1. Try to find the booking first to ensure it exists
+    const existingBooking = await prisma.booking.findUnique({
+      where: { id: external_id },
+    });
+
+    if (!existingBooking) {
+      console.warn(`⚠️ Booking not found for ID: ${external_id}. Ignoring webhook.`);
+      // Return cleanly so Xendit doesn't keep retrying
+      return; 
+    }
+
+    // 2. Update the booking if found
     const booking = await prisma.booking.update({
       where: { id: external_id },
       data: {
         status: 'PAID',
-        updatedAt: new Date(), // Update the timestamp
+        updatedAt: new Date(),
       },
     });
 
     console.log(`✅ Booking ${booking.id} marked as PAID`);
-    console.log(`💳 Payment method: ${payment_method} - ${payment_channel} (${payment_details?.source || 'N/A'})`);
-    console.log(`📅 Paid at: ${paid_at}`);
-    console.log(`🆔 Xendit Payment ID: ${xenditPaymentId}`);
-    
-    // Additional actions after successful payment:
-    // - Send confirmation email to customer
-    // - Update room availability
-    // - Send notification to hotel staff
-    // - Generate booking confirmation PDF
-    
-    // Example: Send confirmation email (implement this function)
-    // await sendBookingConfirmationEmail(booking);
     
   } catch (error) {
     console.error('❌ Failed to update booking status:', error);
-    throw error;
+    // Don't throw error here, just log it. 
+    // If you throw, Xendit thinks it failed and will retry sending the webhook.
   }
 }
 

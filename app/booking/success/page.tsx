@@ -53,13 +53,33 @@ export default function BookingSuccessPage() {
 
   const fetchBookingDetails = async () => {
     try {
+      // 1. Ambil respons mentah
       const response = await fetch(`/api/payment?bookingId=${bookingId}`);
-      const data = await response.json();
+      
+      // 2. Baca sebagai text dulu (JANGAN langsung .json())
+      const text = await response.text();
+      console.log("Debug Response Server:", text); // Cek Console browser Anda!
+
+      // 3. Cek apakah kosong
+      if (!text) {
+        throw new Error("Server returned empty response");
+      }
+
+      // 4. Coba parse JSON manual
+      let data;
+      try {
+        data = JSON.parse(text);
+      } catch (e) {
+        // Jika gagal parse, berarti server mengembalikan HTML Error (misal 500/404 page)
+        console.error("Gagal parse JSON. Response bukan JSON:", text);
+        throw new Error(`Server Error: ${response.status} ${response.statusText}`);
+      }
 
       if (!response.ok) throw new Error(data.message || 'Failed to fetch booking details');
       
       setBooking(data.booking);
     } catch (err: any) {
+      console.error(err);
       setError(err.message);
     } finally {
       setLoading(false);
@@ -298,7 +318,7 @@ export default function BookingSuccessPage() {
                         <CreditCard className="w-5 h-5 text-green-600" />
                         <div>
                             <p className="text-xs text-green-800 font-bold uppercase">Payment Method</p>
-                            <p className="text-xs text-green-700">Online Payment via Midtrans</p>
+                            <p className="text-xs text-green-700">Online Payment via Xendit</p>
                         </div>
                     </div>
                 </div>

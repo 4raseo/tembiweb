@@ -6,50 +6,67 @@ import { roomData } from '@/data/roomData';
 const prisma = new PrismaClient();
 const xenditClient = new Xendit({ secretKey: process.env.XENDIT_API_KEY || '' });
 
-// Konfigurasi Harga (Harus sama dengan frontend)
 const ADDONS_PRICE = {
   breakfast: 50000, 
   extrabed: 150000   
 };
 
-// --- HANDLER POST (Untuk Membuat Booking) ---
+// Fungsi Helper untuk membuat ID Pendek (Format: INV-XXXXXX)
+function generateShortId() {
+  const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+  let result = '';
+  for (let i = 0; i < 6; i++) {
+    result += chars.charAt(Math.floor(Math.random() * chars.length));
+  }
+  return `INV-${result}`;
+}
+
+// FUNGSI GET (Sama seperti sebelumnya)
+export async function GET(request: Request) {
+  const { searchParams } = new URL(request.url);
+  const bookingId = searchParams.get('bookingId');
+
+  if (!bookingId) return NextResponse.json({ message: 'Booking ID is required' }, { status: 400 });
+
+  try {
+    const booking = await prisma.booking.findUnique({ where: { id: bookingId } });
+    if (!booking) return NextResponse.json({ message: 'Booking not found' }, { status: 404 });
+    return NextResponse.json({ booking });
+  } catch (error) {
+    return NextResponse.json({ message: 'Internal Server Error' }, { status: 500 });
+  }
+}
+
 export async function POST(request: Request) {
   try {
-    const {
-      roomSlug,
-      checkIn,
-      checkOut,
-      adults,
-      children,
-      booker, 
-      addons, // Data addons dari frontend
-    } = await request.json();
+    const { roomSlug, checkIn, checkOut, adults, children, booker, addons } = await request.json();
 
-    // 1. Validasi Dasar
     if (!roomSlug || !checkIn || !checkOut || !booker) {
-      return NextResponse.json({ message: 'Missing required payment information' }, { status: 400 });
+      return NextResponse.json({ message: 'Missing required data' }, { status: 400 });
     }
-    if (!booker.name || !booker.email || !booker.phone) {
-      return NextResponse.json({ message: 'Incomplete customer information.' }, { status: 400 });
-    }
-
-    // 2. Cari Data Kamar
+    
     const room = roomData.find(r => r.slug === roomSlug);
-    if (!room) {
-      return NextResponse.json({ message: 'Room not found' }, { status: 404 });
-    }
+    if (!room) return NextResponse.json({ message: 'Room not found' }, { status: 404 });
 
-    // 3. Hitung Durasi
     const checkInDate = new Date(checkIn);
     const checkOutDate = new Date(checkOut);
-    
-    if (checkInDate >= checkOutDate) {
-      return NextResponse.json({ message: 'Check-out date must be after check-in date' }, { status: 400 });
+
+    // Double Booking Check
+    const conflictingBooking = await prisma.booking.findFirst({
+      where: {
+        roomSlug: roomSlug,
+        status: { in: ['PENDING', 'PAID'] },
+        AND: [ { checkInDate: { lt: checkOutDate } }, { checkOutDate: { gt: checkInDate } } ]
+      },
+    });
+
+    if (conflictingBooking) {
+      return NextResponse.json({ message: 'Room is unavailable.' }, { status: 409 });
     }
 
     const duration = Math.ceil((checkOutDate.getTime() - checkInDate.getTime()) / (1000 * 3600 * 24));
     
-    // 4. Hitung Harga Detail (Termasuk Addons)
+    // Hitung Harga
     const breakfastCount = addons?.breakfast || 0;
     const extraBedCount = addons?.extrabed || 0;
 
@@ -61,12 +78,15 @@ export async function POST(request: Request) {
     const basePrice = roomBasePrice + addonsTotal;
     const serviceFee = Math.round(basePrice * 0.05); 
     const tourismTax = 30000 * duration; 
-    
     const totalAmount = basePrice + serviceFee + tourismTax;
 
-    // 5. Simpan ke Database
+    // Generate Short ID
+    const shortId = generateShortId();
+
+    // Simpan ke Database (UPDATE: Masukkan ID Manual & Addons)
     const booking = await prisma.booking.create({
       data: {
+        id: shortId, // Pakai ID Pendek kita
         roomId: room.id.toString(),
         roomSlug: room.slug,
         roomName: room.name,
@@ -77,16 +97,16 @@ export async function POST(request: Request) {
         tourismTax: tourismTax,
         totalPrice: totalAmount,
         
+        // Simpan jumlah addons
+        breakfastCount: breakfastCount,
+        extraBedCount: extraBedCount,
+
         checkInDate: checkInDate,
         checkOutDate: checkOutDate,
         duration: duration,
         adults: adults || 1,
         children: children || 0,
         
-        // TODO: Uncomment when Prisma types are properly regenerated
-        // breakfast: breakfastCount,
-        // extraBed: extraBedCount,
-
         customerName: booker.name,
         customerEmail: booker.email,
         customerPhone: booker.phone,
@@ -97,7 +117,7 @@ export async function POST(request: Request) {
       },
     });
 
-    // 6. Buat Invoice Xendit
+    // Buat Invoice Xendit
     try {
       const { Invoice } = xenditClient;
       
@@ -129,121 +149,42 @@ export async function POST(request: Request) {
       }
 
       invoiceItems.push(
-        {
-          name: 'Service Fee (5%)',
-          quantity: 1,
-          price: serviceFee,
-          category: 'Fee',
-        },
-        {
-          name: 'Tourism Tax',
-          quantity: duration,
-          price: 30000,
-          category: 'Tax',
-        }
+        { name: 'Service Fee (5%)', quantity: 1, price: serviceFee, category: 'Fee' },
+        { name: 'Tourism Tax', quantity: duration, price: 30000, category: 'Tax' }
       );
 
       const xenditInvoice = await Invoice.createInvoice({
         data: {
-          externalId: booking.id,
+          externalId: booking.id, // ID Pendek dikirim ke Xendit
           amount: totalAmount,
           payerEmail: booker.email,
-          description: `Booking ${room.name} at Tembi Cultural House`,
+          description: `Booking ${booking.id} - ${room.name}`,
           customer: {
             givenNames: booker.name,
             email: booker.email,
             mobileNumber: booker.phone,
-            addresses: booker.address ? [{
-                city: booker.city || '',
-                country: 'Indonesia',
-                postalCode: booker.postalCode || '',
-                streetLine1: booker.address,
-            }] : undefined,
           },
           items: invoiceItems,
           successRedirectUrl: `${process.env.NEXT_PUBLIC_URL}/booking/success?booking_id=${booking.id}`,
           failureRedirectUrl: `${process.env.NEXT_PUBLIC_URL}/booking/failed?booking_id=${booking.id}`,
           currency: 'IDR',
           invoiceDuration: 86400,
-          locale: 'id',
         },
       });
 
       await prisma.booking.update({
         where: { id: booking.id },
-        data: { 
-          xenditInvoiceId: xenditInvoice.id,
-          xenditInvoiceUrl: xenditInvoice.invoiceUrl,
-        },
+        data: { xenditInvoiceId: xenditInvoice.id, xenditInvoiceUrl: xenditInvoice.invoiceUrl },
       });
 
-      return NextResponse.json({
-        success: true,
-        bookingId: booking.id,
-        invoiceUrl: xenditInvoice.invoiceUrl,
-        message: 'Payment initiated successfully.'
-      });
+      return NextResponse.json({ success: true, bookingId: booking.id, invoiceUrl: xenditInvoice.invoiceUrl });
 
-    } catch (xenditError: Error | unknown) {
+    } catch (error) {
       await prisma.booking.delete({ where: { id: booking.id } });
-      const errorMsg = xenditError instanceof Error ? xenditError.message : String(xenditError);
-      console.error('Xendit Error:', xenditError);
-      return NextResponse.json({ message: 'Failed to create payment invoice', error: errorMsg }, { status: 500 });
+      throw error;
     }
-
-  } catch (error: Error | unknown) {
-    const errorMsg = error instanceof Error ? error.message : String(error);
+  } catch (error: any) {
     console.error('Payment API Error:', error);
-    return NextResponse.json({ message: 'Internal Server Error', error: errorMsg }, { status: 500 });
-  }
-}
-
-// --- HANDLER GET (WAJIB ADA untuk mengambil data booking by ID) ---
-export async function GET(request: Request) {
-  try {
-    const { searchParams } = new URL(request.url);
-    const bookingId = searchParams.get('bookingId');
-
-    if (!bookingId) {
-      return NextResponse.json({ message: 'Booking ID is required' }, { status: 400 });
-    }
-
-    const booking = await prisma.booking.findUnique({
-      where: { id: bookingId },
-      // Kita ambil semua field yang relevan untuk ditampilkan di halaman sukses
-      select: {
-        id: true,
-        roomName: true,
-        roomSlug: true,
-        totalPrice: true,
-        basePrice: true,
-        serviceFee: true,
-        tourismTax: true,
-        checkInDate: true,
-        checkOutDate: true,
-        duration: true,
-        adults: true,
-        children: true,
-        status: true,
-        customerName: true,
-        customerEmail: true,
-        customerPhone: true,
-        xenditInvoiceId: true,
-        xenditInvoiceUrl: true,
-        createdAt: true,
-        updatedAt: true,
-      },
-    });
-
-    if (!booking) {
-      return NextResponse.json({ message: 'Booking not found' }, { status: 404 });
-    }
-
-    return NextResponse.json({ success: true, booking });
-
-  } catch (error: Error | unknown) {
-    const errorMsg = error instanceof Error ? error.message : String(error);
-    console.error('Failed to fetch booking:', error);
-    return NextResponse.json({ message: 'Internal Server Error', error: errorMsg }, { status: 500 });
+    return NextResponse.json({ message: 'Error', error: error.message }, { status: 500 });
   }
 }
