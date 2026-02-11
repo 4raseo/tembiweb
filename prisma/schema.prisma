@@ -10,56 +10,41 @@ datasource db {
 }
 
 model Booking {
-  id                 String   @id @default(cuid())
-  
-  // Room Information
-  roomId             String
-  roomSlug           String
-  roomName           String
-  roomPrice          Int
-  
-  // Price Breakdown
-  basePrice          Int      // Harga dasar (termasuk addons)
-  serviceFee         Int
-  tourismTax         Int
-  totalPrice         Int
-  
-  // Booking Dates
-  checkInDate        DateTime
-  checkOutDate       DateTime
-  duration           Int
-  
-  // Guest Information
-  adults             Int
-  children           Int
-  
-  // ✅ TAMBAHAN: Kolom untuk menyimpan data addons
-  breakfast          Int      @default(0)
-  extraBed           Int      @default(0)
+  // Kita ubah default(cuid()) menjadi manual string agar bisa input Short ID
+  id String @id 
+
+  roomId    String
+  roomSlug  String
+  roomName  String
+  roomPrice Float
+
+  basePrice   Float
+  serviceFee  Float
+  tourismTax  Float
+  totalPrice  Float
+
+  // --- PERBAIKAN: SESUAIKAN NAMA KOLOM DENGAN REQUEST ANDA ---
+  breakfast Int @default(0)
+  extraBed  Int @default(0)
+  // -----------------------------------------------------------
+
+  checkInDate  DateTime
+  checkOutDate DateTime
+  duration     Int
+  adults       Int
+  children     Int
 
   customerName       String
   customerEmail      String
   customerPhone      String
-  customerAddress    String?
-  customerCity       String?
-  customerPostalCode String?
-  
-  // Booking Details
-  specialRequest     String?
-  status             String   @default("PENDING") // PENDING, CONFIRMED, CANCELLED, EXPIRED, FAILED
-  
-  // Payment Information
-  paymentMethod      String?
-  xenditInvoiceId    String?
-  xenditInvoiceUrl   String?
-  
-  // Timestamps
-  createdAt          DateTime @default(now())
-  updatedAt          DateTime @updatedAt
+  customerAddress    String
+  customerCity       String
+  customerPostalCode String
 
-  // Indexes
-  @@index([customerEmail])
-  @@index([status])
-  @@index([checkInDate])
-  @@index([createdAt])
+  status           String   @default("PENDING") 
+  xenditInvoiceId  String?
+  xenditInvoiceUrl String?
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }

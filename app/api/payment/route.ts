@@ -1,3 +1,5 @@
+// app/api/payment/route.ts
+
 import { NextResponse } from 'next/server';
 import { PrismaClient } from '@prisma/client';
 import { Xendit } from 'xendit-node';
@@ -11,7 +13,7 @@ const ADDONS_PRICE = {
   extrabed: 150000   
 };
 
-// Fungsi Helper untuk membuat ID Pendek (Format: INV-XXXXXX)
+// --- FITUR BARU: GENERATE SHORT ID (Contoh: INV-X7K9LP) ---
 function generateShortId() {
   const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
   let result = '';
@@ -20,8 +22,9 @@ function generateShortId() {
   }
   return `INV-${result}`;
 }
+// ----------------------------------------------------------
 
-// FUNGSI GET (Sama seperti sebelumnya)
+// GET Handler (Untuk mengambil detail booking)
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const bookingId = searchParams.get('bookingId');
@@ -37,9 +40,18 @@ export async function GET(request: Request) {
   }
 }
 
+// POST Handler (Create Booking)
 export async function POST(request: Request) {
   try {
-    const { roomSlug, checkIn, checkOut, adults, children, booker, addons } = await request.json();
+    const {
+      roomSlug,
+      checkIn,
+      checkOut,
+      adults,
+      children,
+      booker, 
+      addons, // Data addons dari frontend
+    } = await request.json();
 
     if (!roomSlug || !checkIn || !checkOut || !booker) {
       return NextResponse.json({ message: 'Missing required data' }, { status: 400 });
@@ -51,12 +63,15 @@ export async function POST(request: Request) {
     const checkInDate = new Date(checkIn);
     const checkOutDate = new Date(checkOut);
 
-    // Double Booking Check
+    // Cek Double Booking
     const conflictingBooking = await prisma.booking.findFirst({
       where: {
         roomSlug: roomSlug,
         status: { in: ['PENDING', 'PAID'] },
-        AND: [ { checkInDate: { lt: checkOutDate } }, { checkOutDate: { gt: checkInDate } } ]
+        AND: [
+          { checkInDate: { lt: checkOutDate } },
+          { checkOutDate: { gt: checkInDate } }
+        ]
       },
     });
 
@@ -66,9 +81,10 @@ export async function POST(request: Request) {
 
     const duration = Math.ceil((checkOutDate.getTime() - checkInDate.getTime()) / (1000 * 3600 * 24));
     
-    // Hitung Harga
+    // --- PERBAIKAN: Pastikan nilai diambil dari request ---
     const breakfastCount = addons?.breakfast || 0;
     const extraBedCount = addons?.extrabed || 0;
+    // -----------------------------------------------------
 
     const roomBasePrice = room.price * duration;
     const breakfastTotal = breakfastCount * ADDONS_PRICE.breakfast * duration;
@@ -78,15 +94,16 @@ export async function POST(request: Request) {
     const basePrice = roomBasePrice + addonsTotal;
     const serviceFee = Math.round(basePrice * 0.05); 
     const tourismTax = 30000 * duration; 
+    
     const totalAmount = basePrice + serviceFee + tourismTax;
 
-    // Generate Short ID
+    // Generate ID Pendek
     const shortId = generateShortId();
 
-    // Simpan ke Database (UPDATE: Masukkan ID Manual & Addons)
+    // Simpan ke Database
     const booking = await prisma.booking.create({
       data: {
-        id: shortId, // Pakai ID Pendek kita
+        id: shortId, // Pakai ID manual
         roomId: room.id.toString(),
         roomSlug: room.slug,
         roomName: room.name,
@@ -97,10 +114,11 @@ export async function POST(request: Request) {
         tourismTax: tourismTax,
         totalPrice: totalAmount,
         
-        // Simpan jumlah addons
-        breakfastCount: breakfastCount,
-        extraBedCount: extraBedCount,
-
+        // --- PERBAIKAN: Masukkan ke kolom database yang benar ---
+        breakfast: breakfastCount, 
+        extraBed: extraBedCount,
+        // -------------------------------------------------------
+        
         checkInDate: checkInDate,
         checkOutDate: checkOutDate,
         duration: duration,
@@ -130,6 +148,7 @@ export async function POST(request: Request) {
         }
       ];
 
+      // Item Xendit Breakfast
       if (breakfastCount > 0) {
         invoiceItems.push({
           name: `Breakfast (${breakfastCount} pax x ${duration} nights)`,
@@ -139,6 +158,7 @@ export async function POST(request: Request) {
         });
       }
 
+      // Item Xendit Extra Bed
       if (extraBedCount > 0) {
         invoiceItems.push({
           name: `Extra Bed (${extraBedCount} bed x ${duration} nights)`,
@@ -174,17 +194,27 @@ export async function POST(request: Request) {
 
       await prisma.booking.update({
         where: { id: booking.id },
-        data: { xenditInvoiceId: xenditInvoice.id, xenditInvoiceUrl: xenditInvoice.invoiceUrl },
+        data: { 
+          xenditInvoiceId: xenditInvoice.id,
+          xenditInvoiceUrl: xenditInvoice.invoiceUrl,
+        },
       });
 
-      return NextResponse.json({ success: true, bookingId: booking.id, invoiceUrl: xenditInvoice.invoiceUrl });
+      return NextResponse.json({
+        success: true,
+        bookingId: booking.id,
+        invoiceUrl: xenditInvoice.invoiceUrl,
+        message: 'Payment initiated successfully.'
+      });
 
-    } catch (error) {
+    } catch (xenditError: any) {
       await prisma.booking.delete({ where: { id: booking.id } });
-      throw error;
+      console.error('Xendit Error:', xenditError);
+      return NextResponse.json({ message: 'Failed to create payment invoice', error: xenditError.message }, { status: 500 });
     }
+
   } catch (error: any) {
     console.error('Payment API Error:', error);
-    return NextResponse.json({ message: 'Error', error: error.message }, { status: 500 });
+    return NextResponse.json({ message: 'Internal Server Error', error: error.message }, { status: 500 });
   }
 }

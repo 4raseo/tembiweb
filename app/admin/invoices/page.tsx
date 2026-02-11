@@ -1,124 +1,128 @@
-'use client';
+// app/admin/invoices/page.tsx
+"use client";
 
 import { useEffect, useState } from 'react';
-import Link from 'next/link';
-import { useRouter } from 'next/navigation'; // ✅ Import useRouter
+import { useRouter } from 'next/navigation';
+import { Eye, Search } from 'lucide-react';
 
-// Tipe data ringkas untuk list
-interface BookingListItem {
-  id: string;
-  roomName: string;
-  customerName: string;
-  customerEmail: string;
-  status: string;
-  totalPrice: number;
-  checkInDate: string;
-  createdAt: string;
-}
+const formatCurrency = (amount: number) => 
+  new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(amount);
+
+const formatDate = (dateString: string) => {
+  if (!dateString) return '-';
+  return new Date(dateString).toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' });
+};
 
 export default function AdminInvoicesPage() {
-  const router = useRouter(); // ✅ Inisialisasi router
-  const [bookings, setBookings] = useState<BookingListItem[]>([]);
+  const [bookings, setBookings] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
+  const [searchTerm, setSearchTerm] = useState(''); 
+  const router = useRouter();
 
   useEffect(() => {
-    async function fetchInvoices() {
-      try {
-        const res = await fetch('/api/admin/invoices');
-        const json = await res.json();
-        if (json.success) setBookings(json.data);
-      } catch (err) {
-        console.error(err);
-      } finally {
-        setLoading(false);
-      }
-    }
     fetchInvoices();
   }, []);
 
-  // ✅ Fungsi Logout
-  const handleLogout = async () => {
+  const fetchInvoices = async () => {
     try {
-      await fetch('/api/auth/logout', { method: 'POST' });
-      router.push('/admin/login'); // Redirect ke login
-      router.refresh(); // Refresh untuk update middleware state
+      const res = await fetch('/api/admin/invoices');
+      if (res.ok) {
+        const data = await res.json();
+        setBookings(data.data);
+      } else {
+        router.push('/admin/login');
+      }
     } catch (error) {
-      console.error('Logout failed', error);
+      console.error(error);
+    } finally {
+      setLoading(false);
     }
   };
 
-  const formatRupiah = (val: number) => 
-    new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(val);
-
-  const formatDate = (dateStr: string) => 
-    new Date(dateStr).toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' });
-
-  if (loading) return <div className="p-8 pt-24">Loading data...</div>;
+  const filteredBookings = bookings.filter((b) => 
+    b.id.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    b.customerName.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    b.customerEmail.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   return (
-    <div className="p-8 pt-24"> {/* pt-24 agar tidak tertutup Header utama */}
-      <div className="flex justify-between items-center mb-6">
-        <h1 className="text-3xl font-bold">Daftar Transaksi</h1>
+    // --- PERBAIKAN: Ubah p-8 menjadi p-8 pt-28 agar tidak tertutup header ---
+    <div className="min-h-screen bg-gray-50 p-8 pt-28 font-sans">
+      <div className="max-w-6xl mx-auto">
         
-        {/* ✅ Tombol Logout Ditambahkan di Sini */}
-        <button 
-          onClick={handleLogout}
-          className="bg-red-600 text-white px-4 py-2 rounded shadow hover:bg-red-700 transition-colors text-sm font-medium"
-        >
-          Logout
-        </button>
-      </div>
-      
-      <div className="overflow-x-auto bg-white shadow rounded-lg">
-        <table className="min-w-full divide-y divide-gray-200">
-          <thead className="bg-gray-50">
-            <tr>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">ID / Tanggal</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Customer</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Room</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Total</th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
-              <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase">Aksi</th>
-            </tr>
-          </thead>
-          <tbody className="bg-white divide-y divide-gray-200">
-            {bookings.map((booking) => (
-              <tr key={booking.id} className="hover:bg-gray-50">
-                <td className="px-6 py-4 whitespace-nowrap">
-                  <div className="text-sm font-bold text-gray-900">{booking.id.substring(0, 8)}...</div>
-                  <div className="text-xs text-gray-500">{formatDate(booking.createdAt)}</div>
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap">
-                  <div className="text-sm font-medium text-gray-900">{booking.customerName}</div>
-                  <div className="text-xs text-gray-500">{booking.customerEmail}</div>
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                  {booking.roomName}
-                  <div className="text-xs">Check-in: {formatDate(booking.checkInDate)}</div>
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm font-bold text-gray-900">
-                  {formatRupiah(booking.totalPrice)}
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap">
-                  <span className={`px-2 py-1 inline-flex text-xs leading-5 font-semibold rounded-full 
-                    ${booking.status === 'PAID' ? 'bg-green-100 text-green-800' : 
-                      booking.status === 'PENDING' ? 'bg-yellow-100 text-yellow-800' : 
-                      'bg-red-100 text-red-800'}`}>
-                    {booking.status}
-                  </span>
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                  <Link 
-                    href={`/admin/invoices/${booking.id}`} 
-                    className="text-blue-600 hover:text-blue-900 border border-blue-200 bg-blue-50 px-3 py-1 rounded hover:bg-blue-100 transition"
-                  >
-                    Detail
-                  </Link>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+        {/* Header & Search */}
+        <div className="flex flex-col md:flex-row justify-between items-center mb-8 gap-4">
+          <h1 className="text-3xl font-bold text-gray-800">Booking Invoices</h1>
+          
+          {/* Search Input */}
+          <div className="relative w-full md:w-96">
+            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+              <Search className="h-5 w-5 text-gray-400" />
+            </div>
+            <input
+              type="text"
+              placeholder="Search ID, Name, or Email..."
+              className="pl-10 pr-4 py-2 border border-gray-300 rounded-lg w-full focus:outline-none focus:ring-2 focus:ring-tembi focus:border-transparent transition-shadow"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
+          </div>
+        </div>
+
+        {/* Table */}
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm text-left">
+              <thead className="bg-gray-100 text-gray-600 font-bold uppercase text-xs">
+                <tr>
+                  <th className="px-6 py-4">ID</th>
+                  <th className="px-6 py-4">Customer</th>
+                  <th className="px-6 py-4">Room</th>
+                  <th className="px-6 py-4">Check-In</th>
+                  <th className="px-6 py-4">Total</th>
+                  <th className="px-6 py-4">Status</th>
+                  <th className="px-6 py-4 text-center">Action</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-gray-100">
+                {loading ? (
+                  <tr><td colSpan={7} className="px-6 py-8 text-center">Loading data...</td></tr>
+                ) : filteredBookings.length === 0 ? (
+                  <tr><td colSpan={7} className="px-6 py-8 text-center text-gray-500">No bookings found.</td></tr>
+                ) : (
+                  filteredBookings.map((booking) => (
+                    <tr key={booking.id} className="hover:bg-gray-50 transition-colors">
+                      <td className="px-6 py-4 font-mono font-medium text-gray-700">{booking.id}</td>
+                      <td className="px-6 py-4">
+                        <div className="font-bold text-gray-800">{booking.customerName}</div>
+                        <div className="text-xs text-gray-500">{booking.customerEmail}</div>
+                      </td>
+                      <td className="px-6 py-4 text-gray-600">{booking.roomName}</td>
+                      <td className="px-6 py-4 text-gray-600">{formatDate(booking.checkInDate)}</td>
+                      <td className="px-6 py-4 font-bold text-gray-800">{formatCurrency(booking.totalPrice)}</td>
+                      <td className="px-6 py-4">
+                        <span className={`px-3 py-1 rounded-full text-xs font-bold 
+                          ${booking.status === 'PAID' ? 'bg-green-100 text-green-700' : 
+                            booking.status === 'PENDING' ? 'bg-yellow-100 text-yellow-700' : 
+                            'bg-red-100 text-red-700'}`}>
+                          {booking.status}
+                        </span>
+                      </td>
+                      <td className="px-6 py-4 text-center">
+                        <button 
+                          onClick={() => router.push(`/admin/invoices/${booking.id}`)}
+                          className="bg-tembi text-white p-2 rounded-lg hover:bg-darktembi transition-colors shadow-sm"
+                        >
+                          <Eye size={16} />
+                        </button>
+                      </td>
+                    </tr>
+                  ))
+                )}
+              </tbody>
+            </table>
+          </div>
+        </div>
       </div>
     </div>
   );
