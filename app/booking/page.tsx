@@ -1,20 +1,20 @@
 "use client";
 
 import { useState, useEffect, useMemo } from 'react';
-import { useSearchParams, useRouter } from 'next/navigation'; // Tambah useRouter
+import { useSearchParams, useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { roomData } from '@/data/roomData';
 import { differenceInCalendarDays, parseISO } from 'date-fns';
 import { Calendar, User, Home, Eye, Coffee, BedDouble, Plus, Minus } from 'lucide-react';
-// Hapus import Link karena kita ganti pakai useRouter
+// 1. IMPORT KOMPONEN BARU
+import CustomAlert from '@/components/CustomAlert'; 
 
-// --- KONFIGURASI HARGA TAMBAHAN ---
+// ... (kode konstanta ADDONS_PRICE dan formatCurrency tetap sama) ...
 const ADDONS_PRICE = {
   breakfast: 50000, 
   extrabed: 150000   
 };
 
-// Fungsi format Rupiah
 const formatCurrency = (amount: number) => {
   return new Intl.NumberFormat('id-ID', {
     style: 'currency',
@@ -24,8 +24,8 @@ const formatCurrency = (amount: number) => {
   }).format(amount);
 };
 
-// --- KOMPONEN STEPPER ---
 const BookingStepper = () => (
+  // ... (kode stepper tetap sama) ...
   <div className="flex items-center justify-center w-full max-w-lg mx-auto mb-8 font-sans text-xs md:text-sm relative z-10">
     <div className="flex items-center text-tembi">
       <div className="flex items-center justify-center w-6 h-6 rounded-full bg-tembi text-white font-bold text-xs">1</div>
@@ -45,11 +45,10 @@ const BookingStepper = () => (
 );
 
 export default function BookingPage() {
-  const router = useRouter(); // Init Router
+  const router = useRouter();
   const searchParams = useSearchParams();
   const initialRoomSlug = searchParams.get('room');
 
-  // --- LOGIKA DATA STATIS (Bisa diganti kosong '' nanti) ---
   const STATIC_CHECK_IN = '2026-02-20';
   const STATIC_CHECK_OUT = '2026-02-22';
   const STATIC_ADULTS = 2;
@@ -69,8 +68,15 @@ export default function BookingPage() {
     extrabed: 0
   });
 
-  // State baru untuk loading checking
   const [isChecking, setIsChecking] = useState(false);
+
+  // 2. STATE UNTUK CUSTOM ALERT
+  const [alertState, setAlertState] = useState<{ isOpen: boolean; title: string; message: string; type: 'success' | 'error' | 'info' }>({
+    isOpen: false,
+    title: '',
+    message: '',
+    type: 'error'
+  });
 
   useEffect(() => {
     if (initialRoomSlug) {
@@ -113,22 +119,19 @@ export default function BookingPage() {
 
   const isFormValid = Boolean(selectedRoom && checkIn && checkOut && numberOfNights > 0);
 
-  // --- FUNGSI BARU: Handle Check Availability ---
+  // --- 3. MODIFIKASI FUNGSI CHECK AVAILABILITY ---
   const handleCheckAndProceed = async () => {
     if (!selectedRoom || !checkIn || !checkOut) return;
 
     setIsChecking(true);
 
     try {
-      // 1. Panggil API Availability
       const res = await fetch(
         `/api/availability?roomSlug=${selectedRoom.slug}&checkIn=${checkIn}&checkOut=${checkOut}`
       );
       const data = await res.json();
 
       if (data.available) {
-        // 2. Jika Tersedia, Redirect ke Payment
-        // Kita susun query params secara manual
         const params = new URLSearchParams({
             room: selectedRoom.slug,
             checkIn,
@@ -139,24 +142,45 @@ export default function BookingPage() {
             addons: JSON.stringify(addons),
             specialRequests
         });
-        
         router.push(`/payment?${params.toString()}`);
       } else {
-        // 3. Jika Tidak Tersedia, Munculkan Alert
-        alert(`Maaf, ${data.message}`);
+        // GANTI ALERT STANDAR DENGAN CUSTOM ALERT
+        setAlertState({
+            isOpen: true,
+            title: 'Kamar Tidak Tersedia',
+            message: `Maaf, ${data.message}`,
+            type: 'error'
+        });
       }
     } catch (error) {
       console.error(error);
-      alert("Terjadi kesalahan saat mengecek ketersediaan.");
+      // GANTI ALERT ERROR
+      setAlertState({
+        isOpen: true,
+        title: 'Terjadi Kesalahan',
+        message: 'Gagal mengecek ketersediaan server. Silakan coba lagi.',
+        type: 'error'
+      });
     } finally {
       setIsChecking(false);
     }
   };
   
   return (
-    <main className="min-h-screen bg-[#EFF1F0] font-sans text-gray-800 pb-20">
+    <main className="min-h-screen bg-[#EFF1F0] font-sans text-gray-800 pb-20 pt-28"> {/* Tambahkan pt-28 jika header fixed */}
       
+      {/* 4. RENDER CUSTOM ALERT DI SINI */}
+      <CustomAlert 
+        isOpen={alertState.isOpen}
+        title={alertState.title}
+        message={alertState.message}
+        type={alertState.type}
+        onClose={() => setAlertState(prev => ({ ...prev, isOpen: false }))}
+      />
+
       {/* === HERO SECTION === */}
+      {/* ... (Sisa kode tampilan sama persis, copy paste dari file sebelumnya) ... */}
+      
       <div 
         className="relative w-full h-[500px] flex flex-col items-center justify-center text-center px-4 bg-cover bg-center mb-10"
         style={{ 
@@ -176,19 +200,14 @@ export default function BookingPage() {
         </div>
       </div>
 
-      {/* === STEPPER SECTION === */}
       <div className="container mx-auto px-4">
          <BookingStepper />
       </div>
 
-      {/* === MAIN CONTENT CONTAINER === */}
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-8 px-4 md:px-8 items-start">
         
         {/* LEFT COLUMN: Inputs */}
         <div className="lg:col-span-2 bg-white rounded-2xl shadow-lg p-6 md:p-8 border border-gray-100">
-          {/* ... (Konten Input Date, Guest, Addons, Room List sama persis seperti sebelumnya) ... */}
-          {/* Supaya tidak terlalu panjang, saya persingkat bagian ini karena tidak ada perubahan logika */}
-          {/* Salin bagian INPUTS dari kode lama Anda ke sini */}
            <div className="flex items-center gap-2 mb-6 border-b border-gray-100 pb-4">
             <Calendar className="w-5 h-5 text-tembi" />
             <h3 className="text-xl font-bold font-serif text-gray-900">Booking Details</h3>
@@ -255,7 +274,6 @@ export default function BookingPage() {
             <label className="block text-sm font-semibold text-gray-700 mb-3">Additional Services (Optional)</label>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               
-              {/* Kolom Extra Bed */}
               <div className="bg-white border border-gray-200 rounded-xl p-4 flex flex-col justify-between">
                  <div className="flex items-start justify-between mb-3">
                     <div className="flex items-center gap-2">
@@ -287,7 +305,6 @@ export default function BookingPage() {
                  </div>
               </div>
 
-              {/* Kolom Breakfast */}
               <div className="bg-white border border-gray-200 rounded-xl p-4 flex flex-col justify-between">
                  <div className="flex items-start justify-between mb-3">
                     <div className="flex items-center gap-2">
@@ -370,9 +387,8 @@ export default function BookingPage() {
 
         {/* RIGHT COLUMN: Summary */}
         <div className="lg:col-span-1">
-            <div className="bg-white rounded-2xl shadow-lg p-6 border border-gray-100 h-fit sticky top-8">
+            <div className="bg-white rounded-2xl shadow-lg p-6 border border-gray-100 h-fit sticky top-28">
             
-            {/* ... (Konten Preview Image dan detail summary SAMA) ... */}
             <div className="flex items-center gap-2 mb-6 text-tembi border-b border-gray-100 pb-4">
                 <Eye className="w-5 h-5" />
                 <h3 className="text-lg font-serif font-bold">Room Preview</h3>
@@ -454,8 +470,6 @@ export default function BookingPage() {
                 </div>
             )}
 
-
-            {/* Total Price */}
             <div className="flex justify-between items-end mb-6">
                 <div>
                     <p className="text-xs text-gray-500 mb-1">Total Payment</p>
@@ -463,7 +477,6 @@ export default function BookingPage() {
                 </div>
             </div>
 
-            {/* BUTTON ACTION (UPDATED: Menggunakan Button onClick) */}
             <button
                 onClick={handleCheckAndProceed}
                 disabled={!isFormValid || isChecking}

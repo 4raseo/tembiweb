@@ -61,7 +61,7 @@ export default function BookingSuccessPage() {
   );
 
   return (
-    <main className="min-h-screen bg-[#FCFCFA] pb-20 font-sans">
+    <main className="min-h-screen bg-[#FCFCFA] pb-20 font-sans pt-28">
       {/* Top Banner */}
       <div className="bg-[#93A576] pt-12 pb-24 px-4 text-center text-white">
         <div className="flex justify-center mb-6">
