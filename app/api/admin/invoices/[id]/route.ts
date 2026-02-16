@@ -1,8 +1,16 @@
 // app/api/admin/invoices/[id]/route.ts
 import { NextResponse } from 'next/server';
-import { PrismaClient } from '@prisma/client';
+// import { PrismaClient } from '@prisma/client';
+import { prisma } from '@/lib/prisma';
 
-const prisma = new PrismaClient();
+// const prisma = new PrismaClient();
+// const prisma = new PrismaClient({
+//   datasources: {
+//     db: {
+//       url: process.env.DATABASE_URL,
+//     },
+//   },
+// });
 
 // GET: Ambil detail satu invoice berdasarkan ID
 export async function GET(

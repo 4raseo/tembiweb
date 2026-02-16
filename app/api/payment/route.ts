@@ -1,11 +1,20 @@
 // app/api/payment/route.ts
 
 import { NextResponse } from 'next/server';
-import { PrismaClient } from '@prisma/client';
+// import { PrismaClient } from '@prisma/client';
+import { prisma } from '@/lib/prisma';
 import { Xendit } from 'xendit-node';
 import { roomData } from '@/data/roomData';
 
-const prisma = new PrismaClient();
+// const prisma = new PrismaClient();
+// const prisma = new PrismaClient({
+//   datasources: {
+//     db: {
+//       url: process.env.DATABASE_URL,
+//     },
+//   },
+// });
+
 const xenditClient = new Xendit({ secretKey: process.env.XENDIT_API_KEY || '' });
 
 const ADDONS_PRICE = {
