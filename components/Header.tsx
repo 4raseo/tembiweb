@@ -30,7 +30,11 @@ export default function Header() {
   };
 
   if (!mounted) {
-    return <header className="fixed top-0 left-0 right-0 z-40 bg-white h-16 shadow-sm" />;
+    return (
+      <header className="fixed top-0 left-0 right-0 z-40 bg-white text-black shadow-sm">
+        <div className="container mx-auto px-6 py-2 h-[64px]" /> 
+      </header>
+    );
   }
 
   return (
