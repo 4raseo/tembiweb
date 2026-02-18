@@ -6,10 +6,8 @@ import Image from 'next/image';
 import { roomData } from '@/data/roomData';
 import { differenceInCalendarDays, parseISO } from 'date-fns';
 import { Calendar, User, Home, Eye, Coffee, BedDouble, Plus, Minus } from 'lucide-react';
-// 1. IMPORT KOMPONEN BARU
-import CustomAlert from '@/components/CustomAlert'; 
+import CustomAlert from '@/components/CustomAlert';
 
-// ... (kode konstanta ADDONS_PRICE dan formatCurrency tetap sama) ...
 const ADDONS_PRICE = {
   breakfast: 50000, 
   extrabed: 150000   
@@ -25,7 +23,6 @@ const formatCurrency = (amount: number) => {
 };
 
 const BookingStepper = () => (
-  // ... (kode stepper tetap sama) ...
   <div className="flex items-center justify-center w-full max-w-lg mx-auto mb-8 font-sans text-xs md:text-sm relative z-10">
     <div className="flex items-center text-tembi">
       <div className="flex items-center justify-center w-6 h-6 rounded-full bg-tembi text-white font-bold text-xs">1</div>
@@ -49,24 +46,11 @@ export default function BookingPage() {
   const searchParams = useSearchParams();
   const initialRoomSlug = searchParams.get('room');
 
-  // const STATIC_CHECK_IN = '2026-02-20';
-  // const STATIC_CHECK_OUT = '2026-02-22';
-  // const STATIC_ADULTS = 2;
-  // const STATIC_CHILDREN = 1;
-  // const STATIC_ROOM_ID = 1;
-
-  const STATIC_CHECK_IN = '';
-  const STATIC_CHECK_OUT = '';
-  const STATIC_ADULTS = 0;
-  const STATIC_CHILDREN = 0;
-  const STATIC_ROOM_ID = 0;
-
-  // State management
-  const [checkIn, setCheckIn] = useState(STATIC_CHECK_IN);
-  const [checkOut, setCheckOut] = useState(STATIC_CHECK_OUT);
-  const [adults, setAdults] = useState(STATIC_ADULTS);
-  const [children, setChildren] = useState(STATIC_CHILDREN);
-  const [selectedRoomId, setSelectedRoomId] = useState<number | null>(STATIC_ROOM_ID);
+  const [checkIn, setCheckIn] = useState('');
+  const [checkOut, setCheckOut] = useState('');
+  const [adults, setAdults] = useState(0);
+  const [children, setChildren] = useState(0);
+  const [selectedRoomId, setSelectedRoomId] = useState<number | null>();
   
   const [specialRequests, setSpecialRequests] = useState('');
   const [addons, setAddons] = useState({
@@ -75,8 +59,6 @@ export default function BookingPage() {
   });
 
   const [isChecking, setIsChecking] = useState(false);
-
-  // 2. STATE UNTUK CUSTOM ALERT
   const [alertState, setAlertState] = useState<{ isOpen: boolean; title: string; message: string; type: 'success' | 'error' | 'info' }>({
     isOpen: false,
     title: '',
@@ -125,19 +107,20 @@ export default function BookingPage() {
 
   const isFormValid = Boolean(selectedRoom && checkIn && checkOut && numberOfNights > 0);
 
-  // --- 3. MODIFIKASI FUNGSI CHECK AVAILABILITY ---
   const handleCheckAndProceed = async () => {
     if (!selectedRoom || !checkIn || !checkOut) return;
 
     setIsChecking(true);
 
     try {
+      // 1. Panggil API Availability
       const res = await fetch(
         `/api/availability?roomSlug=${selectedRoom.slug}&checkIn=${checkIn}&checkOut=${checkOut}`
       );
       const data = await res.json();
 
       if (data.available) {
+        // 2. Jika Tersedia, Redirect ke Halaman Payment (Isi data diri di sana)
         const params = new URLSearchParams({
             room: selectedRoom.slug,
             checkIn,
@@ -148,9 +131,10 @@ export default function BookingPage() {
             addons: JSON.stringify(addons),
             specialRequests
         });
+        
         router.push(`/payment?${params.toString()}`);
       } else {
-        // GANTI ALERT STANDAR DENGAN CUSTOM ALERT
+        // 3. Jika Tidak Tersedia, Munculkan Alert
         setAlertState({
             isOpen: true,
             title: 'Kamar Tidak Tersedia',
@@ -160,11 +144,10 @@ export default function BookingPage() {
       }
     } catch (error) {
       console.error(error);
-      // GANTI ALERT ERROR
       setAlertState({
         isOpen: true,
         title: 'Terjadi Kesalahan',
-        message: 'Gagal mengecek ketersediaan server. Silakan coba lagi.',
+        message: 'Gagal mengecek ketersediaan server.',
         type: 'error'
       });
     } finally {
@@ -173,9 +156,8 @@ export default function BookingPage() {
   };
   
   return (
-    <main className="min-h-screen bg-[#EFF1F0] font-sans text-gray-800 pb-20 pt-28"> {/* Tambahkan pt-28 jika header fixed */}
+    <main className="min-h-screen bg-[#EFF1F0] font-sans text-gray-800 pb-20 pt-28">
       
-      {/* 4. RENDER CUSTOM ALERT DI SINI */}
       <CustomAlert 
         isOpen={alertState.isOpen}
         title={alertState.title}
@@ -185,8 +167,6 @@ export default function BookingPage() {
       />
 
       {/* === HERO SECTION === */}
-      {/* ... (Sisa kode tampilan sama persis, copy paste dari file sebelumnya) ... */}
-      
       <div 
         className="relative w-full h-[500px] flex flex-col items-center justify-center text-center px-4 bg-cover bg-center mb-10"
         style={{ 
@@ -206,10 +186,12 @@ export default function BookingPage() {
         </div>
       </div>
 
+      {/* === STEPPER SECTION === */}
       <div className="container mx-auto px-4">
          <BookingStepper />
       </div>
 
+      {/* === MAIN CONTENT CONTAINER === */}
       <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-8 px-4 md:px-8 items-start">
         
         {/* LEFT COLUMN: Inputs */}
@@ -280,6 +262,7 @@ export default function BookingPage() {
             <label className="block text-sm font-semibold text-gray-700 mb-3">Additional Services (Optional)</label>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               
+              {/* Kolom Extra Bed */}
               <div className="bg-white border border-gray-200 rounded-xl p-4 flex flex-col justify-between">
                  <div className="flex items-start justify-between mb-3">
                     <div className="flex items-center gap-2">
@@ -311,6 +294,7 @@ export default function BookingPage() {
                  </div>
               </div>
 
+              {/* Kolom Breakfast */}
               <div className="bg-white border border-gray-200 rounded-xl p-4 flex flex-col justify-between">
                  <div className="flex items-start justify-between mb-3">
                     <div className="flex items-center gap-2">
@@ -476,6 +460,8 @@ export default function BookingPage() {
                 </div>
             )}
 
+
+            {/* Total Price */}
             <div className="flex justify-between items-end mb-6">
                 <div>
                     <p className="text-xs text-gray-500 mb-1">Total Payment</p>
@@ -483,6 +469,7 @@ export default function BookingPage() {
                 </div>
             </div>
 
+            {/* BUTTON ACTION (Redirect to Payment Page) */}
             <button
                 onClick={handleCheckAndProceed}
                 disabled={!isFormValid || isChecking}
@@ -492,7 +479,7 @@ export default function BookingPage() {
                     : 'bg-gray-300 cursor-not-allowed pointer-events-none' 
                 }`}
             >
-                {isChecking ? 'Checking Availability...' : 'Book & Pay Now'}
+                {isChecking ? 'Checking Availability...' : 'Proceed to Payment'}
             </button>
 
             </div>

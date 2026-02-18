@@ -1,9 +1,8 @@
-// app/booking/success/page.tsx
 "use client";
 
 import { useEffect, useState } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
-import { Check, Calendar, User, Bed, Users, CreditCard, Download, Coffee } from 'lucide-react';
+import { Check, Calendar, Coffee, Bed, Download } from 'lucide-react';
 import { format } from 'date-fns';
 
 const formatCurrency = (amount: number) => 
@@ -37,6 +36,20 @@ export default function BookingSuccessPage() {
       if (!response.ok) throw new Error('Failed to fetch details');
       
       const data = JSON.parse(text);
+      
+      // --- SECURITY CHECK: Redirect jika status bukan PAID ---
+      if (data.booking) {
+        if (data.booking.status === 'PENDING') {
+            router.push(`/booking/pending?booking_id=${bookingId}`);
+            return;
+        }
+        if (['EXPIRED', 'CANCELLED'].includes(data.booking.status)) {
+            router.push(`/booking/failed?booking_id=${bookingId}`);
+            return;
+        }
+      }
+      // -------------------------------------------------------
+
       setBooking(data.booking);
     } catch (err: any) {
       setError(err.message);
@@ -52,51 +65,54 @@ export default function BookingSuccessPage() {
   );
 
   if (error || !booking) return (
-    <div className="min-h-screen flex items-center justify-center bg-[#F9F9F9]">
-      <div className="text-center p-8 bg-white rounded-xl shadow">
-         <h1 className="text-xl font-bold mb-2">Booking Not Found</h1>
-         <button onClick={() => router.push('/')} className="bg-tembi text-white px-4 py-2 rounded">Home</button>
+    <div className="min-h-screen flex items-center justify-center bg-[#F9F9F9] pt-28">
+      <div className="text-center p-8 bg-white rounded-xl shadow border border-red-100">
+         <h1 className="text-xl font-bold mb-2 text-red-600">Booking Not Found</h1>
+         <p className="text-gray-500 mb-4 text-sm">{error}</p>
+         <button onClick={() => router.push('/')} className="bg-tembi text-white px-4 py-2 rounded">Back to Home</button>
       </div>
     </div>
   );
 
   return (
-    <main className="min-h-screen bg-[#FCFCFA] pb-20 font-sans pt-28">
+    <main className="min-h-screen bg-[#FCFCFA] pb-20 pt-28 font-sans">
+      
       {/* Top Banner */}
-      <div className="bg-[#93A576] pt-12 pb-24 px-4 text-center text-white">
+      <div className="bg-[#93A576] pt-12 pb-24 px-4 text-center text-white rounded-b-[3rem] shadow-sm">
         <div className="flex justify-center mb-6">
-          <div className="w-16 h-16 bg-[#2ed16f] rounded-full flex items-center justify-center shadow-lg">
+          <div className="w-16 h-16 bg-[#2ed16f] rounded-full flex items-center justify-center shadow-lg border-4 border-[#93A576]">
             <Check className="w-8 h-8 text-white stroke-[3]" />
           </div>
         </div>
-        <h1 className="text-4xl font-serif font-bold mb-2">Payment Successful!</h1>
+        <h1 className="text-3xl md:text-4xl font-serif font-bold mb-2">Payment Successful!</h1>
         <p className="text-green-50">Booking ID: <span className="font-mono font-bold bg-white/20 px-2 py-1 rounded">{booking.id}</span></p>
       </div>
 
-      <div className="container mx-auto max-w-[900px] px-4 -mt-16 relative z-10">
+      <div className="container mx-auto max-w-[800px] px-4 -mt-16 relative z-10">
         
         {/* Card Utama */}
-        <div className="bg-white rounded-xl shadow-xl overflow-hidden mb-12 border border-gray-100">
-          <div className="bg-[#9BAF7D] p-5 flex justify-between items-center text-white">
-            <h2 className="text-2xl font-serif font-bold">Booking Confirmed</h2>
+        <div className="bg-white rounded-2xl shadow-xl overflow-hidden mb-8 border border-gray-100">
+          <div className="bg-[#8CA873]/10 p-6 border-b border-[#8CA873]/20 flex justify-between items-center">
+            <h2 className="text-xl font-bold text-[#5A6E48] flex items-center gap-2">
+              <Calendar size={20}/> Reservation Details
+            </h2>
+            <span className="bg-[#8CA873] text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
+              {booking.status}
+            </span>
           </div>
 
-          <div className="p-8 grid md:grid-cols-2 gap-8">
-            {/* Kiri: Info Tamu */}
-            <div className="space-y-6">
-                <div>
-                    <p className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1">Guest Name</p>
-                    <p className="text-lg font-bold text-gray-800">{booking.customerName}</p>
-                </div>
-                <div>
-                    <p className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1">Room</p>
-                    <p className="text-lg font-bold text-gray-800">{booking.roomName}</p>
-                </div>
-            </div>
-
-            {/* Kanan: Detail Waktu */}
-            <div className="bg-[#F7F7F5] rounded-xl p-6 border border-gray-100">
-                <div className="flex justify-between mb-4">
+          <div className="p-8">
+            {/* Info Kamar & Tamu */}
+            <div className="grid md:grid-cols-2 gap-8 mb-8">
+              <div>
+                 <p className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1">Guest Name</p>
+                 <p className="text-lg font-bold text-gray-800 mb-4">{booking.customerName}</p>
+                 
+                 <p className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-1">Room Type</p>
+                 <p className="text-lg font-bold text-gray-800">{booking.roomName}</p>
+              </div>
+              <div className="bg-gray-50 rounded-xl p-5 border border-gray-100">
+                 <div className="flex justify-between mb-3 border-b border-gray-200 pb-3">
                     <div>
                         <p className="text-xs text-gray-500 mb-1">Check-in</p>
                         <p className="font-bold text-gray-800">{format(new Date(booking.checkInDate), 'dd MMM yyyy')}</p>
@@ -105,36 +121,29 @@ export default function BookingSuccessPage() {
                         <p className="text-xs text-gray-500 mb-1">Check-out</p>
                         <p className="font-bold text-gray-800">{format(new Date(booking.checkOutDate), 'dd MMM yyyy')}</p>
                     </div>
-                </div>
-                <div className="text-center pt-4 border-t border-gray-200">
-                    <span className="font-bold text-tembi">{booking.duration} Nights</span>
-                </div>
+                 </div>
+                 <div className="flex items-center justify-center gap-2 text-[#5A6E48] font-bold text-sm">
+                    <Calendar size={16}/> {booking.duration} Night(s) Stay
+                 </div>
+              </div>
             </div>
-          </div>
-        </div>
 
-        {/* Summary Biaya */}
-        <div className="bg-white rounded-xl shadow-lg p-8 mb-8 border border-gray-50">
-            <h3 className="font-serif font-bold text-xl text-gray-800 mb-4 border-b pb-2">Payment Details</h3>
-            
-            <div className="space-y-3">
-                {/* Kamar */}
-                <div className="flex justify-between font-medium">
-                    <span>{booking.roomName} (x{booking.duration} nights)</span>
+            {/* Rincian Biaya */}
+            <div className="space-y-3 pt-6 border-t border-dashed border-gray-200">
+                <div className="flex justify-between font-medium text-gray-700">
+                    <span>{booking.roomName} x {booking.duration} nights</span>
                     <span>{formatCurrency(booking.roomPrice * booking.duration)}</span>
                 </div>
 
-                {/* --- ADDED: Breakfast (Jika Ada) --- */}
                 {booking.breakfast > 0 && (
-                    <div className="flex justify-between text-gray-600 bg-orange-50 p-2 rounded">
+                    <div className="flex justify-between text-gray-600 bg-orange-50 p-2 rounded-lg text-sm">
                         <span className="flex items-center gap-2"><Coffee size={14}/> Extra Breakfast ({booking.breakfast} pax)</span>
                         <span>{formatCurrency(booking.breakfast * ADDONS_PRICE.breakfast * booking.duration)}</span>
                     </div>
                 )}
 
-                {/* --- ADDED: Extra Bed (Jika Ada) --- */}
                 {booking.extraBed > 0 && (
-                    <div className="flex justify-between text-gray-600 bg-green-50 p-2 rounded">
+                    <div className="flex justify-between text-gray-600 bg-green-50 p-2 rounded-lg text-sm">
                         <span className="flex items-center gap-2"><Bed size={14}/> Extra Bed ({booking.extraBed} units)</span>
                         <span>{formatCurrency(booking.extraBed * ADDONS_PRICE.extrabed * booking.duration)}</span>
                     </div>
@@ -145,19 +154,21 @@ export default function BookingSuccessPage() {
                     <span>{formatCurrency(booking.serviceFee + booking.tourismTax)}</span>
                 </div>
 
-                <div className="flex justify-between font-bold text-xl text-tembi pt-4 border-t">
+                <div className="flex justify-between font-bold text-xl text-[#5A6E48] pt-4 border-t border-gray-200">
                     <span>Total Paid</span>
                     <span>{formatCurrency(booking.totalPrice)}</span>
                 </div>
             </div>
+          </div>
         </div>
 
-        <div className="flex justify-center gap-4">
-            <button onClick={() => window.print()} className="flex items-center gap-2 px-6 py-3 border-2 border-tembi text-tembi font-bold rounded-lg hover:bg-green-50">
-                <Download size={18} /> Print
+        {/* Action Buttons */}
+        <div className="flex flex-col sm:flex-row justify-center gap-4">
+            <button onClick={() => window.print()} className="flex items-center justify-center gap-2 px-6 py-3 border-2 border-[#8CA873] text-[#5A6E48] font-bold rounded-xl hover:bg-[#8CA873]/10 transition-colors">
+                <Download size={18} /> Download / Print
             </button>
-            <button onClick={() => router.push('/')} className="px-8 py-3 bg-tembi text-white font-bold rounded-lg hover:bg-darktembi">
-                Back Home
+            <button onClick={() => router.push('/')} className="px-8 py-3 bg-[#3A4D39] text-white font-bold rounded-xl hover:bg-[#2c3b2b] shadow-lg shadow-[#3A4D39]/20 transition-all">
+                Back to Home
             </button>
         </div>
 

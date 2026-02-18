@@ -1,15 +1,19 @@
 // app/Header.tsx
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Menu, X, Globe } from 'lucide-react';
 import { useLanguage } from '@/app/context/LanguageContext';
 import Link from 'next/link';
 
 export default function Header() { 
   const [isSidebarOpen, setSidebarOpen] = useState(false);
-  
+  const [mounted, setMounted] = useState(false);
   const { language, setLanguage, t } = useLanguage();
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const navLinks = [
     { name: t.nav.home, href: '/' },
@@ -18,11 +22,16 @@ export default function Header() {
     { name: t.nav.venue, href: '/venue' },
     { name: t.nav.history, href: '/sejarah' },
     { name: t.nav.collections, href: '/collections' },
+    { name: t.nav.checkBooking, href: '/check-booking' },
   ];
 
   const toggleLanguage = () => {
     setLanguage(language === 'en' ? 'id' : 'en');
   };
+
+  if (!mounted) {
+    return <header className="fixed top-0 left-0 right-0 z-40 bg-white h-16 shadow-sm" />;
+  }
 
   return (
     <>

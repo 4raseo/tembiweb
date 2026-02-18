@@ -19,6 +19,7 @@ const translations = {
       history: 'History',
       collections: 'Collections',
       book: 'Book Now',
+      checkBooking: 'Check Booking',
     },
     homepage:{
       hero: {
@@ -2026,6 +2027,7 @@ const translations = {
       history: 'Sejarah',
       collections: 'Koleksi',
       book: 'Pesan Sekarang',
+      checkBooking: 'Cek Booking',
     },
     homepage:{
       hero: {

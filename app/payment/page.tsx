@@ -172,7 +172,18 @@ export default function PaymentPage() {
       }
 
       if (data.invoiceUrl) {
-        window.location.href = data.invoiceUrl;
+        // --- PERUBAHAN LOGIKA FLOW ---
+        // 1. Buka Xendit di Tab Baru
+        const newTab = window.open(data.invoiceUrl, '_blank');
+        
+        // 2. Redirect halaman ini ke Pending Page
+        router.push(`/booking/pending?booking_id=${data.bookingId}`);
+
+        if (!newTab) {
+            console.warn("Popup blocked by browser");
+            // Fallback jika popup diblokir: redirect di tab yang sama (opsional, 
+            // tapi karena kita redirect ke pending page yang ada tombol bayar, ini aman)
+        }
       } else {
         throw new Error('Payment URL not received');
       }
@@ -335,7 +346,7 @@ export default function PaymentPage() {
                     <label className="block text-xs font-bold text-gray-600 mb-1.5 ml-1">Address</label>
                     <input type="text" name="address" value={billingInfo.address} onChange={handleInputChange} placeholder="Street Address" className={inputStyle} />
                   </div>
-                   <div className="col-span-2 md:col-span-1">
+                    <div className="col-span-2 md:col-span-1">
                     <label className="block text-xs font-bold text-gray-600 mb-1.5 ml-1">Postal Code</label>
                     <input type="text" name="postalCode" value={billingInfo.postalCode} onChange={handleInputChange} placeholder="12345" className={inputStyle} />
                   </div>
