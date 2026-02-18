@@ -1,15 +1,5 @@
 import { NextResponse } from 'next/server';
-import { prisma } from '@/lib/prisma';
-// import { PrismaClient } from '@prisma/client';
-
-// // const prisma = new PrismaClient();
-// const prisma = new PrismaClient({
-//   datasources: {
-//     db: {
-//       url: process.env.DATABASE_URL,
-//     },
-//   },
-// });
+import { prisma } from '@/lib/prisma'; // Update Prisma v7: Import dari lib
 
 export async function GET(request: Request) {
   try {
@@ -25,25 +15,45 @@ export async function GET(request: Request) {
     const checkInDate = new Date(checkIn);
     const checkOutDate = new Date(checkOut);
 
-    // Cek apakah ada booking yang CONFIRMED (PAID/PENDING) yang bentrok
-    // Logika Overlap: (ExistingStart < RequestEnd) AND (ExistingEnd > RequestStart)
+    // --- LOGIKA SOFT BOOKING ---
+    // Batas waktu toleransi (30 menit yang lalu)
+    const PAYMENT_WINDOW_MINUTES = 30;
+    const expiryThreshold = new Date(Date.now() - PAYMENT_WINDOW_MINUTES * 60 * 1000);
+
     const conflictingBooking = await prisma.booking.findFirst({
       where: {
         roomSlug: roomSlug,
-        status: {
-          in: ['PENDING', 'PAID'], // Abaikan EXPIRED atau CANCELLED
-        },
+        // Cek tanggal bentrok (Overlap Logic)
         AND: [
           { checkInDate: { lt: checkOutDate } },
-          { checkOutDate: { gt: checkInDate } }
+          { checkOutDate: { gt: checkInDate } },
+          {
+            // Cek Status Booking
+            OR: [
+              // 1. Jika sudah PAID, pasti bentrok (kamar tidak tersedia)
+              { status: 'PAID' },
+              
+              // 2. Jika PENDING, cek apakah masih dalam "masa tunggu bayar" (Soft Booking)
+              // Hanya anggap bentrok jika booking dibuat SETELAH expiryThreshold (artinya masih baru)
+              { 
+                status: 'PENDING',
+                createdAt: { gt: expiryThreshold } 
+              }
+            ]
+          }
         ]
       },
     });
 
     if (conflictingBooking) {
+      // Custom message tergantung status
+      const msg = conflictingBooking.status === 'PAID' 
+        ? 'Kamar sudah terisi pada tanggal tersebut.' 
+        : 'Kamar sedang dalam proses pembayaran oleh tamu lain. Coba lagi dalam beberapa menit.';
+
       return NextResponse.json({ 
         available: false, 
-        message: 'Kamar sudah terisi pada tanggal yang dipilih.' 
+        message: msg
       });
     }
 

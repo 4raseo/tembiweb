@@ -49,11 +49,17 @@ export default function BookingPage() {
   const searchParams = useSearchParams();
   const initialRoomSlug = searchParams.get('room');
 
-  const STATIC_CHECK_IN = '2026-02-20';
-  const STATIC_CHECK_OUT = '2026-02-22';
-  const STATIC_ADULTS = 2;
-  const STATIC_CHILDREN = 1;
-  const STATIC_ROOM_ID = 1;
+  // const STATIC_CHECK_IN = '2026-02-20';
+  // const STATIC_CHECK_OUT = '2026-02-22';
+  // const STATIC_ADULTS = 2;
+  // const STATIC_CHILDREN = 1;
+  // const STATIC_ROOM_ID = 1;
+
+  const STATIC_CHECK_IN = '';
+  const STATIC_CHECK_OUT = '';
+  const STATIC_ADULTS = 0;
+  const STATIC_CHILDREN = 0;
+  const STATIC_ROOM_ID = 0;
 
   // State management
   const [checkIn, setCheckIn] = useState(STATIC_CHECK_IN);

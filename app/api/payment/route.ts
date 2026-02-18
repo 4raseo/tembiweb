@@ -1,19 +1,9 @@
 // app/api/payment/route.ts
 
 import { NextResponse } from 'next/server';
-// import { PrismaClient } from '@prisma/client';
-import { prisma } from '@/lib/prisma';
+import { prisma } from '@/lib/prisma'; // Update Prisma v7: Import dari lib
 import { Xendit } from 'xendit-node';
 import { roomData } from '@/data/roomData';
-
-// const prisma = new PrismaClient();
-// const prisma = new PrismaClient({
-//   datasources: {
-//     db: {
-//       url: process.env.DATABASE_URL,
-//     },
-//   },
-// });
 
 const xenditClient = new Xendit({ secretKey: process.env.XENDIT_API_KEY || '' });
 
@@ -21,6 +11,9 @@ const ADDONS_PRICE = {
   breakfast: 50000, 
   extrabed: 150000   
 };
+
+// Durasi Invoice (dalam detik) -> 30 Menit
+const INVOICE_DURATION_SECONDS = 1800;
 
 // --- FITUR BARU: GENERATE SHORT ID (Contoh: INV-X7K9LP) ---
 function generateShortId() {
@@ -31,7 +24,6 @@ function generateShortId() {
   }
   return `INV-${result}`;
 }
-// ----------------------------------------------------------
 
 // GET Handler (Untuk mengambil detail booking)
 export async function GET(request: Request) {
@@ -59,7 +51,7 @@ export async function POST(request: Request) {
       adults,
       children,
       booker, 
-      addons, // Data addons dari frontend
+      addons,
     } = await request.json();
 
     if (!roomSlug || !checkIn || !checkOut || !booker) {
@@ -72,28 +64,37 @@ export async function POST(request: Request) {
     const checkInDate = new Date(checkIn);
     const checkOutDate = new Date(checkOut);
 
-    // Cek Double Booking
+    // --- CEK AVAILABILITY LAGI SEBELUM CREATE (Double Check) ---
+    // Gunakan logika yang sama dengan API availability (30 menit window)
+    const PAYMENT_WINDOW_MINUTES = 30;
+    const expiryThreshold = new Date(Date.now() - PAYMENT_WINDOW_MINUTES * 60 * 1000);
+
     const conflictingBooking = await prisma.booking.findFirst({
       where: {
         roomSlug: roomSlug,
-        status: { in: ['PENDING', 'PAID'] },
         AND: [
           { checkInDate: { lt: checkOutDate } },
-          { checkOutDate: { gt: checkInDate } }
+          { checkOutDate: { gt: checkInDate } },
+          {
+            OR: [
+              { status: 'PAID' },
+              // Hanya anggap bentrok jika PENDING dan MASIH BARU (< 30 menit)
+              { status: 'PENDING', createdAt: { gt: expiryThreshold } }
+            ]
+          }
         ]
       },
     });
 
     if (conflictingBooking) {
-      return NextResponse.json({ message: 'Room is unavailable.' }, { status: 409 });
+      return NextResponse.json({ message: 'Room is unavailable or currently being booked.' }, { status: 409 });
     }
+    // -----------------------------------------------------------
 
     const duration = Math.ceil((checkOutDate.getTime() - checkInDate.getTime()) / (1000 * 3600 * 24));
     
-    // --- PERBAIKAN: Pastikan nilai diambil dari request ---
     const breakfastCount = addons?.breakfast || 0;
     const extraBedCount = addons?.extrabed || 0;
-    // -----------------------------------------------------
 
     const roomBasePrice = room.price * duration;
     const breakfastTotal = breakfastCount * ADDONS_PRICE.breakfast * duration;
@@ -112,7 +113,7 @@ export async function POST(request: Request) {
     // Simpan ke Database
     const booking = await prisma.booking.create({
       data: {
-        id: shortId, // Pakai ID manual
+        id: shortId,
         roomId: room.id.toString(),
         roomSlug: room.slug,
         roomName: room.name,
@@ -123,10 +124,8 @@ export async function POST(request: Request) {
         tourismTax: tourismTax,
         totalPrice: totalAmount,
         
-        // --- PERBAIKAN: Masukkan ke kolom database yang benar ---
         breakfast: breakfastCount, 
         extraBed: extraBedCount,
-        // -------------------------------------------------------
         
         checkInDate: checkInDate,
         checkOutDate: checkOutDate,
@@ -157,7 +156,6 @@ export async function POST(request: Request) {
         }
       ];
 
-      // Item Xendit Breakfast
       if (breakfastCount > 0) {
         invoiceItems.push({
           name: `Breakfast (${breakfastCount} pax x ${duration} nights)`,
@@ -167,7 +165,6 @@ export async function POST(request: Request) {
         });
       }
 
-      // Item Xendit Extra Bed
       if (extraBedCount > 0) {
         invoiceItems.push({
           name: `Extra Bed (${extraBedCount} bed x ${duration} nights)`,
@@ -184,7 +181,7 @@ export async function POST(request: Request) {
 
       const xenditInvoice = await Invoice.createInvoice({
         data: {
-          externalId: booking.id, // ID Pendek dikirim ke Xendit
+          externalId: booking.id,
           amount: totalAmount,
           payerEmail: booker.email,
           description: `Booking ${booking.id} - ${room.name}`,
@@ -197,7 +194,10 @@ export async function POST(request: Request) {
           successRedirectUrl: `${process.env.NEXT_PUBLIC_URL}/booking/success?booking_id=${booking.id}`,
           failureRedirectUrl: `${process.env.NEXT_PUBLIC_URL}/booking/failed?booking_id=${booking.id}`,
           currency: 'IDR',
-          invoiceDuration: 86400,
+          
+          // --- SETTING PENTING: EXPIRED DALAM 30 MENIT ---
+          invoiceDuration: INVOICE_DURATION_SECONDS, 
+          // -----------------------------------------------
         },
       });
 
