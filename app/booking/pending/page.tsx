@@ -23,8 +23,11 @@ export default function BookingPendingPage() {
   const [loading, setLoading] = useState(true);
   const [cancelling, setCancelling] = useState(false);
   const [copied, setCopied] = useState(false);
+  
+  // STATE BARU: Untuk mengontrol pop-up konfirmasi pembatalan
+  const [showCancelModal, setShowCancelModal] = useState(false);
 
-  // 1. Fungsi Fetch murni (tanpa router.push di sini)
+  // 1. Fungsi Fetch murni
   const fetchStatus = useCallback(async (isManual = false) => {
     if (isManual) setLoading(true);
     try {
@@ -33,7 +36,6 @@ export default function BookingPendingPage() {
       const data = await res.json();
       
       if (data.booking) {
-        // Update state booking
         setBooking(data.booking);
       }
     } catch (error) {
@@ -43,14 +45,12 @@ export default function BookingPendingPage() {
     }
   }, [bookingId]);
 
-  // 2. Gunakan useEffect HANYA untuk polling (interval)
+  // 2. Auto-polling interval
   useEffect(() => {
     if (!bookingId) return;
 
-    // Fetch pertama kali
     fetchStatus(true);
 
-    // Auto-polling setiap 5 detik (UX Lebih Baik)
     const interval = setInterval(() => {
       fetchStatus(false);
     }, 5000);
@@ -58,8 +58,7 @@ export default function BookingPendingPage() {
     return () => clearInterval(interval);
   }, [bookingId, fetchStatus]);
 
-  // 3. Gunakan useEffect KEDUA HANYA untuk mengurus REDIRECT
-  // Ini mencegah "Too many re-renders"
+  // 3. Logika Redirect
   useEffect(() => {
     if (booking && booking.status) {
         if (booking.status === 'PAID') {
@@ -70,9 +69,8 @@ export default function BookingPendingPage() {
     }
   }, [booking, router, bookingId]);
 
-
-  const handleCancel = async () => {
-    if (!confirm("Apakah Anda yakin ingin membatalkan pesanan ini?")) return;
+  // PERUBAHAN: Fungsi eksekusi cancel (tanpa alert bawaan)
+  const executeCancel = async () => {
     setCancelling(true);
     try {
         const res = await fetch('/api/payment/cancel', {
@@ -82,11 +80,14 @@ export default function BookingPendingPage() {
         });
         if (res.ok) {
             router.push(`/booking/failed?booking_id=${bookingId}`);
+        } else {
+            alert("Gagal membatalkan pesanan");
         }
     } catch (e) {
         alert("Terjadi kesalahan sistem");
     } finally {
         setCancelling(false);
+        setShowCancelModal(false); // Tutup modal setelah selesai
     }
   };
 
@@ -101,7 +102,7 @@ export default function BookingPendingPage() {
   if (!bookingId) return null;
 
   return (
-    <main className="min-h-screen bg-[#EFF1F0] pt-32 pb-20 px-4 font-sans flex items-start justify-center">
+    <main className="min-h-screen bg-[#EFF1F0] pt-32 pb-20 px-4 font-sans flex items-start justify-center relative">
       <div className="max-w-4xl w-full grid grid-cols-1 lg:grid-cols-2 gap-8">
         
         {/* KOLOM KIRI: Status & Aksi */}
@@ -160,8 +161,12 @@ export default function BookingPendingPage() {
                         </button>
                         
                         <div className="text-center">
-                            <button onClick={handleCancel} disabled={cancelling}
-                                className="text-red-500 text-xs font-semibold hover:underline transition-colors mt-4">
+                            {/* PERUBAHAN: Membuka Custom Modal alih-alih fungsi default confirm() */}
+                            <button 
+                                onClick={() => setShowCancelModal(true)} 
+                                disabled={cancelling}
+                                className="text-red-500 text-xs font-semibold hover:underline transition-colors mt-4"
+                            >
                                 {cancelling ? "Membatalkan..." : "Batalkan Pesanan Ini"}
                             </button>
                         </div>
@@ -234,8 +239,48 @@ export default function BookingPendingPage() {
                 </div>
             </div>
         )}
-
       </div>
+
+      {/* --- MODAL POP-UP CUSTOM UNTUK PEMBATALAN --- */}
+      {showCancelModal && (
+        <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm transition-all animate-in fade-in">
+          <div className="bg-white rounded-3xl shadow-2xl w-full max-w-sm overflow-hidden transform transition-all animate-in zoom-in-95 duration-200">
+            
+            {/* Modal Header */}
+            <div className="p-8 text-center flex flex-col items-center bg-red-50">
+              <div className="w-20 h-20 bg-red-100 rounded-full flex items-center justify-center mb-6 shadow-inner">
+                <AlertTriangle className="w-10 h-10 text-red-600 stroke-[2.5]" />
+              </div>
+              <h3 className="text-2xl font-serif font-bold mb-3 text-red-800">
+                Batalkan Pesanan?
+              </h3>
+              <p className="text-gray-600 text-sm leading-relaxed px-2">
+                Apakah Anda yakin ingin membatalkan pesanan ini? Aksi ini tidak dapat dibatalkan.
+              </p>
+            </div>
+
+            {/* Modal Action Buttons */}
+            <div className="p-6 bg-white border-t border-gray-100 flex gap-3">
+              <button
+                onClick={() => setShowCancelModal(false)}
+                disabled={cancelling}
+                className="flex-1 py-3.5 rounded-xl font-bold text-gray-700 bg-gray-100 hover:bg-gray-200 transition-all active:scale-95 disabled:opacity-50"
+              >
+                Kembali
+              </button>
+              <button
+                onClick={executeCancel}
+                disabled={cancelling}
+                className="flex-1 py-3.5 rounded-xl font-bold text-white bg-red-600 hover:bg-red-700 shadow-lg shadow-red-600/20 transition-all active:scale-95 flex justify-center items-center gap-2 disabled:opacity-70"
+              >
+                {cancelling ? <Loader2 className="w-5 h-5 animate-spin" /> : "Ya, Batalkan"}
+              </button>
+            </div>
+
+          </div>
+        </div>
+      )}
+
     </main>
   );
 }
