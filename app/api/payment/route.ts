@@ -35,7 +35,17 @@ export async function GET(request: Request) {
   try {
     const booking = await prisma.booking.findUnique({ where: { id: bookingId } });
     if (!booking) return NextResponse.json({ message: 'Booking not found' }, { status: 404 });
-    return NextResponse.json({ booking });
+    
+    // 🛡️ SECURITY PATCH: Sembunyikan (Masking) data pribadi untuk keamanan
+    // Jika perlu data lengkap (misal untuk email), validasi harus menggunakan Halaman Cek Pesanan
+    const safeBookingData = {
+      ...booking,
+      customerEmail: booking.customerEmail.replace(/(.{2})(.*)(?=@)/, "$1***"), // Budi@... -> Bu***@...
+      customerPhone: booking.customerPhone.slice(0, 4) + "****" + booking.customerPhone.slice(-3), // 0812****123
+      customerAddress: "*** Sembunyi demi privasi ***",
+    };
+
+    return NextResponse.json({ booking: safeBookingData });
   } catch (error) {
     return NextResponse.json({ message: 'Internal Server Error' }, { status: 500 });
   }
