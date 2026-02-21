@@ -8,8 +8,13 @@ export default function BookingFailedPage() {
   const router = useRouter();
   const bookingId = searchParams.get('booking_id');
 
+  // Fungsi untuk booking ulang (bukan bayar ulang ID yang sama)
+  const handleTryAgain = () => {
+    // Arahkan ke halaman booking awal untuk membuat pesanan baru
+    router.push('/booking');
+  };
+
   return (
-    // --- PERBAIKAN: Tambahkan pt-28 di sini ---
     <main className="min-h-screen bg-[#FCFCFA] pb-20 pt-28 font-sans">
       
       {/* Top Banner (Red Theme) */}
@@ -20,7 +25,7 @@ export default function BookingFailedPage() {
           </div>
         </div>
         <h1 className="text-3xl md:text-4xl font-serif font-bold mb-2">Payment Failed</h1>
-        <p className="text-red-100">We couldnt process your transaction.</p>
+        <p className="text-red-100">We couldn&apos;t process your transaction.</p>
       </div>
 
       <div className="container mx-auto max-w-[600px] px-4 -mt-16 relative z-10">
@@ -33,8 +38,8 @@ export default function BookingFailedPage() {
               <div>
                 <p className="font-bold text-sm">Transaction Unsuccessful</p>
                 <p className="text-xs mt-1">
-                  Your payment was either cancelled, declined, or timed out. 
-                  No funds have been deducted from your account.
+                  Your payment was cancelled, declined, or timed out. 
+                  Please try booking again.
                 </p>
               </div>
             </div>
@@ -46,11 +51,12 @@ export default function BookingFailedPage() {
             )}
 
             <div className="space-y-3">
+              {/* PERBAIKAN: Tombol ini sekarang membuat booking baru */}
               <button 
-                onClick={() => router.back()} 
+                onClick={handleTryAgain} 
                 className="w-full flex items-center justify-center gap-2 px-6 py-4 bg-[#3A4D39] text-white font-bold rounded-xl hover:bg-[#2c3b2b] shadow-lg shadow-[#3A4D39]/20 transition-all"
               >
-                <RefreshCw size={18} /> Try Payment Again
+                <RefreshCw size={18} /> Book Again
               </button>
               
               <button 
