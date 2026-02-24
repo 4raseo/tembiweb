@@ -3,7 +3,7 @@
 
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { Eye, Search } from 'lucide-react';
+import { Eye, Search, LogOut } from 'lucide-react'; // Tambahkan icon LogOut
 
 const formatCurrency = (amount: number) => 
   new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(amount);
@@ -39,6 +39,22 @@ export default function AdminInvoicesPage() {
     }
   };
 
+  // Fungsi untuk menangani proses logout
+  const handleLogout = async () => {
+    try {
+      const res = await fetch('/api/auth/logout', {
+        method: 'POST',
+      });
+      
+      if (res.ok) {
+        router.push('/admin/login');
+        router.refresh(); // Refresh agar state middleware diperbarui
+      }
+    } catch (error) {
+      console.error("Gagal melakukan logout:", error);
+    }
+  };
+
   const filteredBookings = bookings.filter((b) => 
     b.id.toLowerCase().includes(searchTerm.toLowerCase()) ||
     b.customerName.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -46,26 +62,36 @@ export default function AdminInvoicesPage() {
   );
 
   return (
-    // --- PERBAIKAN: Ubah p-8 menjadi p-8 pt-28 agar tidak tertutup header ---
     <div className="min-h-screen bg-gray-50 p-8 pt-28 font-sans">
       <div className="max-w-6xl mx-auto">
         
-        {/* Header & Search */}
+        {/* Header, Search & Logout */}
         <div className="flex flex-col md:flex-row justify-between items-center mb-8 gap-4">
           <h1 className="text-3xl font-bold text-gray-800">Booking Invoices</h1>
           
-          {/* Search Input */}
-          <div className="relative w-full md:w-96">
-            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-              <Search className="h-5 w-5 text-gray-400" />
+          <div className="flex flex-col md:flex-row gap-4 w-full md:w-auto items-center">
+            {/* Search Input */}
+            <div className="relative w-full md:w-96">
+              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                <Search className="h-5 w-5 text-gray-400" />
+              </div>
+              <input
+                type="text"
+                placeholder="Search ID, Name, or Email..."
+                className="pl-10 pr-4 py-2 border border-gray-300 rounded-lg w-full focus:outline-none focus:ring-2 focus:ring-tembi focus:border-transparent transition-shadow text-black"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+              />
             </div>
-            <input
-              type="text"
-              placeholder="Search ID, Name, or Email..."
-              className="pl-10 pr-4 py-2 border border-gray-300 rounded-lg w-full focus:outline-none focus:ring-2 focus:ring-tembi focus:border-transparent transition-shadow"
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-            />
+
+            {/* Tombol Logout */}
+            <button
+              onClick={handleLogout}
+              className="flex items-center justify-center gap-2 w-full md:w-auto bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600 transition-colors shadow-sm font-medium"
+            >
+              <LogOut size={18} />
+              <span>Logout</span>
+            </button>
           </div>
         </div>
 
@@ -86,7 +112,7 @@ export default function AdminInvoicesPage() {
               </thead>
               <tbody className="divide-y divide-gray-100">
                 {loading ? (
-                  <tr><td colSpan={7} className="px-6 py-8 text-center">Loading data...</td></tr>
+                  <tr><td colSpan={7} className="px-6 py-8 text-center text-black">Loading data...</td></tr>
                 ) : filteredBookings.length === 0 ? (
                   <tr><td colSpan={7} className="px-6 py-8 text-center text-gray-500">No bookings found.</td></tr>
                 ) : (

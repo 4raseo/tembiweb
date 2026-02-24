@@ -208,6 +208,7 @@ export async function POST(request: Request) {
           // --- SETTING PENTING: EXPIRED DALAM 30 MENIT ---
           invoiceDuration: INVOICE_DURATION_SECONDS, 
           // -----------------------------------------------
+          shouldSendEmail: true,
         },
       });
 
