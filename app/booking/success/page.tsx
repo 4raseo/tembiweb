@@ -195,7 +195,7 @@ function SuccessContent() {
     doc.setFont("helvetica", "italic");
     doc.setFontSize(9);
     doc.setTextColor(150, 150, 150);
-    doc.text("Thank you for your reservation at Tembi Rumah Budaya.", 105, 280, { align: "center" });
+    doc.text("Thank you for your reservation at Tembi Historical Home.", 105, 280, { align: "center" });
 
     // Save PDF
     doc.save(`Invoice_${booking.id}.pdf`);
