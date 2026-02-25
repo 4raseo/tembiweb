@@ -1,537 +1,665 @@
-// app/catering/page.tsx (atau pages/catering.tsx)
-
+'use client';
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import {
-  FaLeaf,
-  FaHeart,
-  FaCheckCircle,
-  FaTimesCircle,
-  FaTruck,
-  FaUsers,
-  FaUtensils,
-  FaBoxOpen,
-  FaTemperatureHigh,
-  FaClipboardCheck,
-  FaPhone,
-  FaWhatsapp,
-  FaEnvelope,
-  FaMapMarkerAlt,
-  FaFacebook,
-  FaInstagram,
-  FaTwitter,
-} from 'react-icons/fa';
+import { useLanguage } from '@/app/context/LanguageContext';
+import MenuItemCard from '@/components/MenuItemCard';
+import PackageCard from '@/components/PackageCard';
+import ScrollReveal from '@/components/ScrollReveal';
 
-// --- Variabel Warna Sesuai Desain ---
-// Anda bisa menyesuaikan ini atau memindahkannya ke tailwind.config.js
-const colors = {
-  primary: 'text-emerald-800', // Hijau tua untuk teks
-  primaryBg: 'bg-emerald-700', // Hijau tua untuk background
-  primaryBgLite: 'bg-emerald-50', // Hijau muda
-  secondary: 'text-amber-800', // Cokelat/Gold untuk teks
-  bgLight: 'bg-[#FAF8F5]', // Background krem
-  bgWhite: 'bg-white',
-};
 
-// --- Komponen Kecil: Ikon Fitur (Halal, No MSG, dll) ---
-interface FeatureIconProps {
-  icon: React.ReactNode;
-  label: string;
-}
-
-const FeatureIcon: React.FC<FeatureIconProps> = ({ icon, label }) => (
-  <div className="flex flex-col items-center text-center">
-    <div
-      className={`flex items-center justify-center w-16 h-16 rounded-full ${colors.primaryBgLite} ${colors.primary}`}
-    >
-      {icon}
-    </div>
-    <span className="mt-2 text-sm font-medium text-gray-700">{label}</span>
-  </div>
-);
-
-// --- Komponen Kecil: Kartu Layanan (Delivery, Waiter, dll) ---
-interface ServicePackageCardProps {
-  icon: React.ReactNode;
-  title: string;
-  description: string;
-}
-
-const ServicePackageCard: React.FC<ServicePackageCardProps> = ({
-  icon,
-  title,
-  description,
-}) => (
-  <div
-    className={`${colors.bgWhite} p-6 rounded-lg shadow-md text-center items-center flex flex-col`}
-  >
-    <div className={`${colors.primary} text-4xl mb-4`}>{icon}</div>
-    <h3 className="text-xl font-semibold text-gray-800 mb-2">{title}</h3>
-    <p className="text-gray-600 text-sm">{description}</p>
-  </div>
-);
-
-// --- Komponen Kecil: Kartu Kontak (Phone, Message, dll) ---
-interface ContactCardProps {
-  icon: React.ReactNode;
-  title: string;
-  description: string;
-  buttonText: string;
-  href: string;
-}
-
-const ContactCard: React.FC<ContactCardProps> = ({
-  icon,
-  title,
-  description,
-  buttonText,
-  href,
-}) => (
-  <div
-    className={`${colors.bgWhite} p-8 rounded-lg shadow-lg text-center items-center flex flex-col border border-gray-100`}
-  >
-    <div className={`${colors.primary} text-4xl mb-5`}>{icon}</div>
-    <h3 className="text-2xl font-semibold text-gray-800 mb-2">{title}</h3>
-    <p className="text-gray-600 mb-6">{description}</p>
-    <Link
-      href={href}
-      className={`inline-block px-6 py-3 rounded-full ${colors.primaryBg} text-white font-medium hover:bg-emerald-800 transition-colors`}
-    >
-      {buttonText}
-    </Link>
-  </div>
-);
-
-// --- Komponen Utama Halaman Catering ---
-const CateringPage = () => {
+export default function FoodPage() {
+  const { t } = useLanguage();
+  const buffetMenu = t.foods.menus.buffet.item;
+  const snackMenu = t.foods.menus.snack.item;
+  const riceBoxMenu = t.foods.menus.rice.item;
   return (
-    <div className="font-sans">
-      {/* CATATAN: Navbar tidak termasuk di sini. 
-        Asumsinya, ini adalah bagian dari file Layout.tsx utama Anda.
-      */}
+    <main className="w-full min-h-screen bg-white">
+      
+      {/*HERO SECTION*/}
+      <section className="relative h-screen w-full overflow-hidden">
+        <div className="absolute inset-0 z-0">
+            <Image 
+              src="/images/foods/foodcover.webp"
+              alt="Javanese Cuisine Spread" 
+              fill
+              className="object-cover"
+              priority
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-transparent" />
+        </div>
 
-      {/* 1. Hero Section */}
-      <section className="relative h-[450px] w-full flex items-center justify-center">
-        {/* Gambar Latar */}
-        <Image
-          src="/images/catering-hero.jpg" // Ganti dengan path gambar Anda
-          alt="Catering buffet"
-          layout="fill"
-          objectFit="cover"
-          className="brightness-75"
-        />
-        {/* Teks Overlay */}
-        <div className="relative z-10 text-center">
-          <h1 className={`text-5xl md:text-6xl font-bold text-white`}>
-            Catering Package for 50 People
-          </h1>
+        <div className="relative z-10 h-full flex flex-col justify-center px-6 sm:px-12 lg:px-24">
+          <div className="max-w-3xl flex flex-col items-start text-left">
+            <div className="inline-flex items-center gap-3 border border-white/30 bg-white/10 backdrop-blur-sm px-5 py-2 rounded-full mb-8">
+              <Image 
+                src="/images/icons/food-white.png" 
+                alt="Utensils"
+                width={16}
+                height={16}
+                className="w-4 h-4 object-contain" 
+              />
+              <span className="text-sm font-medium tracking-wide text-white">{t.foods.hero.label}</span>
+            </div>
+
+            <h1 className="font-serif text-6xl font-bold text-white mb-6 leading-none drop-shadow-lg">
+              {t.foods.hero.title[0]} <br /> {t.foods.hero.title[1]}
+            </h1>
+
+            <p className="font-serif italic text-lg text-gray-200 mb-6 tracking-wide">
+              {t.foods.hero.subtitle}
+            </p>
+
+            <p className="text-base text-gray-300 leading-relaxed max-w-xl">
+              {t.foods.hero.desc}
+            </p>
+          </div>
+
+          <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20">
+            <a href="#our-story" className="animate-bounce cursor-pointer p-2 block">
+               <Image
+                  src="/images/icons/arrow-down-white.png"
+                  alt="Scroll Down"
+                  width={16}
+                  height={16}
+                  className="brightness-0 invert drop-shadow-md"
+               />
+            </a>
+          </div>
         </div>
       </section>
 
-      {/* 2. Package Description Section */}
-      <section className={`${colors.bgLight} py-20`}>
-        <div className="container mx-auto max-w-6xl px-4">
-          <div className="grid md:grid-cols-3 gap-12 items-start">
-            {/* Kolom Kiri: Deskripsi & Fitur */}
-            <div className="md:col-span-2">
-              <h2
-                className={`text-3xl font-bold ${colors.secondary} mb-4`}
-              >
-                Package Description
+      {/*CONTENT*/}
+      <section className="py-24 px-6 sm:px-12 lg:px-24 max-w-[1400px] mx-auto bg-white">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+    
+          <ScrollReveal animation="slideLeft" duration={800}>
+            <div className="flex flex-col justify-center">
+              <div className="flex items-center gap-3 mb-6">
+                <Image 
+                  src="/images/icons/leaf-black.png"
+                  alt="Leaf Icon"
+                  width={24}
+                  height={24}
+                  className="w-5 h-5 object-contain"
+                />
+                <span className="text-sm font-semibold uppercase tracking-widest text-gray-800">
+                  {t.foods.intro.label}
+                </span>
+              </div>
+
+              <h2 className="font-serif text-4xl  font-bold text-gray-900 leading-[1.15] mb-8">
+                {t.foods.intro.title[0]} <br className="hidden lg:block" />
+                <span className="text-[#8F9E75]">{t.foods.intro.title[1]}</span>
               </h2>
-              <p className="text-gray-700 leading-relaxed mb-8">
-                Enjoy a complete menu of traditional Javanese dishes prepared
-                with authentic flavors. Our 50-person catering package is
-                designed to bring the richness of Indonesian culinary heritage
-                to your special event. We prioritize quality and taste,
-                using only the freshest of ingredients coupled with healthy
-                cooking methods.
+
+              <p className="text-base text-gray-600 leading-relaxed mb-10">
+                {t.foods.intro.desc}
               </p>
-              {/* Ikon Fitur */}
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-                <FeatureIcon
-                  icon={<FaCheckCircle size={28} />}
-                  label="All Halal"
+
+              <div className="space-y-8">
+                <FeatureItem 
+                  title={t.foods.intro.itemTitle[0]} 
+                  desc={t.foods.intro.itemDesc[0]}
                 />
-                <FeatureIcon
-                  icon={<FaTimesCircle size={28} />}
-                  label="No MSG"
+                <FeatureItem 
+                  title={t.foods.intro.itemTitle[1]} 
+                  desc={t.foods.intro.itemDesc[1]}
                 />
-                <FeatureIcon icon={<FaLeaf size={28} />} label="Fresh" />
-                <FeatureIcon icon={<FaHeart size={28} />} label="Healthy" />
+                <FeatureItem 
+                  title={t.foods.intro.itemTitle[2]} 
+                  desc={t.foods.intro.itemDesc[2]}
+                />
+              </div>
+            </div>
+          </ScrollReveal>
+
+          <ScrollReveal animation="slideRight" duration={800}>
+            <div className="relative w-full aspect-square lg:aspect-[4/3]">
+              <div className="relative h-full w-full rounded-[2.5rem] overflow-hidden">
+                <Image 
+                  src="/images/foods/foods1.webp"
+                  alt="Traditional Javanese Kitchenware" 
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                />
+              </div>
+            </div>
+          </ScrollReveal>
+        </div>
+      </section>
+
+      {/*PACKAGES*/}
+      <section className="py-24 px-6 sm:px-12 lg:px-24 max-w-full bg-[#F8F6F1]">
+        <div className="max-w-7xl mx-auto">
+
+          <ScrollReveal animation="fadeUp" duration={800}>
+            <div className="text-center max-w-3xl mx-auto mb-16">
+              {/* Label */}
+              <div className="inline-flex items-center gap-2 mb-4">
+                <Image 
+                  src="/images/icons/package-black.png"
+                  alt="icon"
+                  width={16} height={16}
+                  className="w-4 h-4"
+                />
+                <span className="text-sm font-semibold text-gray-600 uppercase tracking-wider">
+                  {t.foods.packages.label}
+                </span>
+              </div>
+        
+              <h2 className="font-serif text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+                {t.foods.packages.title[0]} <span className="text-[#8F9E75]">{t.foods.packages.title[1]}</span>
+              </h2>
+
+              <p className="text-gray-600 text-lg leading-relaxed">
+                {t.foods.packages.subtitle}
+              </p>
+            </div>
+          </ScrollReveal>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+
+            {/*Buffet*/}
+            <ScrollReveal animation="fadeUp" delay={0} duration={800}>
+              <PackageCard 
+                image="/images/foods/foods5.webp"
+                badge={t.foods.packages.card1.badge}
+                title={t.foods.packages.card1.title}
+                subtitle={t.foods.packages.card1.subtitle}
+                desc={t.foods.packages.card1.desc}
+                features={t.foods.packages.card1.features}
+                
+                linkUrl={t.foods.packages.card1.linkUrl}
+                buttonText={t.foods.packages.card1.buttonText}
+              />
+            </ScrollReveal>
+
+            {/*Snack Box*/}
+            <ScrollReveal animation="fadeUp" delay={150} duration={800}>
+              <PackageCard 
+                image="/images/foods/foods6.webp"
+                badge={t.foods.packages.card2.badge}
+                title={t.foods.packages.card2.title}
+                subtitle={t.foods.packages.card2.subtitle}
+                desc={t.foods.packages.card2.desc}
+                features={t.foods.packages.card2.features}
+                
+                linkUrl={t.foods.packages.card2.linkUrl}
+                buttonText={t.foods.packages.card2.buttonText}
+              />
+            </ScrollReveal>
+
+            {/*Rice Box*/}
+            <ScrollReveal animation="fadeUp" delay={300} duration={800}>
+              <PackageCard 
+                image="/images/foods/foods7.webp"
+                badge={t.foods.packages.card3.badge}
+                title={t.foods.packages.card3.title}
+                subtitle={t.foods.packages.card3.subtitle}
+                desc={t.foods.packages.card3.desc}
+                features={t.foods.packages.card3.features}
+                
+                linkUrl={t.foods.packages.card3.linkUrl}
+                buttonText={t.foods.packages.card3.buttonText}
+              />
+            </ScrollReveal>
+          </div>
+
+          <div className="bg-white rounded-xl p-8 md:p-12 shadow-sm border border-gray-100">
+            <div className="flex flex-col md:flex-row justify-center items-center gap-8 text-center">
+              <InfoItem 
+                icon="/images/icons/group-black.png"
+                title={t.foods.packages.footerTitle[0]}
+                desc={t.foods.packages.footerDesc[0]}
+              />
+              <InfoItem 
+                icon="/images/icons/clock-black.png"
+                title={t.foods.packages.footerTitle[1]}
+                desc={t.foods.packages.footerDesc[1]}
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/*SAMPLE MENUS*/}
+      <section className="py-24 px-6 sm:px-12 lg:px-24 max-w-full bg-white">
+        <div className="max-w-7xl mx-auto">
+    
+          <div className="text-center max-w-3xl mx-auto mb-20">
+            <div className="inline-flex items-center gap-2 mb-4">
+              <Image 
+                src="/images/icons/food-black.png" 
+                alt="icon" 
+                width={14} height={14} 
+                className="w-3.5 h-3.5" 
+              />
+              <span className="text-xs font-bold uppercase tracking-widest text-gray-500">
+                {t.foods.menus.label}
+              </span>
+            </div>
+
+            <h2 className="font-serif text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+              {t.foods.menus.title[0]} <span className="text-[#8F9E75]">{t.foods.menus.title[0]}</span>
+            </h2>
+
+            <p className="text-gray-600 leading-relaxed">
+              {t.foods.menus.desc}
+            </p>
+          </div>
+
+          {/*BUFFET*/}
+          <div className="mb-20">
+            <div className="text-center mb-10">
+              <h3 className="font-serif text-2xl font-bold text-gray-900 mb-2">{t.foods.menus.buffet.title}</h3>
+              <p className="text-gray-500 text-sm">{t.foods.menus.buffet.desc}</p>
+            </div>
+
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+              {buffetMenu.map((item, idx) => (
+                <MenuItemCard key={idx} {...item} />
+              ))}
+            </div>
+          </div>
+
+          {/*SNACK BOX*/}
+          <div className="mb-20">
+            <div className="text-center mb-10">
+              <h3 className="font-serif text-2xl font-bold text-gray-900 mb-2">{t.foods.menus.snack.title}</h3>
+              <p className="text-gray-500 text-sm">{t.foods.menus.snack.desc}</p>
+            </div>
+
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+              {snackMenu.map((item, idx) => (
+                <MenuItemCard key={idx} {...item} />
+              ))}
+            </div>
+          </div>
+
+          {/*RICE BOX*/}
+          <div>
+            <div className="text-center mb-10">
+              <h3 className="font-serif text-2xl font-bold text-gray-900 mb-2">{t.foods.menus.rice.title}</h3>
+              <p className="text-gray-500 text-sm">{t.foods.menus.rice.desc}</p>
+            </div>
+
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+              {riceBoxMenu.map((item, idx) => (
+                <MenuItemCard key={idx} {...item} />
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/*HERITAGE*/}
+      <section className="py-24 px-6 sm:px-12 lg:px-24 max-w-full bg-[#F8F6F1]">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+      
+            <div className="relative pl-4 sm:pl-0">
+              <div className="relative w-full aspect-[4/5] lg:aspect-square rounded-[2.5rem] overflow-hidden shadow-lg">
+                <Image 
+                  src="/images/foods/foods8.webp"
+                  alt="Generations cooking" 
+                  fill
+                  className="object-cover"
+                />
+              </div>
+
+              <div className="hidden md:block absolute bottom-10 -left-10 w-80 bg-white p-6 rounded-2xl shadow-2xl shadow-gray-200/50">
+                <div className="flex items-start gap-4 mb-4">
+                  <div className="w-12 h-12 rounded-full bg-[#8F9E75] flex items-center justify-center flex-shrink-0">
+                    <Image src="/images/icons/heart-white.png" alt="heart" width={20} height={20} className="brightness-0 invert" />
+                  </div>
+                  <div>
+                    <h4 className="font-serif font-bold text-lg text-gray-900">{t.foods.gen.card.title}</h4>
+                    <p className="text-xs text-gray-500">{t.foods.gen.card.subtitle}</p>
+                  </div>
+                </div>
+
+                <div className="border-t border-gray-100 my-4"></div>
+
+                <p className="text-sm text-gray-600 italic leading-relaxed">
+                  {t.foods.gen.card.desc}
+                </p>
               </div>
             </div>
 
-            {/* Kolom Kanan: Kotak Harga */}
-            <div
-              className={`${colors.bgWhite} p-8 rounded-lg shadow-xl border border-gray-100`}
-            >
-              <p className="text-3xl font-bold text-gray-800 mb-4">
-                IDR 3,750,000
+            <div>
+              <div className="flex items-center gap-2 mb-6">
+                <Image src="/images/icons/star-black.png" alt="star" width={16} height={16} className="w-4 h-4 opacity-80" />
+                <span className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                  {t.foods.gen.label}
+                </span>
+              </div>
+
+              <h2 className="font-serif text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
+                {t.foods.gen.title[0]} <br />
+                <span className="text-[#8F9E75]">{t.foods.gen.title[1]}</span>
+              </h2>
+
+              <p className="text-gray-600 leading-relaxed mb-10 text-lg">
+                {t.foods.gen.desc}
               </p>
-              <p className="text-sm text-gray-600 mb-6">
-                All package inclusions
-              </p>
-              <ul className="space-y-3">
-                <li className="flex items-center text-gray-700">
-                  <FaCheckCircle className={`${colors.primary} mr-3`} />
-                  Main course
-                </li>
-                <li className="flex items-center text-gray-700">
-                  <FaCheckCircle className={`${colors.primary} mr-3`} />
-                  Traditional menu
-                </li>
-                <li className="flex items-center text-gray-700">
-                  <FaCheckCircle className={`${colors.primary} mr-3`} />
-                  Side dishes
-                </li>
-                <li className="flex items-center text-gray-700">
-                  <FaCheckCircle className={`${colors.primary} mr-3`} />
-                  Stall menu
-                </li>
-                <li className="flex items-center text-gray-700">
-                  <FaCheckCircle className={`${colors.primary} mr-3`} />
-                  Dessert
-                </li>
-              </ul>
+
+              <div className="space-y-8">
+                <HeritageItem 
+                  icon="/images/icons/book-black.png"
+                  title={t.foods.gen.itemTitle[0]}
+                  desc={t.foods.gen.itemDesc[0]}
+                />
+                <HeritageItem 
+                  icon="/images/icons/plant-black.png"
+                  title={t.foods.gen.itemTitle[1]}
+                  desc={t.foods.gen.itemDesc[1]}
+                />
+                <HeritageItem 
+                  icon="/images/icons/hand-black.png"
+                  title={t.foods.gen.itemTitle[2]}
+                  desc={t.foods.gen.itemDesc[2]}
+                />
+              </div>
             </div>
           </div>
         </div>
       </section>
+      
+      {/*CELEBRATE*/}
+      <section className="py-24 px-6 sm:px-12 lg:px-24 max-w-full bg-white">
+        <div className="max-w-7xl mx-auto">
+    
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <div className="inline-flex items-center gap-2 mb-4">
+              <Image 
+                src="/images/icons/calendar-black.png"
+                alt="icon" 
+                width={16} height={16} 
+                className="w-4 h-4 opacity-80" 
+              />
+              <span className="text-sm font-semibold text-gray-800 uppercase tracking-wide">
+                {t.foods.celebrate.label}
+              </span>
+            </div>
 
-      {/* 3. Menu Selection Section */}
-      <section className={`${colors.bgWhite} py-20`}>
-        <div className="container mx-auto max-w-6xl px-4">
-          <div className="text-center mb-12">
-            <h2
-              className={`text-3xl font-bold ${colors.secondary} mb-4`}
-            >
-              Complete Menu Selection
+            <h2 className="font-serif text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+              {t.foods.celebrate.title[0]} <span className="text-[#8F9E75]">{t.foods.celebrate.title[1]}</span>
             </h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              You can choose your favorite menu from our authentic traditional
-              recipes, all included as part of the package.
+
+            <p className="text-gray-600 text-lg leading-relaxed">
+              {t.foods.celebrate.desc}
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {/* Kolom 1: Main Dishes */}
-            <div className="bg-emerald-50 p-6 rounded-lg border border-emerald-100">
-              <h3 className="text-xl font-semibold text-emerald-800 mb-4">
-                Main Dishes
-              </h3>
-              <ul className="space-y-2 text-gray-700">
-                <li>Nasi Liwet</li>
-                <li>Nasi Putih Pandan Wangi</li>
-                <li>Nasi Goreng Seafood</li>
-                <li>Ayam Bakar</li>
-                <li>Sapi Lada Hitam</li>
-              </ul>
-            </div>
-            {/* Kolom 2: Side Dishes */}
-            <div className="bg-orange-50 p-6 rounded-lg border border-orange-100">
-              <h3 className="text-xl font-semibold text-orange-800 mb-4">
-                Side Dishes
-              </h3>
-              <ul className="space-y-2 text-gray-700">
-                <li>Spice Crusted Tempeh</li>
-                <li>Perkedel Kentang</li>
-                <li>Tahu Bakso</li>
-                <li>Orek Tempe Basah</li>
-                <li>Sambal Goreng Kentang</li>
-              </ul>
-            </div>
-            {/* Kolom 3: Traditional Drinks */}
-            <div className="bg-blue-50 p-6 rounded-lg border border-blue-100">
-              <h3 className="text-xl font-semibold text-blue-800 mb-4">
-                Traditional Drinks
-              </h3>
-              <ul className="space-y-2 text-gray-700">
-                <li>Es Cendol</li>
-                <li>Es Dawet</li>
-                <li>Wedang Jahe</li>
-                <li>Bajigur</li>
-              </ul>
-            </div>
-            {/* Kolom 4: Traditional Snacks */}
-            <div className="bg-pink-50 p-6 rounded-lg border border-pink-100">
-              <h3 className="text-xl font-semibold text-pink-800 mb-4">
-                Traditional Snacks
-              </h3>
-              <ul className="space-y-2 text-gray-700">
-                <li>Klepon</li>
-                <li>Putu Mayang</li>
-                <li>Lapis Legit</li>
-                <li>Onde-onde</li>
-              </ul>
-            </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12 mb-24">
+            <OccasionItem 
+              image="/images/foods/foods9.webp"
+              title={t.foods.celebrate.card1.title}
+              subtitle={t.foods.celebrate.card1.subtitle}
+              features={t.foods.celebrate.card1.features}
+            />
+
+            <OccasionItem 
+              image="/images/foods/foods10.webp"
+              title={t.foods.celebrate.card2.title}
+              subtitle={t.foods.celebrate.card2.subtitle}
+              features={t.foods.celebrate.card2.features}
+            />
+
+            <OccasionItem 
+              image="/images/foods/foods11.webp"
+              title={t.foods.celebrate.card3.title}
+              subtitle={t.foods.celebrate.card3.subtitle}
+              features={t.foods.celebrate.card3.features}
+            />
+          </div>
+
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center pt-16">
+            <StatItem 
+              icon="/images/icons/star-white.png"
+              number={t.foods.celebrate.stat1.number}
+              label={t.foods.celebrate.stat1.label}
+            />
+            <StatItem 
+              icon="/images/icons/group-white.png"
+              number={t.foods.celebrate.stat2.number}
+              label={t.foods.celebrate.stat2.label}
+            />
+            <StatItem 
+              icon="/images/icons/heart-white.png"
+              number={t.foods.celebrate.stat3.number}
+              label={t.foods.celebrate.stat3.label}
+            />
+            <StatItem 
+              icon="/images/icons/calendar-white.png"
+              number={t.foods.celebrate.stat4.number}
+              label={t.foods.celebrate.stat4.label}
+            />
           </div>
         </div>
       </section>
 
-      {/* 4. Complete Service Package Section */}
-      <section className={`${colors.bgLight} py-20`}>
-        <div className="container mx-auto max-w-6xl px-4">
-          <div className="text-center mb-12">
-            <h2
-              className={`text-3xl font-bold ${colors.secondary} mb-4`}
-            >
-              Complete Service Package
+      {/*HELP & CONTACT*/}
+      <section className="py-24 px-6 sm:px-12 lg:px-24 max-w-full bg-white">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center max-w-2xl mx-auto mb-16">
+            <h2 className="font-serif text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+              {t.foods.contact.title}
             </h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              An elegant presentation with professional service to support your
-              event. We focus on every detail, while you focus on enjoying your
-              time with your guests.
+            <p className="text-gray-600 text-lg leading-relaxed">
+              {t.foods.contact.subtitle}
             </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <ServicePackageCard
-              icon={<FaTruck />}
-              title="Delivery & Setup"
-              description="On-time delivery and professional setup of the buffet display according to the event theme."
-            />
-            <ServicePackageCard
-              icon={<FaUsers />}
-              title="Waiter & Staff"
-              description="Friendly and responsive staff on standby during the event to assist guests and ensure cleanliness."
-            />
-            <ServicePackageCard
-              icon={<FaUtensils />}
-              title="Complete Cutlery"
-              description="Includes premium plates, glasses, spoons, forks, and napkins for all 50 guests."
-            />
-            <ServicePackageCard
-              icon={<FaBoxOpen />}
-              title="Traditional Container"
-              description="Serving food in authentic traditional containers (e.g., clay pots, woven bamboo) for an elegant aesthetic."
-            />
-            <ServicePackageCard
-              icon={<FaTemperatureHigh />}
-              title="Temperature Control"
-              description="Equipped with food warmers to ensure dishes remain hot and delicious throughout the event."
-            />
-            <ServicePackageCard
-              icon={<FaClipboardCheck />}
-              title="Food Coordinator"
-              description="A dedicated person to coordinate all food and beverage needs, from setup to clean-up."
-            />
-          </div>
-        </div>
-      </section>
 
-      {/* 5. Package Gallery Section */}
-      <section className={`${colors.bgWhite} py-20`}>
-        <div className="container mx-auto max-w-6xl px-4">
-          <div className="text-center mb-12">
-            <h2
-              className={`text-3xl font-bold ${colors.secondary} mb-4`}
-            >
-              Package Gallery
-            </h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              See how we beautifully present our catering packages for various
-              events and celebrations.
-            </p>
-          </div>
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-            {/* Ganti src dengan path gambar Anda */}
-            <div className="relative w-full h-64 rounded-lg overflow-hidden shadow-md">
-              <Image
-                src="/images/gallery-1.jpg"
-                alt="Gallery 1"
-                layout="fill"
-                objectFit="cover"
-              />
-            </div>
-            <div className="relative w-full h-64 rounded-lg overflow-hidden shadow-md">
-              <Image
-                src="/images/gallery-2.jpg"
-                alt="Gallery 2"
-                layout="fill"
-                objectFit="cover"
-              />
-            </div>
-            <div className="relative w-full h-64 rounded-lg overflow-hidden shadow-md">
-              <Image
-                src="/images/gallery-3.jpg"
-                alt="Gallery 3"
-                layout="fill"
-                objectFit="cover"
-              />
-            </div>
-            <div className="relative w-full h-64 rounded-lg overflow-hidden shadow-md">
-              <Image
-                src="/images/gallery-4.jpg"
-                alt="Gallery 4"
-                layout="fill"
-                objectFit="cover"
-              />
-            </div>
-            <div className="relative w-full h-64 rounded-lg overflow-hidden shadow-md">
-              <Image
-                src="/images/gallery-5.jpg"
-                alt="Gallery 5"
-                layout="fill"
-                objectFit="cover"
-              />
-            </div>
-            <div className="relative w-full h-64 rounded-lg overflow-hidden shadow-md">
-              <Image
-                src="/images/gallery-6.jpg"
-                alt="Gallery 6"
-                layout="fill"
-                objectFit="cover"
-              />
-            </div>
-          </div>
-        </div>
-      </section>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+            <div className="bg-[#F8F9F5] rounded-3xl p-10 flex flex-col items-center text-center hover:shadow-lg transition-all duration-300">
+              <div className="w-16 h-16 bg-[#8F9E75] rounded-full flex items-center justify-center mb-6 shadow-md shadow-[#8F9E75]/20">
+                <Image 
+                  src="/images/icons/phone-white.png" 
+                  alt="phone" 
+                  width={24} height={24} 
+                  className="brightness-0 invert" 
+                />
+              </div>
+              <h3 className="font-serif text-2xl font-bold text-gray-900 mb-3">{t.foods.contact.card1.title}</h3>
+              <p className="text-gray-500 mb-4 text-sm">{t.foods.contact.card1.subtitle}</p>
 
-      {/* 6. Need Help Section */}
-      <section className={`${colors.bgLight} py-20`}>
-        <div className="container mx-auto max-w-5xl px-4">
-          <div className="text-center mb-12">
-            <h2
-              className={`text-3xl font-bold ${colors.secondary} mb-4`}
-            >
-              Need Help or Have Questions?
-            </h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Our team is ready to help you plan the perfect catering for
-              your special event.
-            </p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <ContactCard
-              icon={<FaPhone />}
-              title="Talk to Sales"
-              description="Speak directly with our team for immediate assistance."
-              buttonText="Call Us Now"
-              href="tel:+628123456789"
-            />
-            <ContactCard
-              icon={<FaWhatsapp />}
-              title="Message Us"
-              description="Have a quick question? Chat with us directly on WhatsApp."
-              buttonText="Start Chat"
-              href="https://wa.me/628123456789"
-            />
-            <ContactCard
-              icon={<FaEnvelope />}
-              title="Email Us"
-              description="Send us an email with your event details and we'll get back to you."
-              buttonText="Send Email"
-              href="mailto:info@colonial.com"
-            />
-          </div>
-        </div>
-      </section>
+              <p className="text-gray-900 font-bold text-lg mb-2">{t.foods.contact.card1.phone}</p>
+              <p className="text-gray-400 text-xs font-medium">{t.foods.contact.card1.desc}</p>
+            </div>
 
-      {/* 7. Special Requests Section */}
-      <section className={`${colors.bgWhite} py-20`}>
-        <div className="container mx-auto max-w-4xl px-4 text-center">
-          <h2
-            className={`text-3xl font-bold ${colors.secondary} mb-4`}
-          >
-            Special Requests or Custom Packages
-          </h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto mb-8">
-            Planning a different event or need a custom menu? We are happy
-            to accommodate your needs. Lets discuss and create a package
-            thats perfect for you.
-          </p>
-          <Link
-            href="/contact"
-            className={`inline-block px-10 py-4 rounded-full ${colors.primaryBg} text-white text-lg font-semibold hover:bg-emerald-800 transition-colors`}
-          >
-            Request a Quote
-          </Link>
-        </div>
-      </section>
+            <div className="bg-[#F8F9F5] rounded-3xl p-10 flex flex-col items-center text-center hover:shadow-lg transition-all duration-300">
+              <div className="w-16 h-16 bg-[#8F9E75] rounded-full flex items-center justify-center mb-6 shadow-md shadow-[#8F9E75]/20">
+                 <Image 
+                  src="/images/icons/whatsapp-white.png" 
+                  alt="wa" 
+                  width={28} height={28} 
+                  className="brightness-0 invert" 
+                />
+              </div>
+              <h3 className="font-serif text-2xl font-bold text-gray-900 mb-3">{t.foods.contact.card2.title}</h3>
+              <p className="text-gray-500 mb-4 text-sm">{t.foods.contact.card2.subtitle}</p>
 
-      {/* 8. Footer */}
-      <footer className="bg-gray-900 text-gray-300 py-16">
-        <div className="container mx-auto max-w-6xl px-4 grid grid-cols-1 md:grid-cols-3 gap-12">
-          {/* Kolom 1: Logo & Social */}
-          <div>
-            <h3 className="text-2xl font-bold text-white mb-4">Colonial</h3>
-            <p className="text-sm mb-6">
-              Authentic Javanese catering for your memorable events.
-            </p>
-            <div className="flex space-x-4">
-              <Link href="#" className="hover:text-white">
-                <FaFacebook size={20} />
-              </Link>
-              <Link href="#" className="hover:text-white">
-                <FaInstagram size={20} />
-              </Link>
-              <Link href="#" className="hover:text-white">
-                <FaTwitter size={20} />
+              <p className="text-gray-900 font-bold text-lg mb-6">{t.foods.contact.card2.phone}</p>
+
+              <Link 
+                href="https://wa.me/6282225142729"
+                className="bg-[#8F9E75] text-white text-sm font-bold py-3 px-8 rounded-lg hover:bg-[#7A8B60] transition-colors shadow-sm"
+              >
+                {t.foods.contact.card2.desc}
               </Link>
             </div>
-          </div>
 
-          {/* Kolom 2: Quick Links */}
-          <div>
-            <h4 className="text-lg font-semibold text-white mb-4">
-              Quick Links
-            </h4>
-            <ul className="space-y-2">
-              <li>
-                <Link href="/" className="hover:text-white">
-                  Home
-                </Link>
-              </li>
-              <li>
-                <Link href="/about" className="hover:text-white">
-                  About Us
-                </Link>
-              </li>
-              <li>
-                <Link href="/catering" className="hover:text-white">
-                  Packages
-                </Link>
-              </li>
-              <li>
-                <Link href="/gallery" className="hover:text-white">
-                  Gallery
-                </Link>
-              </li>
-              <li>
-                <Link href="/contact" className="hover:text-white">
-                  Contact Us
-                </Link>
-              </li>
-            </ul>
-          </div>
+            <div className="bg-[#F8F9F5] rounded-3xl p-10 flex flex-col items-center text-center hover:shadow-lg transition-all duration-300">
+              <div className="w-16 h-16 bg-[#8F9E75] rounded-full flex items-center justify-center mb-6 shadow-md shadow-[#8F9E75]/20">
+                 <Image 
+                  src="/images/icons/mail-white.png" 
+                  alt="email" 
+                  width={24} height={24} 
+                  className="brightness-0 invert" 
+                />
+              </div>
+              <h3 className="font-serif text-2xl font-bold text-gray-900 mb-3">{t.foods.contact.card3.title}</h3>
+              <p className="text-gray-500 mb-4 text-sm">{t.foods.contact.card3.subtitle}</p>
 
-          {/* Kolom 3: Contact Info */}
-          <div>
-            <h4 className="text-lg font-semibold text-white mb-4">
-              Contact Info
-            </h4>
-            <ul className="space-y-3">
-              <li className="flex items-center">
-                <FaPhone className="mr-3" /> +62 812 3456 7890
-              </li>
-              <li className="flex items-center">
-                <FaEnvelope className="mr-3" /> info@colonial.com
-              </li>
-              <li className="flex items-start">
-                <FaMapMarkerAlt className="mr-3 mt-1" />
-                Jl. Merdeka No. 10, Jakarta, Indonesia
-              </li>
-            </ul>
+              <a href="mailto:catering@tembihistoricalhome.com" className="text-[#8F9E75] font-bold text-lg mb-2 hover:underline break-all">
+                {t.foods.contact.card3.phone}
+              </a>
+              <p className="text-gray-400 text-xs font-medium">{t.foods.contact.card3.desc}</p>
+            </div>
+          </div>
+          <div className="bg-[#F8F9F5] rounded-3xl p-12 text-center w-full">
+            <h3 className="font-serif text-2xl md:text-3xl font-bold text-gray-900 mb-4">
+              {t.foods.contact.footer.title}
+            </h3>
+            <p className="text-gray-600 leading-relaxed max-w-3xl mx-auto mb-8">
+              {t.foods.contact.footer.desc}
+            </p>
+            <Link 
+                href="https://wa.me/6282225142729"
+                className="bg-[#8F9E75] text-white font-bold py-4 px-10 rounded-lg hover:bg-[#7A8B60] transition-colors shadow-md hover:shadow-lg transform hover:-translate-y-1 duration-300"
+            >
+              {t.foods.contact.footer.button}
+            </Link>
           </div>
         </div>
-        <div className="text-center text-gray-500 text-sm mt-12 border-t border-gray-800 pt-8">
-          © {new Date().getFullYear()} Colonial Catering. All Rights
-          Reserved.
+      </section>
+    </main>
+  );
+}
+
+interface InfoItemProps {
+  icon: string;
+  title: string;
+  desc: string;
+}
+
+function FeatureItem({ title, desc }: { title: string; desc: string }) {
+  return (
+    <div className="flex gap-4 items-start">
+      <div className="flex-shrink-0 mt-1">
+        <div className="w-6 h-6 flex items-center justify-center overflow-hidden relative">
+           <Image 
+             src="/images/icons/check-green.png" 
+             alt="Check"
+             fill
+             className="object-contain" 
+           />
         </div>
-      </footer>
+      </div>
+      <div>
+        <h4 className="font-semibold text-gray-900 text-base">{title}</h4>
+        <p className="text-gray-500 text-sm mt-1">{desc}</p>
+      </div>
     </div>
   );
-};
+}
 
-export default CateringPage;
+function InfoItem({ icon, title, desc }: InfoItemProps) {
+  return (
+    <div className="flex flex-col items-center px-4 pt-4 md:pt-0">
+      <div className="mb-4">
+         <Image src={icon} alt={title} width={32} height={32} className="w-8 h-8 opacity-80" />
+      </div>
+      <h4 className="font-serif text-lg font-bold text-gray-900 mb-2">{title}</h4>
+      <p className="text-sm text-gray-500 max-w-xs mx-auto">{desc}</p>
+    </div>
+  );
+}
+
+// --- COMPONENT HELPER ---
+
+interface HeritageItemProps {
+  icon: string;
+  title: string;
+  desc: string;
+}
+
+function HeritageItem({ icon, title, desc }: HeritageItemProps) {
+  return (
+    <div className="flex gap-5 items-start">
+      <div className="flex-shrink-0 mt-1">
+        <Image 
+          src={icon} 
+          alt={title} 
+          width={20} 
+          height={20} 
+          className="w-5 h-5 object-contain opacity-90" 
+        />
+      </div>
+      <div>
+        <h4 className="font-serif text-xl font-bold text-gray-900 mb-2">{title}</h4>
+        <p className="text-gray-600 text-sm leading-relaxed">{desc}</p>
+      </div>
+    </div>
+  );
+}
+
+interface OccasionItemProps {
+  image: string;
+  title: string;
+  subtitle: string;
+  features: string[];
+}
+
+function OccasionItem({ image, title, subtitle, features }: OccasionItemProps) {
+  return (
+    <div className="group">
+      <div className="relative h-64 w-full rounded-2xl overflow-hidden mb-6 shadow-md">
+        <Image 
+          src={image} 
+          alt={title} 
+          fill 
+          className="object-cover group-hover:scale-105 transition-transform duration-700" 
+        />
+
+        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
+        
+        <div className="absolute bottom-0 left-0 p-6 w-full">
+          <h3 className="font-serif text-2xl font-bold text-white mb-1">{title}</h3>
+          <p className="text-gray-300 text-sm font-medium">{subtitle}</p>
+        </div>
+      </div>
+
+      <div className="space-y-3 px-2">
+        {features.map((feat, idx) => (
+          <div key={idx} className="flex items-start gap-3">
+            <div className="w-4 h-4 flex items-center justify-center overflow-hidden relative">
+              <Image src="/images/icons/check-black.png" alt="check" fill className="" />
+            </div>
+            <span className="text-gray-600 text-sm">{feat}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+// --- INTERFACE & HELPER FOR STATS ---
+interface StatItemProps {
+  icon: string;
+  number: string;
+  label: string;
+}
+
+function StatItem({ icon, number, label }: StatItemProps) {
+  return (
+    <div className="flex flex-col items-center">
+      {/* Green Circle Icon */}
+      <div className="w-16 h-16 rounded-full bg-[#8F9E75] flex items-center justify-center mb-4 shadow-lg shadow-[#8F9E75]/30">
+        <Image 
+          src={icon} 
+          alt={label} 
+          width={28} height={28} 
+          className="object-contain"
+        />
+      </div>
+      {/* Number */}
+      <div className="font-serif text-3xl font-bold text-gray-900 mb-1">{number}</div>
+      {/* Label */}
+      <div className="text-gray-500 text-sm">{label}</div>
+    </div>
+  );
+}
