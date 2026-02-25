@@ -1,8 +1,8 @@
 // app/context/LanguageContext.tsx
 'use client';
 
-import { sub } from 'date-fns';
-import { title } from 'node:process';
+// import { sub } from 'date-fns';
+// import { title } from 'node:process';
 import { createContext, useContext, useState, ReactNode } from 'react';
 
 // 1. Definisikan Tipe Data
@@ -49,22 +49,22 @@ const translations = {
         {
           name: 'Ngadirojo',
           desc: 'Ngadirojo House is a traditional Javanese limasan built in 1946 and relocated from Bawak Village, Cawas, Klaten. Combining Javanese architecture with natural tranquility.',
-          image: '/images/rooms/ngadirojo/ngadirojo.png',
+          image: '/images/rooms/ngadirojo/ngadirojo.webp',
         },
         {
           name: 'Polaman',
           desc: 'Polaman House is a traditional Javanese limasan built in 1948. It combines the warmth of Javanese architecture with natural landscapes.',
-          image: '/images/rooms/polaman/polaman.png',
+          image: '/images/rooms/polaman/polaman.webp',
         },
         {
           name: 'Adikarto',
           desc: 'Adikarto House is a traditional Javanese limasan house that brings coolness and comfort in a natural atmosphere. Built in 1960.',
-          image: '/images/rooms/adikarto/adikarto.png',
+          image: '/images/rooms/adikarto/adikarto.webp',
         },
       ],
       pavillion: {
           title: ['All Pavilions', 'Include'],
-          icon: ["/images/icons/wifi-green.svg", "/images/icons/cup-green.svg", "/images/icons/music-green.svg"],
+          icon: ["/images/icons/wifi-green.png", "/images/icons/cup-green.png", "/images/icons/music-green.png"],
           desc: ['Wi-Fi', 'Special Welcome Drink', 'Traditional Course' ],
           button: 'View All House'
       },
@@ -289,32 +289,32 @@ const translations = {
           title: 'Buffet Package Highlight',
           desc: 'A complete spread of traditional Javanese dishes',
           item:[
-            { image: '/images/foods/nasi-liwet.png', title: 'Nasi Liwet', desc: 'Aromatic coconut rice cooked in banana leaves with traditional spices' },
-            { image: '/images/foods/ayam-kremes.png', title: 'Ayam Goreng Kremes', desc: 'Crispy fried chicken with traditional peanut coating' },
-            { image: '/images/foods/sayur-asem.png', title: 'Sayur Asem', desc: 'Traditional tamarind soup with mixed vegetables' },
-            { image: '/images/foods/sambal.png', title: 'Sambal Bajak', desc: 'Spicy traditional chili paste with peanuts and spices' },
-            { image: '/images/foods/es-dawet.png', title: 'Es Dawet', desc: 'Refreshing coconut milk drink with rice flour jelly' },
+            { image: '/images/foods/nasi-liwet.webp', title: 'Nasi Liwet', desc: 'Aromatic coconut rice cooked in banana leaves with traditional spices' },
+            { image: '/images/foods/ayam-kremes.webp', title: 'Ayam Goreng Kremes', desc: 'Crispy fried chicken with traditional peanut coating' },
+            { image: '/images/foods/sayur-asem.webp', title: 'Sayur Asem', desc: 'Traditional tamarind soup with mixed vegetables' },
+            { image: '/images/foods/sambal.webp', title: 'Sambal Bajak', desc: 'Spicy traditional chili paste with peanuts and spices' },
+            { image: '/images/foods/es-dawet.webp', title: 'Es Dawet', desc: 'Refreshing coconut milk drink with rice flour jelly' },
           ],
         },
         snack: {
           title: 'Snack Box Delights',
           desc: 'Traditional sweets and savory treats',
           item:[
-            { image: '/images/foods/klepon.png', title: 'Klepon', desc: 'Green rice balls filled with palm sugar and rolled in coconut' },
-            { image: '/images/foods/kue-lumpur.png', title: 'Kue Lumpur', desc: 'Soft traditional cake with coconut milk and raisins' },
-            { image: '/images/foods/pastel.png', title: 'Pastel', desc: 'Crispy fried pastry with seasoned vegetable and meat filling' },
-            { image: '/images/foods/teh.png', title: 'Teh Hangat', desc: 'Warm traditional herbal tea with aromatic spices' },
+            { image: '/images/foods/klepon.webp', title: 'Klepon', desc: 'Green rice balls filled with palm sugar and rolled in coconut' },
+            { image: '/images/foods/kue-lumpur.webp', title: 'Kue Lumpur', desc: 'Soft traditional cake with coconut milk and raisins' },
+            { image: '/images/foods/pastel.webp', title: 'Pastel', desc: 'Crispy fried pastry with seasoned vegetable and meat filling' },
+            { image: '/images/foods/teh.webp', title: 'Teh Hangat', desc: 'Warm traditional herbal tea with aromatic spices' },
           ],
         },
         rice: {
           title: 'Rice Box Complete Meal',
           desc: 'Balanced individual portions of authentic dishes',
           item: [
-            { image: '/images/foods/nasi-putih.png', title: 'Nasi Putih', desc: 'Perfectly steamed jasmine rice as the foundation' },
-            { image: '/images/foods/ayam-kalasan.png', title: 'Ayam Kalasan', desc: 'Traditional grilled chicken with sweet soy sauce marinade' },
-            { image: '/images/foods/tempe.png', title: 'Tempe Bacem', desc: 'Braised tempeh with palm sugar and traditional spices' },
-            { image: '/images/foods/urap.png', title: 'Urap', desc: 'Mixed vegetable salad with seasoned grated coconut' },
-            { image: '/images/foods/sambal-fresh.png', title: 'Sambal', desc: 'Fresh homemade chili paste with authentic spice blend' },
+            { image: '/images/foods/nasi-putih.webp', title: 'Nasi Putih', desc: 'Perfectly steamed jasmine rice as the foundation' },
+            { image: '/images/foods/ayam-kalasan.webp', title: 'Ayam Kalasan', desc: 'Traditional grilled chicken with sweet soy sauce marinade' },
+            { image: '/images/foods/tempe.webp', title: 'Tempe Bacem', desc: 'Braised tempeh with palm sugar and traditional spices' },
+            { image: '/images/foods/urap.webp', title: 'Urap', desc: 'Mixed vegetable salad with seasoned grated coconut' },
+            { image: '/images/foods/sambal-fresh.webp', title: 'Sambal', desc: 'Fresh homemade chili paste with authentic spice blend' },
           ]
         }
       },
@@ -448,7 +448,7 @@ const translations = {
         title: 'Authentic Javanese Flavors',
         desc: 'Each buffet package is carefully crafted with a perfect balance of Javanese flavors — from savory mains that warm the soul to refreshing drinks and sweet desserts that complete the experience.',
         menuCard1: {
-          icon: "/images/icons/circle-white.svg",
+          icon: "/images/icons/circle-white.png",
           title: "Soup",
           subtitle: "Pilih Kuah & Sayur",
           items: [
@@ -459,7 +459,7 @@ const translations = {
           ]
         },
         menuCard2: {
-          icon: "/images/icons/chicken-white.svg",
+          icon: "/images/icons/chicken-white.png",
           title: "Main Course",
           subtitle: "Tumis & Lauk",
           items: [
@@ -470,7 +470,7 @@ const translations = {
           ]
         },
         menuCard3: {
-          icon: "/images/icons/ice-cream-white.svg",
+          icon: "/images/icons/ice-cream-white.png",
           title: "Desserts",
           subtitle: "Traditional Sweets",
           items: [
@@ -479,7 +479,7 @@ const translations = {
           ]
         },
         menuCard4: {
-          icon: "/images/icons/drink-white.svg",
+          icon: "/images/icons/drink-white.png",
           title: "Beverages",
           subtitle: "Refreshing Drinks",
           items: [
@@ -489,7 +489,7 @@ const translations = {
           ]
         },
         menuCard5: {
-          icon: "/images/icons/circle-white.svg",
+          icon: "/images/icons/circle-white.png",
           title: "Chicken",
           subtitle: "Pilihan Ayam",
           items: [
@@ -499,7 +499,7 @@ const translations = {
           ]
         },
         menuCard6: {
-          icon: "/images/icons/chicken-white.svg",
+          icon: "/images/icons/chicken-white.png",
           title: "Egg",
           subtitle: "Pilihan Telur",
           items: [
@@ -510,7 +510,7 @@ const translations = {
           ]
         },
         menuCard7: {
-          icon: "/images/icons/circle-white.svg",
+          icon: "/images/icons/circle-white.png",
           title: "Fish",
           subtitle: "Pilihan Ikan",
           items: [
@@ -521,7 +521,7 @@ const translations = {
           ]
         },
         menuCard8: {
-          icon: "/images/icons/chicken-white.svg",
+          icon: "/images/icons/chicken-white.png",
           title: "Side Dish",
           subtitle: "Pilihan Menu Pendamping",
           items: [
@@ -537,7 +537,7 @@ const translations = {
         title: 'Authentic Javanese Snack',
         desc: 'Each box is thoughtfully curated to combine sweet, savory, and crunchy textures offering a true taste of Indonesian tradition.',
         menuCard1: {
-          icon: "/images/icons/circle-white.svg", // Icon tanda seru (!)
+          icon: "/images/icons/circle-white.png", // Icon tanda seru (!)
           title: "Sweet Snacks",
           subtitle: "", // Dikosongkan karena tidak ada subtitle di gambar
           items: [
@@ -551,7 +551,7 @@ const translations = {
           ]
         },
         menuCard2: {
-          icon: "/images/icons/chicken-white.svg", // Icon ayam
+          icon: "/images/icons/chicken-white.png", // Icon ayam
           title: "Savory Snacks",
           subtitle: "",
           items: [
@@ -565,7 +565,7 @@ const translations = {
           ]
         },
         menuCard3: {
-        icon: "/images/icons/ice-cream-white.svg", // Icon es krim
+        icon: "/images/icons/ice-cream-white.png", // Icon es krim
         title: "Crunchy Snacks",
         subtitle: "",
         items: [
@@ -581,7 +581,7 @@ const translations = {
         title: 'Authentic Javanese Flavors',
         desc: 'Each Nasi Box offers a complete meal designed to nourish and satisfy.',
         menuCard1: {
-          icon: "/images/icons/circle-white.svg", // Icon tanda seru lingkaran
+          icon: "/images/icons/circle-white.png", // Icon tanda seru lingkaran
           title: "Main Dishes",
           subtitle: "", // Kosong karena tidak ada subtitle di gambar
           items: [
@@ -593,7 +593,7 @@ const translations = {
           ]
         },
         menuCard2: {
-          icon: "/images/icons/chicken-white.svg", // Icon paha ayam
+          icon: "/images/icons/chicken-white.png", // Icon paha ayam
           title: "Side Dishes",
           subtitle: "",
           items: [
@@ -605,7 +605,7 @@ const translations = {
           ]
         },
         menuCard3: {
-          icon: "/images/icons/ice-cream-white.svg", // Icon es krim
+          icon: "/images/icons/ice-cream-white.png", // Icon es krim
           title: "Add-Ons",
           subtitle: "",
           items: [
@@ -616,7 +616,7 @@ const translations = {
           ]
         },
         menuCard4: {
-          icon: "/images/icons/drink-white.svg", // Icon gelas
+          icon: "/images/icons/drink-white.png", // Icon gelas
           title: "Extras",
           subtitle: "",
           items: [
@@ -638,7 +638,7 @@ const translations = {
           minPax: "35 Pax",
           description: "Perfect for corporate events",
           theme: "standard",
-          iconSrc: "/images/icons/food-white.svg", 
+          iconSrc: "/images/icons/food-white.png", 
           items: [
             "1 Traditional Soup (Sup Ayam Jagung or Lodeh)",
             "2 Main Dishes (Ayam Goreng Kalasan + Telur Balado)",
@@ -650,11 +650,11 @@ const translations = {
         },
         card2: {
           name: "Buffet Premium",
-          minPax: "50 Pax", // Sesuai gambar English version
+          minPax: "50 Pax",
           description: "Ideal for weddings & celebrations",
           theme: "premium",
           isPopular: true,
-          iconSrc: "/images/icons/crown-white.svg", 
+          iconSrc: "/images/icons/crown-white.png", 
           items: [
             "2 Traditional Soups (Choice of 3 options)",
             "3 Premium Main Dishes including Ayam Lada Hitam",
@@ -667,10 +667,10 @@ const translations = {
         },
         card3: {
           name: "Buffet Exclusive",
-          minPax: "100 Pax", // Sesuai gambar English version
+          minPax: "100 Pax",
           description: "Ultimate traditional experience",
           theme: "exclusive",
-          iconSrc: "/images/icons/diamond-white.svg", 
+          iconSrc: "/images/icons/diamond-white.png", 
           items: [
             "Full traditional buffet setup with banana leaves",
             "3 Traditional Soups in clay serving pots",
@@ -695,7 +695,7 @@ const translations = {
           minPax: "35 Pax", //
           description: "Ideal for short meetings or small gatherings.", //
           theme: "standard",
-          iconSrc: "/images/icons/food-white.svg", 
+          iconSrc: "/images/icons/food-white.png", 
           items: [
             "2 snacks", //
             "1 crunchy item (kletikan)", //
@@ -708,7 +708,7 @@ const translations = {
           description: "Balanced variety for seminars or workshops.", //
           theme: "premium",
           isPopular: true,
-          iconSrc: "/images/icons/crown-white.svg", 
+          iconSrc: "/images/icons/crown-white.png", 
           items: [
             "3 snacks", //
             "1 crunchy item (kletikan)", //
@@ -720,7 +720,7 @@ const translations = {
           minPax: "35 Pax", //
           description: "Premium assortment for formal or special occasions.", //
           theme: "exclusive",
-          iconSrc: "/images/icons/diamond-white.svg", 
+          iconSrc: "/images/icons/diamond-white.png", 
           items: [
             "3 snacks", //
             "1 crunchy item (kletikan)", //
@@ -740,7 +740,7 @@ const translations = {
           minPax: "35 Pax", //
           description: "Perfect for small meetings or casual events.", //
           theme: "standard",
-          iconSrc: "/images/icons/food-white.svg", 
+          iconSrc: "/images/icons/food-white.png", 
           items: [
             "Steamed rice", //
             "One stir-fried dish", //
@@ -755,7 +755,7 @@ const translations = {
           description: "Ideal for office gatherings or group meals.", //
           theme: "premium",
           isPopular: true,
-          iconSrc: "/images/icons/crown-white.svg", 
+          iconSrc: "/images/icons/crown-white.png", 
           items: [
             "Steamed rice", //
             "One stir-fried dish", //
@@ -770,7 +770,7 @@ const translations = {
           minPax: "35 Pax", //
           description: "A complete and premium choice for formal or large-scale events.", //
           theme: "exclusive",
-          iconSrc: "/images/icons/diamond-white.svg", 
+          iconSrc: "/images/icons/diamond-white.png", 
           items: [
             "Steamed rice", //
             "One stir-fried dish", //
@@ -790,32 +790,32 @@ const translations = {
           {
             title: "Free Delivery & Setup",
             desc: "Complete delivery, setup, and breakdown service included with every package. Our team arrives 2 hours before your event.",
-            iconSrc: "/images/icons/truck-white.svg" // Ganti dengan path icon lokal Anda
+            iconSrc: "/images/icons/truck-white.png" // Ganti dengan path icon lokal Anda
           },
           {
             title: "Professional Staff",
             desc: "Experienced serving staff in traditional attire to maintain the authentic atmosphere throughout your event.",
-            iconSrc: "/images/icons/group-white.svg"
+            iconSrc: "/images/icons/group-white.png"
           },
           {
             title: "Fresh Ingredients",
             desc: "All dishes prepared fresh on the day of your event using locally sourced, organic ingredients from our trusted suppliers.",
-            iconSrc: "/images/icons/leaf-white.svg"
+            iconSrc: "/images/icons/leaf-white.png"
           },
           {
             title: "Flexible Timing",
             desc: "Available for breakfast, lunch, or dinner events. Extended service hours available for special occasions.",
-            iconSrc: "/images/icons/clock-white.svg"
+            iconSrc: "/images/icons/clock-white.png"
           },
           {
             title: "Quality Guaranteed",
             desc: "100% satisfaction guarantee. If you're not completely satisfied, we'll work to make it right or provide a full refund.",
-            iconSrc: "/images/icons/curly-white.svg"
+            iconSrc: "/images/icons/curly-white.png"
           },
           {
             title: "Complete Equipment",
             desc: "All serving equipment, plates, utensils, and traditional serving ware included. Eco-friendly options available.",
-            iconSrc: "/images/icons/food-white.svg"
+            iconSrc: "/images/icons/food-white.png"
           }
         ]
       },
@@ -871,21 +871,21 @@ const translations = {
         item:[
           {
             id: 1,
-            iconUrl: '/images/icons/diamond-green.svg', 
+            iconUrl: '/images/icons/diamond-green.png', 
             alt: 'Artifacts Icon',
             value: '250+',
             label: 'Collection',
           },
           {
             id: 2,
-            iconUrl: '/images/icons/calendar-green.svg', 
+            iconUrl: '/images/icons/calendar-green.png', 
             alt: 'Origins Icon',
             value: '18th',
             label: 'Century Origins',
           },
           {
             id: 3,
-            iconUrl: '/images/icons/group-green.svg', 
+            iconUrl: '/images/icons/group-green.png', 
             alt: 'Visitors Icon',
             value: '5K',
             label: 'Annual Visitors',
@@ -898,63 +898,63 @@ const translations = {
           items: [
             {
               id: 1,
-              imageUrl: "/images/collection/cundrik/GPT0541.svg", // Pastikan gambar ada
+              imageUrl: "/images/collection/cundrik/GPT0541.png", // Pastikan gambar ada
               category: "Cundrik",
               title: "GPT0541",
               description: "A small Javanese cundrik carried as a personal talisman. It represents alertness and protection, shaped with the fine coastal character of Cirebon craftsmanship."
             },
             {
               id: 2,
-              imageUrl: "/images/collection/cundrik/GPT0540.svg",
+              imageUrl: "/images/collection/cundrik/GPT0540.png",
               category: "Cundrik",
               title: "GPT0540",
               description: "A longer cundrik forged with sanak patterns. Its flowing lines reflect Majapahit era techniques and symbolize resilience and personal strength."
             },
             {
               id: 3,
-              imageUrl: "/images/collection/cundrik/GPT0539.svg",
+              imageUrl: "/images/collection/cundrik/GPT0539.png",
               category: "Cundrik",
               title: "GPT0539",
               description: "A slender cundrik used in household traditions and ceremonies. Its light form and Segaluh forging style highlight practicality and cultural identity."
             },
             {
               id: 4,
-              imageUrl: "/images/collection/cundrik/GPT0538.svg", // Pastikan gambar ada
+              imageUrl: "/images/collection/cundrik/GPT0538.png", // Pastikan gambar ada
               category: "Cundrik",
               title: "GPT0538",
               description: ""
             },
             {
               id: 5,
-              imageUrl: "/images/collection/cundrik/GPT0537.svg",
+              imageUrl: "/images/collection/cundrik/GPT0537.png",
               category: "Cundrik",
               title: "GPT0537",
               description: ""
             },
             {
               id: 6,
-              imageUrl: "/images/collection/cundrik/GPT0536.svg",
+              imageUrl: "/images/collection/cundrik/GPT0536.png",
               category: "Cundrik",
               title: "GPT0536",
               description: ""
             },
             {
               id: 7,
-              imageUrl: "/images/collection/cundrik/GPT0535.svg", // Pastikan gambar ada
+              imageUrl: "/images/collection/cundrik/GPT0535.png", // Pastikan gambar ada
               category: "Cundrik",
               title: "GPT0535",
               description: ""
             },
             {
               id: 8,
-              imageUrl: "/images/collection/cundrik/GPT0534.svg",
+              imageUrl: "/images/collection/cundrik/GPT0534.png",
               category: "Cundrik",
               title: "GPT0534",
               description: ""
             },
             {
               id: 9,
-              imageUrl: "/images/collection/cundrik/GPT0533.svg",
+              imageUrl: "/images/collection/cundrik/GPT0533.png",
               category: "Cundrik",
               title: "GPT0533",
               description: ""
@@ -966,63 +966,63 @@ const translations = {
           items: [
             {
               id: 10,
-              imageUrl: "/images/collection/sword/GPT0548.svg",
+              imageUrl: "/images/collection/sword/GPT0548.png",
               category: "Sword",
               title: "GPT0548",
               description: "A traditional single-edged blade with a hooked profile and a carved wooden handle. The form resembles regional utility and ceremonial weapons found in parts of Java."
             },
             {
               id: 11,
-              imageUrl: "/images/collection/sword/GPT0576.svg",
+              imageUrl: "/images/collection/sword/GPT0576.png",
               category: "Sword",
               title: "GPT0576",
               description: "A slender Javanese sword with a longer blade and visible forging patterns. It reflects Majapahit metalwork and represents firmness."
             },
             {
               id: 12,
-              imageUrl: "/images/collection/sword/GPT0575.svg",
+              imageUrl: "/images/collection/sword/GPT0575.png",
               category: "Sword",
               title: "GPT0575",
               description: "A light Javanese sword with a narrow blade and a simple wooden hilt. It follows the segaluh forging style and symbolizes cultural identity."
             },
             {
               id: 13,
-              imageUrl: "/images/collection/sword/GPT0571.svg", // Pastikan gambar ada
+              imageUrl: "/images/collection/sword/GPT0571.png", // Pastikan gambar ada
               category: "Sword",
               title: "GPT0571",
               description: ""
             },
             {
               id: 14,
-              imageUrl: "/images/collection/sword/GPT0574.svg",
+              imageUrl: "/images/collection/sword/GPT0574.png",
               category: "Sword",
               title: "GPT0574",
               description: ""
             },
             {
               id: 15,
-              imageUrl: "/images/collection/sword/GPT0568.svg",
+              imageUrl: "/images/collection/sword/GPT0568.png",
               category: "Sword",
               title: "GPT0568",
               description: ""
             },
             {
               id: 16,
-              imageUrl: "/images/collection/sword/GPT0571.svg", // Pastikan gambar ada
+              imageUrl: "/images/collection/sword/GPT0571.png", // Pastikan gambar ada
               category: "Sword",
               title: "GPT0571",
               description: ""
             },
             {
               id: 17,
-              imageUrl: "/images/collection/sword/GPT0570.svg",
+              imageUrl: "/images/collection/sword/GPT0570.png",
               category: "Sword",
               title: "GPT0570",
               description: ""
             },
             {
               id: 18,
-              imageUrl: "/images/collection/sword/GPT0568.svg",
+              imageUrl: "/images/collection/sword/GPT0568.png",
               category: "Sword",
               title: "GPT0568",
               description: ""
@@ -1034,42 +1034,42 @@ const translations = {
           items: [
             {
               id: 19,
-              imageUrl: "/images/collection/sken/GPT0518.svg",
+              imageUrl: "/images/collection/sken/GPT0518.png",
               category: "Sken",
               title: "GPT0518",
               description: "A small traditional Javanese dagger with a wooden handle and sheath. The Cekel Bahuluk symbolizes protection and practicality, often carried as a personal tool during the Majapahit era."
             },
             {
               id: 20,
-              imageUrl: "/images/collection/sken/GPT0521.svg",
+              imageUrl: "/images/collection/sken/GPT0521.png",
               category: "Sken",
               title: "GPT0521",
               description: "A long, leaf-shaped traditional blade with a wooden hilt and sheath. The Kujang Malang represents courage and authority, used in both ceremonial and martial contexts during the Mataram Amangkurat period."
             },
             {
               id: 21,
-              imageUrl: "/images/collection/sken/GPT0516.svg",
+              imageUrl: "/images/collection/sken/GPT0516.png",
               category: "Sken",
               title: "GPT0516",
               description: "A ceremonial dagger with a broad, leaf shaped blade and finely carved wooden handle and sheath. The Godong Suruh, meaning “betel leaf,” symbolizes sincerity, purity, and harmony in Javanese culture."
             },
             {
               id: 22,
-              imageUrl: "/images/collection/sken/GPT0517.svg", 
+              imageUrl: "/images/collection/sken/GPT0517.png", 
               category: "Sken",
               title: "GPT0517",
               description: "" 
             },
             {
               id: 23,
-              imageUrl: "/images/collection/sken/GPT0519.svg",
+              imageUrl: "/images/collection/sken/GPT0519.png",
               category: "Sken",
               title: "GPT0519",
               description: "" 
             },
             {
               id: 24,
-              imageUrl: "/images/collection/sken/GPT0520.svg",
+              imageUrl: "/images/collection/sken/GPT0520.png",
               category: "Sken",
               title: "GPT0520",
               description: "" 
@@ -1081,63 +1081,63 @@ const translations = {
           items: [
             {
               id: 25,
-              imageUrl: "/images/collection/spear/GPT407.svg",
+              imageUrl: "/images/collection/spear/GPT407.png",
               category: "Spear",
               title: "GPT407",
               description: "A traditional Javanese dagger with a long, narrow blade and a simple wooden hilt and sheath. The minimalist design reflects the utilitarian craftsmanship of Javanese blacksmiths, emphasizing balance and functionality rather than ornamentation."
             },
             {
               id: 26,
-              imageUrl: "/images/collection/spear/GPT408.svg",
+              imageUrl: "/images/collection/spear/GPT408.png",
               category: "Spear",
               title: "GPT408",
               description: "A traditional dagger featuring a distinctive patterned (pamor) blade and a dark wooden handle. The pamor markings are created through layered forging, symbolizing spiritual harmony and inner strength in Javanese culture."
             },
             {
               id: 27,
-              imageUrl: "/images/collection/spear/GPT409.svg",
+              imageUrl: "/images/collection/spear/GPT409.png",
               category: "Spear",
               title: "GPT409",
               description: "A short Javanese blade with a plain wooden sheath and handle, measuring 25.5 cm in blade length and 49 cm overall."
             },
             {
               id: 28,
-              imageUrl: "/images/collection/spear/GPT410.svg",
+              imageUrl: "/images/collection/spear/GPT410.png",
               category: "Spear",
               title: "GPT410",
               description: "" 
             },
             {
               id: 29,
-              imageUrl: "/images/collection/spear/GPT412.svg",
+              imageUrl: "/images/collection/spear/GPT412.png",
               category: "Spear",
               title: "GPT412",
               description: "" 
             },
             {
               id: 30,
-              imageUrl: "/images/collection/spear/GPT416.svg",
+              imageUrl: "/images/collection/spear/GPT416.png",
               category: "Spear",
               title: "GPT416",
               description: "" 
             },
             {
               id: 31,
-              imageUrl: "/images/collection/spear/GPT507.svg",
+              imageUrl: "/images/collection/spear/GPT507.png",
               category: "Spear",
               title: "GPT507",
               description: "" 
             },
             {
               id: 32,
-              imageUrl: "/images/collection/spear/GPT411.svg",
+              imageUrl: "/images/collection/spear/GPT411.png",
               category: "Spear",
               title: "GPT411",
               description: "" 
             },
             {
               id: 33,
-              imageUrl: "/images/collection/spear/GPT413.svg",
+              imageUrl: "/images/collection/spear/GPT413.png",
               category: "Spear",
               title: "GPT413",
               description: "" 
@@ -1149,63 +1149,63 @@ const translations = {
           items: [
             {
               id: 34,
-              imageUrl: "/images/collection/wayang/drona.svg",
+              imageUrl: "/images/collection/wayang/drona.png",
               category: "Wayang",
               title: "Drona",
               description: "A Javanese shadow puppet representing an elder adviser figure. The calm posture and patterned costume reflect wisdom, discipline, and high social status."
             },
             {
               id: 35,
-              imageUrl: "/images/collection/wayang/gareng.svg",
+              imageUrl: "/images/collection/wayang/gareng.png",
               category: "Wayang",
               title: "Gareng",
               description: "A comedic Javanese shadow puppet known for expressive gestures and humorous roles. The rounded body and playful stance show his role as a loyal companion who brings lightness to the story."
             },
             {
               id: 36,
-              imageUrl: "/images/collection/wayang/citraksa.svg",
+              imageUrl: "/images/collection/wayang/citraksa.png",
               category: "Wayang",
               title: "Citraksa",
               description: "A traditional Javanese shadow puppet showing a noble warrior figure. The detailed carving and bright colors highlight strength, authority, and refined movement."
             },
             {
               id: 37,
-              imageUrl: "/images/collection/wayang/bima.svg",
+              imageUrl: "/images/collection/wayang/bima.png",
               category: "Wayang",
               title: "Bima",
               description: "" 
             },
             {
               id: 38,
-              imageUrl: "/images/collection/wayang/aswatama.svg",
+              imageUrl: "/images/collection/wayang/aswatama.png",
               category: "Wayang",
               title: "Aswatama",
               description: "" 
             },
             {
               id: 39,
-              imageUrl: "/images/collection/wayang/bagong.svg",
+              imageUrl: "/images/collection/wayang/bagong.png",
               category: "Wayang",
               title: "Bagong",
               description: "" 
             },
             {
               id: 40,
-              imageUrl: "/images/collection/wayang/abilawa.svg",
+              imageUrl: "/images/collection/wayang/abilawa.png",
               category: "Wayang",
               title: "Abilawa",
               description: "" 
             },
             {
               id: 41,
-              imageUrl: "/images/collection/wayang/arimbi.svg",
+              imageUrl: "/images/collection/wayang/arimbi.png",
               category: "Wayang",
               title: "Arimbi",
               description: "" 
             },
             {
               id: 42,
-              imageUrl: "/images/collection/wayang/nakula.svg",
+              imageUrl: "/images/collection/wayang/nakula.png",
               category: "Wayang",
               title: "Nakula",
               description: "" 
@@ -1217,63 +1217,63 @@ const translations = {
           items: [
             {
               id: 43,
-              imageUrl: "/images/collection/keris/K.A 001.svg",
+              imageUrl: "/images/collection/keris/K.A 001.png",
               category: "Keris",
               title: "K.A 001",
               description: "A Javanese shadow puppet representing an elder adviser figure. The calm posture and patterned costume reflect wisdom, discipline, and high social status."
             },
             {
               id: 44,
-              imageUrl: "/images/collection/keris/K.A 002.svg",
+              imageUrl: "/images/collection/keris/K.A 002.png",
               category: "Keris",
               title: "K.A 002",
               description: "A keris with five curves and a strong pamor pattern along the blade. The Surakarta style hilt and decorated metal scabbard reflect the cultural role of this weapon in ceremonies and heritage."
             },
             {
               id: 45,
-              imageUrl: "/images/collection/keris/K.A 003.svg",
+              imageUrl: "/images/collection/keris/K.A 003.png",
               category: "Keris",
               title: "K.A 003",
               description: "A traditional Javanese keris with a curved pamor pattern and a wooden hilt. The scabbard uses a metal covering that indicates later preservation work. This piece represents a personal heirloom used for protection and identity."
             },
             {
               id: 46,
-              imageUrl: "/images/collection/keris/K.A 004.svg",
+              imageUrl: "/images/collection/keris/K.A 004.png",
               category: "Keris",
               title: "K.A 004",
               description: "" 
             },
             {
               id: 47,
-              imageUrl: "/images/collection/keris/K.A 005.svg",
+              imageUrl: "/images/collection/keris/K.A 005.png",
               category: "Keris",
               title: "K.A 005",
               description: "" 
             },
             {
               id: 48,
-              imageUrl: "/images/collection/keris/K.A 006.svg",
+              imageUrl: "/images/collection/keris/K.A 006.png",
               category: "Keris",
               title: "K.A 006",
               description: "" 
             },
             {
               id: 49,
-              imageUrl: "/images/collection/keris/K.A 007.svg",
+              imageUrl: "/images/collection/keris/K.A 007.png",
               category: "Keris",
               title: "K.A 007",
               description: "" 
             },
             {
               id: 50,
-              imageUrl: "/images/collection/keris/K.A 008.svg",
+              imageUrl: "/images/collection/keris/K.A 008.png",
               category: "Keris",
               title: "K.A 008",
               description: "" 
             },
             {
               id: 51,
-              imageUrl: "/images/collection/keris/K.A 009.svg",
+              imageUrl: "/images/collection/keris/K.A 009.png",
               category: "Keris",
               title: "K.A 009",
               description: "" 
@@ -1285,21 +1285,21 @@ const translations = {
           items: [
             {
               id: 52,
-              imageUrl: "/images/collection/lainnya/Command Staff.svg",
+              imageUrl: "/images/collection/lainnya/Command Staff.png",
               category: "Other",
               title: "Command Staff",
               description: "A carved wooden staff featuring a pointed end and decorative top section. Objects of this form are often associated with leadership roles or ceremonial use. The material and finish suggest a relatively recent production."
             },
             {
               id: 53,
-              imageUrl: "/images/collection/lainnya/VOC Flintlock Pistol.svg",
+              imageUrl: "/images/collection/lainnya/VOC Flintlock Pistol.png",
               category: "Other",
               title: "VOC Flintlock Pistol",
               description: "A single-shot flintlock pistol associated with the VOC period in the Indonesian archipelago (17th–19th century). Flintlock pistols were commonly carried by military personnel and officers as short-range weapons and status symbols. "
             },
             {
               id: 54,
-              imageUrl: "/images/collection/lainnya/Triple-Bladed Weapon.svg",
+              imageUrl: "/images/collection/lainnya/Triple-Bladed Weapon.png",
               category: "Other",
               title: "Triple-Bladed Weapon",
               description: "A three-pronged blade consisting of a central spear-like point flanked by two curved projections. The weapon is fitted with a wooden handle and sheath. Its form suggests use in close-quarter combat or ceremonial contexts, depending on historical setting and tradition."
@@ -1364,19 +1364,19 @@ const translations = {
             "The Pendopo Yudonegaran is a grand traditional Javanese pavilion made of teak wood, offering an open and serene atmosphere for your events. Perfect for weddings, corporate gatherings, or cultural performances, this venue blends classic architecture with modern comfort.",
             "With its soaring wooden pillars and traditional joglo roof, this space creates an authentic Javanese ambiance while providing all the amenities needed for contemporary events. The natural ventilation and open design make it ideal for both intimate gatherings and larger celebrations."
           ],
-          heroImage: "/images/venue/pendopo/pendopo1.png", // Pastikan gambar ini ada
+          heroImage: "/images/venue/pendopo/pendopo1.webp", // Pastikan gambar ini ada
           galleryImages: [
-            "/images/venue/pendopo/pendopo2.png", 
-            "/images/venue/pendopo/pendopo3.png", 
-            "/images/venue/pendopo/pendopo1.png"
+            "/images/venue/pendopo/pendopo2.webp", 
+            "/images/venue/pendopo/pendopo3.webp", 
+            "/images/venue/pendopo/pendopo1.webp"
           ],
           eventGalleryImages: [
-            "/images/venue/pendopo/pendopo4.png",
-            "/images/venue/pendopo/pendopo5.png",
-            "/images/venue/pendopo/pendopo6.png",
-            "/images/venue/pendopo/pendopo7.png",
-            "/images/venue/pendopo/pendopo1.png",
-            "/images/venue/pendopo/pendopo2.png",
+            "/images/venue/pendopo/pendopo4.webp",
+            "/images/venue/pendopo/pendopo5.webp",
+            "/images/venue/pendopo/pendopo6.webp",
+            "/images/venue/pendopo/pendopo7.webp",
+            "/images/venue/pendopo/pendopo1.webp",
+            "/images/venue/pendopo/pendopo2.webp",
           ],
           basePrice: 1800000,
           basePriceString: "Rp 1.800.000",
@@ -1397,15 +1397,15 @@ const translations = {
             "The Amphitheater Notoprajan offers an open-air setting surrounded by lush greenery. perfect for performances, gatherings, and creative showcases. Its semi-circular design creates a natural stage ambiance that enhances the audience’s connection to every event.",
             "With its soaring wooden pillars and traditional joglo roof, this space creates an authentic Javanese ambiance while providing all the amenities needed for contemporary events. The natural ventilation and open design make it ideal for both intimate gatherings and larger celebrations."
           ],
-          heroImage: "/images/venue/amphiteater/amphiteater1.png",
-          galleryImages: ["/images/venue/amphiteater/amphiteater2.png", "/images/venue/amphiteater/amphiteater3.png", "/images/venue/amphiteater/amphiteater4.png"],
+          heroImage: "/images/venue/amphiteater/amphiteater1.webp",
+          galleryImages: ["/images/venue/amphiteater/amphiteater2.webp", "/images/venue/amphiteater/amphiteater3.webp", "/images/venue/amphiteater/amphiteater4.webp"],
           eventGalleryImages: [
-            "/images/venue/amphiteater/amphiteater5.png",
-            "/images/venue/amphiteater/amphiteater6.png",
-            "/images/venue/amphiteater/amphiteater7.png",
-            "/images/venue/amphiteater/amphiteater8.png",
-            "/images/venue/amphiteater/amphiteater9.png",
-            "/images/venue/amphiteater/amphiteater10.png",
+            "/images/venue/amphiteater/amphiteater5.webp",
+            "/images/venue/amphiteater/amphiteater6.webp",
+            "/images/venue/amphiteater/amphiteater7.webp",
+            "/images/venue/amphiteater/amphiteater8.webp",
+            "/images/venue/amphiteater/amphiteater9.webp",
+            "/images/venue/amphiteater/amphiteater10.webp",
           ],
           basePrice: 1500000,
           basePriceString: "Rp 1.500.000",
@@ -1426,15 +1426,15 @@ const translations = {
             "Bale Madyosuro features a classic Javanese interior with elegant wood carvings and patterned tiles, offering a warm yet formal atmosphere for meetings, workshops, or intimate gatherings. This venue blends tradition and modern  unctionality, creating a sophisticated ambiance for any event.",
             "With its soaring wooden pillars and traditional joglo roof, this space creates an authentic Javanese ambiance while providing all the amenities needed for contemporary events. The natural ventilation and open design make it ideal for both intimate gatherings and larger celebrations."
           ],
-          heroImage: "/images/venue/madyosuro/madyosuro1.png",
-          galleryImages: ["/images/venue/madyosuro/madyosuro2.png", "/images/venue/madyosuro/madyosuro3.png", "/images/venue/madyosuro/madyosuro4.png"],
+          heroImage: "/images/venue/madyosuro/madyosuro1.webp",
+          galleryImages: ["/images/venue/madyosuro/madyosuro2.webp", "/images/venue/madyosuro/madyosuro3.webp", "/images/venue/madyosuro/madyosuro4.webp"],
           eventGalleryImages: [
-            "/images/venue/madyosuro/madyosuro5.png",
-            "/images/venue/madyosuro/madyosuro6.png",
-            "/images/venue/madyosuro/madyosuro7.png",
-            "/images/venue/madyosuro/madyosuro8.png",
-            "/images/venue/madyosuro/madyosuro9.png",
-            "/images/venue/madyosuro/madyosuro10.png",
+            "/images/venue/madyosuro/madyosuro5.webp",
+            "/images/venue/madyosuro/madyosuro6.webp",
+            "/images/venue/madyosuro/madyosuro7.webp",
+            "/images/venue/madyosuro/madyosuro8.webp",
+            "/images/venue/madyosuro/madyosuro9.webp",
+            "/images/venue/madyosuro/madyosuro10.webp",
           ],
           basePrice: 750000,
           basePriceString: "Rp 750.000",
@@ -1455,15 +1455,15 @@ const translations = {
             "Bale Mrican provides a cozy indoor space with a calm and comfortable atmosphere, suitable for meetings, workshops, or small private events. The minimalist interior and open layout allow flexible arrangements for both casual and formal setups.",
             "With its soaring wooden pillars and traditional joglo roof, this space creates an authentic Javanese ambiance while providing all the amenities needed for contemporary events. The natural ventilation and open design make it ideal for both intimate gatherings and larger celebrations."
           ],
-          heroImage: "/images/venue/mrican/mrican1.png",
-          galleryImages: ["/images/venue/mrican/mrican2.png", "/images/venue/mrican/mrican3.png", "/images/venue/mrican/mrican4.png"],
+          heroImage: "/images/venue/mrican/mrican1.webp",
+          galleryImages: ["/images/venue/mrican/mrican2.webp", "/images/venue/mrican/mrican3.webp", "/images/venue/mrican/mrican4.webp"],
           eventGalleryImages: [
-            "/images/venue/mrican/mrican5.png",
-            "/images/venue/mrican/mrican6.png",
-            "/images/venue/mrican/mrican7.png",
-            "/images/venue/mrican/mrican8.png",
-            "/images/venue/mrican/mrican9.png",
-            "/images/venue/mrican/mrican10.png",
+            "/images/venue/mrican/mrican5.webp",
+            "/images/venue/mrican/mrican6.webp",
+            "/images/venue/mrican/mrican7.webp",
+            "/images/venue/mrican/mrican8.webp",
+            "/images/venue/mrican/mrican9.webp",
+            "/images/venue/mrican/mrican10.webp",
           ],
           basePrice: 600000,
           basePriceString: "Rp 600.000",
@@ -1484,15 +1484,15 @@ const translations = {
             "Bale Sagan is an intimate open hall ideal for small gatherings, group discussions, or art workshops. With its simple yet authentic Javanese design, this space provides a tranquil setting surrounded by natural light and fresh air.",
             "With its soaring wooden pillars and traditional joglo roof, this space creates an authentic Javanese ambiance while providing all the amenities needed for contemporary events. The natural ventilation and open design make it ideal for both intimate gatherings and larger celebrations."
           ],
-          heroImage: "/images/venue/sagan/sagan1.png",
-          galleryImages: ["/images/venue/sagan/sagan2.png", "/images/venue/sagan/sagan3.png", "/images/venue/sagan/sagan4.png"],
+          heroImage: "/images/venue/sagan/sagan1.webp",
+          galleryImages: ["/images/venue/sagan/sagan2.webp", "/images/venue/sagan/sagan3.webp", "/images/venue/sagan/sagan4.webp"],
           eventGalleryImages: [
-            "/images/venue/sagan/sagan5.png",
-            "/images/venue/sagan/sagan6.png",
-            "/images/venue/sagan/sagan7.png",
-            "/images/venue/sagan/sagan8.png",
-            "/images/venue/sagan/sagan9.png",
-            "/images/venue/sagan/sagan10.png",
+            "/images/venue/sagan/sagan5.webp",
+            "/images/venue/sagan/sagan6.webp",
+            "/images/venue/sagan/sagan7.webp",
+            "/images/venue/sagan/sagan8.webp",
+            "/images/venue/sagan/sagan9.webp",
+            "/images/venue/sagan/sagan10.webp",
           ],
           basePrice: 350000,
           basePriceString: "Rp 350.000",
@@ -1513,15 +1513,15 @@ const translations = {
             "Taman Bulus offers a lush outdoor garden venue surrounded by traditional architecture a perfect backdrop for outdoor weddings, private gatherings, and creative events. The serene landscape brings together nature and culture in one beautiful setting.",
             "With its soaring wooden pillars and traditional joglo roof, this space creates an authentic Javanese ambiance while providing all the amenities needed for contemporary events. The natural ventilation and open design make it ideal for both intimate gatherings and larger celebrations."
           ],
-          heroImage: "/images/venue/bulus/bulus1.png",
-          galleryImages: ["/images/venue/bulus/bulus2.png", "/images/venue/bulus/bulus3.png", "/images/venue/bulus/bulus4.png"],
+          heroImage: "/images/venue/bulus/bulus1.webp",
+          galleryImages: ["/images/venue/bulus/bulus2.webp", "/images/venue/bulus/bulus3.webp", "/images/venue/bulus/bulus4.webp"],
           eventGalleryImages: [
-            "/images/venue/bulus/bulus5.png",
-            "/images/venue/bulus/bulus6.png",
-            "/images/venue/bulus/bulus7.png",
-            "/images/venue/bulus/bulus8.png",
-            "/images/venue/bulus/bulus9.png",
-            "/images/venue/bulus/bulus10.png",
+            "/images/venue/bulus/bulus5.webp",
+            "/images/venue/bulus/bulus6.webp",
+            "/images/venue/bulus/bulus7.webp",
+            "/images/venue/bulus/bulus8.webp",
+            "/images/venue/bulus/bulus9.webp",
+            "/images/venue/bulus/bulus10.webp",
           ],
           basePrice: 1200000,
           basePriceString: "Rp 1.200.000",
@@ -1652,7 +1652,7 @@ const translations = {
         item: [
           {
             title: "Room Comfort",
-            icon: "/images/icons/bed-green.svg",
+            icon: "/images/icons/bed-green.png",
             items: [
               "Air conditioning",
               "Traditional furnishing",
@@ -1664,7 +1664,7 @@ const translations = {
           },
           {
             title: "Technology",
-            icon: "/images/icons/wifi-green.svg",
+            icon: "/images/icons/wifi-green.png",
             items: [
               "Free Wifi",
               "Charging Ports",
@@ -1672,7 +1672,7 @@ const translations = {
           },
           {
             title: "Cultural Services",
-            icon: "/images/icons/paint-green.svg",
+            icon: "/images/icons/paint-green.png",
             items: [
               "Traditional Activities",
               "Seasonal Traditional Performance",
@@ -1685,7 +1685,7 @@ const translations = {
           },
           {
             title: "Dining & Wellness",
-            icon: "/images/icons/food-green.svg",
+            icon: "/images/icons/food-green.png",
             items: [
               "Traditional Cuisine",
               "Room Service",
@@ -1698,9 +1698,9 @@ const translations = {
       additional: {
         title: 'Additional House Amenities',
         item: [
-          { name: "Swimming Pool", icon: "/images/icons/swim-green.svg" },
-          { name: "Spa & Wellness", icon: "/images/icons/flower-green.svg"},
-          { name: "Garden Tours", icon: "/images/icons/tree-green.svg" },
+          { name: "Swimming Pool", icon: "/images/icons/swim-green.png" },
+          { name: "Spa & Wellness", icon: "/images/icons/flower-green.png"},
+          { name: "Garden Tours", icon: "/images/icons/tree-green.png" },
         ]
       },
       featuredCard: {
@@ -1731,18 +1731,18 @@ const translations = {
             "With 43.2 square meters, the house includes free Wi-Fi, air conditioning, a minibar, and a private bathroom. Its highlight is the view: the front terrace overlooks a lush garden, while the back terrace opens directly to the swimming pool and expansive rice fields.",
             "The name “Ngadirojo” comes from a region in Wonogiri, Central Java, where Mr. F. W. Santopratiknya lived between 1944 and 1946. The house symbolizes the harmony of comfort, natural beauty, and family history."
           ],
-          imageUrl: "/images/rooms/ngadirojo/ngadirojo1.png",
+          imageUrl: "/images/rooms/ngadirojo/ngadirojo1.webp",
           galleryImages: [
-            "/images/rooms/ngadirojo/ngadirojo2.png",
-            "/images/rooms/ngadirojo/ngadirojo3.png",
-            "/images/rooms/ngadirojo/ngadirojo4.png",
-            "/images/rooms/ngadirojo/ngadirojo.png",
-            "/images/rooms/ngadirojo/ngadirojo5.png",
+            "/images/rooms/ngadirojo/ngadirojo2.webp",
+            "/images/rooms/ngadirojo/ngadirojo3.webp",
+            "/images/rooms/ngadirojo/ngadirojo4.webp",
+            "/images/rooms/ngadirojo/ngadirojo.webp",
+            "/images/rooms/ngadirojo/ngadirojo5.webp",
           ],
           details: { bed: "King Size Bed", guests: 2, size: "43,2 m²", view: "Pool View" },
-          detailsIcons:"/images/icons/swim-white.svg",
+          detailsIcons:"/images/icons/swim-white.png",
           amenities: ["Free WiFi", "Air Conditioning", "Private Bathroom", "Pool View", "Minibar", "Terrace"],
-          amenitiesIcons:"/images/icons/swim-white.svg",
+          amenitiesIcons:"/images/icons/swim-white.png",
           policies: { checkIn: "03:00 PM",  checkOut: "12:00 PM", 
           cancellation: ["Free cancellation 48h before", "50% refund 24h before", "No refund same day"] 
           },
@@ -1763,18 +1763,18 @@ const translations = {
             "With 63.13 square meters, the house provides free Wi-Fi, air conditioning, a minibar, a private bathroom, and a cozy terrace. The front terrace faces a shaded garden, while the back terrace overlooks the swimming pool and rice fields, offering a calming natural retreat.",
             "The name “Polaman” comes from an area in Sedayu, Bantul, where Mr. F. W. Santopratiknya lived between 1929 and 1931. The house embodies family history, blending cultural heritage with modern comfort.",
           ],
-          imageUrl: "/images/rooms/polaman/polaman1.png",
+          imageUrl: "/images/rooms/polaman/polaman1.webp",
           galleryImages: [
-            "/images/rooms/polaman/polaman2.png",
-            "/images/rooms/polaman/polaman.png",
-            "/images/rooms/polaman/polaman3.png",
-            "/images/rooms/polaman/polaman4.png",
-            "/images/rooms/polaman/polaman5.png",
+            "/images/rooms/polaman/polaman2.webp",
+            "/images/rooms/polaman/polaman.webp",
+            "/images/rooms/polaman/polaman3.webp",
+            "/images/rooms/polaman/polaman4.webp",
+            "/images/rooms/polaman/polaman5.webp",
           ],
           details: { bed: "King Size Bed", guests: 2, size: "63,13 m²", view: "Pool View" },
-          detailsIcons:"/images/icons/swim-white.svg",
+          detailsIcons:"/images/icons/swim-white.png",
           amenities: ["Free WiFi", "Air Conditioning", "Private Bathroom", "Pool View", "Minibar", "Terrace"],
-          amenitiesIcons:"/images/icons/swim-green.svg",
+          amenitiesIcons:"/images/icons/swim-green.png",
           policies: { checkIn: "03:00 PM", checkOut: "12:00 PM", cancellation: ["Free cancellation 48h before"] },
           houseRules: { smoking: false, pets: true, quietHours: "10 PM" },
           rating: 4.9, 
@@ -1793,18 +1793,18 @@ const translations = {
             "With 51.6 square meters of space, the house is equipped with free Wi-Fi, air conditioning, a minibar, a private bathroom, and a personal terrace facing the garden. The peaceful surroundings make it the perfect choice for guests seeking tranquility with a touch of tradition.",
             "The name “Adikarto” comes from an area in Kulon Progo Regency, better known as Wates, where Mr. F. W. Santopratiknya lived between 1931–1942 and 1949–1955. This house not only offers comfort but also preserves family history and cultural heritage.",
           ],
-          imageUrl: "/images/rooms/adikarto/adikarto1.png",
+          imageUrl: "/images/rooms/adikarto/adikarto1.webp",
           galleryImages: [
-            "/images/rooms/adikarto/adikarto2.png",
-            "/images/rooms/adikarto/adikarto.png",
-            "/images/rooms/adikarto/adikarto3.png",
-            "/images/rooms/adikarto/adikarto4.png",
-            "/images/rooms/adikarto/adikarto5.png",
+            "/images/rooms/adikarto/adikarto2.webp",
+            "/images/rooms/adikarto/adikarto.webp",
+            "/images/rooms/adikarto/adikarto3.webp",
+            "/images/rooms/adikarto/adikarto4.webp",
+            "/images/rooms/adikarto/adikarto5.webp",
           ],
           details: { bed: "King Size Bed", guests: 2, size: "51,6 m²", view: "Garden View" },
-          detailsIcons:"/images/icons/leaf-gray.svg",
+          detailsIcons:"/images/icons/leaf-gray.png",
           amenities: ["Free WiFi", "Air Conditioning", "Private Bathroom", "Garden View", "Minibar", "Terrace"],
-          amenitiesIcons:"/images/icons/leaf-green.svg",
+          amenitiesIcons:"/images/icons/leaf-green.png",
           policies: { checkIn: "03:00 PM", checkOut: "12:00 PM", cancellation: ["Free cancellation 48h before"] },
           houseRules: { smoking: false, pets: true, quietHours: "10 PM" },
           rating: 4.9, 
@@ -1823,18 +1823,18 @@ const translations = {
             "Spanning 68.15 square meters, the house is equipped with free Wi-Fi, air conditioning, a minibar, a private bathroom, and a personal terrace overlooking the garden. The balance of modern comfort and natural atmosphere makes it ideal for relaxation or spending quality time with loved ones.",
             "The name “Ganjuran” is taken from an area in Bantul Regency, where Mr. F. W. Santopratiknya lived around 1929. Beyond comfort, the house carries historical and emotional connections to family heritage.",
           ],
-          imageUrl: "/images/rooms/ganjuran/ganjuran1.png",
+          imageUrl: "/images/rooms/ganjuran/ganjuran1.webp",
           galleryImages: [
-            "/images/rooms/ganjuran/ganjuran2.png",
-            "/images/rooms/ganjuran/ganjuran3.png",
-            "/images/rooms/ganjuran/ganjuran4.png",
-            "/images/rooms/ganjuran/ganjuran5.png",
-            "/images/rooms/ganjuran/ganjuran6.png",
+            "/images/rooms/ganjuran/ganjuran2.webp",
+            "/images/rooms/ganjuran/ganjuran3.webp",
+            "/images/rooms/ganjuran/ganjuran4.webp",
+            "/images/rooms/ganjuran/ganjuran5.webp",
+            "/images/rooms/ganjuran/ganjuran6.webp",
           ],
           details: { bed: "King Size Bed", guests: 3, size: "68,15 m²", view: "Garden View" },
-          detailsIcons:"/images/icons/leaf-green.svg",
+          detailsIcons:"/images/icons/leaf-green.png",
           amenities: ["Free WiFi", "Air Conditioning", "Private Bathroom", "Garden View", "Minibar", "Terrace"],
-          amenitiesIcons:"/images/icons/leaf-green.svg",
+          amenitiesIcons:"/images/icons/leaf-green.png",
           policies: { checkIn: "03:00 PM", checkOut: "12:00 PM", cancellation: ["Free cancellation 48h before"] },
           houseRules: { smoking: false, pets: true, quietHours: "10 PM" },
           rating: 4.9, 
@@ -1853,18 +1853,18 @@ const translations = {
             "Covering 46 square meters, Badegan House offers modern comforts such as free Wi-Fi, air conditioning, a minibar, and a private bathroom. Guests can also enjoy relaxing moments on the terrace overlooking a lush garden, a tranquil setting perfect for unwinding in harmony with nature.",
             "The name “Badegan” comes from a village in Bantul Regency, where Mr. F. W. Santopratiknya—the father of Mr. P. Swantoro—resided from 1958. Every corner of this house carries stories and cultural values, making it more than just a place to stay.",
           ],
-          imageUrl: "/images/rooms/badegan/badegan1.png",
+          imageUrl: "/images/rooms/badegan/badegan1.webp",
           galleryImages: [
-            "/images/rooms/badegan/badegan2.png",
-            "/images/rooms/badegan/badegan3.png",
-            "/images/rooms/badegan/badegan4.png",
-            "/images/rooms/badegan/badegan5.png",
-            "/images/rooms/badegan/badegan6.png",
+            "/images/rooms/badegan/badegan2.webp",
+            "/images/rooms/badegan/badegan3.webp",
+            "/images/rooms/badegan/badegan4.webp",
+            "/images/rooms/badegan/badegan5.webp",
+            "/images/rooms/badegan/badegan6.webp",
           ],
           details: { bed: "King Size Bed", guests: 4, size: "46 m²", view: "Garden View" },
-          detailsIcons:"/images/icons/leaf-green.svg",
+          detailsIcons:"/images/icons/leaf-green.png",
           amenities: ["Free WiFi", "Air Conditioning", "Private Bathroom", "Garden View", "Minibar", "Terrace"],
-          amenitiesIcons:"/images/icons/leaf-green.svg",
+          amenitiesIcons:"/images/icons/leaf-green.png",
           policies: { checkIn: "03:00 PM", checkOut: "12:00 PM", cancellation: ["Free cancellation 48h before"] },
           houseRules: { smoking: false, pets: true, quietHours: "10 PM" },
           rating: 4.9, 
@@ -1883,18 +1883,18 @@ const translations = {
             "With 40.5 square meters, the house features free Wi-Fi, air conditioning, a minibar, a private bathroom, and a terrace facing the garden. Its peaceful surroundings and greenery create the perfect setting for relaxation while embracing local culture.",
             "The name “Wuryantoro” comes from a region in Wonogiri, Central Java, where Mr. F. W. Santopratiknya lived between 1946 and 1948. Every element of this house reflects history and cultural roots, making it more than just accommodation.",
           ],
-          imageUrl: "/images/rooms/wuryantoro/wuryantoro1.png",
+          imageUrl: "/images/rooms/wuryantoro/wuryantoro1.webp",
           galleryImages: [
-            "/images/rooms/wuryantoro/wuryantoro2.png",
-            "/images/rooms/wuryantoro/wuryantoro3.png",
-            "/images/rooms/wuryantoro/wuryantoro4.png",
-            "/images/rooms/wuryantoro/wuryantoro5.png",
-            "/images/rooms/wuryantoro/wuryantoro6.png",
+            "/images/rooms/wuryantoro/wuryantoro2.webp",
+            "/images/rooms/wuryantoro/wuryantoro3.webp",
+            "/images/rooms/wuryantoro/wuryantoro4.webp",
+            "/images/rooms/wuryantoro/wuryantoro5.webp",
+            "/images/rooms/wuryantoro/wuryantoro6.webp",
           ],
           details: { bed: "King Size Bed", guests: 3, size: "40,5 m²", view: "Garden View" },
-          detailsIcons:"/images/icons/leaf-green.svg",
+          detailsIcons:"/images/icons/leaf-green.png",
           amenities: ["Free WiFi", "Air Conditioning", "Private Bathroom", "Garden View", "Minibar", "Terrace"],
-          amenitiesIcons:"/images/icons/leaf-green.svg",
+          amenitiesIcons:"/images/icons/leaf-green.png",
           policies: { checkIn: "03:00 PM", checkOut: "12:00 PM", cancellation: ["Free cancellation 48h before"] },
           houseRules: { smoking: false, pets: true, quietHours: "10 PM" },
           rating: 4.9, 
@@ -1913,18 +1913,18 @@ const translations = {
             "With 70.7 square meters, Morangan House has two bedrooms, each with a private bathroom. The first floor includes a spacious living area and a bathtub for relaxation, while the rooftop offers open-air views. The house faces a garden at the front, rice fields at the back, and a swimming pool on the side—providing a refreshing atmosphere from every angle. Both front and back terraces enhance the experience of connecting with nature.",
             "The name “Morangan” comes from a village in Sleman, Yogyakarta, where Mr. F. W. Santopratiknya lived between 1942 and 1944. This house symbolizes family heritage brought to life in a modern stay with traditional soul.",
           ],
-          imageUrl: "/images/rooms/morangan/morangan1.png",
+          imageUrl: "/images/rooms/morangan/morangan1.webp",
           galleryImages: [
-            "/images/rooms/morangan/morangan2.png",
-            "/images/rooms/morangan/morangan3.png",
-            "/images/rooms/morangan/morangan4.png",
-            "/images/rooms/morangan/morangan5.png",
-            "/images/rooms/morangan/morangan6.png",
+            "/images/rooms/morangan/morangan2.webp",
+            "/images/rooms/morangan/morangan3.webp",
+            "/images/rooms/morangan/morangan4.webp",
+            "/images/rooms/morangan/morangan5.webp",
+            "/images/rooms/morangan/morangan6.webp",
           ],
           details: { bed: "King Size Bed", guests: 4, size: "70,7 m²", view: "Pool View" },
-          detailsIcons:"/images/icons/swim-green.svg",
+          detailsIcons:"/images/icons/swim-green.png",
           amenities: ["Free WiFi", "Air Conditioning", "Private Bathroom", "Pool View", "Minibar", "Terrace"],
-          amenitiesIcons:"/images/icons/swim-green.svg",
+          amenitiesIcons:"/images/icons/swim-green.png",
           policies: { checkIn: "03:00 PM", checkOut: "12:00 PM", cancellation: ["Free cancellation 48h before"] },
           houseRules: { smoking: false, pets: true, quietHours: "10 PM" },
           rating: 4.9, 
@@ -1943,18 +1943,18 @@ const translations = {
             "The house is equipped with modern facilities including complimentary Wi-Fi, air conditioning, a minibar, and a private bathroom. Rumah Kriyan blends traditional simplicity with present day comfort. A private terrace facing a lush garden creates a calm atmosphere for relaxation within a Javanese rural setting.",
             "The name Kriyan comes from an area in Keputran Jeron Beteng, Yogyakarta Palace. It was the residence of Mr. R. M. Koesbandarum Sasmi, the father of Mrs. R. A. Koeswardiyah Swantoro, from around 1940 to 1960. This house reflects a close family connection to Javanese history and culture.",
           ],
-          imageUrl: "/images/rooms/kriyan/kriyan2.svg",
+          imageUrl: "/images/rooms/kriyan/kriyan2.webp",
           galleryImages: [
-            "/images/rooms/kriyan/kriyan1.svg",
-            "/images/rooms/kriyan/kriyan3.svg",
-            "/images/rooms/kriyan/kriyan4.svg",
-            "/images/rooms/kriyan/kriyan5.svg",
-            "/images/rooms/kriyan/kriyan6.svg",
+            "/images/rooms/kriyan/kriyan1.webp",
+            "/images/rooms/kriyan/kriyan3.webp",
+            "/images/rooms/kriyan/kriyan4.webp",
+            "/images/rooms/kriyan/kriyan5.webp",
+            "/images/rooms/kriyan/kriyan6.webp",
           ],
           details: { bed: "King Size Bed", guests: 2, size: "24 m²", view: "Rice Field View" },
-          detailsIcons:"/images/icons/leaf-green.svg",
+          detailsIcons:"/images/icons/leaf-green.png",
           amenities: ["Free WiFi", "Air Conditioning", "Private Bathroom", "Rice Field View", "Minibar", "Terrace"],
-          amenitiesIcons:"/images/icons/leaf-green.svg",
+          amenitiesIcons:"/images/icons/leaf-green.png",
           policies: { checkIn: "03:00 PM", checkOut: "12:00 PM", cancellation: ["Free cancellation 48h before"] },
           houseRules: { smoking: false, pets: true, quietHours: "10 PM" },
           rating: 4.9, 
@@ -1973,18 +1973,18 @@ const translations = {
             "The house is equipped with modern facilities including complimentary Wi-Fi, air conditioning, a minibar, and a private bathroom. Rumah Kriyan blends traditional simplicity with present day comfort. A private terrace facing a lush garden creates a calm atmosphere for relaxation within a Javanese rural setting.",
             "The name Kriyan comes from an area in Keputran Jeron Beteng, Yogyakarta Palace. It was the residence of Mr. R. M. Koesbandarum Sasmi, the father of Mrs. R. A. Koeswardiyah Swantoro, from around 1940 to 1960. This house reflects a close family connection to Javanese history and culture.",
           ],
-          imageUrl: "/images/rooms/kriyan/kriyan1.svg",
+          imageUrl: "/images/rooms/kriyan/kriyan1.webp",
           galleryImages: [
-            "/images/rooms/kriyan/kriyan2.svg",
-            "/images/rooms/kriyan/kriyan3.svg",
-            "/images/rooms/kriyan/kriyan4.svg",
-            "/images/rooms/kriyan/kriyan5.svg",
-            "/images/rooms/kriyan/kriyan6.svg",
+            "/images/rooms/kriyan/kriyan2.webp",
+            "/images/rooms/kriyan/kriyan3.webp",
+            "/images/rooms/kriyan/kriyan4.webp",
+            "/images/rooms/kriyan/kriyan5.webp",
+            "/images/rooms/kriyan/kriyan6.webp",
           ],
           details: { bed: "King Size Bed", guests: 2, size: "24 m²", view: "Rice Field View" },
-          detailsIcons:"/images/icons/leaf-green.svg",
+          detailsIcons:"/images/icons/leaf-green.png",
           amenities: ["Free WiFi", "Air Conditioning", "Private Bathroom", "Rice Field View", "Minibar", "Terrace"],
-          amenitiesIcons:"/images/icons/leaf-green.svg",
+          amenitiesIcons:"/images/icons/leaf-green.png",
           policies: { checkIn: "03:00 PM", checkOut: "12:00 PM", cancellation: ["Free cancellation 48h before"] },
           houseRules: { smoking: false, pets: true, quietHours: "10 PM" },
           rating: 4.9, 
@@ -2058,22 +2058,22 @@ const translations = {
         {
             name: 'Ngadirojo',
             desc: 'Rumah Ngadirojo adalah limasan tradisional Jawa yang dibangun tahun 1946 dan dipindahkan dari Desa Bawak, Klaten. Menggabungkan arsitektur Jawa dengan ketenangan alam.',
-            image: '/images/rooms/ngadirojo/ngadirojo.png',
+            image: '/images/rooms/ngadirojo/ngadirojo.webp',
         },
         {
             name: 'Polaman',
             desc: 'Rumah Polaman adalah limasan tradisional Jawa yang dibangun tahun 1948. Menggabungkan kehangatan arsitektur Jawa dengan pemandangan alam.',
-            image: '/images/rooms/polaman/polaman.png',
+            image: '/images/rooms/polaman/polaman.webp',
         },
         {
             name: 'Adikarto',
             desc: 'Rumah Adikarto adalah rumah limasan tradisional Jawa yang membawa kesejukan dan kenyamanan dalam suasana alami. Dibangun pada tahun 1960.',
-            image: '/images/rooms/adikarto/adikarto.png',
+            image: '/images/rooms/adikarto/adikarto.webp',
         },
       ],
       pavillion: {
         title: ['Fasilitas Di Setiap', 'Rumah'],
-        icon: ["/images/icons/wifi-green.svg", "/images/icons/cup-green.svg", "/images/icons/music-green.svg"],
+        icon: ["/images/icons/wifi-green.png", "/images/icons/cup-green.png", "/images/icons/music-green.png"],
         desc: ['Wi-Fi', 'Minuman Sambutan Khusus', 'Hidangan Tradisional'],
         button: 'Lihat Semua Rumah'
       },
@@ -2298,32 +2298,32 @@ const translations = {
           title: 'Sorotan Menu Buffet',
           desc: 'Menu lengkap hidangan tradisional Jawa',
           item:[
-            { image: '/images/foods/nasi-liwet.png', title: 'Nasi Liwet', desc: 'Nasi gurih harum dimasak dalam daun pisang dengan bumbu rempah' },
-            { image: '/images/foods/ayam-kremes.png', title: 'Ayam Goreng Kremes', desc: 'Ayam goreng renyah dengan balutan kacang tradisional' },
-            { image: '/images/foods/sayur-asem.png', title: 'Sayur Asem', desc: 'Sayur asem segar berisi berbagai sayuran' },
-            { image: '/images/foods/sambal.png', title: 'Sambal Bajak', desc: 'Sambal kacang pedas bercita rasa khas' },
-            { image: '/images/foods/es-dawet.png', title: 'Es Dawet', desc: 'Minuman segar santan dengan isian cendol' },
+            { image: '/images/foods/nasi-liwet.webp', title: 'Nasi Liwet', desc: 'Nasi gurih harum dimasak dalam daun pisang dengan bumbu rempah' },
+            { image: '/images/foods/ayam-kremes.webp', title: 'Ayam Goreng Kremes', desc: 'Ayam goreng renyah dengan balutan kacang tradisional' },
+            { image: '/images/foods/sayur-asem.webp', title: 'Sayur Asem', desc: 'Sayur asem segar berisi berbagai sayuran' },
+            { image: '/images/foods/sambal.webp', title: 'Sambal Bajak', desc: 'Sambal kacang pedas bercita rasa khas' },
+            { image: '/images/foods/es-dawet.webp', title: 'Es Dawet', desc: 'Minuman segar santan dengan isian cendol' },
           ],
         },
         snack: {
           title: 'Sorotan Snack Box',
           desc: 'Kudapan manis dan gurih tradisional',
           item:[
-            { image: '/images/foods/klepon.png', title: 'Klepon', desc: 'Ketan hijau berisi gula aren dan taburan kelapa' },
-            { image: '/images/foods/kue-lumpur.png', title: 'Kue Lumpur', desc: 'Kue lembut dengan santan dan kismis' },
-            { image: '/images/foods/pastel.png', title: 'Pastel', desc: 'Gorengan renyah berisi sayuran dan daging berbumbu' },
-            { image: '/images/foods/teh.png', title: 'Teh Hangat', desc: 'Teh herbal hangat dengan rempah aromatik' },
+            { image: '/images/foods/klepon.webp', title: 'Klepon', desc: 'Ketan hijau berisi gula aren dan taburan kelapa' },
+            { image: '/images/foods/kue-lumpur.webp', title: 'Kue Lumpur', desc: 'Kue lembut dengan santan dan kismis' },
+            { image: '/images/foods/pastel.webp', title: 'Pastel', desc: 'Gorengan renyah berisi sayuran dan daging berbumbu' },
+            { image: '/images/foods/teh.webp', title: 'Teh Hangat', desc: 'Teh herbal hangat dengan rempah aromatik' },
           ],
         },
         rice: {
           title: 'Sorotan Rice Box',
           desc: 'Menu lengkap per porsi bergaya tradisional',
           item: [
-            { image: '/images/foods/nasi-putih.png', title: 'Nasi Putih', desc: 'Nasi putih pulen sebagai dasar hidangan' },
-            { image: '/images/foods/ayam-kalasan.png', title: 'Ayam Kalasan', desc: 'Ayam bakar manis gurih dengan bumbu kecap' },
-            { image: '/images/foods/tempe.png', title: 'Tempe Bacem', desc: 'Tempe bacem dengan gula jawa dan rempah' },
-            { image: '/images/foods/urap.png', title: 'Urap', desc: 'Urap sayur dengan kelapa berbumbu' },
-            { image: '/images/foods/sambal-fresh.png', title: 'Sambal', desc: 'Sambal buatan rumahan dengan racikan rempah yang hidup' },
+            { image: '/images/foods/nasi-putih.webp', title: 'Nasi Putih', desc: 'Nasi putih pulen sebagai dasar hidangan' },
+            { image: '/images/foods/ayam-kalasan.webp', title: 'Ayam Kalasan', desc: 'Ayam bakar manis gurih dengan bumbu kecap' },
+            { image: '/images/foods/tempe.webp', title: 'Tempe Bacem', desc: 'Tempe bacem dengan gula jawa dan rempah' },
+            { image: '/images/foods/urap.webp', title: 'Urap', desc: 'Urap sayur dengan kelapa berbumbu' },
+            { image: '/images/foods/sambal-fresh.webp', title: 'Sambal', desc: 'Sambal buatan rumahan dengan racikan rempah yang hidup' },
           ]
         }
       },
@@ -2457,7 +2457,7 @@ const translations = {
         title: 'Rasa Jawa yang Autentik',
         desc: 'Setiap paket buffet menghadirkan keseimbangan rasa. Hidangan utama yang menghangatkan. Minuman segar dan dessert yang melengkapi momen.',
         menuCard1: {
-          icon: "/images/icons/circle-white.svg",
+          icon: "/images/icons/circle-white.png",
           title: "Soup",
           subtitle: "Pilih Kuah & Sayur",
           items: [
@@ -2468,7 +2468,7 @@ const translations = {
           ]
         },
         menuCard2: {
-          icon: "/images/icons/chicken-white.svg",
+          icon: "/images/icons/chicken-white.png",
           title: "Main Course",
           subtitle: "Tumis & Lauk",
           items: [
@@ -2479,7 +2479,7 @@ const translations = {
           ]
         },
         menuCard3: {
-          icon: "/images/icons/ice-cream-white.svg",
+          icon: "/images/icons/ice-cream-white.png",
           title: "Desserts",
           subtitle: "Traditional Sweets",
           items: [
@@ -2488,7 +2488,7 @@ const translations = {
           ]
         },
         menuCard4: {
-          icon: "/images/icons/drink-white.svg",
+          icon: "/images/icons/drink-white.png",
           title: "Beverages",
           subtitle: "Refreshing Drinks",
           items: [
@@ -2498,7 +2498,7 @@ const translations = {
           ]
         },
         menuCard5: {
-          icon: "/images/icons/circle-white.svg",
+          icon: "/images/icons/circle-white.png",
           title: "Chicken",
           subtitle: "Pilihan Ayam",
           items: [
@@ -2508,7 +2508,7 @@ const translations = {
           ]
         },
         menuCard6: {
-          icon: "/images/icons/chicken-white.svg",
+          icon: "/images/icons/chicken-white.png",
           title: "Egg",
           subtitle: "Pilihan Telur",
           items: [
@@ -2519,7 +2519,7 @@ const translations = {
           ]
         },
         menuCard7: {
-          icon: "/images/icons/circle-white.svg",
+          icon: "/images/icons/circle-white.png",
           title: "Fish",
           subtitle: "Pilihan Ikan",
           items: [
@@ -2530,7 +2530,7 @@ const translations = {
           ]
         },
         menuCard8: {
-          icon: "/images/icons/chicken-white.svg",
+          icon: "/images/icons/chicken-white.png",
           title: "Side Dish",
           subtitle: "Pilihan Menu Pendamping",
           items: [
@@ -2546,7 +2546,7 @@ const translations = {
         title: 'Rasa Jawa yang Autentik', //
         desc: 'Setiap paket snack bos menghadirkan keseimbangan rasa. Hidangan utama yang menghangatkan. Minuman segar dan dessert yang melengkapi momen.', //
         menuCard1: {
-          icon: "/images/icons/circle-white.svg", // Icon tanda seru (!)
+          icon: "/images/icons/circle-white.png", // Icon tanda seru (!)
           title: "Sweet Snacks",
           subtitle: "", // Dikosongkan karena tidak ada subtitle di gambar
           items: [
@@ -2560,7 +2560,7 @@ const translations = {
           ]
         },
         menuCard2: {
-          icon: "/images/icons/chicken-white.svg", // Icon ayam
+          icon: "/images/icons/chicken-white.png", // Icon ayam
           title: "Savory Snacks",
           subtitle: "",
           items: [
@@ -2574,7 +2574,7 @@ const translations = {
           ]
         },
         menuCard3: {
-        icon: "/images/icons/ice-cream-white.svg", // Icon es krim
+        icon: "/images/icons/ice-cream-white.png", // Icon es krim
         title: "Crunchy Snacks",
         subtitle: "",
         items: [
@@ -2590,7 +2590,7 @@ const translations = {
         title: 'Rasa Jawa yang Autentik', //
         desc: 'Setiap paket Nasi Box menghadirkan keseimbangan rasa. Hidangan utama yang menghangatkan. Minuman segar dan dessert yang melengkapi momen.', //
         menuCard1: {
-          icon: "/images/icons/circle-white.svg", // Icon tanda seru lingkaran
+          icon: "/images/icons/circle-white.png", // Icon tanda seru lingkaran
           title: "Main Dishes",
           subtitle: "", // Kosong karena tidak ada subtitle di gambar
           items: [
@@ -2602,7 +2602,7 @@ const translations = {
           ]
         },
         menuCard2: {
-          icon: "/images/icons/chicken-white.svg", // Icon paha ayam
+          icon: "/images/icons/chicken-white.png", // Icon paha ayam
           title: "Side Dishes",
           subtitle: "",
           items: [
@@ -2614,7 +2614,7 @@ const translations = {
           ]
         },
         menuCard3: {
-          icon: "/images/icons/ice-cream-white.svg", // Icon es krim
+          icon: "/images/icons/ice-cream-white.png", // Icon es krim
           title: "Add-Ons",
           subtitle: "",
           items: [
@@ -2625,7 +2625,7 @@ const translations = {
           ]
         },
         menuCard4: {
-          icon: "/images/icons/drink-white.svg", // Icon gelas
+          icon: "/images/icons/drink-white.png", // Icon gelas
           title: "Extras",
           subtitle: "",
           items: [
@@ -2647,7 +2647,7 @@ const translations = {
           minPax: "35 Pax",
           description: "Sesuai untuk acara perusahaan",
           theme: "standard",
-          iconSrc: "/images/icons/food-white.svg", 
+          iconSrc: "/images/icons/food-white.png", 
           items: [
             "Nasi Putih",
             "1 Pilihan Kuah",
@@ -2665,7 +2665,7 @@ const translations = {
           description: "Ideal untuk pernikahan dan perayaan",
           theme: "premium",
           isPopular: true,
-          iconSrc: "/images/icons/crown-white.svg", 
+          iconSrc: "/images/icons/crown-white.png", 
           items: [
             "Nasi Putih",
             "1 Pilihan Kuah",
@@ -2684,7 +2684,7 @@ const translations = {
           minPax: "100 Pax", // Sesuai gambar English version
           description: "Pengalaman tradisional yang menyeluruh",
           theme: "exclusive",
-          iconSrc: "/images/icons/diamond-white.svg", 
+          iconSrc: "/images/icons/diamond-white.png", 
           items: [
             "Nasi Putih",
             "1 Pilihan Kuah",
@@ -2712,7 +2712,7 @@ const translations = {
           minPax: "35 Pax", //
           description: "Ideal untuk rapat singkat atau kumpul kecil.", //
           theme: "standard",
-          iconSrc: "/images/icons/food-white.svg",
+          iconSrc: "/images/icons/food-white.png",
           items: [
             "2 Snacks", //
             "1 Camilan Kering (kletikan)", //
@@ -2725,7 +2725,7 @@ const translations = {
           description: "Pilihan seimbang untuk seminar atau workshop.", //
           theme: "premium",
           isPopular: true,
-          iconSrc: "/images/icons/crown-white.svg",
+          iconSrc: "/images/icons/crown-white.png",
           items: [
             "3 snacks", //
             "1 Camilan Kering (kletikan)", //
@@ -2737,7 +2737,7 @@ const translations = {
           minPax: "35 Pax", //
           description: "Pilihan premium untuk acara formal atau acara spesial.", //
           theme: "exclusive",
-          iconSrc: "/images/icons/diamond-white.svg",
+          iconSrc: "/images/icons/diamond-white.png",
           items: [
             "3 snacks", //
             "1 Camilan Kering (kletikan)", //
@@ -2757,7 +2757,7 @@ const translations = {
           minPax: "35 Pax", //
           description: "Cocok untuk rapat kecil atau acara santai.", //
           theme: "standard",
-          iconSrc: "/images/icons/food-white.svg",
+          iconSrc: "/images/icons/food-white.png",
           items: [
             "Nasi Putih", //
             "Pilihan Tumisan", //
@@ -2772,7 +2772,7 @@ const translations = {
           description: "Pas untuk kumpul kantor atau makan bersama tim.", //
           theme: "premium",
           isPopular: true,
-          iconSrc: "/images/icons/crown-white.svg",
+          iconSrc: "/images/icons/crown-white.png",
           items: [
             "Nasi Putih", //
             "Pilihan Tumisan", //
@@ -2787,7 +2787,7 @@ const translations = {
           minPax: "35 Pax", //
           description: "Pilihan lengkap dan premium untuk acara formal atau skala besar.", //
           theme: "exclusive",
-          iconSrc: "/images/icons/diamond-white.svg",
+          iconSrc: "/images/icons/diamond-white.png",
           items: [
             "Nasi Putih", //
             "Pilihan Tumisan", //
@@ -2808,32 +2808,32 @@ const translations = {
           {
             title: "Gratis Antar dan Penataan", //
             desc: "Kami menyiapkan pengantaran, penataan, dan pengemasan setelah acara. Tim kami datang 2 jam sebelum acara dimulai.", //
-            iconSrc: "/images/icons/truck-white.svg"
+            iconSrc: "/images/icons/truck-white.png"
           },
           {
             title: "Staf Profesional", //
             desc: "Staf berpengalaman dengan busana tradisional yang menjaga suasana tetap autentik selama acara Anda.", //
-            iconSrc: "/images/icons/group-white.svg"
+            iconSrc: "/images/icons/group-white.png"
           },
           {
             title: "Bahan Segar", //
             desc: "Semua hidangan dibuat segar pada hari acara dengan bahan lokal dan organik dari pemasok terpercaya.", //
-            iconSrc: "/images/icons/leaf-white.svg"
+            iconSrc: "/images/icons/leaf-white.png"
           },
           {
             title: "Waktu Fleksibel", //
             desc: "Tersedia untuk acara pagi, siang, atau malam. Durasi layanan bisa diperpanjang sesuai kebutuhan acara khusus.", //
-            iconSrc: "/images/icons/clock-white.svg"
+            iconSrc: "/images/icons/clock-white.png"
           },
           {
             title: "Kualitas Terjamin", //
             desc: "Kami menjamin kepuasan Anda. Jika Anda kurang puas, kami akan memperbaikinya atau memberi pengembalian penuh.", //
-            iconSrc: "/images/icons/curly-white.svg"
+            iconSrc: "/images/icons/curly-white.png"
           },
           {
             title: "Peralatan Lengkap", //
             desc: "Peralatan saji lengkap termasuk piring, alat makan, dan perlengkapan saji tradisional. Tersedia opsi ramah lingkungan.", //
-            iconSrc: "/images/icons/food-white.svg"
+            iconSrc: "/images/icons/food-white.png"
           }
         ]
       },
@@ -2890,21 +2890,21 @@ const translations = {
         item:[
           {
             id: 1,
-            iconUrl: '/images/icons/diamond-green.svg', 
+            iconUrl: '/images/icons/diamond-green.png', 
             alt: 'Artifacts Icon',
             value: '250+',
             label: 'Koleksi',
           },
           {
             id: 2,
-            iconUrl: '/images/icons/calendar-green.svg', 
+            iconUrl: '/images/icons/calendar-green.png', 
             alt: 'Origins Icon',
             value: '18th',
             label: 'Asal-Usul Abad',
           },
           {
             id: 3,
-            iconUrl: '/images/icons/group-green.svg', 
+            iconUrl: '/images/icons/group-green.png', 
             alt: 'Visitors Icon',
             value: '5K',
             label: 'Pengunjung Tahunan',
@@ -2917,63 +2917,63 @@ const translations = {
           items: [
             {
               id: 1,
-              imageUrl: "/images/collection/cundrik/GPT0541.svg", // Pastikan gambar ada
+              imageUrl: "/images/collection/cundrik/GPT0541.png", // Pastikan gambar ada
               category: "Cundrik",
               title: "GPT0541",
               description: "Cundrik kecil yang dahulu dibawa sebagai jimat pribadi. Melambangkan kewaspadaan dan perlindungan, dengan bentuk yang mencerminkan karakter tegas dari kerajinan pesisir Cirebon."
             },
             {
               id: 2,
-              imageUrl: "/images/collection/cundrik/GPT0540.svg",
+              imageUrl: "/images/collection/cundrik/GPT0540.png",
               category: "Cundrik",
               title: "GPT0540",
               description: "Cundrik berukuran panjang dengan pola sanak. Lekukannya menampilkan teknik masa Majapahit dan melambangkan keteguhan serta kekuatan pribadi."
             },
             {
               id: 3,
-              imageUrl: "/images/collection/cundrik/GPT0539.svg",
+              imageUrl: "/images/collection/cundrik/GPT0539.png",
               category: "Cundrik",
               title: "GPT0539",
               description: "Cundrik ramping yang digunakan dalam tradisi rumah tangga dan upacara. Bentuknya yang ringan dan gaya tempa Segaluh menonjolkan fungsi praktis serta identitas budaya."
             },
             {
               id: 4,
-              imageUrl: "/images/collection/cundrik/GPT0538.svg", // Pastikan gambar ada
+              imageUrl: "/images/collection/cundrik/GPT0538.png", // Pastikan gambar ada
               category: "Cundrik",
               title: "GPT0538",
               description: ""
             },
             {
               id: 5,
-              imageUrl: "/images/collection/cundrik/GPT0537.svg",
+              imageUrl: "/images/collection/cundrik/GPT0537.png",
               category: "Cundrik",
               title: "GPT0537",
               description: ""
             },
             {
               id: 6,
-              imageUrl: "/images/collection/cundrik/GPT0536.svg",
+              imageUrl: "/images/collection/cundrik/GPT0536.png",
               category: "Cundrik",
               title: "GPT0536",
               description: ""
             },
             {
               id: 7,
-              imageUrl: "/images/collection/cundrik/GPT0535.svg", // Pastikan gambar ada
+              imageUrl: "/images/collection/cundrik/GPT0535.png", // Pastikan gambar ada
               category: "Cundrik",
               title: "GPT0535",
               description: ""
             },
             {
               id: 8,
-              imageUrl: "/images/collection/cundrik/GPT0534.svg",
+              imageUrl: "/images/collection/cundrik/GPT0534.png",
               category: "Cundrik",
               title: "GPT0534",
               description: ""
             },
             {
               id: 9,
-              imageUrl: "/images/collection/cundrik/GPT0533.svg",
+              imageUrl: "/images/collection/cundrik/GPT0533.png",
               category: "Cundrik",
               title: "GPT0533",
               description: ""
@@ -2985,63 +2985,63 @@ const translations = {
           items: [
             {
               id: 10,
-              imageUrl: "/images/collection/sword/GPT0548.svg",
+              imageUrl: "/images/collection/sword/GPT0548.png",
               category: "Pedang",
               title: "GPT0548",
               description: "Sebilah senjata tradisional bermata satu dengan profil melengkung dan gagang kayu berukir. Bentuknya menyerupai senjata utilitas dan upacara yang ditemukan di beberapa wilayah di Jawa."
             },
             {
               id: 11,
-              imageUrl: "/images/collection/sword/GPT0576.svg",
+              imageUrl: "/images/collection/sword/GPT0576.png",
               category: "Pedang",
               title: "GPT0576",
               description: "Pedang ramping dengan bilah panjang dan pola tempa yang terlihat jelas. Mencerminkan teknik logam masa Majapahit serta melambangkan keteguhan dan disiplin diri."
             },
             {
               id: 12,
-              imageUrl: "/images/collection/sword/GPT0575.svg",
+              imageUrl: "/images/collection/sword/GPT0575.png",
               category: "Pedang",
               title: "GPT0575",
               description: "Pedang ringan dengan bilah sempit dan gagang kayu sederhana. Mengikuti gaya tempa Segaluh, pedang ini melambangkan identitas budaya dan perlindungan pribadi."
             },
             {
               id: 13,
-              imageUrl: "/images/collection/sword/GPT0549.svg", // Pastikan gambar ada
+              imageUrl: "/images/collection/sword/GPT0549.png", // Pastikan gambar ada
               category: "Pedang",
               title: "GPT0549",
               description: ""
             },
             {
               id: 14,
-              imageUrl: "/images/collection/sword/GPT0574.svg",
+              imageUrl: "/images/collection/sword/GPT0574.png",
               category: "Pedang",
               title: "GPT0574",
               description: ""
             },
             {
               id: 15,
-              imageUrl: "/images/collection/sword/GPT0550.svg",
+              imageUrl: "/images/collection/sword/GPT0550.png",
               category: "Pedang",
               title: "GPT0550",
               description: ""
             },
             {
               id: 16,
-              imageUrl: "/images/collection/sword/GPT0571.svg", // Pastikan gambar ada
+              imageUrl: "/images/collection/sword/GPT0571.png", // Pastikan gambar ada
               category: "Pedang",
               title: "GPT0571",
               description: ""
             },
             {
               id: 17,
-              imageUrl: "/images/collection/sword/GPT0570.svg",
+              imageUrl: "/images/collection/sword/GPT0570.png",
               category: "Pedang",
               title: "GPT0570",
               description: ""
             },
             {
               id: 18,
-              imageUrl: "/images/collection/sword/GPT0568.svg",
+              imageUrl: "/images/collection/sword/GPT0568.png",
               category: "Pedang",
               title: "GPT0568",
               description: ""
@@ -3053,42 +3053,42 @@ const translations = {
           items: [
             {
               id: 19,
-              imageUrl: "/images/collection/sken/GPT0518.svg",
+              imageUrl: "/images/collection/sken/GPT0518.png",
               category: "Sken",
               title: "GPT0518",
               description: "Belati kecil tradisional dengan gagang dan sarung kayu. Desain Cekel Bahuluk melambangkan perlindungan dan fungsi praktis, dan dahulu sering dibawa sebagai alat pribadi pada masa Majapahit."
             },
             {
               id: 20,
-              imageUrl: "/images/collection/sken/GPT0521.svg",
+              imageUrl: "/images/collection/sken/GPT0521.png",
               category: "Sken",
               title: "GPT0521",
               description: "Bilah tradisional panjang berbentuk daun dengan gagang dan sarung kayu. Desain Kujang Malang melambangkan keberanian dan kewibawaan, dan digunakan dalam konteks upacara maupun pertahanan pada masa Mataram Amangkurat."
             },
             {
               id: 21,
-              imageUrl: "/images/collection/sken/GPT0516.svg",
+              imageUrl: "/images/collection/sken/GPT0516.png",
               category: "Sken",
               title: "GPT0516",
               description: "Belati upacara dengan bilah lebar berbentuk daun serta gagang dan sarung kayu ukir halus. Godong Suruh, yang berarti “daun sirih,” melambangkan ketulusan, kesucian, dan harmoni."
             },
             {
               id: 22,
-              imageUrl: "/images/collection/sken/GPT0517.svg", 
+              imageUrl: "/images/collection/sken/GPT0517.png", 
               category: "Sken",
               title: "GPT0517",
               description: "" 
             },
             {
               id: 23,
-              imageUrl: "/images/collection/sken/GPT0519.svg",
+              imageUrl: "/images/collection/sken/GPT0519.png",
               category: "Sken",
               title: "GPT0519",
               description: "" 
             },
             {
               id: 24,
-              imageUrl: "/images/collection/sken/GPT0520.svg",
+              imageUrl: "/images/collection/sken/GPT0520.png",
               category: "Sken",
               title: "GPT0520",
               description: "" 
@@ -3100,63 +3100,63 @@ const translations = {
           items: [
             {
               id: 25,
-              imageUrl: "/images/collection/spear/GPT407.svg",
+              imageUrl: "/images/collection/spear/GPT407.png",
               category: "Tombak",
               title: "GPT407",
               description: "Belati tradisional dengan bilah panjang dan ramping serta gagang dan sarung kayu sederhana. Desainnya yang minimalis mencerminkan kerajinan fungsional yang menekankan keseimbangan dan kegunaan daripada hiasan."
             },
             {
               id: 26,
-              imageUrl: "/images/collection/spear/GPT408.svg",
+              imageUrl: "/images/collection/spear/GPT408.png",
               category: "Tombak",
               title: "GPT408",
               description: "Belati tradisional dengan bilah bermotif pamor dan gagang kayu berwarna gelap. Motif pamor terbentuk melalui teknik tempa berlapis dan melambangkan kekuatan batin serta keseimbangan."
             },
             {
               id: 27,
-              imageUrl: "/images/collection/spear/GPT409.svg",
+              imageUrl: "/images/collection/spear/GPT409.png",
               category: "Tombak",
               title: "GPT409",
               description: "Bilah pendek dengan gagang dan sarung kayu polos. Memiliki panjang bilah 25,5 cm dan panjang keseluruhan 49 cm, mencerminkan fungsi praktis untuk penggunaan sehari-hari."
             },
             {
               id: 28,
-              imageUrl: "/images/collection/spear/GPT410.svg",
+              imageUrl: "/images/collection/spear/GPT410.png",
               category: "Tombak",
               title: "GPT410",
               description: "" 
             },
             {
               id: 29,
-              imageUrl: "/images/collection/spear/GPT412.svg",
+              imageUrl: "/images/collection/spear/GPT412.png",
               category: "Tombak",
               title: "GPT412",
               description: "" 
             },
             {
               id: 30,
-              imageUrl: "/images/collection/spear/GPT416.svg",
+              imageUrl: "/images/collection/spear/GPT416.png",
               category: "Tombak",
               title: "GPT416",
               description: "" 
             },
             {
               id: 31,
-              imageUrl: "/images/collection/spear/GPT507.svg",
+              imageUrl: "/images/collection/spear/GPT507.png",
               category: "Tombak",
               title: "GPT507",
               description: "" 
             },
             {
               id: 32,
-              imageUrl: "/images/collection/spear/GPT411.svg",
+              imageUrl: "/images/collection/spear/GPT411.png",
               category: "Tombak",
               title: "GPT411",
               description: "" 
             },
             {
               id: 33,
-              imageUrl: "/images/collection/spear/GPT413.svg",
+              imageUrl: "/images/collection/spear/GPT413.png",
               category: "Tombak",
               title: "GPT413",
               description: "" 
@@ -3168,63 +3168,63 @@ const translations = {
           items: [
             {
               id: 34,
-              imageUrl: "/images/collection/wayang/drona.svg",
+              imageUrl: "/images/collection/wayang/drona.png",
               category: "Wayang",
               title: "Drona",
               description: "Wayang yang menggambarkan sosok penasihat tua. Postur yang tenang dan kostum penuh detail mencerminkan kebijaksanaan, disiplin, dan kedudukanyang terhormat."
             },
             {
               id: 35,
-              imageUrl: "/images/collection/wayang/gareng.svg",
+              imageUrl: "/images/collection/wayang/gareng.png",
               category: "Wayang",
               title: "Gareng",
               description: "Wayang berperan komedi dengan gerak ekspresif dan karakter humoris. Bentuk tubuh yang membulat dan sikap yang ceria menunjukkan perannya sebagai sahabat setia yang membawa keceriaan dalam cerita."
             },
             {
               id: 36,
-              imageUrl: "/images/collection/wayang/citraksa.svg",
+              imageUrl: "/images/collection/wayang/citraksa.png",
               category: "Wayang",
               title: "Citraksa",
               description: "Wayang yang menggambarkan sosok pejuang bangsawan. Pahatan detail dan warna cerah menonjolkan kekuatan, otoritas, dan gerakan yang halus."
             },
             {
               id: 37,
-              imageUrl: "/images/collection/wayang/bima.svg",
+              imageUrl: "/images/collection/wayang/bima.png",
               category: "Wayang",
               title: "Bima",
               description: "" 
             },
             {
               id: 38,
-              imageUrl: "/images/collection/wayang/aswatama.svg",
+              imageUrl: "/images/collection/wayang/aswatama.png",
               category: "Wayang",
               title: "Aswatama",
               description: "" 
             },
             {
               id: 39,
-              imageUrl: "/images/collection/wayang/bagong.svg",
+              imageUrl: "/images/collection/wayang/bagong.png",
               category: "Wayang",
               title: "Bagong",
               description: "" 
             },
             {
               id: 40,
-              imageUrl: "/images/collection/wayang/abilawa.svg",
+              imageUrl: "/images/collection/wayang/abilawa.png",
               category: "Wayang",
               title: "Abilawa",
               description: "" 
             },
             {
               id: 41,
-              imageUrl: "/images/collection/wayang/arimbi.svg",
+              imageUrl: "/images/collection/wayang/arimbi.png",
               category: "Wayang",
               title: "Arimbi",
               description: "" 
             },
             {
               id: 42,
-              imageUrl: "/images/collection/wayang/nakula.svg",
+              imageUrl: "/images/collection/wayang/nakula.png",
               category: "Wayang",
               title: "Nakula",
               description: "" 
@@ -3236,63 +3236,63 @@ const translations = {
           items: [
             {
               id: 43,
-              imageUrl: "/images/collection/keris/K.A 001.svg",
+              imageUrl: "/images/collection/keris/K.A 001.png",
               category: "Keris",
               title: "K.A 001",
               description: "Sebilah keris dari tradisi Surakarta dengan bilah lurus. Pamornya menampilkan susunan berlapis yang jelas, menunjukkan teknik tempa yang teliti. Hulu kayu dan warangka logam berukir mencerminkan keterampilan yang lekat dengan lingkungan bangsawan."
             },
             {
               id: 44,
-              imageUrl: "/images/collection/keris/K.A 002.svg",
+              imageUrl: "/images/collection/keris/K.A 002.png",
               category: "Keris",
               title: "K.A 002",
               description: "Sebilah keris dengan lima lekukan dan pamor kuat di sepanjang bilah. Hulu bergaya Surakarta serta warangka logam berhias menunjukkan peran budaya keris dalam upacara dan warisan tradisi."
             },
             {
               id: 45,
-              imageUrl: "/images/collection/keris/K.A 003.svg",
+              imageUrl: "/images/collection/keris/K.A 003.png",
               category: "Keris",
               title: "K.A 003",
               description: "Sebuah keris Jawa tradisional dengan pamor berlekuk dan hulu kayu. Warangka berlapis logam menandakan proses pelestarian pada masa berikutnya. Benda ini merepresentasikan pusaka pribadi yang digunakan sebagai simbol perlindungan dan jati diri."
             },
             {
               id: 46,
-              imageUrl: "/images/collection/keris/K.A 004.svg",
+              imageUrl: "/images/collection/keris/K.A 004.png",
               category: "Keris",
               title: "K.A 004",
               description: "" 
             },
             {
               id: 47,
-              imageUrl: "/images/collection/keris/K.A 005.svg",
+              imageUrl: "/images/collection/keris/K.A 005.png",
               category: "Keris",
               title: "K.A 005",
               description: "" 
             },
             {
               id: 48,
-              imageUrl: "/images/collection/keris/K.A 006.svg",
+              imageUrl: "/images/collection/keris/K.A 006.png",
               category: "Keris",
               title: "K.A 006",
               description: "" 
             },
             {
               id: 49,
-              imageUrl: "/images/collection/keris/K.A 007.svg",
+              imageUrl: "/images/collection/keris/K.A 007.png",
               category: "Keris",
               title: "K.A 007",
               description: "" 
             },
             {
               id: 50,
-              imageUrl: "/images/collection/keris/K.A 008.svg",
+              imageUrl: "/images/collection/keris/K.A 008.png",
               category: "Keris",
               title: "K.A 008",
               description: "" 
             },
             {
               id: 51,
-              imageUrl: "/images/collection/keris/K.A 009.svg",
+              imageUrl: "/images/collection/keris/K.A 009.png",
               category: "Keris",
               title: "K.A 009",
               description: "" 
@@ -3304,21 +3304,21 @@ const translations = {
           items: [
             {
               id: 52,
-              imageUrl: "/images/collection/lainnya/Command Staff.svg",
+              imageUrl: "/images/collection/lainnya/Command Staff.png",
               category: "Lainnya",
               title: "Command Staff",
               description: "Tongkat kayu berukir ini memiliki ujung runcing dan bagian atas yang dihias. Bentuknya sering dikaitkan dengan peran kepemimpinan atau penggunaan dalam upacara. Bahan dan hasil pengerjaannya menunjukkan bahwa benda ini dibuat pada periode yang relatif lebih baru."
             },
             {
               id: 53,
-              imageUrl: "/images/collection/lainnya/VOC Flintlock Pistol.svg",
+              imageUrl: "/images/collection/lainnya/VOC Flintlock Pistol.png",
               category: "Lainnya",
               title: "VOC Flintlock Pistol",
               description: "Pistol flintlock tembakan tunggal ini berasal dari masa VOC di wilayah Nusantara pada abad ke-17 hingga ke-19. Senjata ini umum digunakan oleh personel militer dan perwira sebagai senjata jarak dekat sekaligus penanda status."
             },
             {
               id: 54,
-              imageUrl: "/images/collection/lainnya/Triple-Bladed Weapon.svg",
+              imageUrl: "/images/collection/lainnya/Triple-Bladed Weapon.png",
               category: "Lainnya",
               title: "Triple-Bladed Weapon",
               description: "Senjata bermata tiga ini memiliki ujung tengah menyerupai tombak dengan dua sisi melengkung di kanan dan kiri. Dilengkapi dengan gagang dan sarung kayu. Bentuknya menunjukkan fungsi untuk pertarungan jarak dekat atau penggunaan upacara, tergantung pada konteks sejarah dan tradisi."
@@ -3383,9 +3383,9 @@ const translations = {
             "Pendopo Yudonegaran adalah paviliun tradisional Jawa yang megah berbahan kayu jati. Suasananya terbuka dan menenangkan untuk berbagai jenis acara. Cocok untuk pernikahan, acara perusahaan, atau pertunjukan budaya. Venue ini menghadirkan perpaduan arsitektur klasik dengan kenyamanan modern.",
             "Tiang kayu yang tinggi dan atap joglo menciptakan nuansa Jawa yang kuat. Desain terbuka dan sirkulasi udara alami menjadikannya sesuai untuk acara kecil atau perayaan besar."
           ],
-          heroImage: "/images/venue/pendopo/pendopo1.png",
-          galleryImages: ["/images/venue/pendopo/pendopo2.png", "/images/venue/pendopo/pendopo3.png", "/images/venue/pendopo/pendopo1.png"],
-          eventGalleryImages: ["/images/venue/pendopo/pendopo4.png", "/images/venue/pendopo/pendopo5.png", "/images/venue/pendopo/pendopo6.png", "/images/venue/pendopo/pendopo7.png", "/images/venue/pendopo/pendopo1.png", "/images/venue/pendopo/pendopo2.png"],
+          heroImage: "/images/venue/pendopo/pendopo1.webp",
+          galleryImages: ["/images/venue/pendopo/pendopo2.webp", "/images/venue/pendopo/pendopo3.webp", "/images/venue/pendopo/pendopo1.webp"],
+          eventGalleryImages: ["/images/venue/pendopo/pendopo4.webp", "/images/venue/pendopo/pendopo5.webp", "/images/venue/pendopo/pendopo6.webp", "/images/venue/pendopo/pendopo7.webp", "/images/venue/pendopo/pendopo1.webp", "/images/venue/pendopo/pendopo2.webp"],
           basePrice: 1800000,
           basePriceString: "Rp 1.800.000",
           priceDetail: "(2 jam)",
@@ -3405,9 +3405,9 @@ const translations = {
             "Amphitheater Notoprajan menghadirkan suasana ruang terbuka yang dikelilingi taman hijau. Cocok untuk pertunjukan, acara komunitas, dan kegiatan kreatif. Desain setengah lingkaran memberi pengalaman panggung alami yang membuat penonton lebih terhubung dengan setiap momen acara.",
             "Pilar kayu dan arsitektur tradisional menciptakan nuansa Jawa yang kuat. Ruang terbuka dan sirkulasi udara yang baik membuat venue ini ideal untuk acara kecil maupun perayaan skala lebih besar."
           ],
-          heroImage: "/images/venue/amphiteater/amphiteater1.png",
-          galleryImages: ["/images/venue/amphiteater/amphiteater2.png", "/images/venue/amphiteater/amphiteater3.png", "/images/venue/amphiteater/amphiteater4.png"],
-          eventGalleryImages: ["/images/venue/amphiteater/amphiteater5.png", "/images/venue/amphiteater/amphiteater6.png", "/images/venue/amphiteater/amphiteater7.png", "/images/venue/amphiteater/amphiteater8.png", "/images/venue/amphiteater/amphiteater9.png", "/images/venue/amphiteater/amphiteater10.png"],
+          heroImage: "/images/venue/amphiteater/amphiteater1.webp",
+          galleryImages: ["/images/venue/amphiteater/amphiteater2.webp", "/images/venue/amphiteater/amphiteater3.webp", "/images/venue/amphiteater/amphiteater4.webp"],
+          eventGalleryImages: ["/images/venue/amphiteater/amphiteater5.webp", "/images/venue/amphiteater/amphiteater6.webp", "/images/venue/amphiteater/amphiteater7.webp", "/images/venue/amphiteater/amphiteater8.webp", "/images/venue/amphiteater/amphiteater9.webp", "/images/venue/amphiteater/amphiteater10.webp"],
           basePrice: 1500000,
           basePriceString: "Rp 1.500.000",
           priceDetail: "(2 jam)",
@@ -3427,9 +3427,9 @@ const translations = {
             "Bale Madyosuro menyuguhkan interior Jawa klasik dengan ukiran kayu dan lantai bermotif. Suasananya hangat dan tetap formal untuk rapat, workshop, atau acara yang lebih intim. Venue ini memadukan tradisi dan fungsi modern sehingga menghadirkan nuansa elegan untuk setiap momen spesial anda.",
             "Pilar kayu yang tinggi dan atap joglo tradisional menghadirkan suasana Jawa yang autentik dengan fasilitas lengkap untuk kebutuhan acara masa kini. Sirkulasi udara alami dan desain yang terbuka membuatnya cocok untuk acara kecil maupun perayaan dalam jumlah lebih besar."
           ],
-          heroImage: "/images/venue/madyosuro/madyosuro1.png",
-          galleryImages: ["/images/venue/madyosuro/madyosuro2.png", "/images/venue/madyosuro/madyosuro3.png", "/images/venue/madyosuro/madyosuro4.png"],
-          eventGalleryImages: ["/images/venue/madyosuro/madyosuro5.png", "/images/venue/madyosuro/madyosuro6.png", "/images/venue/madyosuro/madyosuro7.png", "/images/venue/madyosuro/madyosuro8.png", "/images/venue/madyosuro/madyosuro9.png", "/images/venue/madyosuro/madyosuro10.png"],
+          heroImage: "/images/venue/madyosuro/madyosuro1.webp",
+          galleryImages: ["/images/venue/madyosuro/madyosuro2.webp", "/images/venue/madyosuro/madyosuro3.webp", "/images/venue/madyosuro/madyosuro4.webp"],
+          eventGalleryImages: ["/images/venue/madyosuro/madyosuro5.webp", "/images/venue/madyosuro/madyosuro6.webp", "/images/venue/madyosuro/madyosuro7.webp", "/images/venue/madyosuro/madyosuro8.webp", "/images/venue/madyosuro/madyosuro9.webp", "/images/venue/madyosuro/madyosuro10.webp"],
           basePrice: 750000,
           basePriceString: "Rp 750.000",
           priceDetail: "(2 jam)",
@@ -3449,9 +3449,9 @@ const translations = {
             "Bale Mrican menyediakan ruang indoor yang nyaman dan tenang. Cocok untuk meeting, workshop, atau acara privat berskala kecil. Interior minimalis dan layout terbuka membuat penataan ruang lebih fleksibel untuk acara casual maupun formal.",
             "Ruang ini menghadirkan suasana Jawa yang autentik dengan pilar kayu menjulang dan atap joglo khas. Sirkulasi udara alami dan desain terbuka membuatnya nyaman untuk acara kecil maupun perayaan yang lebih besar."
           ],
-          heroImage: "/images/venue/mrican/mrican1.png",
-          galleryImages: ["/images/venue/mrican/mrican2.png", "/images/venue/mrican/mrican3.png", "/images/venue/mrican/mrican4.png"],
-          eventGalleryImages: ["/images/venue/mrican/mrican5.png", "/images/venue/mrican/mrican6.png", "/images/venue/mrican/mrican7.png", "/images/venue/mrican/mrican8.png", "/images/venue/mrican/mrican9.png", "/images/venue/mrican/mrican10.png"],
+          heroImage: "/images/venue/mrican/mrican1.webp",
+          galleryImages: ["/images/venue/mrican/mrican2.webp", "/images/venue/mrican/mrican3.webp", "/images/venue/mrican/mrican4.webp"],
+          eventGalleryImages: ["/images/venue/mrican/mrican5.webp", "/images/venue/mrican/mrican6.webp", "/images/venue/mrican/mrican7.webp", "/images/venue/mrican/mrican8.webp", "/images/venue/mrican/mrican9.webp", "/images/venue/mrican/mrican10.webp"],
           basePrice: 600000,
           basePriceString: "Rp 600.000",
           priceDetail: "(2 jam)",
@@ -3471,9 +3471,9 @@ const translations = {
             "Bale Sagan adalah pendapa kecil yang nyaman untuk acara dengan peserta terbatas. Kamu bisa menggunakannya untuk diskusi kelompok, workshop seni, atau pertemuan santai. Desain Jawa yang sederhana memberi suasana tenang dengan cahaya alami dan udara segar.",
             "Pilar kayu yang menjulang dan atap joglo menjaga nuansa tradisional tetap terasa. Sirkulasi udara alami dan area terbuka membuat tempat ini nyaman untuk berbagai jenis acara, baik yang bersifat intim maupun lebih besar."
           ],
-          heroImage: "/images/venue/sagan/sagan1.png",
-          galleryImages: ["/images/venue/sagan/sagan2.png", "/images/venue/sagan/sagan3.png", "/images/venue/sagan/sagan4.png"],
-          eventGalleryImages: ["/images/venue/sagan/sagan5.png", "/images/venue/sagan/sagan6.png", "/images/venue/sagan/sagan7.png", "/images/venue/sagan/sagan8.png", "/images/venue/sagan/sagan9.png", "/images/venue/sagan/sagan10.png"],
+          heroImage: "/images/venue/sagan/sagan1.webp",
+          galleryImages: ["/images/venue/sagan/sagan2.webp", "/images/venue/sagan/sagan3.webp", "/images/venue/sagan/sagan4.webp"],
+          eventGalleryImages: ["/images/venue/sagan/sagan5.webp", "/images/venue/sagan/sagan6.webp", "/images/venue/sagan/sagan7.webp", "/images/venue/sagan/sagan8.webp", "/images/venue/sagan/sagan9.webp", "/images/venue/sagan/sagan10.webp"],
           basePrice: 350000,
           basePriceString: "Rp 350.000",
           priceDetail: "(2 jam)",
@@ -3493,9 +3493,9 @@ const translations = {
             "Taman Bulus menghadirkan taman luar ruang yang hijau dan dikelilingi bangunan tradisional. Cocok untuk pernikahan outdoor, acara keluarga, dan kegiatan kreatif. Lanskap yang tenang memadukan suasana alam dan budaya dalam satu lokasi.",
             "Ruang terbuka dengan sirkulasi udara alami memberi kenyamanan untuk berbagai acara. Desainnya fleksibel untuk perayaan kecil maupun acara berskala lebih besar. Semua fasilitas tersedia agar Kamu bisa fokus menikmati momen bersama tamu."
           ],
-          heroImage: "/images/venue/bulus/bulus1.png",
-          galleryImages: ["/images/venue/bulus/bulus2.png", "/images/venue/bulus/bulus3.png", "/images/venue/bulus/bulus4.png"],
-          eventGalleryImages: ["/images/venue/bulus/bulus5.png", "/images/venue/bulus/bulus6.png", "/images/venue/bulus/bulus7.png", "/images/venue/bulus/bulus8.png", "/images/venue/bulus/bulus9.png", "/images/venue/bulus/bulus10.png"],
+          heroImage: "/images/venue/bulus/bulus1.webp",
+          galleryImages: ["/images/venue/bulus/bulus2.webp", "/images/venue/bulus/bulus3.webp", "/images/venue/bulus/bulus4.webp"],
+          eventGalleryImages: ["/images/venue/bulus/bulus5.webp", "/images/venue/bulus/bulus6.webp", "/images/venue/bulus/bulus7.webp", "/images/venue/bulus/bulus8.webp", "/images/venue/bulus/bulus9.webp", "/images/venue/bulus/bulus10.webp"],
           basePrice: 1200000,
           basePriceString: "Rp 1.200.000",
           priceDetail: "(2 jam)",
@@ -3625,7 +3625,7 @@ const translations = {
         item: [
           {
             title: "Kenyamanan Kamar",
-            icon: "/images/icons/bed-green.svg",
+            icon: "/images/icons/bed-green.png",
             items: [
               "Air conditioning",
               "Furnitur tradisional",
@@ -3637,7 +3637,7 @@ const translations = {
           },
           {
             title: "Teknologi",
-            icon: "/images/icons/wifi-green.svg",
+            icon: "/images/icons/wifi-green.png",
             items: [
               "WiFi Gratis",
               "Port pengisian daya",
@@ -3645,7 +3645,7 @@ const translations = {
           },
           {
             title: "Aktivitas Budaya",
-            icon: "/images/icons/paint-green.svg",
+            icon: "/images/icons/paint-green.png",
             items: [
               "Aktivitas Tradisional",
               "Pertunjukan Tradisional Musiman",
@@ -3658,7 +3658,7 @@ const translations = {
           },
           {
             title: "Kuliner & Kebugaran",
-            icon: "/images/icons/food-green.svg",
+            icon: "/images/icons/food-green.png",
             items: [
               "Kuliner Tradisional",
               "Layanan Kamar",
@@ -3671,9 +3671,9 @@ const translations = {
       additional: {
         title: 'Fasilitas Tambahan Rumah',
         item: [
-          { name: "Kolam Renang", icon: "/images/icons/swim-green.svg" },
-          { name: "Spa & Kesehatan", icon: "/images/icons/flower-green.svg"},
-          { name: "Tur Taman", icon: "/images/icons/tree-green.svg" },
+          { name: "Kolam Renang", icon: "/images/icons/swim-green.png" },
+          { name: "Spa & Kesehatan", icon: "/images/icons/flower-green.png"},
+          { name: "Tur Taman", icon: "/images/icons/tree-green.png" },
         ]
       },
       featuredCard: {
@@ -3704,18 +3704,18 @@ const translations = {
             "Dengan luas 43,2 meter persegi, rumah ini memiliki WiFi gratis, AC, minibar, dan kamar mandi pribadi. Bagian yang menonjol ada pada pemandangannya. Teras depan menghadap taman hijau. Teras belakang langsung terhubung dengan kolam renang dan hamparan sawah luas.",
             "Nama Ngadirojo berasal dari sebuah daerah di Wonogiri, Jawa Tengah, tempat Bapak F. W. Santopratiknya tinggal antara tahun 1944 sampai 1946. Rumah ini melambangkan keharmonisan antara kenyamanan, keindahan alam, dan sejarah keluarga."
           ],
-          imageUrl: "/images/rooms/ngadirojo/ngadirojo1.png",
+          imageUrl: "/images/rooms/ngadirojo/ngadirojo1.webp",
           galleryImages: [
-            "/images/rooms/ngadirojo/ngadirojo2.png",
-            "/images/rooms/ngadirojo/ngadirojo3.png",
-            "/images/rooms/ngadirojo/ngadirojo4.png",
-            "/images/rooms/ngadirojo/ngadirojo.png",
-            "/images/rooms/ngadirojo/ngadirojo5.png",
+            "/images/rooms/ngadirojo/ngadirojo2.webp",
+            "/images/rooms/ngadirojo/ngadirojo3.webp",
+            "/images/rooms/ngadirojo/ngadirojo4.webp",
+            "/images/rooms/ngadirojo/ngadirojo.webp",
+            "/images/rooms/ngadirojo/ngadirojo5.webp",
           ],
           details: { bed: "King Size Bed", guests: 2, size: "43,2 m²", view: "Pemandangan Kolam" },
-          detailsIcons:"/images/icons/swim-white.svg",
+          detailsIcons:"/images/icons/swim-white.png",
           amenities: ["WiFi Gratis", "Air Conditioning", "Kamar Mandi Pribadi", "Pemandangan Kolam", "Bar Mini", "Teras"],
-          amenitiesIcons:"/images/icons/swim-white.svg",
+          amenitiesIcons:"/images/icons/swim-white.png",
           policies: { checkIn: "15:00 WIB",  checkOut: "12:00 PM", 
           cancellation: ["Pembatalan Gratis Hingga 48 Jam Sebelumnya", "50% refund 24h before", "No refund same day"] 
           },
@@ -3736,18 +3736,18 @@ const translations = {
             "Dengan luas 63,13 meter persegi, rumah ini memiliki WiFi gratis, AC, minibar, kamar mandi pribadi, dan teras yang nyaman. Teras depan menghadap taman rindang. Teras belakang menghadap kolam renang dan sawah, memberi suasana alami yang menenangkan.",
             "Nama Polaman berasal dari sebuah daerah di Sedayu, Bantul, tempat Bapak F. W. Santopratiknya tinggal antara tahun 1929 sampai 1931. Rumah ini mencerminkan sejarah keluarga yang memadukan warisan budaya dan kenyamanan modern.",
           ],
-          imageUrl: "/images/rooms/polaman/polaman1.png",
+          imageUrl: "/images/rooms/polaman/polaman1.webp",
           galleryImages: [
-            "/images/rooms/polaman/polaman2.png",
-            "/images/rooms/polaman/polaman.png",
-            "/images/rooms/polaman/polaman3.png",
-            "/images/rooms/polaman/polaman4.png",
-            "/images/rooms/polaman/polaman5.png",
+            "/images/rooms/polaman/polaman2.webp",
+            "/images/rooms/polaman/polaman.webp",
+            "/images/rooms/polaman/polaman3.webp",
+            "/images/rooms/polaman/polaman4.webp",
+            "/images/rooms/polaman/polaman5.webp",
           ],
           details: { bed: "King Size Bed", guests: 2, size: "63,13 m²", view: "Pemandangan Kolam" },
-          detailsIcons:"/images/icons/swim-white.svg",
+          detailsIcons:"/images/icons/swim-white.png",
           amenities: ["WiFi Gratis", "Air Conditioning", "Kamar Mandi Pribadi", "Pemandangan Kolam", "Bar Mini", "Teras"],
-          amenitiesIcons:"/images/icons/swim-green.svg",
+          amenitiesIcons:"/images/icons/swim-green.png",
           policies: { checkIn: "15:00 WIB", checkOut: "12:00 WIB", cancellation: ["Pembatalan Gratis Hingga 48 Jam Sebelumnya"] },
           houseRules: { smoking: false, pets: true, quietHours: "10 Malam" },
           rating: 4.9, 
@@ -3766,18 +3766,18 @@ const translations = {
             "Dengan luas 51,6 meter persegi, rumah ini dilengkapi WiFi gratis, AC, minibar, kamar mandi pribadi, dan teras pribadi yang menghadap taman. Suasana yang tenang membuat rumah ini cocok untuk tamu yang mencari ketenangan dengan sentuhan tradisi.",
             "Nama Adikarto berasal dari sebuah daerah di Kabupaten Kulon Progo, yang lebih dikenal sebagai Wates, tempat Bapak F. W. Santopratiknya tinggal antara tahun 1931–1942 dan 1949–1955. Rumah ini tidak hanya menawarkan kenyamanan, tetapi juga menjaga sejarah keluarga dan warisan budaya.",
           ],
-          imageUrl: "/images/rooms/adikarto/adikarto1.png",
+          imageUrl: "/images/rooms/adikarto/adikarto1.webp",
           galleryImages: [
-            "/images/rooms/adikarto/adikarto2.png",
-            "/images/rooms/adikarto/adikarto.png",
-            "/images/rooms/adikarto/adikarto3.png",
-            "/images/rooms/adikarto/adikarto4.png",
-            "/images/rooms/adikarto/adikarto5.png",
+            "/images/rooms/adikarto/adikarto2.webp",
+            "/images/rooms/adikarto/adikarto.webp",
+            "/images/rooms/adikarto/adikarto3.webp",
+            "/images/rooms/adikarto/adikarto4.webp",
+            "/images/rooms/adikarto/adikarto5.webp",
           ],
           details: { bed: "King Size Bed", guests: 2, size: "51,6 m²", view: "Pemandangan Taman" },
-          detailsIcons:"/images/icons/leaf-gray.svg",
+          detailsIcons:"/images/icons/leaf-gray.png",
           amenities: ["WiFi Gratis", "Air Conditioning", "Kamar Mandi Pribadi", "Pemandangan Taman", "Bar Mini", "Teras"],
-          amenitiesIcons:"/images/icons/leaf-green.svg",
+          amenitiesIcons:"/images/icons/leaf-green.png",
           policies: { checkIn: "15:00 WIB", checkOut: "12:00 WIB", cancellation: ["Pembatalan Gratis Hingga 48 Jam Sebelumnya"] },
           houseRules: { smoking: false, pets: true, quietHours: "10 Malam" },
           rating: 4.9, 
@@ -3796,18 +3796,18 @@ const translations = {
             "Dengan luas 68,15 meter persegi, rumah ini dilengkapi WiFi gratis, AC, minibar, kamar mandi pribadi, dan teras pribadi yang menghadap taman. Perpaduan kenyamanan modern dan suasana alami membuat tempat ini cocok untuk relaksasi atau menghabiskan waktu bersama orang terdekat.",
             "Nama Ganjuran diambil dari sebuah daerah di Kabupaten Bantul, tempat Bapak F. W. Santopratiknya tinggal sekitar tahun 1929. Rumah ini tidak hanya menawarkan kenyamanan, tetapi juga membawa hubungan sejarah dan kedekatan emosional dengan warisan keluarga.",
           ],
-          imageUrl: "/images/rooms/ganjuran/ganjuran1.png",
+          imageUrl: "/images/rooms/ganjuran/ganjuran1.webp",
           galleryImages: [
-            "/images/rooms/ganjuran/ganjuran2.png",
-            "/images/rooms/ganjuran/ganjuran3.png",
-            "/images/rooms/ganjuran/ganjuran4.png",
-            "/images/rooms/ganjuran/ganjuran5.png",
-            "/images/rooms/ganjuran/ganjuran6.png",
+            "/images/rooms/ganjuran/ganjuran2.webp",
+            "/images/rooms/ganjuran/ganjuran3.webp",
+            "/images/rooms/ganjuran/ganjuran4.webp",
+            "/images/rooms/ganjuran/ganjuran5.webp",
+            "/images/rooms/ganjuran/ganjuran6.webp",
           ],
           details: { bed: "King Size Bed", guests: 3, size: "68,15 m²", view: "Pemandangan Taman" },
-          detailsIcons:"/images/icons/leaf-green.svg",
+          detailsIcons:"/images/icons/leaf-green.png",
           amenities: ["WiFi Gratis", "Air Conditioning", "Kamar Mandi Pribadi", "Pemandangan Taman", "Bar Mini", "Teras"],
-          amenitiesIcons:"/images/icons/leaf-green.svg",
+          amenitiesIcons:"/images/icons/leaf-green.png",
           policies: { checkIn: "15:00 WIB", checkOut: "12:00 WIB", cancellation: ["Pembatalan Gratis Hingga 48 Jam Sebelumnya"] },
           houseRules: { smoking: false, pets: true, quietHours: "10 Malam" },
           rating: 4.9, 
@@ -3826,18 +3826,18 @@ const translations = {
             "Dengan luas 46 meter persegi, Badegan House menyediakan kenyamanan modern seperti WiFi gratis, AC, minibar, dan kamar mandi pribadi. Tamu bisa menikmati waktu santai di teras yang menghadap taman hijau. Suasananya tenang dan cocok untuk melepas penat sambil menyatu dengan alam.",
             "Nama Badegan berasal dari sebuah desa di Kabupaten Bantul, tempat Bapak F. W. Santopratiknya, ayah dari Bapak P. Swantoro, tinggal mulai tahun 1958. Setiap sudut rumah ini menyimpan cerita dan nilai budaya sehingga rumah ini terasa lebih dari sekadar tempat menginap.",
           ],
-          imageUrl: "/images/rooms/badegan/badegan1.png",
+          imageUrl: "/images/rooms/badegan/badegan1.webp",
           galleryImages: [
-            "/images/rooms/badegan/badegan2.png",
-            "/images/rooms/badegan/badegan3.png",
-            "/images/rooms/badegan/badegan4.png",
-            "/images/rooms/badegan/badegan5.png",
-            "/images/rooms/badegan/badegan6.png",
+            "/images/rooms/badegan/badegan2.webp",
+            "/images/rooms/badegan/badegan3.webp",
+            "/images/rooms/badegan/badegan4.webp",
+            "/images/rooms/badegan/badegan5.webp",
+            "/images/rooms/badegan/badegan6.webp",
           ],
           details: { bed: "King Size Bed", guests: 4, size: "46 m²", view: "Pemandangan Taman" },
-          detailsIcons:"/images/icons/leaf-green.svg",
+          detailsIcons:"/images/icons/leaf-green.png",
           amenities: ["WiFi Gratis", "Air Conditioning", "Kamar Mandi Pribadi", "Pemandangan Taman", "Bar Mini", "Teras"],
-          amenitiesIcons:"/images/icons/leaf-green.svg",
+          amenitiesIcons:"/images/icons/leaf-green.png",
           policies: { checkIn: "15:00 WIB", checkOut: "12:00 WIB", cancellation: ["Pembatalan Gratis Hingga 48 Jam Sebelumnya"] },
           houseRules: { smoking: false, pets: true, quietHours: "10 Malam" },
           rating: 4.9, 
@@ -3856,18 +3856,18 @@ const translations = {
             "Dengan luas 40,5 meter persegi, rumah ini memiliki WiFi gratis, AC, minibar, kamar mandi pribadi, dan teras yang menghadap taman. Lingkungan yang tenang dan hijau membuat tempat ini cocok untuk relaksasi sambil menikmati budaya lokal.",
             "Nama Wuryantoro berasal dari sebuah daerah di Wonogiri, Jawa Tengah, tempat Bapak F. W. Santopratiknya tinggal antara tahun 1946 dan 1948. Setiap elemen rumah ini mencerminkan sejarah dan akar budaya sehingga menjadikannya lebih dari sekadar tempat menginap.",
           ],
-          imageUrl: "/images/rooms/wuryantoro/wuryantoro1.png",
+          imageUrl: "/images/rooms/wuryantoro/wuryantoro1.webp",
           galleryImages: [
-            "/images/rooms/wuryantoro/wuryantoro2.png",
-            "/images/rooms/wuryantoro/wuryantoro3.png",
-            "/images/rooms/wuryantoro/wuryantoro4.png",
-            "/images/rooms/wuryantoro/wuryantoro5.png",
-            "/images/rooms/wuryantoro/wuryantoro6.png",
+            "/images/rooms/wuryantoro/wuryantoro2.webp",
+            "/images/rooms/wuryantoro/wuryantoro3.webp",
+            "/images/rooms/wuryantoro/wuryantoro4.webp",
+            "/images/rooms/wuryantoro/wuryantoro5.webp",
+            "/images/rooms/wuryantoro/wuryantoro6.webp",
           ],
           details: { bed: "King Size Bed", guests: 3, size: "40,5 m²", view: "Pemandangan Taman" },
-          detailsIcons:"/images/icons/leaf-green.svg",
+          detailsIcons:"/images/icons/leaf-green.png",
           amenities: ["WiFi Gratis", "Air Conditioning", "Kamar Mandi Pribadi", "Pemandangan Taman", "Bar Mini", "Teras"],
-          amenitiesIcons:"/images/icons/leaf-green.svg",
+          amenitiesIcons:"/images/icons/leaf-green.png",
           policies: { checkIn: "15:00 WIB", checkOut: "12:00 WIB", cancellation: ["Pembatalan Gratis Hingga 48 Jam Sebelumnya"] },
           houseRules: { smoking: false, pets: true, quietHours: "10 Malam" },
           rating: 4.9, 
@@ -3886,18 +3886,18 @@ const translations = {
             "Dengan luas 70,7 meter persegi, Morangan House memiliki dua kamar tidur. Masing-masing kamar memiliki kamar mandi pribadi. Lantai pertama berisi area duduk yang luas dan bathtub untuk relaksasi. Area rooftop memberi pemandangan ruang terbuka. Bagian depan rumah menghadap taman. Bagian belakang menghadap sawah. Sisi samping menghadap kolam renang.",
             "Nama Morangan berasal dari sebuah desa di Sleman, Yogyakarta, tempat Bapak F. W. Santopratiknya tinggal antara tahun 1942 dan 1944. Rumah ini melambangkan warisan keluarga yang dihadirkan kembali dalam pengalaman menginap modern dengan jiwa tradisional.",
           ],
-          imageUrl: "/images/rooms/morangan/morangan1.png",
+          imageUrl: "/images/rooms/morangan/morangan1.webp",
           galleryImages: [
-            "/images/rooms/morangan/morangan2.png",
-            "/images/rooms/morangan/morangan3.png",
-            "/images/rooms/morangan/morangan4.png",
-            "/images/rooms/morangan/morangan5.png",
-            "/images/rooms/morangan/morangan6.png",
+            "/images/rooms/morangan/morangan2.webp",
+            "/images/rooms/morangan/morangan3.webp",
+            "/images/rooms/morangan/morangan4.webp",
+            "/images/rooms/morangan/morangan5.webp",
+            "/images/rooms/morangan/morangan6.webp",
           ],
           details: { bed: "King Size Bed", guests: 4, size: "70,7 m²", view: "Pemandangan Kolam" },
-          detailsIcons:"/images/icons/swim-green.svg",
+          detailsIcons:"/images/icons/swim-green.png",
           amenities: ["WiFi Gratis", "Air Conditioning", "Kamar Mandi Pribadi", "Pemandangan Kolam", "Bar Mini", "Teras"],
-          amenitiesIcons:"/images/icons/swim-green.svg",
+          amenitiesIcons:"/images/icons/swim-green.png",
           policies: { checkIn: "15:00 WIB", checkOut: "12:00 WIB", cancellation: ["Pembatalan Gratis Hingga 48 Jam Sebelumnya"] },
           houseRules: { smoking: false, pets: true, quietHours: "10 Malam" },
           rating: 4.9, 
@@ -3916,18 +3916,18 @@ const translations = {
             "Dilengkapi fasilitas modern seperti Wi-Fi gratis, AC, minibar, dan kamar mandi pribadi, Rumah Kriyan memadukan kesederhanaan tradisional dengan kenyamanan masa kini. Teras pribadi menghadap taman hijau yang sejuk, menciptakan suasana damai untuk bersantai di tengah nuansa pedesaan Jawa.",
             "Nama “Kriyan” berasal dari sebuah daerah di Keputran Jeron Beteng, Kraton Yogyakarta—tempat tinggal Bapak R. M. Koesbandarum Sasmi, ayahanda Ibu R. A. Koeswardiyah Swantoro, pada sekitar tahun 1940 hingga 1960. Rumah ini menjadi simbol kedekatan keluarga dengan sejarah dan budaya Jawa.",
           ],
-          imageUrl: "/images/rooms/kriyan/kriyan2.svg",
+          imageUrl: "/images/rooms/kriyan/kriyan2.webp",
           galleryImages: [
-            "/images/rooms/kriyan/kriyan1.svg",
-            "/images/rooms/kriyan/kriyan3.svg",
-            "/images/rooms/kriyan/kriyan4.svg",
-            "/images/rooms/kriyan/kriyan5.svg",
-            "/images/rooms/kriyan/kriyan6.svg",
+            "/images/rooms/kriyan/kriyan1.webp",
+            "/images/rooms/kriyan/kriyan3.webp",
+            "/images/rooms/kriyan/kriyan4.webp",
+            "/images/rooms/kriyan/kriyan5.webp",
+            "/images/rooms/kriyan/kriyan6.webp",
           ],
           details: { bed: "King Size Bed", guests: 2, size: "24 m²", view: "Pemandangan Sawah" },
-          detailsIcons:"/images/icons/leaf-green.svg",
+          detailsIcons:"/images/icons/leaf-green.png",
           amenities: ["WiFi Gratis", "Air Conditioning", "Kamar Mandi Pribadi", "Pemandangan Sawah", "Bar Mini", "Teras"],
-          amenitiesIcons:"/images/icons/leaf-green.svg",
+          amenitiesIcons:"/images/icons/leaf-green.png",
           policies: { checkIn: "15:00 WIB", checkOut: "12:00 WIB", cancellation: ["Pembatalan Gratis Hingga 48 Jam Sebelumnya"] },
           houseRules: { smoking: false, pets: true, quietHours: "10 Malam" },
           rating: 4.9, 
@@ -3946,18 +3946,18 @@ const translations = {
             "Dilengkapi fasilitas modern seperti Wi-Fi gratis, AC, minibar, dan kamar mandi pribadi, Rumah Kriyan memadukan kesederhanaan tradisional dengan kenyamanan masa kini. Teras pribadi menghadap taman hijau yang sejuk, menciptakan suasana damai untuk bersantai di tengah nuansa pedesaan Jawa.",
             "Nama “Kriyan” berasal dari sebuah daerah di Keputran Jeron Beteng, Kraton Yogyakarta—tempat tinggal Bapak R. M. Koesbandarum Sasmi, ayahanda Ibu R. A. Koeswardiyah Swantoro, pada sekitar tahun 1940 hingga 1960. Rumah ini menjadi simbol kedekatan keluarga dengan sejarah dan budaya Jawa.",
           ],
-          imageUrl: "/images/rooms/kriyan/kriyan1.svg",
+          imageUrl: "/images/rooms/kriyan/kriyan1.webp",
           galleryImages: [
-            "/images/rooms/kriyan/kriyan2.svg",
-            "/images/rooms/kriyan/kriyan3.svg",
-            "/images/rooms/kriyan/kriyan4.svg",
-            "/images/rooms/kriyan/kriyan5.svg",
-            "/images/rooms/kriyan/kriyan6.svg",
+            "/images/rooms/kriyan/kriyan2.webp",
+            "/images/rooms/kriyan/kriyan3.webp",
+            "/images/rooms/kriyan/kriyan4.webp",
+            "/images/rooms/kriyan/kriyan5.webp",
+            "/images/rooms/kriyan/kriyan6.webp",
           ],
           details: { bed: "King Size Bed", guests: 2, size: "24 m²", view: "Pemandangan Sawah" },
-          detailsIcons:"/images/icons/leaf-green.svg",
+          detailsIcons:"/images/icons/leaf-green.png",
           amenities: ["WiFi Gratis", "Air Conditioning", "Kamar Mandi Pribadi", "Pemandangan Sawah", "Bar Mini", "Teras"],
-          amenitiesIcons:"/images/icons/leaf-green.svg",
+          amenitiesIcons:"/images/icons/leaf-green.png",
           policies: { checkIn: "15:00 WIB", checkOut: "12:00 WIB", cancellation: ["Pembatalan Gratis Hingga 48 Jam Sebelumnya"] },
           houseRules: { smoking: false, pets: true, quietHours: "10 Malam" },
           rating: 4.9, 

@@ -6,25 +6,18 @@ import { useLanguage } from '@/app/context/LanguageContext';
 
 const BuffetBooking = () => {
   const { t } = useLanguage();
-
-  // Mengambil Data Steps dari Context
   const steps = t.catering.booking.steps;
-
-  // Icon untuk Contact List (Urutan: Phone, WhatsApp, Email)
-  // Harus sesuai urutan array di t.catering.contact.item
   const contactIcons = [
-    "/images/icons/phone-green.svg",
-    "/images/icons/whatsapp-green.svg",
-    "/images/icons/mail-green.svg"
+    "/images/icons/phone-green.png",
+    "/images/icons/whatsapp-green.png",
+    "/images/icons/mail-green.png"
   ];
 
   return (
     <section className="w-full bg-white py-24">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
 
-        {/* =========================================
-            PART 1: BOOKING PROCESS
-           ========================================= */}
+        {/*BOOKING PROCESS*/}
         <div className="mb-24 text-center">
           <span className="mb-3 block text-sm font-bold uppercase tracking-widest text-[#96A66D]">
             {t.catering.booking.label}
@@ -55,9 +48,7 @@ const BuffetBooking = () => {
           </div>
         </div>
 
-        {/* =========================================
-            PART 2: BOOK YOUR EVENT CTA
-           ========================================= */}
+        {/*BOOK YOUR EVENT CTA*/}
         <div className="overflow-hidden rounded-3xl bg-[#F9F7F2]">
           <div className="grid grid-cols-1 lg:grid-cols-2">
             
@@ -99,7 +90,7 @@ const BuffetBooking = () => {
                 {/* Tombol WA */}
                 <button className="inline-flex items-center justify-center gap-2 rounded-full bg-[#8B9D61] px-8 py-3 font-semibold text-white transition-colors hover:bg-[#768652]">
                   <Image 
-                    src="/images/icons/whatsapp-white.svg"
+                    src="/images/icons/whatsapp-white.png"
                     alt="WA"
                     width={20}
                     height={20}
@@ -117,7 +108,7 @@ const BuffetBooking = () => {
             <div className="p-4 md:p-8 lg:p-12 flex items-center justify-center">
               <div className="relative w-full h-[300px] md:h-[400px] lg:h-full min-h-[300px] rounded-2xl overflow-hidden shadow-sm">
                 <Image 
-                  src="/images/foods/buffetcontent5.png" 
+                  src="/images/foods/buffetcontent5.webp" 
                   alt="Traditional Javanese Buffet Spread"
                   fill
                   className="object-cover"

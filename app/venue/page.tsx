@@ -12,27 +12,27 @@ import { useLanguage } from '@/app/context/LanguageContext';
 const VenuePage = () => {
   const { t } = useLanguage();
   const featureIcons = [
-    "/images/icons/build-white.svg",
-    "/images/icons/group-white.svg",
-    "/images/icons/leaf-white.svg"
+    "/images/icons/build-white.png",
+    "/images/icons/group-white.png",
+    "/images/icons/leaf-white.png"
   ];
 
   const contactIcons = [
-    "/images/icons/clock-white.svg",
-    "/images/icons/handshake-white.svg",
-    "/images/icons/star-white.svg"
+    "/images/icons/clock-white.png",
+    "/images/icons/handshake-white.png",
+    "/images/icons/star-white.png"
   ];
 
   return (
     <main className="w-full min-h-screen">
       
-      {/* ================= HERO SECTION ================= */}
+      {/*HERO SECTION*/}
       <section className="relative h-screen w-full overflow-hidden">
   
         {/* --- Background Image --- */}
         <div className="absolute inset-0 z-0">
           <Image 
-            src="/images/venue/venue-hero.svg" 
+            src="/images/venue/venue-hero.webp" 
             alt="Tembi Venue Background" 
             fill
             priority
@@ -71,7 +71,7 @@ const VenuePage = () => {
             <button className="flex items-center gap-3 bg-[#8F9F6A] hover:bg-[#7d8c5c] text-white px-8 py-3.5 rounded-md transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
                 <div className="relative w-5 h-5">
               <Image 
-                src="/images/icons/calendar-white.svg"
+                src="/images/icons/calendar-white.png"
                 alt="Calendar"
                 width={20}
                 height={20}
@@ -85,7 +85,7 @@ const VenuePage = () => {
         </div>
       </section>
 
-      {/* ================= FEATURES SECTION ================= */}
+      {/*FEATURES SECTION*/}
       <section className="py-24 bg-[#F9F9F0]">
         <div className="container mx-auto px-6">
           
@@ -115,7 +115,7 @@ const VenuePage = () => {
         </div>
       </section>
 
-      {/* ================= VENUE COLLECTION GRID ================= */}
+      {/*VENUE COLLECTION GRID*/}
       <section className="py-20 bg-[#FFFDF5]">
         <div className="container mx-auto px-6">
           
@@ -150,11 +150,11 @@ const VenuePage = () => {
         </div>
       </section>
 
-      {/* ================= GALLERY COMPONENT ================= */}
+      {/*GALLERY COMPONENT*/}
       {/* Jika VenueGallery perlu diterjemahkan juga, pastikan Anda mengupdate file tersebut secara terpisah */}
       <VenueGallery />
     
-      {/* ================= CONTACT / CTA SECTION ================= */}
+      {/*CONTACT / CTA SECTION*/}
       <section className="w-full bg-[#8F9F6A] py-20 px-6 sm:px-8">
         <div className="mx-auto max-w-5xl text-center">
           
@@ -176,7 +176,7 @@ const VenuePage = () => {
             >
               <div className="relative w-5 h-5">
                 <Image 
-                  src="/images/icons/phone-white.svg" 
+                  src="/images/icons/phone-white.png" 
                   alt="Phone" 
                   width={20} 
                   height={20}
@@ -194,7 +194,7 @@ const VenuePage = () => {
                <div key={idx} className="bg-white/10 border border-white/20 rounded-xl p-8 flex flex-col items-center hover:bg-white/20 transition-colors">
                  <div className="mb-4 relative w-10 h-10">
                    <Image 
-                     src={contactIcons[idx]} // Ambil icon berdasarkan index
+                     src={contactIcons[idx]}
                      alt={item.title} 
                      width={40} 
                      height={40}

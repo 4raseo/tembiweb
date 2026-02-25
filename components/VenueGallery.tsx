@@ -6,14 +6,14 @@ import Image from 'next/image';
 const VenueGallery = () => {
   // Data dummy gambar (Bisa ditambah hingga 8 atau 12 item agar barisnya penuh)
   const galleryItems = [
-    { id: 1, src: "/images/venue/venue-hero.svg", alt: "Pendopo Utama" },
-    { id: 2, src: "/images/venue/amphiteater/amphiteater1.png", alt: "Wedding Setup" },
-    { id: 3, src: "/images/venue/bulus/bulus1.png", alt: "Garden View" },
-    { id: 4, src: "/images/venue/madyosuro/madyosuro1.png", alt: "Amphitheater" },
-    { id: 5, src: "/images/venue/mrican/mrican1.png", alt: "Bale Santai" },
-    { id: 6, src: "/images/venue/pendopo/pendopo1.png", alt: "Meeting Room" },
-    { id: 7, src: "/images/venue/sagan/sagan1.png", alt: "Swimming Pool" },
-    { id: 8, src: "/images/venue/pendopo/pendopo2.png", alt: "Restaurant Area" },
+    { id: 1, src: "/images/venue/venue-hero.webp", alt: "Pendopo Utama" },
+    { id: 2, src: "/images/venue/amphiteater/amphiteater1.webp", alt: "Wedding Setup" },
+    { id: 3, src: "/images/venue/bulus/bulus1.webp", alt: "Garden View" },
+    { id: 4, src: "/images/venue/madyosuro/madyosuro1.webp", alt: "Amphitheater" },
+    { id: 5, src: "/images/venue/mrican/mrican1.webp", alt: "Bale Santai" },
+    { id: 6, src: "/images/venue/pendopo/pendopo1.webp", alt: "Meeting Room" },
+    { id: 7, src: "/images/venue/sagan/sagan1.webp", alt: "Swimming Pool" },
+    { id: 8, src: "/images/venue/pendopo/pendopo2.webp", alt: "Restaurant Area" },
   ];
 
   return (

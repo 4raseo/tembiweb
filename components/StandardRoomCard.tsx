@@ -53,7 +53,7 @@ const StandardRoomCard: React.FC<StandardRoomCardProps> = ({
           <div className="absolute bottom-4 left-4 bg-black/60 backdrop-blur-sm text-white px-3 py-1 rounded-md flex items-center gap-1.5 text-xs font-medium">
             <div className="relative w-3.5 h-3.5">
               <Image 
-                src="/images/icons/image-white.svg" 
+                src="/images/icons/image-white.png" 
                 alt="camera" 
                 fill 
                 className="object-contain invert brightness-0 filter" 
@@ -83,7 +83,7 @@ const StandardRoomCard: React.FC<StandardRoomCardProps> = ({
             {/* Size */}
             <div className="flex items-center gap-2">
               <div className="relative w-4 h-4 opacity-80">
-                 <Image src="/images/icons/size-green.svg" alt="size" fill className="object-contain" />
+                 <Image src="/images/icons/size-green.png" alt="size" fill className="object-contain" />
               </div>
               <span>{size || "45 m²"}</span>
             </div>
@@ -91,7 +91,7 @@ const StandardRoomCard: React.FC<StandardRoomCardProps> = ({
             {/* Guests */}
             <div className="flex items-center gap-2">
               <div className="relative w-4 h-4 opacity-80">
-                 <Image src="/images/icons/group-green.svg" alt="guests" fill className="object-contain" />
+                 <Image src="/images/icons/group-green.png" alt="guests" fill className="object-contain" />
               </div>
               <span>{guests} {t.house.standardCard.features.guest}</span>
             </div>
@@ -107,7 +107,7 @@ const StandardRoomCard: React.FC<StandardRoomCardProps> = ({
             {/* Wifi */}
             <div className="flex items-center gap-2">
               <div className="relative w-4 h-4 opacity-80">
-                 <Image src="/images/icons/wifi-green.svg" alt="wifi" fill className="object-contain" />
+                 <Image src="/images/icons/wifi-green.png" alt="wifi" fill className="object-contain" />
               </div>
               <span>{t.house.standardCard.features.wifi}</span>
             </div>

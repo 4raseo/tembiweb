@@ -8,15 +8,13 @@ import ScrollReveal from '@/components/ScrollReveal';
 export default function SejarahPage() {
   const { t } = useLanguage();
   return (
-    // Tag <main> membungkus seluruh konten halaman utama
     <main className="min-h-screen w-full bg-[#FDFBF7]">
       
       {/* --- HERO SECTION --- */}
       <section className="relative w-full h-screen overflow-hidden">
-        {/* 1. Background Image */}
         <div className="absolute inset-0 w-full h-full">
           <Image
-            src="/images/sejarah/history-hero.svg" // Sesuaikan path gambar background
+            src="/images/sejarah/history-hero.webp"
             alt="Tembi Historical Home Background"
             fill
             className="object-cover"
@@ -24,12 +22,10 @@ export default function SejarahPage() {
             quality={90}
           />
           
-          {/* Overlay Gradient */}
           <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-transparent z-10" />
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent z-10" />
         </div>
 
-        {/* 2. Hero Text Content */}
         <div className="relative z-20 h-full flex flex-col justify-center px-6 md:px-16 lg:px-24 max-w-screen-xl mx-auto">
           <div className="max-w-3xl animate-fade-in-up">
             <h1 className="text-5xl md:text-7xl font-serif font-bold text-white leading-[1.1] mb-6 drop-shadow-lg">
@@ -43,11 +39,10 @@ export default function SejarahPage() {
           </div>
         </div>
 
-        {/* 3. Scroll Indicator (Local Image) */}
         <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20">
           <a href="#our-story" className="animate-bounce cursor-pointer p-2 block">
              <Image
-                src="/images/icons/down.png" // Sesuaikan path icon lokal
+                src="/images/icons/arrow-down-white.png"
                 alt="Scroll Down"
                 width={16}
                 height={16}
@@ -64,19 +59,16 @@ export default function SejarahPage() {
           {/* --- KOLOM KIRI: TEKS --- */}
           <ScrollReveal animation="slideLeft" duration={800}>
             <div className="order-2 lg:order-1">
-              {/* Tagline */}
               <span className="block text-sm font-bold tracking-widest text-[#9CA389] uppercase mb-4">
                 {t.history.intro.head}
               </span>
               
-              {/* Heading */}
               <h2 className="text-4xl md:text-5xl font-serif font-bold text-[#4A3B2A] mb-8 leading-tight">
                 {t.history.intro.title[0]} <br />
                 {t.history.intro.title[1]} <br />
                 {t.history.intro.title[2]}
               </h2>
 
-              {/* Paragraphs */}
               <div className="text-gray-600 space-y-6 text-lg leading-relaxed font-light mb-10 text-justify">
               <p>
                 {t.history.intro.subtitle[0]}
@@ -89,17 +81,14 @@ export default function SejarahPage() {
 
             {/* Stats Section */}
             <div className="grid grid-cols-3 gap-4 border-t border-gray-100 pt-8">
-              {/* Stat 1 */}
               <div>
                 <h3 className="text-3xl font-serif font-bold text-[#9CA389]">25+</h3>
                 <p className="text-xs md:text-sm text-gray-500 mt-1">{t.history.intro.item[0]}</p>
               </div>
-              {/* Stat 2 */}
               <div>
                 <h3 className="text-3xl font-serif font-bold text-[#9CA389]">100+</h3>
                 <p className="text-xs md:text-sm text-gray-500 mt-1">{t.history.intro.item[1]}</p>
               </div>
-              {/* Stat 3 */}
               <div>
                 <h3 className="text-3xl font-serif font-bold text-[#9CA389]">5k+</h3>
                 <p className="text-xs md:text-sm text-gray-500 mt-1">{t.history.intro.item[2]}</p>
@@ -109,17 +98,12 @@ export default function SejarahPage() {
 
           {/* --- KOLOM KANAN: GAMBAR & DEKORASI --- */}
           <div className="relative order-1 lg:order-2">
-            
-            {/* Dekorasi Blob Atas Kanan (Warna Cream) */}
             <div className="absolute -top-10 -right-10 w-40 h-40 bg-[#Fdf5e6] rounded-full -z-10" />
-            
-            {/* Dekorasi Blob Bawah Kiri (Warna Kehijauan) */}
             <div className="absolute -bottom-10 -left-10 w-48 h-48 bg-[#Eef0eb] rounded-[2rem] -z-10" />
 
-            {/* Gambar Utama */}
             <div className="relative w-full aspect-[4/3] rounded-[2.5rem] overflow-hidden shadow-xl">
                <Image 
-                 src="/images/sejarah/history1.svg" // Ganti dengan gambar interior Anda
+                 src="/images/sejarah/history1.webp"
                  alt="Tembi Interior Javanese Style"
                  fill
                  className="object-cover hover:scale-105 transition-transform duration-700"
@@ -136,12 +120,11 @@ export default function SejarahPage() {
         
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
           
-          {/* --- KOLOM KIRI: FOTO 1 (Pollycarpus Swantoro) --- */}
-          {/* Mengambil 3 bagian dari 12 (25%) */}
+          {/*KOLOM KIRI: FOTO 1*/}
           <div className="lg:col-span-3 order-2 lg:order-1 flex justify-center lg:justify-start">
               <div className="relative w-full max-w-[280px] aspect-square rounded-[2rem] overflow-hidden shadow-2xl rotate-[-2deg] hover:rotate-0 transition-transform duration-500">
                 <Image
-                  src="/images/sejarah/sejarah2.png" // Ganti dengan foto kiri
+                  src="/images/sejarah/sejarah2.webp" 
                   alt="Pollycarpus Swantoro"
                   fill
                   className="object-cover"
@@ -150,22 +133,19 @@ export default function SejarahPage() {
               </div>
           </div>
 
-          {/* --- KOLOM TENGAH: TEKS --- */}
-          {/* Mengambil 6 bagian dari 12 (50%) - Area paling lebar */}
+          {/*KOLOM TENGAH: TEKS*/}
           <div className="lg:col-span-6 order-1 lg:order-2 text-center lg:px-4">
             <ScrollReveal animation="fadeUp" duration={800} delay={200}>
-              {/* Tagline */}
+
               <span className="block text-sm font-bold tracking-widest text-[#9CA389] uppercase mb-4">
                 {t.history.founder.head}
               </span>
 
-              {/* Heading */}
               <h2 className="text-4xl md:text-5xl font-serif font-bold text-[#4A3B2A] mb-8 leading-tight">
                 {t.history.founder.title[0]} <br />
                 {t.history.founder.title[1]}
               </h2>
 
-              {/* Paragraphs */}
               <div className="text-gray-600 space-y-6 text-lg leading-relaxed font-light text-justify">
                 <p>
                   {t.history.founder.desc1[0]} <strong>{t.history.founder.desc1[1]}</strong> {t.history.founder.desc1[2]}
@@ -177,12 +157,11 @@ export default function SejarahPage() {
             </ScrollReveal>
           </div>
 
-          {/* --- KOLOM KANAN: FOTO 2 (Norbertus Nuranto) --- */}
-          {/* Mengambil 3 bagian dari 12 (25%) */}
+          {/*KOLOM KANAN: FOTO 2*/}
           <div className="lg:col-span-3 order-3 lg:order-3 flex justify-center lg:justify-end">
               <div className="relative w-full max-w-[280px] aspect-[3/4] rounded-[2rem] overflow-hidden shadow-2xl rotate-[2deg] hover:rotate-0 transition-transform duration-500">
                 <Image
-                  src="/images/sejarah/sejarah3.png" // Ganti dengan foto kanan
+                  src="/images/sejarah/sejarah3.webp"
                   alt="Norbertus Nuranto"
                   fill
                   className="object-cover"
@@ -197,7 +176,7 @@ export default function SejarahPage() {
       <section className="py-20 md:py-28 px-6 md:px-16 lg:px-24 bg-[#F8F6F1]">
       <div className="max-w-screen-xl mx-auto">
         
-        {/* --- HEADER --- */}
+        {/*HEADER*/}
         <ScrollReveal animation="fadeUp" duration={800}>
           <div className="text-center max-w-3xl mx-auto mb-16">
             <span className="block text-sm font-bold tracking-widest text-[#9CA389] uppercase mb-4">
@@ -212,33 +191,30 @@ export default function SejarahPage() {
           </div>
         </ScrollReveal>
 
-        {/* --- CARDS GRID --- */}
+        {/*CARDS GRID*/}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20">
           <ScrollReveal animation="scaleUp" duration={700} delay={100}>
             <CultureCard 
               title="Batik Artistry"
-              imageSrc="/images/sejarah/sejarah4.png"
+              imageSrc="/images/sejarah/sejarah4.webp"
               desc="Learn the ancient art of batik-making from master craftsmen. Create your own masterpiece while understanding the symbolic meanings behind traditional patterns."
-              // Masukkan path icon lokal di sini
-              iconSrc="/images/icons/paint.png" 
+              iconSrc="/images/icons/brush-green.png" 
             />
           </ScrollReveal>
           <ScrollReveal animation="scaleUp" duration={700} delay={200}>
             <CultureCard 
               title="Classical Dance"
-              imageSrc="/images/sejarah/sejarah5.png"
+              imageSrc="/images/sejarah/sejarah5.webp"
               desc="Experience the grace and philosophy of Javanese classical dance. Our instructors share not just movements, but the spiritual essence of this ancient art form."
-              // Masukkan path icon lokal di sini
-              iconSrc="/images/icons/music.png"
+              iconSrc="/images/icons/music-green.png"
             />
           </ScrollReveal>
           <ScrollReveal animation="scaleUp" duration={700} delay={300}>
             <CultureCard 
               title="Gamelan & Macapat"
-              imageSrc="/images/sejarah/sejarah6.png"
+              imageSrc="/images/sejarah/sejarah6.webp"
               desc="Immerse yourself in the harmonious sounds of gamelan and the poetic beauty of macapat singing. These sessions connect you to the soul of Javanese expression."
-              // Masukkan path icon lokal di sini
-              iconSrc="/images/icons/drum.png"
+              iconSrc="/images/icons/drum-green.png"
             />
           </ScrollReveal>
         </div>
@@ -247,8 +223,6 @@ export default function SejarahPage() {
         <ScrollReveal animation="fadeUp" duration={800}>
           <div className="bg-white rounded-[2rem] p-8 md:p-12 shadow-xl">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            
-            {/* Kiri: Teks */}
             <div>
               <h3 className="text-3xl md:text-4xl font-serif font-bold text-[#4A3B2A] mb-6">
                 {t.history.living.title2}
@@ -275,11 +249,10 @@ export default function SejarahPage() {
               </div>
             </div>
 
-            {/* Kanan: Gambar Besar & Icon Hati */}
             <div className="relative">
               <div className="relative w-full aspect-video md:aspect-[4/3] rounded-2xl overflow-hidden">
                 <Image 
-                  src="/images/sejarah/sejarah7.png" // Ganti dengan gambar cultural activities Anda
+                  src="/images/sejarah/sejarah7.webp"
                   alt="Cultural Activities Group"
                   fill
                   className="object-cover"
@@ -288,10 +261,9 @@ export default function SejarahPage() {
               
               {/* Icon Hati Floating */}
               <div className="absolute -bottom-4 -right-4 bg-[#9CA389] p-4 rounded-xl shadow-lg flex items-center justify-center">
-                 {/* ICON HATI LOKAL */}
                  <div className="relative w-6 h-6">
                    <Image 
-                      src="/images/icons/heartw.png" // Icon hati putih
+                      src="/images/icons/heart-white.png"
                       alt="Love Culture"
                       fill
                       // Gunakan filter jika icon aslinya hitam, hapus jika sudah putih
@@ -313,50 +285,43 @@ export default function SejarahPage() {
 
       <section className="relative w-full py-24 md:py-32 px-6 md:px-16 lg:px-24 overflow-hidden">
       
-      {/* --- 1. BACKGROUND LAYER --- */}
       <div className="absolute inset-0 w-full h-full z-0">
         <Image
-          src="/images/sejarah/sejarahcover2.png" // Ganti dengan gambar background candi/pagoda
+          src="/images/sejarah/sejarahcover2.webp"
           alt="Tembi Atmosphere"
           fill
           className="object-cover"
         />
-        {/* Overlay Hijau Lumut (Sesuai Gambar) */}
-        {/* Menggunakan warna solid dengan opacity tinggi untuk efek 'foggy' */}
         <div className="absolute inset-0 bg-tembi mix-blend-multiply" />
-        <div className="absolute inset-0 bg-black/20" /> {/* Layer tambahan untuk menggelapkan sedikit */}
+        <div className="absolute inset-0 bg-black/20" />
       </div>
 
-      {/* --- 2. CONTENT LAYER --- */}
       <div className="relative z-10 max-w-screen-xl mx-auto text-center">
         
-        {/* Quote Besar */}
         <h2 className="text-3xl md:text-7xl font-serif font-bold text-white mb-6 md:leading-[0.8] drop-shadow-lg">
           {t.history.contact.title[0]} <br className="hidden md:block" />
           {t.history.contact.title[1]}
         </h2>
 
-        {/* Subtext */}
         <p className="text-gray-200 text-lg font-light max-w-3xl mx-auto mb-16 leading-relaxed">
           {t.history.contact.subtitle}
         </p>
 
-        {/* --- 3. CARDS GRID (Glass Effect) --- */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-left">
           <ContactCard 
             title={t.history.contact.itemTitle[0]}
             desc={t.history.contact.itemDesc[0]}
-            iconSrc="/images/icons/phonew.png" // Pastikan ada icon telepon
+            iconSrc="/images/icons/phone-white.png"
           />
           <ContactCard 
             title={t.history.contact.itemTitle[1]}
             desc={t.history.contact.itemDesc[1]}
-            iconSrc="/images/icons/mailw.png" // Pastikan ada icon amplop/surat
+            iconSrc="/images/icons/mail-white.png"
           />
           <ContactCard 
             title={t.history.contact.itemTitle[2]}
             desc={t.history.contact.itemDesc[2]}
-            iconSrc="/images/icons/locationw.png" // Pastikan ada icon lokasi/pin
+            iconSrc="/images/icons/location-white.png"
           />
         </div>
 
@@ -366,12 +331,11 @@ export default function SejarahPage() {
   );
 }
 
-
 interface CultureCardProps {
   title: string;
   desc: string;
   imageSrc: string;
-  iconSrc: string; // Path ke file icon lokal (contoh: /icons/batik.svg)
+  iconSrc: string;
 }
 
 const CultureCard: React.FC<CultureCardProps> = ({ title, desc, imageSrc, iconSrc }) => (
@@ -388,14 +352,11 @@ const CultureCard: React.FC<CultureCardProps> = ({ title, desc, imageSrc, iconSr
     {/* Konten Bawah */}
     <div className="p-8 flex-1 flex flex-col">
       <div className="flex items-center gap-3 mb-4">
-        {/* ICON LOCAL IMAGE */}
-        {/* Pastikan icon Anda sudah berwarna (misal #9CA389) dari sananya, 
-            atau gunakan class filter CSS jika iconnya hitam */}
         <div className="relative w-6 h-6">
            <Image 
              src={iconSrc}
              alt={`${title} Icon`}
-             fill // Mengisi container w-6 h-6
+             fill
              className="object-contain"
            />
         </div>
@@ -411,19 +372,17 @@ const CultureCard: React.FC<CultureCardProps> = ({ title, desc, imageSrc, iconSr
 interface ContactCardProps {
   title: string;
   desc: string;
-  iconSrc: string; // Path ke icon lokal
+  iconSrc: string;
 }
 
 const ContactCard: React.FC<ContactCardProps> = ({ title, desc, iconSrc }) => (
   <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-8 flex flex-col items-start text-left hover:bg-white/20 transition-all duration-300">
-    {/* Icon Container (Transparan Putih) */}
     <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mb-6">
       <div className="relative w-6 h-6">
         <Image 
           src={iconSrc} 
           alt={title} 
           fill 
-          // Icon harus putih. Jika icon asli hitam, gunakan 'brightness-0 invert'
           className="object-contain brightness-0 invert" 
         />
       </div>

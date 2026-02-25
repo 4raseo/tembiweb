@@ -43,7 +43,7 @@ const FeaturedRoomCard: React.FC<FeaturedRoomCardProps> = ({
               <span className="inline-flex items-center gap-2 px-4 py-1.5 bg-white/20 backdrop-blur-sm rounded-full text-xs font-medium text-yellow-100 border border-white/10">
                 <div className="relative w-4 h-4">
                   <Image 
-                    src="/images/icons/crown.svg" 
+                    src="/images/icons/crown.png" 
                     alt="Crown Icon"
                     fill
                     className="object-contain"
@@ -69,7 +69,7 @@ const FeaturedRoomCard: React.FC<FeaturedRoomCardProps> = ({
               {/* Size */}
               <div className="flex items-center gap-2">
                 <div className="relative w-4 h-4 opacity-80"> 
-                    <Image src="/images/icons/size-gray.svg" alt="Size" fill className="object-contain" />
+                    <Image src="/images/icons/size-gray.png" alt="Size" fill className="object-contain" />
                 </div>
                 <span>{size || "45 m²"}</span> 
               </div>
@@ -77,7 +77,7 @@ const FeaturedRoomCard: React.FC<FeaturedRoomCardProps> = ({
               {/* Guests */}
               <div className="flex items-center gap-2">
                 <div className="relative w-4 h-4 opacity-80"> 
-                    <Image src="/images/icons/group-gray.svg" alt="Guests" fill className="object-contain" />
+                    <Image src="/images/icons/group-gray.png" alt="Guests" fill className="object-contain" />
                 </div>
                 <span>{t.house.featuredCard.features.guest[0]} {guests} {t.house.featuredCard.features.guest[1]}</span>
               </div>

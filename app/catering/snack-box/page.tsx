@@ -39,21 +39,17 @@ export default function BuffetPage() {
   return (
     <main className="min-h-screen w-full bg-white">
       
-      {/* ==================================================================
-          1. HERO SECTION
-          ================================================================== */}
+      {/*HERO SECTION*/}
       <section className="relative h-screen w-full overflow-hidden">
-        {/* Background Image */}
         <div className="absolute inset-0">
           <Image
-            src="/images/foods/buffet-bg.png" // Pastikan path ini benar di folder public
+            src="/images/foods/buffet-bg.webp"
             alt="Buffet Catering Background"
             fill
             priority
             className="object-cover object-center"
             quality={90}
           />
-          {/* Dark Overlay */}
           <div className="absolute inset-0 bg-black/50 z-10" />
         </div>
 
@@ -65,7 +61,7 @@ export default function BuffetPage() {
             <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-[#96A66D] px-4 py-1.5 text-sm font-medium text-white shadow-sm">
               <div className="relative h-4 w-4">
                 <Image 
-                  src="/images/icons/food-white.svg" 
+                  src="/images/icons/food-white.png" 
                   alt="Service Icon"
                   fill
                   className="object-contain brightness-0 invert" 
@@ -88,14 +84,14 @@ export default function BuffetPage() {
             <div className="mb-10 flex flex-wrap gap-4">
               <div className="flex items-center gap-3 rounded-full bg-white/20 px-5 py-2.5 text-white backdrop-blur-md border border-white/10 transition hover:bg-white/30">
                 <div className="relative h-5 w-5">
-                  <Image src="/images/icons/group-green.svg" alt="Pax Icon" fill className="object-contain" />
+                  <Image src="/images/icons/group-green.png" alt="Pax Icon" fill className="object-contain" />
                 </div>
                 <span className="font-medium">{t.catering.hero.pax}</span>
               </div>
 
               <div className="flex items-center gap-3 rounded-full bg-white/20 px-5 py-2.5 text-white backdrop-blur-md border border-white/10 transition hover:bg-white/30">
                 <div className="relative h-5 w-5">
-                  <Image src="/images/icons/clock-green.svg" alt="Time Icon" fill className="object-contain" />
+                  <Image src="/images/icons/clock-green.png" alt="Time Icon" fill className="object-contain" />
                 </div>
                 <span className="font-medium">{t.catering.hero.hour}</span>
               </div>
@@ -105,7 +101,7 @@ export default function BuffetPage() {
             <button className="group flex items-center gap-3 rounded-full bg-[#96A66D] px-8 py-4 text-base font-semibold text-white transition-all hover:bg-[#849260] hover:shadow-lg hover:-translate-y-0.5">
               {t.catering.hero.buttonText}
               <div className="relative h-4 w-4 transition-transform group-hover:translate-y-1">
-                <Image src="/images/icons/down-arrow-white.svg" alt="Arrow" fill className="object-contain brightness-0 invert" />
+                <Image src="/images/icons/down-arrow-white.png" alt="Arrow" fill className="object-contain brightness-0 invert" />
               </div>
             </button>
           </div>
@@ -115,7 +111,7 @@ export default function BuffetPage() {
         <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20">
           <a href="#our-story" className="animate-bounce cursor-pointer p-2 block">
              <Image
-                src="/images/icons/down.png" // Sesuaikan path icon lokal
+                src="/images/icons/arrow-down-white.png"
                 alt="Scroll Down"
                 width={16}
                 height={16}
@@ -124,9 +120,7 @@ export default function BuffetPage() {
           </a>
         </div>
       </section>
-      {/* ==================================================================
-          2. HERITAGE SECTION (Content)
-          ================================================================== */}
+      {/* HERITAGE SECTION (Content)*/}
       <section id="our-story" className="mx-auto max-w-7xl px-6 py-20 lg:px-12 lg:py-28">
         <div className="grid grid-cols-1 gap-16 lg:grid-cols-2 lg:items-center">
           
@@ -163,28 +157,28 @@ export default function BuffetPage() {
             <div className="grid grid-cols-2 gap-4 relative z-10">
               <div className="relative h-48 w-full overflow-hidden rounded-xl shadow-md lg:h-56">
                 <Image 
-                  src="/images/foods/buffetcontent1.png" alt="Chef" fill 
+                  src="/images/foods/buffetcontent1.webp" alt="Chef" fill 
                   className="object-cover transition-transform duration-500 hover:scale-105"
                   sizes="(max-width: 768px) 50vw, 25vw"
                 />
               </div>
               <div className="relative mt-8 h-48 w-full overflow-hidden rounded-xl shadow-md lg:h-56">
                 <Image 
-                  src="/images/foods/buffetcontent2.png" alt="Interior" fill 
+                  src="/images/foods/buffetcontent2.webp" alt="Interior" fill 
                   className="object-cover transition-transform duration-500 hover:scale-105"
                   sizes="(max-width: 768px) 50vw, 25vw"
                 />
               </div>
               <div className="relative h-48 w-full overflow-hidden rounded-xl shadow-md lg:h-56">
                 <Image 
-                  src="/images/foods/buffetcontent3.png" alt="Spices" fill 
+                  src="/images/foods/buffetcontent3.webp" alt="Spices" fill 
                   className="object-cover transition-transform duration-500 hover:scale-105"
                   sizes="(max-width: 768px) 50vw, 25vw"
                 />
               </div>
               <div className="relative mt-8 h-48 w-full overflow-hidden rounded-xl shadow-md lg:h-56">
                 <Image 
-                  src="/images/foods/buffetcontent4.png" alt="Dining" fill 
+                  src="/images/foods/buffetcontent4.webp" alt="Dining" fill 
                   className="object-cover transition-transform duration-500 hover:scale-105"
                   sizes="(max-width: 768px) 50vw, 25vw"
                 />
@@ -193,9 +187,7 @@ export default function BuffetPage() {
           </div>
         </div>
       </section>
-      {/* ==================================================================
-          3. MENU SECTION (Cards)
-          ================================================================== */}
+      {/*MENU SECTION (Cards)*/}
       <section className="bg-[#F9F8F3] py-24">
         <div className="mx-auto max-w-7xl px-6 lg:px-12">
           

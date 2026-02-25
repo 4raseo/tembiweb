@@ -7,29 +7,26 @@ import { useLanguage } from '@/app/context/LanguageContext';
 const BuffetFeatures = () => {
   const { t } = useLanguage();
 
-  // 1. Definisikan Icon secara manual karena Context hanya menyimpan teks
-  // Pastikan urutan icon ini SAMA PERSIS dengan urutan teks di LanguageContext
   const iconPaths = [
-    "/images/icons/truck-white.svg",   // 1. Delivery
-    "/images/icons/group-white.svg",   // 2. Staff
-    "/images/icons/leaf-white.svg",    // 3. Ingredients
-    "/images/icons/clock-white.svg",   // 4. Timing
-    "/images/icons/curly-white.svg",   // 5. Quality
-    "/images/icons/food-white.svg"     // 6. Equipment
+    "/images/icons/truck-white.png",   // 1. Delivery
+    "/images/icons/group-white.png",   // 2. Staff
+    "/images/icons/leaf-white.png",    // 3. Ingredients
+    "/images/icons/clock-white.png",   // 4. Timing
+    "/images/icons/curly-white.png",   // 5. Quality
+    "/images/icons/food-white.png"     // 6. Equipment
   ];
 
-  // 2. Gabungkan Teks dari Context dengan Icon
   const features = t.catering.service.features.map((feature, index) => ({
     title: feature.title,
     desc: feature.desc,
-    iconSrc: iconPaths[index] || "/images/icons/circle-white.svg" // Fallback icon jika index tidak cocok
+    iconSrc: iconPaths[index] || "/images/icons/circle-white.png"
   }));
 
   return (
     <section className="w-full bg-[#F9F8F3] py-24">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
 
-        {/* --- HEADER SECTION --- */}
+        {/*HEADER SECTION*/}
         <div className="mx-auto mb-16 max-w-3xl text-center">
           <span className="mb-3 block text-sm font-bold uppercase tracking-widest text-[#96A66D]">
             {t.catering.service.label}
@@ -42,7 +39,7 @@ const BuffetFeatures = () => {
           </p>
         </div>
 
-        {/* --- FEATURES GRID (6 Cards) --- */}
+        {/*FEATURES GRID*/}
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
           {features.map((feature, index) => (
             <div 

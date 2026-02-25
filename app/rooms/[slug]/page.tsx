@@ -21,16 +21,16 @@ const getAmenityIcon = (amenity: string) => {
   const lower = amenity.toLowerCase();
   
   // Tentukan path default
-  let iconPath = '/images/icons/star.svg'; // Pastikan file ini ada di public/icons/
+  let iconPath = '/images/icons/star.png'; // Pastikan file ini ada di public/icons/
 
   // Logika mapping icon
-  if (lower.includes('wifi')) iconPath = '/images/icons/wifi-green.svg';
-  else if (lower.includes('air') || lower.includes('snow')) iconPath = '/images/icons/snow-green.svg';
-  else if (lower.includes('bath') || lower.includes('mandi')) iconPath = '/images/icons/bathub-green.svg';
-  else if (lower.includes('rice') || lower.includes('taman') || lower.includes('garden') || lower.includes('sawah')) iconPath = '/images/icons/leaf-green.svg';
-  else if (lower.includes('bar') || lower.includes('mini')) iconPath = '/images/icons/minibar-green.svg';
-  else if (lower.includes('terrace') || lower.includes('teras')) iconPath = '/images/icons/terrace-green.svg';
-  else if (lower.includes('pool') || lower.includes('kolam')) iconPath = '/images/icons/swim-green.svg';
+  if (lower.includes('wifi')) iconPath = '/images/icons/wifi-green.png';
+  else if (lower.includes('air') || lower.includes('snow')) iconPath = '/images/icons/snow-green.png';
+  else if (lower.includes('bath') || lower.includes('mandi')) iconPath = '/images/icons/bathub-green.png';
+  else if (lower.includes('rice') || lower.includes('taman') || lower.includes('garden') || lower.includes('sawah')) iconPath = '/images/icons/leaf-green.png';
+  else if (lower.includes('bar') || lower.includes('mini')) iconPath = '/images/icons/minibar-green.png';
+  else if (lower.includes('terrace') || lower.includes('teras')) iconPath = '/images/icons/terrace-green.png';
+  else if (lower.includes('pool') || lower.includes('kolam')) iconPath = '/images/icons/swim-green.png';
   
   // Return komponen Image Next.js
   return (
@@ -55,11 +55,6 @@ export default function RoomDetail({ params }: { params: Promise<{ slug: string 
   if (!room) {
     return notFound();
   }
-
-  // Fallback gallery logic
-  // const galleryImages = room.galleryImages.length > 0 && room.galleryImages[0] !== "" 
-  //   ? room.galleryImages 
-  //   : [room.imageUrl, room.imageUrl, room.imageUrl, room.imageUrl];
 
   return (
     <main className="bg-[#F8F9FA] min-h-screen pb-20">
@@ -125,7 +120,7 @@ export default function RoomDetail({ params }: { params: Promise<{ slug: string 
               <div className="flex items-center gap-2">
                 <div className="relative w-5 h-5 opacity-80">
                   <Image 
-                    src="/images/icons/bed-green.svg" 
+                    src="/images/icons/bed-green.png" 
                     alt="Bed Size"
                     fill
                     className="object-contain"
@@ -138,7 +133,7 @@ export default function RoomDetail({ params }: { params: Promise<{ slug: string 
               <div className="flex items-center gap-2">
                 <div className="relative w-5 h-5 opacity-80">
                   <Image 
-                    src="/images/icons/group-green.svg" 
+                    src="/images/icons/group-green.png" 
                     alt="Guests Capacity"
                     fill
                     className="object-contain"
@@ -151,7 +146,7 @@ export default function RoomDetail({ params }: { params: Promise<{ slug: string 
               <div className="flex items-center gap-2">
                 <div className="relative w-5 h-5 opacity-80">
                   <Image 
-                    src="/images/icons/corner-green.svg" 
+                    src="/images/icons/corner-green.png" 
                     alt="Room Size"
                     fill
                     className="object-contain"
@@ -250,19 +245,19 @@ export default function RoomDetail({ params }: { params: Promise<{ slug: string 
               <ul className="space-y-4 text-gray-600 text-sm">
                 <li className="flex items-center gap-3">
                    <div className="relative w-4 h-4 opacity-70">
-                      <Image src="/images/icons/clock-green.svg" alt="-green" fill className="object-contain" />
+                      <Image src="/images/icons/clock-green.png" alt="-green" fill className="object-contain" />
                    </div>
                    <span>Check-in: {room.policies.checkIn}</span>
                 </li>
                 <li className="flex items-center gap-3">
                    <div className="relative w-4 h-4 opacity-70">
-                      <Image src="/images/icons/clock-green.svg" alt="clock" fill className="object-contain" />
+                      <Image src="/images/icons/clock-green.png" alt="clock" fill className="object-contain" />
                    </div>
                    <span>Check-out: {room.policies.checkOut}</span>
                 </li>
                 <li className="flex items-center gap-3">
                    <div className="relative w-4 h-4 opacity-70">
-                      <Image src="/images/icons/id-green.svg" alt="id" fill className="object-contain" />
+                      <Image src="/images/icons/id-green.png" alt="id" fill className="object-contain" />
                    </div>
                    <span>{t.houseDetail.policy.id}</span>
                 </li>
@@ -275,19 +270,19 @@ export default function RoomDetail({ params }: { params: Promise<{ slug: string 
               <ul className="space-y-4 text-gray-600 text-sm">
                 <li className="flex items-center gap-3">
                    <div className="relative w-4 h-4">
-                      <Image src="/images/icons/check.svg" alt="check" fill className="object-contain" />
+                      <Image src="/images/icons/check.png" alt="check" fill className="object-contain" />
                    </div>
                    <span>{t.houseDetail.policy.cancel}</span>
                 </li>
                 <li className="flex items-center gap-3">
                    <div className="relative w-4 h-4">
-                      <Image src="/images/icons/info.svg" alt="info" fill className="object-contain" />
+                      <Image src="/images/icons/info.png" alt="info" fill className="object-contain" />
                    </div>
                    <span>{t.houseDetail.policy.refund}</span>
                 </li>
                 <li className="flex items-center gap-3">
                    <div className="relative w-4 h-4">
-                      <Image src="/images/icons/warning.svg" alt="warning" fill className="object-contain" />
+                      <Image src="/images/icons/warning.png" alt="warning" fill className="object-contain" />
                    </div>
                    <span>{t.houseDetail.policy.sameday}</span>
                 </li>
@@ -306,7 +301,7 @@ export default function RoomDetail({ params }: { params: Promise<{ slug: string 
               {/* Rule 1: Smoking */}
               <div className="flex items-center gap-3">
                  <div className="relative w-4 h-4 opacity-60">
-                    <Image src="/images/icons/no-smoking.svg" alt="smoking" fill className="object-contain" />
+                    <Image src="/images/icons/no-smoking.png" alt="smoking" fill className="object-contain" />
                  </div>
                  <span>{room.houseRules.smoking ? t.houseDetail.houseRules.smokingtrue : t.houseDetail.houseRules.smokingfalse}</span>
               </div>
@@ -314,7 +309,7 @@ export default function RoomDetail({ params }: { params: Promise<{ slug: string 
               {/* Rule 2: Pets */}
               <div className="flex items-center gap-3">
                  <div className="relative w-4 h-4 opacity-60">
-                    <Image src="/images/icons/pet-green.svg" alt="pets" fill className="object-contain" />
+                    <Image src="/images/icons/pet-green.png" alt="pets" fill className="object-contain" />
                  </div>
                  <span>{room.houseRules.pets ? t.houseDetail.houseRules.petstrue : t.houseDetail.houseRules.petsfalse}</span>
               </div>
@@ -322,7 +317,7 @@ export default function RoomDetail({ params }: { params: Promise<{ slug: string 
               {/* Rule 3: Quiet Hours */}
               <div className="flex items-center gap-3">
                  <div className="relative w-4 h-4 opacity-60">
-                    <Image src="/images/icons/sound-green.svg" alt="quiet" fill className="object-contain" />
+                    <Image src="/images/icons/sound-green.png" alt="quiet" fill className="object-contain" />
                  </div>
                  <span>{t.houseDetail.houseRules.quiet}</span>
               </div>

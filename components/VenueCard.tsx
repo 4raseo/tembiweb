@@ -7,8 +7,8 @@ export interface VenueProps {
   imageSrc: string;
   title: string;
   description: string;
-  capacity?: string;    // Opsional, misal "80 pax"
-  facilities: string[]; // Array fasilitas, misal ["Sound System", "Toilet"]
+  capacity?: string;    
+  facilities: string[];
 }
 
 const VenueCard: React.FC<VenueProps> = ({
@@ -21,7 +21,7 @@ const VenueCard: React.FC<VenueProps> = ({
   return (
     <div className="bg-white rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 border border-gray-100 overflow-hidden flex flex-col h-full">
       
-      {/* --- Bagian Gambar --- */}
+      {/*Bagian Gambar*/}
       <div className="relative h-64 w-full">
         <Image
           src={imageSrc}
@@ -38,7 +38,7 @@ const VenueCard: React.FC<VenueProps> = ({
         )}
       </div>
 
-      {/* --- Bagian Konten --- */}
+      {/*Bagian Konten*/}
       <div className="p-6 flex flex-col flex-grow">
         
         {/* Judul & Deskripsi */}

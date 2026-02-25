@@ -13,7 +13,7 @@ export interface PackageItem {
   theme: 'standard' | 'premium' | 'exclusive';
   isPopular?: boolean;
   items: string[];
-  iconSrc: string; // <--- UBAH DI SINI (Input berupa path gambar, cth: "/icons/spoon.png")
+  iconSrc: string;
 }
 
 interface BuffetPricingProps {
@@ -59,7 +59,6 @@ const BuffetPricing = ({
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
           {packages.map((pkg, index) => {
             
-            // Logic Styling
             const isExclusive = pkg.theme === 'exclusive';
             const isPremium = pkg.theme === 'premium';
             
@@ -82,12 +81,11 @@ const BuffetPricing = ({
                   </div>
                 )}
 
-                {/* Decorative Circle */}
                 <div className={`absolute -right-0 -top-0 h-24 w-24 overflow-hidden rounded-tr-3xl`}>
                    <div className={`absolute -right-12 -top-12 h-24 w-24 rounded-full ${isExclusive ? 'bg-white/10' : 'bg-[#96A66D]/10'}`}></div>
                 </div>
 
-                {/* --- BAGIAN ICON (IMAGE LOCAL) --- */}
+                {/*BAGIAN ICON*/}
                 <div className={`mb-6 flex h-16 w-16 items-center justify-center rounded-full mx-auto ${isExclusive ? 'bg-white/20' : 'bg-[#96A66D]'}`}>
                   <div className="relative h-8 w-8">
                     <Image 
@@ -95,7 +93,6 @@ const BuffetPricing = ({
                       alt={pkg.name}
                       fill
                       sizes="32px"
-                      // Class brightness-0 invert membuat icon hitam menjadi putih
                       className="object-contain brightness-0 invert" 
                     />
                   </div>

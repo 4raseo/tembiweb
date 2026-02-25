@@ -2,7 +2,6 @@ import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 
-// Definisi tipe data props
 interface PackageCardProps {
   image: string;
   badge: string;
@@ -52,7 +51,7 @@ export default function PackageCard({
             <div key={i} className="flex items-start gap-3">
               <div className="w-4 h-4 flex items-center justify-center overflow-hidden relative">
                  <Image 
-                    src="/images/icons/check-black.svg" 
+                    src="/images/icons/check-black.png" 
                     alt="check" 
                     fill 
                  />
@@ -68,7 +67,7 @@ export default function PackageCard({
           className="w-full text-center bg-[#8F9E75] hover:bg-[#7A8B60] text-white font-semibold py-3 px-4 rounded-lg transition-colors flex items-center justify-center gap-2"
         >
           <Image 
-            src="/images/icons/view-white.svg" 
+            src="/images/icons/view-white.png" 
             alt="view" 
             width={18} 
             height={16} 

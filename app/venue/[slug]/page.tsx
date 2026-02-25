@@ -20,25 +20,25 @@ export default function VenueDetailPage({ params }: { params: Promise<{ slug: st
   }
 
   const facilityIcons = [
-    "/images/icons/build-green.svg",   // 1. Venue Space
-    "/images/icons/chair-green.svg",   // 2. Free Chairs
-    "/images/icons/volume-green.svg",  // 3. Sound System
-    "/images/icons/gender-green.svg",  // 4. Toilet
-    "/images/icons/brush-green.svg",   // 5. Cleaning
-    "/images/icons/parking-green.svg", // 6. Parking
+    "/images/icons/build-green.png",   // 1. Venue Space
+    "/images/icons/chair-green.png",   // 2. Free Chairs
+    "/images/icons/volume-green.png",  // 3. Sound System
+    "/images/icons/gender-green.png",  // 4. Toilet
+    "/images/icons/brush-green.png",   // 5. Cleaning
+    "/images/icons/parking-green.png", // 6. Parking
   ];
 
   const addonIcons = [
-    "/images/icons/video-green.svg", // Projector
-    "/images/icons/mic-green.svg",   // Sound
-    "/images/icons/food-green.svg",  // Catering
-    "/images/icons/paint-green.svg", // Decoration
+    "/images/icons/video-green.png", // Projector
+    "/images/icons/mic-green.png",   // Sound
+    "/images/icons/food-green.png",  // Catering
+    "/images/icons/paint-green.png", // Decoration
   ];
 
   return (
     <main className="min-h-screen bg-white pb-20">
 
-      {/* ================= HERO SECTION ================= */}
+      {/*HERO SECTION*/}
       <section className="relative h-screen w-full">
         <Image
           src={venue.heroImage}
@@ -70,7 +70,7 @@ export default function VenueDetailPage({ params }: { params: Promise<{ slug: st
               <div className="flex flex-wrap gap-6 text-sm md:text-base font-medium text-[#A4AC86]">
                 <div className="flex items-center gap-2">
                   <div className="relative w-5 h-5">
-                      <Image src="/images/icons/group-green.svg" alt="Capacity" fill className="object-contain" />
+                      <Image src="/images/icons/group-green.png" alt="Capacity" fill className="object-contain" />
                   </div>
                   <span>{venue.capacity}</span>
                 </div>
@@ -79,7 +79,7 @@ export default function VenueDetailPage({ params }: { params: Promise<{ slug: st
         </div>
       </section>
 
-      {/* ================= CONTENT SECTION ================= */}
+      {/*CONTENT SECTION*/}
       <section className="container mx-auto px-6 py-16">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
           
@@ -124,7 +124,7 @@ export default function VenueDetailPage({ params }: { params: Promise<{ slug: st
                 {/* 1. Capacity */}
                 <div className="flex gap-4">
                   <div className="mt-1 relative w-6 h-6 flex-shrink-0">
-                    <Image src="/images/icons/group-green.svg" alt="Capacity Icon" fill className="object-contain" />
+                    <Image src="/images/icons/group-green.png" alt="Capacity Icon" fill className="object-contain" />
                   </div>
                   <div>
                     <p className="font-bold text-[#2C2420] text-sm">
@@ -137,7 +137,7 @@ export default function VenueDetailPage({ params }: { params: Promise<{ slug: st
                 {/* 2. Best For */}
                 <div className="flex gap-4">
                   <div className="mt-1 relative w-6 h-6 flex-shrink-0">
-                    <Image src="/images/icons/heart-green.svg" alt="Heart Icon" fill className="object-contain" />
+                    <Image src="/images/icons/heart-green.png" alt="Heart Icon" fill className="object-contain" />
                   </div>
                   <div>
                     <p className="font-bold text-[#2C2420] text-sm">
@@ -154,7 +154,7 @@ export default function VenueDetailPage({ params }: { params: Promise<{ slug: st
         </div>
       </section>
 
-      {/* ================= FACILITIES SECTION ================= */}
+      {/*FACILITIES SECTION*/}
       <section className="py-20 bg-[#F9F9F0]"> 
         <div className="container mx-auto px-6">
           
@@ -173,7 +173,7 @@ export default function VenueDetailPage({ params }: { params: Promise<{ slug: st
             {t.detailVenue.features.item.map((item, idx) => (
                <FacilityCard 
                  key={idx}
-                 iconSrc={facilityIcons[idx] || "/images/icons/check-green.svg"} // Fallback icon
+                 iconSrc={facilityIcons[idx] || "/images/icons/check-green.png"} // Fallback icon
                  title={item.title}
                  description={item.desc}
                />
@@ -190,7 +190,7 @@ export default function VenueDetailPage({ params }: { params: Promise<{ slug: st
               {t.detailVenue.features.addons.item.map((addon, idx) => (
                 <AddOnItem 
                   key={idx}
-                  iconSrc={addonIcons[idx] || "/images/icons/check-green.svg"}
+                  iconSrc={addonIcons[idx] || "/images/icons/check-green.png"}
                   label={addon} 
                 />
               ))}
@@ -200,7 +200,7 @@ export default function VenueDetailPage({ params }: { params: Promise<{ slug: st
         </div>
       </section>
 
-      {/* ================= GALLERY SECTION ================= */}
+      {/*GALLERY SECTION*/}
       <section className="py-20 bg-white">
         <div className="container mx-auto px-6">
           
@@ -234,7 +234,7 @@ export default function VenueDetailPage({ params }: { params: Promise<{ slug: st
         </div>
       </section>
 
-      {/* ================= ADDITIONAL SERVICES TABLE ================= */}
+      {/*ADDITIONAL SERVICES TABLE*/}
       <section className="py-20 bg-[#F9F9F0]">
         <div className="container mx-auto px-6">
           
@@ -318,7 +318,7 @@ export default function VenueDetailPage({ params }: { params: Promise<{ slug: st
                   <div className="flex items-center gap-3 mb-4">
                     {/* Icon Address */}
                     <div className="relative w-6 h-6 flex-shrink-0">
-                      <Image src="/images/icons/gps-green.svg" alt="Address" fill className="object-contain" />
+                      <Image src="/images/icons/gps-green.png" alt="Address" fill className="object-contain" />
                     </div>
                     <h3 className="text-xl font-serif font-bold text-[#2C2420]">{t.homepage.location.cardTitle.item1}</h3>
                   </div>
@@ -337,7 +337,7 @@ export default function VenueDetailPage({ params }: { params: Promise<{ slug: st
                     <div className="flex items-center gap-3 mb-4">
                       {/* Icon Airport */}
                       <div className="relative w-6 h-6 flex-shrink-0">
-                        <Image src="/images/icons/plane-green.svg" alt="Airport" fill className="object-contain" />
+                        <Image src="/images/icons/plane-green.png" alt="Airport" fill className="object-contain" />
                       </div>
                       <h3 className="text-lg font-serif font-bold text-[#2C2420]">{t.homepage.location.cardTitle.item2}</h3>
                     </div>
@@ -353,7 +353,7 @@ export default function VenueDetailPage({ params }: { params: Promise<{ slug: st
                     <div className="flex items-center gap-3 mb-4">
                       {/* Icon City */}
                       <div className="relative w-6 h-6 flex-shrink-0">
-                        <Image src="/images/icons/city-green.svg" alt="City" fill className="object-contain" />
+                        <Image src="/images/icons/city-green.png" alt="City" fill className="object-contain" />
                       </div>
                       <h3 className="text-lg font-serif font-bold text-[#2C2420]">{t.homepage.location.cardTitle.item3}</h3>
                     </div>
@@ -370,7 +370,7 @@ export default function VenueDetailPage({ params }: { params: Promise<{ slug: st
                   <div className="flex items-center gap-3 mb-6">
                     {/* Header Icon Car */}
                     <div className="relative w-6 h-6 flex-shrink-0">
-                      <Image src="/images/icons/car-green.svg" alt="Transport" fill className="object-contain" />
+                      <Image src="/images/icons/car-green.png" alt="Transport" fill className="object-contain" />
                     </div>
                     <h3 className="text-xl font-serif font-bold text-[#2C2420]">{t.homepage.location.transport.title}</h3>
                   </div>
@@ -379,7 +379,7 @@ export default function VenueDetailPage({ params }: { params: Promise<{ slug: st
                     {/* List Item 1: Taxi */}
                     <li className="flex items-start gap-3">
                       <div className="relative w-5 h-5 flex-shrink-0 mt-0.5">
-                        <Image src="/images/icons/taxi-green.svg" alt="Taxi" fill className="object-contain" />
+                        <Image src="/images/icons/taxi-green.png" alt="Taxi" fill className="object-contain" />
                       </div>
                       <span className="text-[#5C5C5C]">{t.homepage.location.transport.item1}</span>
                     </li>
@@ -387,7 +387,7 @@ export default function VenueDetailPage({ params }: { params: Promise<{ slug: st
                     {/* List Item 2: Bus */}
                     <li className="flex items-start gap-3">
                       <div className="relative w-5 h-5 flex-shrink-0 mt-0.5">
-                        <Image src="/images/icons/bus-green.svg" alt="Bus" fill className="object-contain" />
+                        <Image src="/images/icons/bus-green.png" alt="Bus" fill className="object-contain" />
                       </div>
                       <span className="text-[#5C5C5C]">{t.homepage.location.transport.item2}</span>
                     </li>
@@ -395,7 +395,7 @@ export default function VenueDetailPage({ params }: { params: Promise<{ slug: st
                     {/* List Item 3: Parking */}
                     <li className="flex items-start gap-3">
                       <div className="relative w-5 h-5 flex-shrink-0 mt-0.5">
-                        <Image src="/images/icons/parking-green.svg" alt="Parking" fill className="object-contain" />
+                        <Image src="/images/icons/parking-green.png" alt="Parking" fill className="object-contain" />
                       </div>
                       <span className="text-[#5C5C5C]">{t.homepage.location.transport.item3}</span>
                     </li>
@@ -450,7 +450,7 @@ export default function VenueDetailPage({ params }: { params: Promise<{ slug: st
               {/* Icon Wrapper */}
               <div className="w-16 h-16 bg-[#8F9E75] rounded-full flex items-center justify-center mb-6 shadow-md shadow-[#8F9E75]/20">
                 <Image 
-                  src="/images/icons/phone-white.svg" 
+                  src="/images/icons/phone-white.png" 
                   alt="phone" 
                   width={24} height={24} 
                   className="brightness-0 invert" 
@@ -467,7 +467,7 @@ export default function VenueDetailPage({ params }: { params: Promise<{ slug: st
             <div className="bg-[#F8F9F5] rounded-3xl p-10 flex flex-col items-center text-center hover:shadow-lg transition-all duration-300">
               <div className="w-16 h-16 bg-[#8F9E75] rounded-full flex items-center justify-center mb-6 shadow-md shadow-[#8F9E75]/20">
                  <Image 
-                  src="/images/icons/whatsapp-white.svg" 
+                  src="/images/icons/whatsapp-white.png" 
                   alt="wa" 
                   width={28} height={28} 
                   className="brightness-0 invert" 
@@ -491,7 +491,7 @@ export default function VenueDetailPage({ params }: { params: Promise<{ slug: st
             <div className="bg-[#F8F9F5] rounded-3xl p-10 flex flex-col items-center text-center hover:shadow-lg transition-all duration-300">
               <div className="w-16 h-16 bg-[#8F9E75] rounded-full flex items-center justify-center mb-6 shadow-md shadow-[#8F9E75]/20">
                  <Image 
-                  src="/images/icons/mail-white.svg" 
+                  src="/images/icons/mail-white.png" 
                   alt="email" 
                   width={24} height={24} 
                   className="brightness-0 invert" 
