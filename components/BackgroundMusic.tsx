@@ -9,7 +9,7 @@ const BackgroundMusic = () => {
     const audio = audioRef.current;
     if (!audio) return;
 
-    audio.volume = 0.1; // Set volume 50%Yeah. Oh, OK, OK. OK. OK. Hey, Cortana. Hey, Cortana play. Sunny. Deol. Hey, Cortana. Oh yeah. Hello. Hey, Cortana. Can you take a dorm? Open Gandhi. Hey, Cortana. Hey, Cortana. Hey, Cortana. Yes, I'm a young man. 
+    audio.volume = 0.3; // Set volume 30%
 
     // Fungsi Play
     const playAudio = () => {
