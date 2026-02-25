@@ -1,9 +1,9 @@
 "use client";
 
-import { useSearchParams, useRouter } from 'next/navigation';
+import { useSearchParams, useRouter, Suspense } from 'next/navigation';
 import { XCircle, AlertTriangle, Home, RefreshCw } from 'lucide-react';
 
-export default function BookingFailedPage() {
+function FailedContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const bookingId = searchParams.get('booking_id');
@@ -75,5 +75,13 @@ export default function BookingFailedPage() {
 
       </div>
     </main>
+  );
+}
+
+export default function BookingFailedPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen flex items-center justify-center">Loading...</div>}>
+      <FailedContent />
+    </Suspense>
   );
 }

@@ -1,7 +1,7 @@
 // app/booking/success/page.tsx
 "use client";
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, Suspense } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { Check, Calendar, Coffee, Bed, Download } from 'lucide-react';
 import { format } from 'date-fns';
@@ -13,7 +13,7 @@ const formatCurrency = (amount: number) =>
 
 const ADDONS_PRICE = { breakfast: 50000, extrabed: 150000 };
 
-export default function BookingSuccessPage() {
+function SuccessContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const bookingId = searchParams.get('booking_id');
@@ -318,5 +318,13 @@ export default function BookingSuccessPage() {
 
       </div>
     </main>
+  );
+}
+
+export default function BookingSuccessPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen flex items-center justify-center">Loading...</div>}>
+      <SuccessContent />
+    </Suspense>
   );
 }

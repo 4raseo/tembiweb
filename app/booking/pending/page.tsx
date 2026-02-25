@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useState, useCallback, Suspense } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { Loader2, ExternalLink, RefreshCw, Copy, Check, AlertTriangle, Info, Calendar, User, Bed, Coffee } from 'lucide-react';
 import { format } from 'date-fns';
@@ -14,7 +14,7 @@ const formatCurrency = (amount: number) => {
   }).format(amount);
 };
 
-export default function BookingPendingPage() {
+function PendingContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const bookingId = searchParams.get('booking_id');
@@ -282,5 +282,13 @@ export default function BookingPendingPage() {
       )}
 
     </main>
+  );
+}
+
+export default function BookingPendingPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen flex items-center justify-center">Loading...</div>}>
+      <PendingContent />
+    </Suspense>
   );
 }

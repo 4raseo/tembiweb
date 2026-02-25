@@ -1,6 +1,6 @@
 "use client";
 
-import { useSearchParams, useRouter } from 'next/navigation';
+import { useSearchParams, useRouter, Suspense } from 'next/navigation';
 import { useMemo, useState } from 'react';
 import { roomData } from '@/data/roomData';
 import { differenceInCalendarDays, format, parseISO } from 'date-fns';
@@ -48,7 +48,7 @@ const PaymentStepper = () => (
   </div>
 );
 
-export default function PaymentPage() {
+function PaymentContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
   
@@ -382,5 +382,13 @@ export default function PaymentPage() {
 
       </div>
     </main>
+  );
+}
+
+export default function PaymentPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen flex items-center justify-center">Loading...</div>}>
+      <PaymentContent />
+    </Suspense>
   );
 }
