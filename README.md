@@ -1,36 +1,74 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Tembiweb
 
-## Getting Started
+Tembiweb adalah aplikasi web modern yang dibangun dengan **Next.js 15**, **TypeScript**, dan **Tailwind CSS**. Proyek ini dilengkapi dengan sistem manajemen database menggunakan **Prisma** dan integrasi pembayaran melalui **Xendit**.
 
-First, run the development server:
+## 🚀 Fitur Utama
+
+* **Next.js 15 (App Router):** Menggunakan fitur terbaru Next.js dengan dukungan Turbopack untuk performa pengembangan yang lebih cepat.
+* **Integrasi Database:** Menggunakan **Prisma ORM** dengan adapter PostgreSQL (`pg`) untuk pengelolaan data yang aman dan efisien.
+* **Sistem Pembayaran:** Integrasi dengan **Xendit SDK** (`xendit-node`) untuk menangani transaksi pembayaran.
+* **Ekspor PDF:** Kemampuan untuk membuat dokumen PDF secara dinamis menggunakan `jspdf` dan `jspdf-autotable`.
+* **UI & Styling:** Dibangun dengan **Tailwind CSS** dan ikon dari **Lucide React** serta **React Icons**.
+* **Manajemen Tanggal:** Pengolahan waktu dan tanggal yang presisi menggunakan `date-fns` dan `react-day-picker`.
+
+## 🛠️ Tech Stack
+
+### Framework & Library Inti
+
+* **Framework:** Next.js 15.5.3
+* **Language:** TypeScript
+* **Styling:** Tailwind CSS, PostCSS, Autoprefixer
+* **Database:** Prisma (PostgreSQL)
+
+### Dependensi Utama
+
+* `xendit-node`: Integrasi Payment Gateway.
+* `jspdf` & `jspdf-autotable`: Pembuatan laporan PDF.
+* `lucide-react` & `react-icons`: Library ikon.
+* `date-fns`: Utilitas manipulasi tanggal.
+
+## 🏁 Memulai Pengembangan
+
+### 1. Clone Repository
+
+```bash
+git clone https://github.com/username/tembiweb.git
+cd tembiweb
+
+```
+
+### 2. Instalasi Dependensi
+
+Gunakan npm atau yarn untuk menginstal library yang diperlukan:
+
+```bash
+npm install
+
+```
+
+### 3. Konfigurasi Database (Prisma)
+
+Pastikan kamu sudah mengatur file `.env` untuk koneksi database, lalu jalankan:
+
+```bash
+npx prisma generate
+
+```
+
+### 4. Menjalankan Server Pengembangan
+
+Proyek ini menggunakan **Turbopack** untuk pengalaman development yang lebih responsif:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Buka [http://localhost:3000](https://www.google.com/search?q=http://localhost:3000) di browser Anda.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 📜 Script Tersedia
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+* `npm run dev`: Menjalankan aplikasi dalam mode pengembangan dengan Turbopack.
+* `npm run build`: Membuat build produksi aplikasi.
+* `npm run start`: Menjalankan aplikasi hasil build produksi.
+* `npm run lint`: Menjalankan ESLint untuk mengecek kualitas kode.
