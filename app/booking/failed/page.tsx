@@ -1,7 +1,8 @@
 "use client";
 
-import { useSearchParams, useRouter, Suspense } from 'next/navigation';
+import { useSearchParams, useRouter } from 'next/navigation';
 import { XCircle, AlertTriangle, Home, RefreshCw } from 'lucide-react';
+import {Suspense } from 'react';
 
 function FailedContent() {
   const searchParams = useSearchParams();

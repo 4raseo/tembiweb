@@ -3,7 +3,9 @@
 import { useState, useEffect, useMemo } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import Image from 'next/image';
-import { roomData } from '@/data/roomData';
+// import { roomData } from '@/data/roomData';
+import { useLanguage } from '@/app/context/LanguageContext';
+
 import { differenceInCalendarDays, parseISO } from 'date-fns';
 import { Calendar, User, Home, Eye, Coffee, BedDouble, Plus, Minus } from 'lucide-react';
 import CustomAlert from '@/components/CustomAlert';
@@ -42,6 +44,8 @@ const BookingStepper = () => (
 );
 
 export default function BookingPage() {
+  const { t } = useLanguage();
+  const rooms = t.house.item || [];
   const router = useRouter();
   const searchParams = useSearchParams();
   const initialRoomSlug = searchParams.get('room');
@@ -67,13 +71,16 @@ export default function BookingPage() {
   });
 
   useEffect(() => {
-    if (initialRoomSlug) {
-      const initialRoom = roomData.find(r => r.slug === initialRoomSlug);
+    if (initialRoomSlug && rooms.length > 0) {
+      const initialRoom = rooms.find((r: any) => r.slug === initialRoomSlug);
       if (initialRoom) setSelectedRoomId(initialRoom.id);
     }
-  }, [initialRoomSlug]);
+  }, [initialRoomSlug, rooms]);
 
-  const selectedRoom = useMemo(() => roomData.find(room => room.id === selectedRoomId), [selectedRoomId]);
+  const selectedRoom = useMemo(() => 
+    rooms.find((room: any) => room.id === selectedRoomId), 
+    [selectedRoomId, rooms]
+  );
   
   const numberOfNights = useMemo(() => {
     if (checkIn && checkOut) {
@@ -336,7 +343,7 @@ export default function BookingPage() {
               <h4 className="font-bold text-gray-800">Choose Your Cultural Room</h4>
             </div>
             <div className="space-y-4">
-              {roomData.map((room) => (
+              {rooms.map((room: any) => (
                 <div 
                   key={room.id} 
                   onClick={() => setSelectedRoomId(room.id)}
